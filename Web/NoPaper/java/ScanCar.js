@@ -45,7 +45,10 @@ const BarcodeInput = async (event) => {
       operatorDropdown.value = jsonStr.idOperator;
 
 
-    if (jsonStr.Type === 4 && jsonStr.bHasError) // Отгрузка
+    if (
+          (jsonStr.Type === 4 || jsonStr.Type === 2)
+          && !jsonStr.bHasError
+       )
     {
       saveScan({
         barcode: barCodeText,
@@ -88,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const MAX_ITEMS = 20; // Полную историю ввести нет смысла, запоминаем просто последние 20 значений отгрузки
+const MAX_ITEMS = 30; // Полную историю ввести нет смысла, запоминаем просто последние 20 значений отгрузки
 function saveScan(newItem) {
   let list = JSON.parse(localStorage.getItem("shipScans")) || [];
 

@@ -401,6 +401,11 @@ namespace NoPaper
 
       if (!IsPostBack)
       {
+<<<<<<< Updated upstream
+=======
+        //BindOperatorBrigadirList();
+
+>>>>>>> Stashed changes
         int idSector = 0;
         string sectorParam = Request.QueryString["sector"];
 
@@ -501,6 +506,23 @@ namespace NoPaper
         LoadDataGrid();          // Загрузка данных в таблицы
     }
 
+<<<<<<< Updated upstream
+=======
+    //private void BindOperatorBrigadirList()
+    //{
+    //  List<OperatorInfo> brigadiers = new List<OperatorInfo>();
+
+    //  // 1. "Не назначен"
+    //  brigadiers.Add(new OperatorInfo(0, "Не назначен"));
+    //  brigadiers.AddRange(_operatorInfoList.Where(o => o.bTeam));
+
+    //  ddListBrigadier.DataSource = brigadiers;
+    //  ddListBrigadier.DataTextField = "Name";
+    //  ddListBrigadier.DataValueField = "ID";
+    //  ddListBrigadier.DataBind();
+    //}
+
+>>>>>>> Stashed changes
     /// <summary>
     ///   Записать внутрицеховой штрихкод пирамиды
     /// </summary>

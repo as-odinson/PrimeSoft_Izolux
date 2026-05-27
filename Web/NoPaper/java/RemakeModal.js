@@ -32,7 +32,7 @@
               },
               body: JSON.stringify({ argument: commandArgument })
             } 
-          )
+           )
         .then(response =>
         {
           console.log(response);
@@ -59,6 +59,8 @@
         .catch(error => console.error('Ошибка при выполнении запроса:', error));
     });
   });
+
+
 });
 
 function formatDate(dateString) {

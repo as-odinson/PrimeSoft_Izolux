@@ -39,14 +39,14 @@ namespace NoPaper.Models
   {
     public enum ETypeBarCode
     {
-      e_type_unknow  = 0,
-      e_type_oper    = 1,
-      e_type_pyramid = 2,
-      e_type_barcode = 3,
-      e_type_ship    = 4
+      e_type_unknow  = 0, // неизвестный
+      e_type_oper    = 1, // оператор
+      e_type_pyramid = 2, // пирамида
+      e_type_barcode = 3, // СП
+      e_type_ship    = 4 // отгрузка
     }
 
-    public struct ResonseString
+    public class ResonseString
     {
       bool         isSuccess;
       string       message;
