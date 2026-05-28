@@ -52,6 +52,7 @@ function Prog::TaskPropShow()
   Prop.InsertProperty_String(lCat, "Услуга к счёту №","Услуга к счёту №","ForAccountNum",0);
   Prop.Editable = true;
   Prop.InsertProperty_String(lCat, "Счёт-Фактура №", "Счёт-Фактура №", "NumCalcFact", 0);
+  Prop.InsertProperty_String(lCat, "ИГК", "ИКГ", "ForAccountNum", 0); 
   Prop.Editable = false;
   Prop.InsertProperty_String(lCat, "СФ от дилера №", "Счёт-Фактура от дилера №", "NumCalcFact_Dealer", 0);
 
@@ -179,6 +180,10 @@ function Prog::TaskPropEdit()
   Prop.InsertProperty_String    (lCat, "Счёт №",           "Счёт №",         "Num",         0);
   Prop.InsertProperty_String    (lCat, "Услуга к счёту №", "Услуга к счёту №","ForAccountNum",0);
   Prop.InsertProperty_String    (lCat, "Счёт-Фактура №",   "Счёт-Фактура №", "NumCalcFact", 0);
+
+  // Идентификатор государственного контракта
+  Prop.InsertProperty_String    (lCat, "ИГК", "ИКГ", "ForAccountNum", 0); 
+
   Prop.InsertProperty_String    (lCat, "СФ от дилера №",   "Счёт-Фактура от дилера №", "NumCalcFact_Dealer", 0);
 
   Prop.InsertProperty_ComboBox  (lCat, "Валюта", "Заказ в валюте", "idValute", "select ID, Name from Valute order by Name", 0);
@@ -207,7 +212,7 @@ function Prog::TaskPropEdit()
   Prop.InsertProperty_ComboBox  (lCat, "Банк грузополучателя",    "Банк грузополучателя",    "idClientBank_Consignee", "select CB.ID, BK.Name from ClientBank CB inner join Bank BK on BK.ID = CB.idBank where CB.idClient = " + (Prog.idConsignee? Prog.idConsignee : 0) + " order by BK.Name", 0);
 
   Prop.Editable = (CheckTaskInReplic() == 1 ? false : true);
-  Prop.InsertProperty_ComboBox  (lCat, "Подразделение", "Подразделение", "idDepotSubDivision", "select 0 as ID, 'Не выбрано' as Name union select ID, Name from DepotSubDivision order by Name", 0);
+  Prop.InsertProperty_ComboBox  (lCat, "Подразделение", "Подразделение", "idDepotSubDivision", "select ID, Name from DepotSubDivision order by Name", 0);
   Prop.Editable = true;
   
   Prop.InsertProperty_ComboBox  (lCat, "Подразделение грузотпр.", "Подразделение грузотпр.", "idDepotSubDivision_Shipper", "select 0 as ID, 'Не выбрано' as Name union select ID, Name from DepotSubDivision order by Name", 0);

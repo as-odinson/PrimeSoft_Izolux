@@ -40,8 +40,12 @@
         <asp:TextBox ID="SawTaskTxtInput" runat="server" Placeholder="номер оптимизации"/>
       </div>
       <div class="header-item">
+        Бригадир
+        <asp:DropDownList runat="server" ID="ddListBrigadier" ClientIDMode="Static" />
+      </div>
+      <div class="header-item">
         Оператор
-        <asp:DropDownList runat="server" ID="ddListPerson" OnSelectedIndexChanged="ddListPerson_SelectedIndexChanged" AutoPostBack="true" onchange="saveCurrentOperator(this)" />
+        <asp:DropDownList runat="server" ID="ddListPerson" ClientIDMode="Static" OnSelectedIndexChanged="ddListPerson_SelectedIndexChanged" AutoPostBack="true" onchange="saveCurrentOperator(this)" />
       </div>
 
       <asp:ScriptManager runat="server" EnablePageMethods="true" />
@@ -523,5 +527,6 @@
   <script src="./Java/RemakeModal.js?v=7"></script>  
   <script src="./Java/Draw.js?v=16"></script>
   <script src="./Java/Messages.js?v=3"></script>
+  <script src="./Java/Component/OperatorList.js?v=2"></script>
 </body>
 </html>

@@ -482,6 +482,9 @@ namespace NoPaper.Controllers
           command.ExecuteNonQuery();
         }
 
+        // Сделать запись о бригадире и составе бриагд
+        OperatorInfo.CreateShedulePersonnel(_conn);
+
         // Создадим SheduleOperator если значение отсутствует
         if (glassOper.operatorInfo.idSheduleOperator == 0)
         {
@@ -540,6 +543,9 @@ namespace NoPaper.Controllers
           glassOper.showMessage?.Invoke("Не удалось выполнить операцию", false);
           return;
         }
+
+        // Сделать запись о бригадире и составе бриагд
+        OperatorInfo.CreateShedulePersonnel(_conn);
 
         // Создадим если требуется
         if (glassOper.operatorInfo.idSheduleOperator == 0)
@@ -661,6 +667,9 @@ namespace NoPaper.Controllers
             results.Add(result);
           }
         }
+
+        // Сделать запись о бригадире и составе бриагд
+        OperatorInfo.CreateShedulePersonnel(_conn);
 
         for (int i = 0; i < idGlassProcessingPyramidList.Count; i++)
         {

@@ -1,9 +1,9 @@
-// Glass_Plugin_Izolux.idl : type library source for Glass_Plugin_Izolux.dll
+// IZO_Plugin.idl : type library source for IZO_Plugin.dll
 // This file will be processed by the MIDL compiler to produce the
 // type library (Glass_Plugin_Izolux.tlb).
 
 [ uuid(055ABE9D-97EC-4f45-A0BE-75123E8EFBF3), version(1.0) ]
-library Glass_Plugin_Izolux
+library IZO_Plugin
 {
 	importlib("stdole32.tlb");
 	importlib("stdole2.tlb");

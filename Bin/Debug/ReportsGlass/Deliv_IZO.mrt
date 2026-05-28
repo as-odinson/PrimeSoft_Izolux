@@ -51,6 +51,7 @@
 select * from v_Deliv 
 where (nState &amp; 4 = 4 or nState &amp; 2 = 2)
 and Date &gt;= {sDateBeg} and Date &lt;= {sDateEnd} 
+and upper(left(isnull(AccountNum, ''), 2)) &lt;&gt; 'ВС'
 {whereDepotSubDivision}</SqlCommand>
       </v_Deliv>
       <DepotSubDivision Ref="4" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
@@ -1001,11 +1002,11 @@ v_Deliv.Connect();</ClickEvent>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
   <ReportAuthor isNull="true" />
-  <ReportChanged>5/19/2026 4:42:24 PM</ReportChanged>
+  <ReportChanged>5/20/2026 1:01:27 PM</ReportChanged>
   <ReportCreated>9/5/2024 2:01:34 PM</ReportCreated>
   <ReportDescription isNull="true" />
   <ReportFile>D:\Develop\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\Deliv_IZO.mrt</ReportFile>
-  <ReportGuid>ee88a80c3e1d4777978b8a1eb0f2ee56</ReportGuid>
+  <ReportGuid>9c8d3ceb7d394b269d89dc9ef4ec582f</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

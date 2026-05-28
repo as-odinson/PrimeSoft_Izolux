@@ -1,64 +1,59 @@
-// Пример разработки плагина для IzoGlass
-// https://ru.wikipedia.org/wiki/%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD
-//
 #include "stdafx.h"
-#include <vector>
-#include "Glass_Plugin_Izolux.h"
+
+#include "Main_Export.h"
 
 #include "..\..\Design\ABMfc\ABCatch.h"
-#include "..\..\Design\ABMfc\ABMfc_Export.h"
-#include <Prof-UIS.h>
-#include "..\..\Design\Glass\TaskView.h"
+#include "PCTaskViewGrid_Export.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-BEGIN_MESSAGE_MAP(CPlugin_Izolux, CWinApp)
+BEGIN_MESSAGE_MAP(CMain_Export, CWinApp)
 END_MESSAGE_MAP()
 
-CPlugin_Izolux::CPlugin_Izolux()
-{
-}
+CMain_Export theApp;
 
-CPlugin_Izolux theApp;
+/////////////////////////////////////////////////////////////////////////////
 
-// 055ABE9D-97EC-4f45-A0BE-75123E8EFBF3
 const GUID CDECL BASED_CODE _tlid =
-{ 0x55abe9d, 0x97ec, 0x4f45, { 0xa0, 0xbe, 0x75, 0x12, 0x3e, 0x8e, 0xfb, 0xf3 } };
+{ 0xde5e0645, 0x7a8, 0x43be, { 0xbb, 0xc3, 0x20, 0x97, 0x6b, 0x41, 0xaf, 0x2b } };
 
 const WORD _wVerMajor = 1;
 const WORD _wVerMinor = 0;
 
-BOOL CPlugin_Izolux::InitInstance()
+/////////////////////////////////////////////////////////////////////////////
+
+CMain_Export::CMain_Export()
+{
+
+}
+
+BOOL CMain_Export::InitInstance()
 {
   CWinApp::InitInstance();
 
-  // Register all OLE server (factories) as running.  This enables the
-  //  OLE libraries to create objects from other applications.
   COleObjectFactory::RegisterAll();
+
+  // InitHooks();
 
   return TRUE;
 }
 
-// Returns class factory
-//
+/////////////////////////////////////////////////////////////////////////////
+
 STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 {
   AFX_MANAGE_STATE(AfxGetStaticModuleState());
   return AfxDllGetClassObject(rclsid, riid, ppv);
 }
 
-// Allows COM to unload DLL
-//
 STDAPI DllCanUnloadNow(void)
 {
   AFX_MANAGE_STATE(AfxGetStaticModuleState());
   return AfxDllCanUnloadNow();
 }
 
-// Adds entries to the system registry
-//
 STDAPI DllRegisterServer(void)
 {
   AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -72,8 +67,6 @@ STDAPI DllRegisterServer(void)
   return S_OK;
 }
 
-// Removes entries from the system registry
-//
 STDAPI DllUnregisterServer(void)
 {
   AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -88,51 +81,6 @@ STDAPI DllUnregisterServer(void)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-
-// Новая команда для меню, не должна пересекаться с любой из команд в программе:
-#define ID_RECALC_DEPTRANS_DOCDATE 62000
-
-/////////////////////////////////////////////////////////////////////////////
-// Грид отображения заказов:
-
-long nCommandIzolux = ID_RECALC_DEPTRANS_DOCDATE;
-
-class CTaskViewGrid_Export : public CTaskViewGrid
-{
-public:
-  CTaskViewGrid_Export(TCHAR* lpsz) : CTaskViewGrid(lpsz)
-  {
-    Glass::IProgEventPtr pIPE(GetProgEventDispatch());
-    if ( pIPE )
-      nCommandIzolux = pIPE->GetNextIDPluginCommand();
-  }
-  DECLARE_MESSAGE_MAP()
-
-public:
-  afx_msg void OnPopupRecalcDepTransDocDate()
-  {
-    try
-    {
-      _ConnectionPtr  pConn(__uuidof(Connection));
-      pConn = m_Recordset->GetActiveConnection();
-
-      if ( !pConn && GetConnectFunc() )
-        pConn = GetConnectFunc()();
-
-      CString        sSQL;
-      sSQL.Format(_T("exec sp_UpdateDepTransDocDateByTask %lf, %lf"), m_pParent->m_dBegin, m_pParent->m_dEnd);
-      RunSQL(sSQL, pConn.GetInterfacePtr());
-    }
-    CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
-  }
-};
-
-BEGIN_MESSAGE_MAP(CTaskViewGrid_Export, CTaskViewGrid)
-  ON_COMMAND(nCommandIzolux, OnPopupRecalcDepTransDocDate)
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Добавление новой команды в контекстное меню подсистемы:
 
 class CExtPopupMenuWnd_Export : public CExtPopupMenuWnd
 {
@@ -153,7 +101,13 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-// Вернёт имена функций в данной *.dll
+extern __declspec(dllexport) void GetPluginFunctionName(LONG Index, char* szFunctionName, long iFunctionNameLeng, char* szMenuItemName, long iMenuItemNameLeng)
+{
+  if ( Index == 0 )
+    strcpy_s(szFunctionName, iFunctionNameLeng, "PluginCreateObject");
+  else
+    strcpy_s(szFunctionName, iFunctionNameLeng, "break");
+}
 
 extern __declspec(dllexport) CObject* PluginCreateObject(const TCHAR* File, const TCHAR* szFunction, CRuntimeClass* pClassFunc, CRuntimeClass* pClassNew)
 {
@@ -161,7 +115,7 @@ extern __declspec(dllexport) CObject* PluginCreateObject(const TCHAR* File, cons
     return new CExtPopupMenuWnd_Export;
 
   if ( pClassNew == RUNTIME_CLASS(CTaskViewGrid) )
-    return new CTaskViewGrid_Export(_T("CTaskView\\Grid"));
+    return new PCTaskViewGrid_Export(_T("CTaskView\\Grid"));
 
   return NULL;
 }

@@ -75,26 +75,26 @@
     <OutDir>..\..\Bin\Debug_16\</OutDir>
     <IntDir>Debug_16\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1600;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1420_x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600;..\..\..\Lib\Prof-UIS\Bin_1420_x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1600_x64;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1430_x64;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1420_x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;.\minhook-master\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600_x64;..\..\..\Lib\Prof-UIS\Bin_1430_x64;..\..\..\Lib\Prof-UIS\Bin_1420_x64;.\minhook-master\build\VC17\bin\Debug;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\Bin\Debug_x64_16\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\Bin\Release_16\</OutDir>
     <IntDir>Release_16\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1600;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1420_x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600;..\..\..\Lib\Prof-UIS\Bin_1420_x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1600_x64;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1430_x64;..\..\..\Dev5_Ext_Glass_Lib\Prof-UIS\Bin_1420_x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600_x64;..\..\..\Lib\Prof-UIS\Bin_1430_x64;..\..\..\Lib\Prof-UIS\Bin_1420_x64;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\Bin\Release_x64_16\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
@@ -119,6 +119,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -127,12 +128,13 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalDependencies>..\..\Bin\Debug_16\Glass.lib;..\..\Bin\Debug_16\ABMfc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\Bin\Debug_16\Glass.lib;..\..\Bin\Debug_16\ABMfc.lib;MinHook.x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\Bin\Debug_16\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>.\Glass_Plugin_Izolux.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\build\VC17\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,6 +152,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>D:\Develop\Dev5_1\Plugin\Glass_Plugin\minhook-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WIN64;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -158,11 +161,12 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalDependencies>..\..\Bin\Debug_x64_16\Glass.lib;..\..\Bin\Debug_x64_16\ABMfc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\Lib\Common\x64\Debug\Common.lib;..\..\Bin\Debug_x64_16\Glass.lib;..\..\Bin\Debug_x64_16\ABMfc.lib;MinHook.x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\Bin\Debug_x64_16\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>.\Glass_Plugin_Izolux.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\build\VC17\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -215,6 +219,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WIN64;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -223,17 +228,21 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalDependencies>..\..\Bin\Release_x64_16\Glass.lib;..\..\Bin\Release_x64_16\ABMfc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\Lib\Common\x64\Release\Common.lib;..\..\Bin\Release_x64_16\Glass.lib;..\..\Bin\Release_x64_16\ABMfc.lib;MinHook.x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\Bin\Release_x64_16\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>.\Glass_Plugin_Izolux.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalLibraryDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\build\VC17\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Glass_Plugin_Izolux.cpp" />
+    <ClCompile Include="PCExportXml_UPD.cpp" />
+    <ClCompile Include="PCTaskViewGrid_Export.cpp" />
+    <ClCompile Include="LoadHooks.cpp" />
+    <ClCompile Include="Main_Export.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -249,7 +258,10 @@
     <Midl Include="Glass_Plugin_Izolux.idl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Glass_Plugin_Izolux.h" />
+    <ClInclude Include="PCExportXml_UPD.h" />
+    <ClInclude Include="PCTaskViewGrid_Export.h" />
+    <ClInclude Include="LoadHooks.h" />
+    <ClInclude Include="Main_Export.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

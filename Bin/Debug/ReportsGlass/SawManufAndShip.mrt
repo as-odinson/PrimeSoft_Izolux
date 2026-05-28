@@ -12,7 +12,7 @@
     <DataSources isList="true" count="1">
       <ReportData Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
         <Alias>ReportData</Alias>
-        <Columns isList="true" count="15">
+        <Columns isList="true" count="19">
           <value>ClientName,System.String</value>
           <value>idTask,System.Int32</value>
           <value>AccountNum,System.String</value>
@@ -28,6 +28,10 @@
           <value>BarCodeShip,System.Int32</value>
           <value>BarCodeComplete,System.Int32</value>
           <value>nStateName,System.String</value>
+          <value>idBarCode,System.Int32</value>
+          <value>TimeScan,System.DateTime</value>
+          <value>BarCodeSawed,System.Int32</value>
+          <value>BarCodeScaned,System.Int32</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
@@ -49,8 +53,12 @@ select
 	SH.ID     as idShip,
 	SH.Date   as ShipDate,
 	B.nState as BarCodeState,
+	B.ID as idBarCode,
+	B.TimeScan,
 	case when B.nState &amp; 8 = 8 then 1 else 0 end as BarCodeShip,
-  case when B.nState &amp; 128 = 128     then 1 else 0 end as BarCodeComplete
+    case when B.nState &amp; 4 = 4 then 1 else 0 end as BarCodeSawed,  
+    case when B.nState &amp; 128 = 128 then 1 else 0 end as BarCodeComplete, -- Изготовлен
+    case when B.TimeScan is not null then 1 else 0 end as BarCodeScaned 
 from SawTaskMain STM
 inner join GlassDetails GD     on GD.idSawTaskMain = STM.ID
 inner join Project       P     on GD.idProject     = P.ID
@@ -81,7 +89,9 @@ group by
   SH.Date,
   B.ID,
   B.nState,
-  TaskState.Name</SqlCommand>
+  B.TimeScan,
+  TaskState.Name
+</SqlCommand>
       </ReportData>
     </DataSources>
     <Relations isList="true" count="0" />
@@ -483,10 +493,10 @@ group by
               <Name>Text11</Name>
               <Page isRef="4" />
               <Parent isRef="20" />
-              <Text>{Sum(DataReportData,ReportData.BarCodeComplete)}</Text>
+              <Text>{Sum(DataReportData,ReportData.BarCodeSawed)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Totals</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
             <Text12 Ref="28" type="Text" isKey="true">
@@ -501,7 +511,7 @@ group by
               <Name>Text12</Name>
               <Page isRef="4" />
               <Parent isRef="20" />
-              <Text>{Sum(DataReportData,ReportData.BarCodeShip)}</Text>
+              <Text>{Sum(DataReportData,ReportData.BarCodeScaned)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
@@ -736,10 +746,10 @@ sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</Cli
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/22/2026 11:22:24 AM</ReportChanged>
+  <ReportChanged>5/20/2026 1:51:15 PM</ReportChanged>
   <ReportCreated>2/16/2012 12:49:06 PM</ReportCreated>
   <ReportFile>D:\Develop\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\SawManufAndShip.mrt</ReportFile>
-  <ReportGuid>df375fa46db94bfb812e88d9234fa799</ReportGuid>
+  <ReportGuid>12ec0706ab3d47c6acac67cdd0137532</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

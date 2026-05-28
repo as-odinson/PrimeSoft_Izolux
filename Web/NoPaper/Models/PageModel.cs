@@ -180,7 +180,9 @@ namespace NoPaper.Models
                                  O.idSectorManufact,
                                  IsNull(SO.ID,    0) as idSheduleOperator,
                                  IsNull(O.idUser, 0) as idUser,
-                                 IsNull(O.idDepName, 0) as idDepName
+                                 IsNull(O.idDepName, 0) as idDepName,
+                                 isnull(O.bTeam, 0) as bTeam,
+                                 isnull(idPersonnel, 0 ) as idPersonnel
                                from Operator O
                                outer apply  
                                (
@@ -199,12 +201,15 @@ namespace NoPaper.Models
             while (reader.Read())
             {
               OperatorInfo opearator = new OperatorInfo(
-              _ID:                SafeConvert.ToInt(reader["ID"]),
-              _idSheduleOperator: SafeConvert.ToInt(reader["idSheduleOperator"]),
-              _idUser:            SafeConvert.ToInt(reader["idUser"]),
-              _idSectorManufact:  SafeConvert.ToNullableInt(reader["idSectorManufact"]),
-              _idDepName:         SafeConvert.ToInt(reader["idDepName"]),
-              _Name:              SafeConvert.ToString(reader["Name"]));
+                _ID:               SafeConvert.ToInt(reader["ID"]),
+               _idSheduleOperator: SafeConvert.ToInt(reader["idSheduleOperator"]),
+               _idUser:            SafeConvert.ToInt(reader["idUser"]),
+               _idSectorManufact:  SafeConvert.ToNullableInt(reader["idSectorManufact"]),
+               _idDepName:         SafeConvert.ToInt(reader["idDepName"]),
+               _Name:              SafeConvert.ToString(reader["Name"]),
+               bTeam:              SafeConvert.ToBool(reader["bTeam"]),
+               idPersonnel:        SafeConvert.ToInt(reader["idPersonnel"])
+              );
 
               operatorInfoList.Add(opearator);
             }

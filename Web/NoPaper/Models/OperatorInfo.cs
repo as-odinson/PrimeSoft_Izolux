@@ -1,7 +1,9 @@
 ﻿using log4net;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using Utils;
 
 namespace NoPaper.Models
@@ -16,6 +18,8 @@ namespace NoPaper.Models
     public int    idDepName         { get; private set;}
     public string Name  { get; private set; }
 
+    public bool bTeam { get; set; }
+    public int idPersonnel { get; set; }
 
     private static readonly ILog log = LogManager.GetLogger(typeof(OperatorInfo));
 
@@ -27,11 +31,19 @@ namespace NoPaper.Models
       idUser            = 0;
       idDepName         = 0;
       Name              = "";
+      bTeam = false;
+      idPersonnel = 0;
     }
 
     public OperatorInfo(int _ID) : base()
     {
       ID = _ID;
+    }
+
+    public OperatorInfo(int ID, string Name) : base()
+    {
+      this.ID = ID;
+      this.Name = Name;
     }
 
     public OperatorInfo(int _ID, int _idSheduleOperator, int _idUser, int? _idSectorManufact, int _idDepName, string _Name)
@@ -43,6 +55,21 @@ namespace NoPaper.Models
       Name              = _Name;
       idDepName         = _idDepName;
     }
+
+    public OperatorInfo(
+      int _ID,
+      int _idSheduleOperator,
+      int _idUser,
+      int? _idSectorManufact,
+      int _idDepName,
+      string _Name,
+      bool bTeam,
+      int idPersonnel) : this(_ID, _idSheduleOperator, _idUser, _idSectorManufact, _idDepName,  _Name) 
+    {
+      this.idPersonnel = idPersonnel;
+      this.bTeam = bTeam;
+    }
+
 
     /// <summary>
     /// Используем для создание нового записи в таблице SheduleOperator
@@ -63,6 +90,8 @@ namespace NoPaper.Models
           return operatorInf.Item1.idSheduleOperator;
         }
 
+        // текущий контекст бригады
+
         using (SqlCommand command = new SqlCommand("sp_CreateSheduleOperator", conn))
         {
           command.CommandType = CommandType.StoredProcedure;
@@ -78,6 +107,9 @@ namespace NoPaper.Models
           command.ExecuteNonQuery();
 
           log.Info($"Создан новый idSheduleOperator: {SafeConvert.ToInt(outParam.Value)}");
+
+
+
           return SafeConvert.ToInt(outParam.Value);
         }
       }
@@ -85,6 +117,112 @@ namespace NoPaper.Models
       {
         log.Error(ex.Message);
         return 0;
+      }
+    }
+
+    public static void CreateShedulePersonnel(SqlConnection conn)
+    {
+      try
+      {
+        int idBrigadier = SafeConvert.ToInt(HttpContext.Current?.Session?["CurrentBrigadier"]);
+        var currentGroupObj = HttpContext.Current?.Session?["CurrentOperatorGroup"];
+        List<object> currentGroup = currentGroupObj as List<object>;
+
+        if (currentGroup == null || currentGroup.Count == 0)
+          return;
+
+        // Проверяем/создаём SheduleOperator бригадира
+        Tuple<OperatorInfo, bool> brigadierInfo = CheckOperatorInfoByPlanCalendar(conn, idBrigadier);
+
+        int idSheduleOperator = brigadierInfo.Item1.idSheduleOperator;
+
+        // если нет записи — создаём
+        if (idSheduleOperator == 0)
+        {
+          using (SqlCommand command = new SqlCommand("sp_CreateSheduleOperator", conn))
+          {
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@idOperator", idBrigadier);
+            command.Parameters.AddWithValue("@date", DateTime.Now);
+
+            SqlParameter outParam = new SqlParameter("@idSheduleOperatorNew", SqlDbType.Int);
+            outParam.Direction = ParameterDirection.Output;
+
+            command.Parameters.Add(outParam);
+            command.ExecuteNonQuery();
+
+            idSheduleOperator = SafeConvert.ToInt(outParam.Value);
+          }
+        }
+
+        // защита от дублей
+        string checkSql = $@"
+             select count(*)
+             from ShedulePersonnel
+             where idSheduleOperator = {idSheduleOperator}
+           ";
+
+        using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+        {
+          int count = SafeConvert.ToInt(checkCmd.ExecuteScalar());
+          if (count > 1)
+            return;
+        }
+
+
+        // заполняем ShedulePersonnel
+        foreach (dynamic item in currentGroup)
+        {
+          int idPersonnel = SafeConvert.ToInt(item.idPersonnel);
+          float coef = SafeConvert.ToFloat(item.coef);
+          bool bTeam = SafeConvert.ToInt(item.ID) == idBrigadier;
+
+          if (idPersonnel == 0)
+            continue;
+
+          string sqlcmd;
+
+          if (bTeam)
+          {
+            sqlcmd = $@"
+                update ShedulePersonnel
+                set KTU = @coef
+                where idSheduleOperator = @idSheduleOperator
+                  and idPersonnel =  @idPersonnel
+            ";
+          }
+          else
+          {
+            sqlcmd = $@"
+            insert into ShedulePersonnel
+            (
+              idSheduleOperator,
+              idPersonnel,
+              KTU
+            )
+            values
+            (
+              @idSheduleOperator,
+              @idPersonnel,
+              @coef
+            )
+          ";
+          }
+
+          using (SqlCommand cmd = new SqlCommand(sqlcmd, conn))
+          {
+            cmd.Parameters.AddWithValue("@idSheduleOperator", idSheduleOperator);
+            cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+            cmd.Parameters.AddWithValue("@coef", coef);
+
+            cmd.ExecuteNonQuery();
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        log.Error(ex.Message);
       }
     }
 

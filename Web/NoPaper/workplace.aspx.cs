@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.EnterpriseServices;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Policy;
@@ -22,6 +23,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 using Utils;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -397,15 +399,12 @@ namespace NoPaper
       BarCodeTxtInput.Attributes["autocomplete"] = "off";
 
       // Перезагружать список операторо при каждом Postback включая первой инициализации
-      LoadOperatorList(ddListPerson, "ID", "Name", "1=1", true);                  // Список операторов с ключем 
+      LoadOperatorList(ddListPerson, "ID", "Name", "1=1", true); // Список операторов с ключем 
 
       if (!IsPostBack)
       {
-<<<<<<< Updated upstream
-=======
-        //BindOperatorBrigadirList();
+        BindOperatorBrigadirList();
 
->>>>>>> Stashed changes
         int idSector = 0;
         string sectorParam = Request.QueryString["sector"];
 
@@ -506,23 +505,20 @@ namespace NoPaper
         LoadDataGrid();          // Загрузка данных в таблицы
     }
 
-<<<<<<< Updated upstream
-=======
-    //private void BindOperatorBrigadirList()
-    //{
-    //  List<OperatorInfo> brigadiers = new List<OperatorInfo>();
+    private void BindOperatorBrigadirList()
+    {
+      List<OperatorInfo> brigadiers = new List<OperatorInfo>();
 
-    //  // 1. "Не назначен"
-    //  brigadiers.Add(new OperatorInfo(0, "Не назначен"));
-    //  brigadiers.AddRange(_operatorInfoList.Where(o => o.bTeam));
+      // 1. "Не назначен"
+      brigadiers.Add(new OperatorInfo(0, "Не назначен"));
+      brigadiers.AddRange(_operatorInfoList.Where(o => o.bTeam));
 
-    //  ddListBrigadier.DataSource = brigadiers;
-    //  ddListBrigadier.DataTextField = "Name";
-    //  ddListBrigadier.DataValueField = "ID";
-    //  ddListBrigadier.DataBind();
-    //}
+      ddListBrigadier.DataSource = brigadiers;
+      ddListBrigadier.DataTextField = "Name";
+      ddListBrigadier.DataValueField = "ID";
+      ddListBrigadier.DataBind();
+    }
 
->>>>>>> Stashed changes
     /// <summary>
     ///   Записать внутрицеховой штрихкод пирамиды
     /// </summary>
@@ -645,6 +641,77 @@ namespace NoPaper
       }
     }
 
+
+    [WebMethod(EnableSession = true)]
+    public static List<object> GetOperatorGroup(int brigadierId)
+    {
+      List<object> result = new List<object>();
+      
+      if (brigadierId == 0)
+      {
+        HttpContext.Current.Session.Remove("CurrentOperatorGroup");
+        HttpContext.Current.Session.Remove("CurrentBrigadier");
+
+        return result;
+      }
+      using (SqlConnection conn = new SqlConnection(DbConfig.ConnectionString))
+      {
+        conn.Open();
+
+        string sql = @"
+          select
+              O.ID,
+              O.Name,
+              O.idSectorManufact,
+              isnull(SO.ID, 0) as idSheduleOperator,
+              isnull(O.idUser, 0) as idUser,
+              isnull(O.idDepName, 0) as idDepName,
+              isnull(O.bTeam, 0) as bTeam,
+              isnull(O.idPersonnel, 0) as idPersonnel,
+              GI.Coef
+          from OperatorGroup G
+          join OperatorGroupItem GI on GI.idOperatorGroup = G.ID
+          join Operator O on O.ID = GI.idOperator
+          outer apply
+          (
+              select top 1 ID
+              from SheduleOperator SO
+              where SO.idOperator = O.ID
+                and SO.dtBegin <= getdate()
+                and SO.dtEnd >= getdate()
+          ) SO
+          where G.idOperatorBrigadier = @idBrigadier
+          order by O.Name
+         ";
+
+        using (SqlCommand cmd = new SqlCommand(sql, conn))
+        {
+          cmd.Parameters.AddWithValue("@idBrigadier", brigadierId);
+
+          using (SqlDataReader reader = cmd.ExecuteReader())
+          {
+            while (reader.Read())
+            {
+              result.Add(new
+              {
+                ID = SafeConvert.ToInt(reader["ID"]),
+                Name = SafeConvert.ToString(reader["Name"]),
+                idSheduleOperator = SafeConvert.ToInt(reader["idSheduleOperator"]),
+                idPersonnel = SafeConvert.ToInt(reader["idPersonnel"]),
+                bTeam = SafeConvert.ToBool(reader["bTeam"]),
+                coef = Convert.ToDouble(reader["Coef"])
+              });
+            }
+          }
+        }
+      }
+
+      HttpContext.Current.Session["CurrentOperatorGroup"] = result;
+      HttpContext.Current.Session["CurrentBrigadier"] = brigadierId;
+
+      return result;
+    }
+
     /// <summary>
     ///   Сканирование штрихкода оператора
     /// </summary>
@@ -738,13 +805,17 @@ namespace NoPaper
         _curentSectorManufact = _sectorManufactList.FirstOrDefault(sector => sector.ID == operatorInfo.idSectorManufact);
         _currentOperatorInfo   = _operatorInfoList.FirstOrDefault(oper => oper.ID == operatorInfo.ID );
 
-        if (_currentOperatorInfo.idSheduleOperator == 0)
-          using (SqlConnection conn = new SqlConnection(DbConfig.ConnectionString))
+        using (SqlConnection conn = new SqlConnection(DbConfig.ConnectionString))
+        {
+          conn.Open();
+          OperatorInfo.CreateShedulePersonnel(conn);
+
+          if (_currentOperatorInfo.idSheduleOperator == 0)
           {
-            conn.Open();
             _currentOperatorInfo.idSheduleOperator = OperatorInfo.CreateSheduleOperator(conn, _currentOperatorInfo.ID);
             log.Info($"новый idSheduleOperator: {_currentOperatorInfo.idSheduleOperator}");
           }
+        }
 
          return BarCodeController.PostBarCodeGlass(barcode, _curentSectorManufact, _currentOperatorInfo, currentScanIdPyramidBarCode);
       }
@@ -1088,29 +1159,29 @@ namespace NoPaper
             }
 
           case "OnMakePyramid":
+          {
+            string[] commandArgs           = e.CommandArgument.ToString().Split('_');
+
+            string sIdGlassProcessingPyramid = commandArgs[0];
+            int    idPiramid                 = SafeConvert.ToInt(commandArgs[1]);
+            int    idOperator                = SafeConvert.ToInt(ddListPerson.SelectedValue);
+            OperatorInfo operatorInfo        = _operatorInfoList.FirstOrDefault(o => o.ID == idOperator);
+
+            if (sIdGlassProcessingPyramid.Length == 0)
             {
-              string[] commandArgs           = e.CommandArgument.ToString().Split('_');
-
-              string sIdGlassProcessingPyramid = commandArgs[0];
-              int    idPiramid                 = SafeConvert.ToInt(commandArgs[1]);
-              int    idOperator                = SafeConvert.ToInt(ddListPerson.SelectedValue);
-              OperatorInfo operatorInfo        = _operatorInfoList.FirstOrDefault(o => o.ID == idOperator);
-
-              if (sIdGlassProcessingPyramid.Length == 0)
-              {
-                ShowMessage("Операция не возможна, не назначены пирамиды на операции", false);
-                return;
-              }
-
-              // Проверяем запросы выполнются 
-              bool isSuccess = glassProcessingController.MakePyramid(operatorInfo, sIdGlassProcessingPyramid, idPiramid, currentScanIdPyramidBarCode, _curentSectorManufact);
-              _currentOperatorInfo = operatorInfo;
-
-              if (!isSuccess)
-                ShowMessage("Операция не возможна, не введен Штрих-код", false);
-
-              break;
+              ShowMessage("Операция не возможна, не назначены пирамиды на операции", false);
+              return;
             }
+
+            // Проверяем запросы выполнются 
+            bool isSuccess = glassProcessingController.MakePyramid(operatorInfo, sIdGlassProcessingPyramid, idPiramid, currentScanIdPyramidBarCode, _curentSectorManufact);
+            _currentOperatorInfo = operatorInfo;
+
+            if (!isSuccess)
+              ShowMessage("Операция не возможна, не введен Штрих-код", false);
+
+            break;
+          }
 
           case "OnWritePyramidBarCode":
           {

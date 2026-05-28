@@ -54,15 +54,15 @@ extern "C"{
 
 
 
-#ifndef __Glass_Plugin_Izolux_LIBRARY_DEFINED__
-#define __Glass_Plugin_Izolux_LIBRARY_DEFINED__
+#ifndef __IZO_Plugin_LIBRARY_DEFINED__
+#define __IZO_Plugin_LIBRARY_DEFINED__
 
-/* library Glass_Plugin_Izolux */
+/* library IZO_Plugin */
 /* [version][uuid] */ 
 
 
-EXTERN_C const IID LIBID_Glass_Plugin_Izolux;
-#endif /* __Glass_Plugin_Izolux_LIBRARY_DEFINED__ */
+EXTERN_C const IID LIBID_IZO_Plugin;
+#endif /* __IZO_Plugin_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
 
