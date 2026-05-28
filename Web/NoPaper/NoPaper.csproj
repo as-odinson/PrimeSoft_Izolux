@@ -95,6 +95,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Pages\ScanHistory.css" />
     <Content Include="css\Plot.css" />
     <Content Include="css\ScanBarcodes.css" />
     <Content Include="css\scan1.css" />
@@ -112,6 +113,7 @@
     <Content Include="Java\Component\OperatorList.js" />
     <Content Include="Java\CustomError.js" />
     <Content Include="Java\Defect.js" />
+    <Content Include="Java\Pages\ScanHistory.js" />
     <Content Include="Java\Plot.js" />
     <Content Include="Java\ScanCar.js" />
     <Content Include="Java\Test.js" />
@@ -122,6 +124,7 @@
     <Content Include="ScanBarcodes.aspx" />
     <Content Include="scan1.aspx" />
     <Content Include="ScanCar.aspx" />
+    <Content Include="ScanHistory.aspx" />
     <Content Include="TaskSearchInfo.aspx" />
     <Content Include="SawPLan.aspx" />
     <Content Include="Defect.aspx" />
@@ -187,6 +190,13 @@
     </Compile>
     <Compile Include="ScanCar.aspx.designer.cs">
       <DependentUpon>ScanCar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanHistory.aspx.cs">
+      <DependentUpon>ScanHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScanHistory.aspx.designer.cs">
+      <DependentUpon>ScanHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="TaskSearchInfo.aspx.cs">
       <DependentUpon>TaskSearchInfo.aspx</DependentUpon>

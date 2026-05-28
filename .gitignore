@@ -7,3 +7,5 @@ Web/NoPaper/.vs/NoPaper/FileContentIndex/af76428e-65f6-4d1e-9c82-b273b4912caa.vs
 /Web/NoPaper/obj
 Web/NoPaper/NoPaper.csproj
 Web/NoPaper/NoPaper.csproj
+*.pubxml
+/Web/NoPaper/Properties/PublishProfiles

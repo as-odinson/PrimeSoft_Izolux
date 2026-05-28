@@ -188,59 +188,7 @@
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,29.1,10.8</ClientRectangle>
           <Components isList="true" count="59">
-            <Text2 Ref="6" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,1.8,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text2</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.SellerName} / {v_Invoice.SellerNameFull}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="7" type="DateFormat" isKey="true" />
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text2>
-            <Text4 Ref="8" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,4.2,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>81b461fa933f4935881ff62deaf88430</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.ConsigneeNameFull} {IIF(v_Invoice.idDefaultAdress == 1, v_Invoice.ClientAdress, 
-IIF(v_Invoice.idDefaultAdress == 2, v_Invoice.ClientAdressSubDiv,
-IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == "", v_Invoice.ClientAdress, v_Invoice.ClientAdressSubDiv)
-))}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="9" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text4>
-            <Text3 Ref="10" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,3.6,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>7a1ce196fffe458eb9b53fe1b715472f</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text3</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.SellerName} / {v_Invoice.SellerNameFull} {IIF(v_Invoice.SubDivisionAddress_Ship != "",v_Invoice.SubDivisionAddress_Ship ,v_Invoice.SubDivisionAddress)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="11" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text3>
-            <Text113 Ref="12" type="Text" isKey="true">
+            <Text113 Ref="6" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0.6,5.8,0.6</ClientRectangle>
@@ -256,7 +204,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text113>
-            <Text126 Ref="13" type="Text" isKey="true">
+            <Text126 Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,2.4,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -271,7 +219,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text126>
-            <Text66 Ref="14" type="Text" isKey="true">
+            <Text66 Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0.6,2,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -286,7 +234,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text66>
-            <Text67 Ref="15" type="Text" isKey="true">
+            <Text67 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,2.2,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -300,7 +248,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text67>
-            <Text68 Ref="16" type="Text" isKey="true">
+            <Text68 Ref="10" type="Text" isKey="true">
               <Border>All;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.2,2.2,1,0.6</ClientRectangle>
@@ -316,7 +264,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text68>
-            <Text71 Ref="17" type="Text" isKey="true">
+            <Text71 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,3.2,2,7.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -331,7 +279,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text71>
-            <Text47 Ref="18" type="Text" isKey="true">
+            <Text47 Ref="12" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1.2,5.8,0.6</ClientRectangle>
@@ -347,7 +295,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text47>
-            <Text86 Ref="19" type="Text" isKey="true">
+            <Text86 Ref="13" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.2,0.6,0.8,0.6</ClientRectangle>
@@ -363,7 +311,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text86>
-            <Text87 Ref="20" type="Text" isKey="true">
+            <Text87 Ref="14" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.2,0.6,2.6,0.6</ClientRectangle>
@@ -380,7 +328,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text87>
-            <Text88 Ref="21" type="Text" isKey="true">
+            <Text88 Ref="15" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.2,1.2,0.8,0.6</ClientRectangle>
@@ -397,7 +345,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text88>
-            <Text89 Ref="22" type="Text" isKey="true">
+            <Text89 Ref="16" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.2,1.2,2.6,0.6</ClientRectangle>
@@ -413,7 +361,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text89>
-            <Text90 Ref="23" type="Text" isKey="true">
+            <Text90 Ref="17" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0,28.4,0.6</ClientRectangle>
@@ -430,7 +378,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text90>
-            <Text91 Ref="24" type="Text" isKey="true">
+            <Text91 Ref="18" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12.6,0.6,16,0.6</ClientRectangle>
@@ -447,7 +395,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text91>
-            <Text92 Ref="25" type="Text" isKey="true">
+            <Text92 Ref="19" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12.6,1.2,16,0.6</ClientRectangle>
@@ -464,7 +412,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text92>
-            <Text93 Ref="26" type="Text" isKey="true">
+            <Text93 Ref="20" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,0.6,0.8,0.6</ClientRectangle>
@@ -481,7 +429,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text93>
-            <Text94 Ref="27" type="Text" isKey="true">
+            <Text94 Ref="21" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,1.2,0.8,0.6</ClientRectangle>
@@ -498,7 +446,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text94>
-            <Text95 Ref="28" type="Text" isKey="true">
+            <Text95 Ref="22" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1.8,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -512,22 +460,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text95>
-            <Text96 Ref="29" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,2.4,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>dae6df4a33124c4f844f31fbe58c3c40</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text96</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.SellerAdress}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="30" type="DateFormat" isKey="true" />
-              <Type>Expression</Type>
-            </Text96>
-            <Text97 Ref="31" type="Text" isKey="true">
+            <Text97 Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,3,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -542,22 +475,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text97>
-            <Text98 Ref="32" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,3,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>9176d04e593745a5b67d36d5bac0a5b8</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text98</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.SellerUNN}  /  {v_Invoice.SubDivisionKPP}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="33" type="DateFormat" isKey="true" />
-              <Type>Expression</Type>
-            </Text98>
-            <Text100 Ref="34" type="Text" isKey="true">
+            <Text100 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,3.6,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -572,7 +490,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text100>
-            <Text99 Ref="35" type="Text" isKey="true">
+            <Text99 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,4.2,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -587,7 +505,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text99>
-            <Text44 Ref="36" type="Text" isKey="true">
+            <Text44 Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,4.8,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -602,23 +520,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text44>
-            <Text40 Ref="37" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,4.8,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>b56d577fd13a4f938728a3f06dd9d91a</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text40</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.Komission}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text40>
-            <Text1 Ref="38" type="Text" isKey="true">
+            <Text1 Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,7.8,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -633,24 +535,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text101 Ref="39" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,7.8,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>cb00bf6c6e344bc688ecdd0b94f9512c</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text101</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.ClientNameFull}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="40" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text101>
-            <Text18 Ref="41" type="Text" isKey="true">
+            <Text18 Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,8.4,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -665,7 +550,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text18>
-            <Text38 Ref="42" type="Text" isKey="true">
+            <Text38 Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,9,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -680,7 +565,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
-            <Text39 Ref="43" type="Text" isKey="true">
+            <Text39 Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,9.6,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -695,7 +580,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text39>
-            <Text102 Ref="44" type="Text" isKey="true">
+            <Text102 Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,10.2,25.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -710,41 +595,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text102>
-            <Text103 Ref="45" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,8.4,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>09c8fb75dbb7454a85e74538bc38d7ed</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text103</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.ClientAdress}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="46" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text103>
-            <Text104 Ref="47" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,9,19.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>470ef69815b74594a47d7754ba34e5ec</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text104</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{v_Invoice.ClientUNN}  /  {v_Invoice.ClientKPP}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="48" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text104>
-            <Text105 Ref="49" type="Text" isKey="true">
+            <Text105 Ref="32" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,1.8,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -760,7 +611,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text105>
-            <Text106 Ref="50" type="Text" isKey="true">
+            <Text106 Ref="33" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,2.4,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -776,7 +627,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text106>
-            <Text107 Ref="51" type="Text" isKey="true">
+            <Text107 Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,3,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -792,7 +643,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text107>
-            <Text108 Ref="52" type="Text" isKey="true">
+            <Text108 Ref="35" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,3.6,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -808,7 +659,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text108>
-            <Text109 Ref="53" type="Text" isKey="true">
+            <Text109 Ref="36" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,4.2,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -824,7 +675,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text109>
-            <Text110 Ref="54" type="Text" isKey="true">
+            <Text110 Ref="37" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,4.8,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -840,7 +691,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text110>
-            <Text111 Ref="55" type="Text" isKey="true">
+            <Text111 Ref="38" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,7.8,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -856,7 +707,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text111>
-            <Text112 Ref="56" type="Text" isKey="true">
+            <Text112 Ref="39" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,8.4,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -872,7 +723,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text112>
-            <Text115 Ref="57" type="Text" isKey="true">
+            <Text115 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,9,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -888,7 +739,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text115>
-            <Text116 Ref="58" type="Text" isKey="true">
+            <Text116 Ref="41" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,9.6,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -904,7 +755,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text116>
-            <Text125 Ref="59" type="Text" isKey="true">
+            <Text125 Ref="42" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,10.2,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -920,7 +771,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text125>
-            <Text188 Ref="60" type="Text" isKey="true">
+            <Text188 Ref="43" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8.2,9.6,19.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -934,7 +785,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text188>
-            <Text192 Ref="61" type="Text" isKey="true">
+            <Text192 Ref="44" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,5.4,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -949,24 +800,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text192>
-            <Text200 Ref="62" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,5.4,5.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
-              <Guid>4388704f7cfc425194db3e808cbea7d7</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text200</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>Универсальный передаточный документ, </Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="63" type="DateFormat" isKey="true" />
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text200>
-            <Text201 Ref="64" type="Text" isKey="true">
+            <Text201 Ref="45" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,5.4,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -982,7 +816,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text201>
-            <Text140 Ref="65" type="Text" isKey="true">
+            <Text140 Ref="46" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.8,5.4,14,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -996,7 +830,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text140>
-            <Text155 Ref="66" type="Text" isKey="true">
+            <Text155 Ref="47" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,6,25.4,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1012,7 +846,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text155>
-            <Text158 Ref="67" type="Text" isKey="true">
+            <Text158 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,7.2,25.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1027,7 +861,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text158>
-            <Text162 Ref="68" type="Text" isKey="true">
+            <Text162 Ref="49" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,7.2,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1043,12 +877,175 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text162>
-            <Text163 Ref="69" type="Text" isKey="true">
+            <Text2 Ref="50" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,10.2,13.2,0.4</ClientRectangle>
+              <ClientRectangle>8.2,1.8,19.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
-              <Guid>f815df2101db415287c7075a7483b87f</Guid>
+              <Guid>9fee6e2cf0044a74bdb19ad17c15a657</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.SellerName} / {v_Invoice.SellerNameFull}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text96 Ref="51" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,2.4,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>0f6c8669076e4872b1b4055b8da2203f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text96</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.SellerAdress}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text96>
+            <Text98 Ref="52" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,3,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>730b5f3ffe844ef398c86c2087d322a5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text98</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.SellerUNN}  /  {v_Invoice.SubDivisionKPP}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text98>
+            <Text3 Ref="53" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,3.6,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>47ec8b9e0a574993a2df125778561570</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.SellerName} / {v_Invoice.SellerNameFull} {IIF(v_Invoice.SubDivisionAddress_Ship != "",v_Invoice.SubDivisionAddress_Ship ,v_Invoice.SubDivisionAddress)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="54" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,4.2,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>c5def9edeb0146189ce1b82a0f37b0af</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.ConsigneeNameFull} {IIF(v_Invoice.idDefaultAdress == 1, v_Invoice.ClientAdress, 
+IIF(v_Invoice.idDefaultAdress == 2, v_Invoice.ClientAdressSubDiv,
+IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == "", v_Invoice.ClientAdress, v_Invoice.ClientAdressSubDiv)
+))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text40 Ref="55" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,4.8,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>7c98aa5579ee46acb9f0164982bd66f5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.Komission}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+            <Text181 Ref="56" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,5.4,5.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>8ab5cd5e345f4f1289f053eb77522ed1</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text181</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Универсальный передаточный документ, </Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text181>
+            <Text101 Ref="57" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,7.8,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>15372d05d13442a598b6b88726c0ac9a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text101</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.ClientNameFull}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text101>
+            <Text103 Ref="58" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,8.4,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>f6c723ed01f5406cb84179eda0b53105</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text103</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.ClientAdress}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text103>
+            <Text104 Ref="59" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,9,19.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>40de54c41d6d45fd94eb8cf905cf29cd</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text104</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{v_Invoice.ClientUNN}  /  {v_Invoice.ClientKPP}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text104>
+            <Text163 Ref="60" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.8,10.2,13,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>fe69a161ef044ee094455149d9648a36</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text163</Name>
@@ -1056,47 +1053,48 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Parent isRef="5" />
               <Text>{v_Invoice.ForAccountNum} </Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="70" type="DateFormat" isKey="true" />
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text163>
-            <StartPointPrimitive2 Ref="71" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+            <StartPointPrimitive2 Ref="61" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
               <ClientRectangle>2.2,1,0,0</ClientRectangle>
               <Name>StartPointPrimitive2</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
               <ReferenceToGuid>a7e5226415e84d79a271a4ca6cdc53f5</ReferenceToGuid>
             </StartPointPrimitive2>
-            <EndPointPrimitive2 Ref="72" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+            <EndPointPrimitive2 Ref="62" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
               <ClientRectangle>2.2,10.8,0,0</ClientRectangle>
               <Name>EndPointPrimitive2</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
               <ReferenceToGuid>a7e5226415e84d79a271a4ca6cdc53f5</ReferenceToGuid>
             </EndPointPrimitive2>
-            <HorizontalLinePrimitive2 Ref="73" type="HorizontalLinePrimitive" isKey="true">
+            <HorizontalLinePrimitive2 Ref="63" type="HorizontalLinePrimitive" isKey="true">
               <ClientRectangle>5,1.5,1,0.0254</ClientRectangle>
               <Color>Black</Color>
-              <EndCap Ref="74" type="Cap" isKey="true">
+              <EndCap Ref="64" type="Cap" isKey="true">
                 <Color>Black</Color>
               </EndCap>
               <Name>HorizontalLinePrimitive2</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <StartCap Ref="75" type="Cap" isKey="true">
+              <StartCap Ref="65" type="Cap" isKey="true">
                 <Color>Black</Color>
               </StartCap>
             </HorizontalLinePrimitive2>
-            <HorizontalLinePrimitive3 Ref="76" type="HorizontalLinePrimitive" isKey="true">
+            <HorizontalLinePrimitive3 Ref="66" type="HorizontalLinePrimitive" isKey="true">
               <ClientRectangle>9.2,1.5,1.4,0.0254</ClientRectangle>
               <Color>Black</Color>
-              <EndCap Ref="77" type="Cap" isKey="true">
+              <EndCap Ref="67" type="Cap" isKey="true">
                 <Color>Black</Color>
               </EndCap>
               <Guid>28c316cd308a4ed5b93de56b95e8577c</Guid>
               <Name>HorizontalLinePrimitive3</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <StartCap Ref="78" type="Cap" isKey="true">
+              <StartCap Ref="68" type="Cap" isKey="true">
                 <Color>Black</Color>
               </StartCap>
             </HorizontalLinePrimitive3>
@@ -1106,11 +1104,11 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
         </ReportTitleBand1>
-        <HeaderBand2 Ref="79" type="HeaderBand" isKey="true">
+        <HeaderBand2 Ref="69" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,12,29.1,3</ClientRectangle>
           <Components isList="true" count="34">
-            <Text124 Ref="80" type="Text" isKey="true">
+            <Text124 Ref="70" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1122,14 +1120,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text124</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Код товара/ работ, услуг</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text124>
-            <Text50 Ref="81" type="Text" isKey="true">
+            <Text50 Ref="71" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1141,13 +1139,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text50</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>А</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text50>
-            <Text13 Ref="82" type="Text" isKey="true">
+            <Text13 Ref="72" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1159,13 +1157,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>1а</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text23 Ref="83" type="Text" isKey="true">
+            <Text23 Ref="73" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1177,7 +1175,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Наименование товара 
 (описание выполненных работ, оказанных услуг), 
 имущественного права</Text>
@@ -1186,7 +1184,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text23>
-            <Text14 Ref="84" type="Text" isKey="true">
+            <Text14 Ref="74" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1198,13 +1196,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>1б</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text15 Ref="85" type="Text" isKey="true">
+            <Text15 Ref="75" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1216,13 +1214,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>2</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text15>
-            <Text16 Ref="86" type="Text" isKey="true">
+            <Text16 Ref="76" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1234,13 +1232,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>2а</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text16>
-            <Text58 Ref="87" type="Text" isKey="true">
+            <Text58 Ref="77" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1252,13 +1250,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text58</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>4</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text58>
-            <Text60 Ref="88" type="Text" isKey="true">
+            <Text60 Ref="78" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1270,13 +1268,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text60</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>5</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text60>
-            <Text52 Ref="89" type="Text" isKey="true">
+            <Text52 Ref="79" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.2,0,2.6,0.8</ClientRectangle>
@@ -1287,14 +1285,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text52</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Единица измерения</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text52>
-            <Text62 Ref="90" type="Text" isKey="true">
+            <Text62 Ref="80" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1306,14 +1304,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text62</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Код вида 
 товара</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text62>
-            <Text63 Ref="91" type="Text" isKey="true">
+            <Text63 Ref="81" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1325,14 +1323,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text63</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Код</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text63>
-            <Text64 Ref="92" type="Text" isKey="true">
+            <Text64 Ref="82" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1344,14 +1342,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text64</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Условное обозначение (национальное)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text64>
-            <Text69 Ref="93" type="Text" isKey="true">
+            <Text69 Ref="83" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,0,1.6,2.6</ClientRectangle>
@@ -1362,7 +1360,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text69</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Количество (объем)
 </Text>
               <TextBrush>Black</TextBrush>
@@ -1370,7 +1368,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text69>
-            <Text70 Ref="94" type="Text" isKey="true">
+            <Text70 Ref="84" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1382,14 +1380,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text70</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Цена (тариф) за единицу измерения</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text70>
-            <Text7 Ref="95" type="Text" isKey="true">
+            <Text7 Ref="85" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1401,7 +1399,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Стоимость товаров (работ, услуг), имущественных прав без 
 налога - всего</Text>
               <TextBrush>Black</TextBrush>
@@ -1409,7 +1407,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text7>
-            <Text8 Ref="96" type="Text" isKey="true">
+            <Text8 Ref="86" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1421,7 +1419,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Налого-
 вая ставка</Text>
               <TextBrush>Black</TextBrush>
@@ -1429,7 +1427,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="97" type="Text" isKey="true">
+            <Text9 Ref="87" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1441,14 +1439,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>В том числе сумма акциза</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="98" type="Text" isKey="true">
+            <Text10 Ref="88" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1460,7 +1458,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Стоимость товаров 
 (работ, услуг), имущественных прав с налогом - всего</Text>
               <TextBrush>Black</TextBrush>
@@ -1468,7 +1466,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text6 Ref="99" type="Text" isKey="true">
+            <Text6 Ref="89" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1480,14 +1478,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>7</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text11 Ref="100" type="Text" isKey="true">
+            <Text11 Ref="90" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1499,14 +1497,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>6</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="101" type="Text" isKey="true">
+            <Text12 Ref="91" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1518,14 +1516,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>9</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text17 Ref="102" type="Text" isKey="true">
+            <Text17 Ref="92" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1537,14 +1535,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Сумма налога, предъявляемая покупателю</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text17>
-            <Text19 Ref="103" type="Text" isKey="true">
+            <Text19 Ref="93" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1556,14 +1554,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>8</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text19>
-            <Text21 Ref="104" type="Text" isKey="true">
+            <Text21 Ref="94" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1575,7 +1573,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Страна происхождения товара
 </Text>
               <TextBrush>Black</TextBrush>
@@ -1583,7 +1581,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text21>
-            <Text36 Ref="105" type="Text" isKey="true">
+            <Text36 Ref="95" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1595,14 +1593,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text36</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Регистрационный номер декларации на товары или регистрационный номер партии товара, подлежащего прослеживаемости</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text36>
-            <Text41 Ref="106" type="Text" isKey="true">
+            <Text41 Ref="96" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1614,14 +1612,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>11</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text41>
-            <Text43 Ref="107" type="Text" isKey="true">
+            <Text43 Ref="97" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1633,7 +1631,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Циф-
 ровой 
 код</Text>
@@ -1642,7 +1640,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text43>
-            <Text53 Ref="108" type="Text" isKey="true">
+            <Text53 Ref="98" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1654,14 +1652,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text53</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>10</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text53>
-            <Text57 Ref="109" type="Text" isKey="true">
+            <Text57 Ref="99" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1673,7 +1671,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text57</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>Краткое наиме-
 нование</Text>
               <TextBrush>Black</TextBrush>
@@ -1681,7 +1679,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text57>
-            <Text59 Ref="110" type="Text" isKey="true">
+            <Text59 Ref="100" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1693,14 +1691,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text59</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>10а</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text59>
-            <Text121 Ref="111" type="Text" isKey="true">
+            <Text121 Ref="101" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1712,13 +1710,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text121</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>3</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text121>
-            <Text193 Ref="112" type="Text" isKey="true">
+            <Text193 Ref="102" type="Text" isKey="true">
               <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1730,14 +1728,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text193</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>№
 п/п</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text193>
-            <Text194 Ref="113" type="Text" isKey="true">
+            <Text194 Ref="103" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1749,7 +1747,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text194</Name>
               <Page isRef="4" />
-              <Parent isRef="79" />
+              <Parent isRef="69" />
               <Text>1</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -1761,12 +1759,12 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderBand2>
-        <DataBand1 Ref="114" type="DataBand" isKey="true">
+        <DataBand1 Ref="104" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,15.8,29.1,1</ClientRectangle>
           <Components isList="true" count="16">
-            <Text22 Ref="115" type="Text" isKey="true">
+            <Text22 Ref="105" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1778,14 +1776,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{v_Invoice.GPNameStr}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text22>
-            <Text25 Ref="116" type="Text" isKey="true">
+            <Text25 Ref="106" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1798,10 +1796,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{Round(v_Invoice.nCount * v_Invoice.Area, 3)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="117" type="NumberFormat" isKey="true">
+              <TextFormat Ref="107" type="NumberFormat" isKey="true">
                 <DecimalDigits>3</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
@@ -1813,7 +1811,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text25>
-            <Text27 Ref="118" type="Text" isKey="true">
+            <Text27 Ref="108" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1826,10 +1824,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{v_Invoice.SumNoNDS}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="119" type="NumberFormat" isKey="true">
+              <TextFormat Ref="109" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1840,7 +1838,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text27>
-            <Text31 Ref="120" type="Text" isKey="true">
+            <Text31 Ref="110" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1853,10 +1851,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{v_Invoice.Tax_rate}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="121" type="NumberFormat" isKey="true">
+              <TextFormat Ref="111" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
@@ -1868,7 +1866,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text31>
-            <Text33 Ref="122" type="Text" isKey="true">
+            <Text33 Ref="112" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1881,10 +1879,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text33</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{Round(v_Invoice.PriceWithNDS, 2)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="123" type="NumberFormat" isKey="true">
+              <TextFormat Ref="113" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1895,7 +1893,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text33>
-            <Text61 Ref="124" type="Text" isKey="true">
+            <Text61 Ref="114" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1907,14 +1905,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text61</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>кв.м</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text61>
-            <Text26 Ref="125" type="Text" isKey="true">
+            <Text26 Ref="115" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1927,10 +1925,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{v_Invoice.PriceNoNDS_M2}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="126" type="NumberFormat" isKey="true">
+              <TextFormat Ref="116" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1941,7 +1939,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text26>
-            <Text24 Ref="127" type="Text" isKey="true">
+            <Text24 Ref="117" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1954,14 +1952,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text24</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>055</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text24>
-            <Text114 Ref="128" type="Text" isKey="true">
+            <Text114 Ref="118" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1974,13 +1972,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text114</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text114>
-            <Text141 Ref="129" type="Text" isKey="true">
+            <Text141 Ref="119" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1993,13 +1991,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text141</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text141>
-            <Text32 Ref="130" type="Text" isKey="true">
+            <Text32 Ref="120" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2012,10 +2010,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text32</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{v_Invoice.SumNoNDS}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="131" type="NumberFormat" isKey="true">
+              <TextFormat Ref="121" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2026,7 +2024,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text32>
-            <Text20 Ref="132" type="Text" isKey="true">
+            <Text20 Ref="122" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2039,10 +2037,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{IIF(v_Invoice.NDS == 0, "Без НДС", v_Invoice.NDS)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="133" type="NumberFormat" isKey="true">
+              <TextFormat Ref="123" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2053,7 +2051,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text20>
-            <Text42 Ref="134" type="Text" isKey="true">
+            <Text42 Ref="124" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2066,9 +2064,9 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text42</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="135" type="NumberFormat" isKey="true">
+              <TextFormat Ref="125" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2079,7 +2077,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text42>
-            <Text56 Ref="136" type="Text" isKey="true">
+            <Text56 Ref="126" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2092,9 +2090,9 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text56</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="137" type="NumberFormat" isKey="true">
+              <TextFormat Ref="127" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2105,7 +2103,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text56>
-            <Text65 Ref="138" type="Text" isKey="true">
+            <Text65 Ref="128" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2118,9 +2116,9 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text65</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="139" type="NumberFormat" isKey="true">
+              <TextFormat Ref="129" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2131,7 +2129,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text65>
-            <Text195 Ref="140" type="Text" isKey="true">
+            <Text195 Ref="130" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2144,7 +2142,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text195</Name>
               <Page isRef="4" />
-              <Parent isRef="114" />
+              <Parent isRef="104" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
@@ -2161,11 +2159,11 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Parent isRef="4" />
           <Sort isList="true" count="0" />
         </DataBand1>
-        <FooterBand2 Ref="141" type="FooterBand" isKey="true">
+        <FooterBand2 Ref="131" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,17.6,29.1,11</ClientRectangle>
           <Components isList="true" count="95">
-            <Text73 Ref="142" type="Text" isKey="true">
+            <Text73 Ref="132" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>10.6,1.6,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2174,13 +2172,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text73</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text73>
-            <Text54 Ref="143" type="Text" isKey="true">
+            <Text54 Ref="133" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.2,1.6,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2189,13 +2187,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text54</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text54>
-            <Text51 Ref="144" type="Text" isKey="true">
+            <Text51 Ref="134" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>10.6,0.8,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2204,13 +2202,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text51</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text51>
-            <Text49 Ref="145" type="Text" isKey="true">
+            <Text49 Ref="135" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.2,0.8,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2219,13 +2217,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text49</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text49>
-            <Text72 Ref="146" type="Text" isKey="true">
+            <Text72 Ref="136" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>14.8,0,2.2,0.6</ClientRectangle>
@@ -2236,10 +2234,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text72</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{Round(Sum(v_Invoice.SumNoNDS), 2)} </Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="147" type="NumberFormat" isKey="true">
+              <TextFormat Ref="137" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2250,7 +2248,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text72>
-            <Text74 Ref="148" type="Text" isKey="true">
+            <Text74 Ref="138" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>19.6,0,2,0.6</ClientRectangle>
@@ -2261,10 +2259,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text74</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{IIF(Sum(Round(v_Invoice.NDS, 2)) == 0, "Без НДС", Sum(Round(v_Invoice.NDS, 2)))} </Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="149" type="NumberFormat" isKey="true">
+              <TextFormat Ref="139" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2275,7 +2273,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text74>
-            <Text75 Ref="150" type="Text" isKey="true">
+            <Text75 Ref="140" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>21.6,0,2.4,0.6</ClientRectangle>
@@ -2286,10 +2284,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text75</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{Round(v_Invoice.TaskPrice, 2)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="151" type="NumberFormat" isKey="true">
+              <TextFormat Ref="141" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2300,7 +2298,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text75>
-            <Text118 Ref="152" type="Text" isKey="true">
+            <Text118 Ref="142" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>17,0,2.6,0.6</ClientRectangle>
@@ -2311,13 +2309,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text118</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>X</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text118>
-            <Text119 Ref="153" type="Text" isKey="true">
+            <Text119 Ref="143" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0.6,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2326,14 +2324,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text119</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Руководитель организации 
 или иное уполномоченное лицо</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text119>
-            <Text130 Ref="154" type="Text" isKey="true">
+            <Text130 Ref="144" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.2,0,9.6,0.6</ClientRectangle>
@@ -2342,13 +2340,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text130</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Всего к оплате</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text130>
-            <Text136 Ref="155" type="Text" isKey="true">
+            <Text136 Ref="145" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.6,2.2,1.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2356,13 +2354,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text136</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Документ составлен на  {TotalPageCount} листах</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text136>
-            <Text139 Ref="156" type="Text" isKey="true">
+            <Text139 Ref="146" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.8,1.2,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2371,13 +2369,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text139</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text139>
-            <Text142 Ref="157" type="Text" isKey="true">
+            <Text142 Ref="147" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>12.2,1.2,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2386,13 +2384,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text142</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text142>
-            <Text143 Ref="158" type="Text" isKey="true">
+            <Text143 Ref="148" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.2,1.4,5,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2401,14 +2399,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text143</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Индивидуальный предприниматель 
 или иное уполномоченное лицо</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text143>
-            <Text147 Ref="159" type="Text" isKey="true">
+            <Text147 Ref="149" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,0.6,4.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2417,14 +2415,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text147</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Главный бухгалтер 
 или иное уполномоченное лицо</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text147>
-            <Text145 Ref="160" type="Text" isKey="true">
+            <Text145 Ref="150" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.8,2,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2433,13 +2431,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text145</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text145>
-            <Text146 Ref="161" type="Text" isKey="true">
+            <Text146 Ref="151" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>12.2,2,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2448,13 +2446,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text146</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text146>
-            <Text149 Ref="162" type="Text" isKey="true">
+            <Text149 Ref="152" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>20.8,1.2,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2463,13 +2461,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text149</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text149>
-            <Text150 Ref="163" type="Text" isKey="true">
+            <Text150 Ref="153" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>25.2,1.2,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2478,13 +2476,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text150</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text150>
-            <Text151 Ref="164" type="Text" isKey="true">
+            <Text151 Ref="154" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,1.6,13,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2493,13 +2491,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text151</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text151>
-            <Text153 Ref="165" type="Text" isKey="true">
+            <Text153 Ref="155" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,2.1,13,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2509,14 +2507,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text153</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(основной государственный регистрационный номер
 индивидуального предпринимателя и дата присвоения такого номера)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text153>
-            <Text154 Ref="166" type="Text" isKey="true">
+            <Text154 Ref="156" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2.2,0.6</ClientRectangle>
@@ -2527,12 +2525,12 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text154</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text154>
-            <Text156 Ref="167" type="Text" isKey="true">
+            <Text156 Ref="157" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,2.6,7.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2541,13 +2539,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text156</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Основание передачи (сдачи) / получения (приемки)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text156>
-            <Text159 Ref="168" type="Text" isKey="true">
+            <Text159 Ref="158" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,3.4,5.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2556,13 +2554,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text159</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Данные о транспортировке и грузе</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text159>
-            <Text160 Ref="169" type="Text" isKey="true">
+            <Text160 Ref="159" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5.2,3.4,22.6,0.5</ClientRectangle>
@@ -2572,12 +2570,12 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text160</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text160>
-            <Text161 Ref="170" type="Text" isKey="true">
+            <Text161 Ref="160" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5.2,3.9,22.6,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2587,13 +2585,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text161</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(транспортная накладная, поручение экспедитору, экспедиторская/складская расписка и др./масса нетто/брутто груза, если не приведены ссылки на транспортные документы, содержащие эти сведения)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text161>
-            <Text37 Ref="171" type="Text" isKey="true">
+            <Text37 Ref="161" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,4.2,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2602,13 +2600,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Товар (груз) передал / услуги, результаты работ, права сдал</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text37>
-            <Text76 Ref="172" type="Text" isKey="true">
+            <Text76 Ref="162" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>23.4,0.8,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2617,13 +2615,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text76</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text76>
-            <Text77 Ref="173" type="Text" isKey="true">
+            <Text77 Ref="163" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>20,0.8,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2632,13 +2630,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text77</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text77>
-            <Text28 Ref="174" type="Text" isKey="true">
+            <Text28 Ref="164" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8.4,4.8,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2647,13 +2645,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text28>
-            <Text46 Ref="175" type="Text" isKey="true">
+            <Text46 Ref="165" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5,4.8,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2662,13 +2660,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text46</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text46>
-            <Text78 Ref="176" type="Text" isKey="true">
+            <Text78 Ref="166" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>6,5.2,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2677,13 +2675,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text78</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text78>
-            <Text79 Ref="177" type="Text" isKey="true">
+            <Text79 Ref="167" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>10.6,5.2,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2692,13 +2690,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text79</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text79>
-            <Text80 Ref="178" type="Text" isKey="true">
+            <Text80 Ref="168" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,4.8,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2707,13 +2705,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text80</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text80>
-            <Text81 Ref="179" type="Text" isKey="true">
+            <Text81 Ref="169" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.5,5.2,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2723,13 +2721,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text81</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text81>
-            <Text135 Ref="180" type="Text" isKey="true">
+            <Text135 Ref="170" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5.2,5.6,8.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2737,13 +2735,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text135</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{v_Invoice.DateComplete.ToString("dd.MM.yyyy")}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text135>
-            <Text5 Ref="181" type="Text" isKey="true">
+            <Text5 Ref="171" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,5.6,5.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2752,13 +2750,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Дата отгрузки, передачи (сдачи)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
-            <Text29 Ref="182" type="Text" isKey="true">
+            <Text29 Ref="172" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,6.2,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2767,13 +2765,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Иные сведения об отгрузке, передаче</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text29>
-            <Text30 Ref="183" type="Text" isKey="true">
+            <Text30 Ref="173" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,6.8,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2782,13 +2780,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>____________________________________________________________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text30>
-            <Text34 Ref="184" type="Text" isKey="true">
+            <Text34 Ref="174" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,7.2,13.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2798,13 +2796,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ссылки на неотъемлемые приложения, сопутствующие документы, иные документы и т.п.)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text34>
-            <Text35 Ref="185" type="Text" isKey="true">
+            <Text35 Ref="175" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,7.6,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2813,13 +2811,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Ответственный за правильность оформления факта хозяйственной жизни</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text35>
-            <Text45 Ref="186" type="Text" isKey="true">
+            <Text45 Ref="176" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8.4,8.2,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2828,13 +2826,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text45</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text45>
-            <Text48 Ref="187" type="Text" isKey="true">
+            <Text48 Ref="177" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5,8.2,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2843,13 +2841,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text48</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text48>
-            <Text82 Ref="188" type="Text" isKey="true">
+            <Text82 Ref="178" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>6,8.6,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2858,13 +2856,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text82</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text82>
-            <Text83 Ref="189" type="Text" isKey="true">
+            <Text83 Ref="179" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>10.6,8.6,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2873,13 +2871,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text83</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text83>
-            <Text84 Ref="190" type="Text" isKey="true">
+            <Text84 Ref="180" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,8.2,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2888,13 +2886,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text84</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text84>
-            <Text85 Ref="191" type="Text" isKey="true">
+            <Text85 Ref="181" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.5,8.6,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2904,13 +2902,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text85</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text85>
-            <Text117 Ref="192" type="Text" isKey="true">
+            <Text117 Ref="182" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,9,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2919,13 +2917,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text117</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Наименование экономического субъекта – составителя документа (в т.ч. комиссионера / агента)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text117>
-            <Text120 Ref="193" type="Text" isKey="true">
+            <Text120 Ref="183" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,9.6,13.4,0.8</ClientRectangle>
@@ -2935,13 +2933,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text120</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{v_Invoice.SellerName}, {v_Invoice.SellerUNN}  /  {v_Invoice.SubDivisionKPP}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text120>
-            <Text122 Ref="194" type="Text" isKey="true">
+            <Text122 Ref="184" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,10.4,2.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2950,13 +2948,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text122</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>		М.П.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text122>
-            <Text123 Ref="195" type="Text" isKey="true">
+            <Text123 Ref="185" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,2.6,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2966,13 +2964,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text123</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[8]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text123>
-            <Text127 Ref="196" type="Text" isKey="true">
+            <Text127 Ref="186" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,3.4,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2982,13 +2980,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text127</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[9]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text127>
-            <Text128 Ref="197" type="Text" isKey="true">
+            <Text128 Ref="187" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,4.6,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -2998,13 +2996,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text128</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[10]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text128>
-            <Text129 Ref="198" type="Text" isKey="true">
+            <Text129 Ref="188" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,5.4,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3014,13 +3012,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text129</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[11]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text129>
-            <Text131 Ref="199" type="Text" isKey="true">
+            <Text131 Ref="189" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,6.4,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3030,13 +3028,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text131</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[12]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text131>
-            <Text132 Ref="200" type="Text" isKey="true">
+            <Text132 Ref="190" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,7.8,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3046,13 +3044,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text132</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[13]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text132>
-            <Text133 Ref="201" type="Text" isKey="true">
+            <Text133 Ref="191" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,9.2,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3062,13 +3060,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text133</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[14]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text133>
-            <Text134 Ref="202" type="Text" isKey="true">
+            <Text134 Ref="192" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,4.4,13.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3077,13 +3075,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text134</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Товар (груз) получил / услуги, результаты работ, права принял </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text134>
-            <Text144 Ref="203" type="Text" isKey="true">
+            <Text144 Ref="193" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>22.8,4.8,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3092,13 +3090,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text144</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text144>
-            <Text148 Ref="204" type="Text" isKey="true">
+            <Text148 Ref="194" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>19.4,4.8,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3107,13 +3105,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text148</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text148>
-            <Text152 Ref="205" type="Text" isKey="true">
+            <Text152 Ref="195" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>20.4,5.2,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3122,13 +3120,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text152</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text152>
-            <Text164 Ref="206" type="Text" isKey="true">
+            <Text164 Ref="196" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>25,5.2,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3137,13 +3135,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text164</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text164>
-            <Text165 Ref="207" type="Text" isKey="true">
+            <Text165 Ref="197" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,4.8,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3152,13 +3150,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text165</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text165>
-            <Text166 Ref="208" type="Text" isKey="true">
+            <Text166 Ref="198" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>15.2,5.2,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3168,13 +3166,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text166</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text166>
-            <Text167 Ref="209" type="Text" isKey="true">
+            <Text167 Ref="199" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>19.6,5.6,8.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3183,13 +3181,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text167</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>"___"  ______________  20___г.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text167>
-            <Text168 Ref="210" type="Text" isKey="true">
+            <Text168 Ref="200" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,5.6,5.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3198,13 +3196,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text168</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Дата получения (приемки)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text168>
-            <Text169 Ref="211" type="Text" isKey="true">
+            <Text169 Ref="201" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,6.2,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3213,13 +3211,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text169</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Иные сведения о получении, приемке</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text169>
-            <Text170 Ref="212" type="Text" isKey="true">
+            <Text170 Ref="202" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,6.8,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3228,13 +3226,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text170</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>____________________________________________________________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text170>
-            <Text171 Ref="213" type="Text" isKey="true">
+            <Text171 Ref="203" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,7.2,13.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3244,13 +3242,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text171</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(информация о наличии/отсутствии претензии; ссылки на неотъемлемые приложения, и другие  документы и т.п.)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text171>
-            <Text172 Ref="214" type="Text" isKey="true">
+            <Text172 Ref="204" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,7.6,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3259,13 +3257,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text172</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Ответственный за правильность оформления факта хозяйственной жизни</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text172>
-            <Text173 Ref="215" type="Text" isKey="true">
+            <Text173 Ref="205" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>22.8,8.2,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3274,13 +3272,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text173</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text173>
-            <Text174 Ref="216" type="Text" isKey="true">
+            <Text174 Ref="206" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>19.4,8.2,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3289,13 +3287,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text174</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text174>
-            <Text175 Ref="217" type="Text" isKey="true">
+            <Text175 Ref="207" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>20.4,8.6,1.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3304,13 +3302,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text175</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(подпись)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text175>
-            <Text176 Ref="218" type="Text" isKey="true">
+            <Text176 Ref="208" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>25,8.6,1,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3319,13 +3317,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text176</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(ф.и.о)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text176>
-            <Text177 Ref="219" type="Text" isKey="true">
+            <Text177 Ref="209" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,8.2,4.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3334,13 +3332,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text177</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>________________________________________________________________________________________________________</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text177>
-            <Text178 Ref="220" type="Text" isKey="true">
+            <Text178 Ref="210" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>15.1,8.6,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3350,13 +3348,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text178</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text178>
-            <Text179 Ref="221" type="Text" isKey="true">
+            <Text179 Ref="211" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,9,13.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3365,13 +3363,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text179</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Наименование экономического субъекта - составителя документа</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text179>
-            <Text180 Ref="222" type="Text" isKey="true">
+            <Text180 Ref="212" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,9.6,13.4,0.8</ClientRectangle>
@@ -3381,13 +3379,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text180</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{v_Invoice.ClientNameFull} {v_Invoice.ClientUNN}  /  {v_Invoice.ClientKPP}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text180>
-            <Text182 Ref="223" type="Text" isKey="true">
+            <Text182 Ref="213" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.4,10.4,2.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3396,13 +3394,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text182</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>		М.П.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text182>
-            <Text183 Ref="224" type="Text" isKey="true">
+            <Text183 Ref="214" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,4.6,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3412,13 +3410,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text183</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[15]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text183>
-            <Text184 Ref="225" type="Text" isKey="true">
+            <Text184 Ref="215" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,5.4,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3428,13 +3426,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text184</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[16]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text184>
-            <Text185 Ref="226" type="Text" isKey="true">
+            <Text185 Ref="216" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,6.4,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3444,13 +3442,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text185</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[17]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text185>
-            <Text186 Ref="227" type="Text" isKey="true">
+            <Text186 Ref="217" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,7.8,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3460,13 +3458,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text186</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[18]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text186>
-            <Text187 Ref="228" type="Text" isKey="true">
+            <Text187 Ref="218" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>27.8,9.2,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3476,13 +3474,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text187</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>[19]</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text187>
-            <Text157 Ref="229" type="Text" isKey="true">
+            <Text157 Ref="219" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.4,2.6,20.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3491,13 +3489,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text157</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Счет на оплату № {v_Invoice.TaskNum}. Задание N {v_Invoice.AccountNum} {IIF(v_Invoice.ClientNum == "","","(заявка " + v_Invoice.ClientNum + ")")} от {v_Invoice.TaskDate.ToShortDateString()}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text157>
-            <Text190 Ref="230" type="Text" isKey="true">
+            <Text190 Ref="220" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -3509,10 +3507,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text190</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>{Sum(Round(v_Invoice.nCount * v_Invoice.Area, 3))}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="231" type="NumberFormat" isKey="true">
+              <TextFormat Ref="221" type="NumberFormat" isKey="true">
                 <DecimalDigits>3</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
@@ -3524,7 +3522,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text190>
-            <Text191 Ref="232" type="Text" isKey="true">
+            <Text191 Ref="222" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -3536,10 +3534,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text191</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Х</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="233" type="NumberFormat" isKey="true">
+              <TextFormat Ref="223" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -3550,7 +3548,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text191>
-            <Text55 Ref="234" type="Text" isKey="true">
+            <Text55 Ref="224" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.8,10.4,8.1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3560,12 +3558,12 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text55</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(может не заполняться при проставлении печати в М. П., может быть указан ИНН/КПП)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text55>
-            <Text137 Ref="235" type="Text" isKey="true">
+            <Text137 Ref="225" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>17.2,10.4,8.1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3575,12 +3573,12 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text137</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>(может не заполняться при проставлении печати в М. П., может быть указан ИНН/КПП)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text137>
-            <Text138 Ref="236" type="Text" isKey="true">
+            <Text138 Ref="226" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5.4,3.2,20.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3589,7 +3587,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Margins>0,0,0,0</Margins>
               <Name>Text138</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Text>Итого отгружено {Sum(Round(v_Invoice.nCount * v_Invoice.Area, 3))} м2; № транспортной накладной {v_Invoice.NumCalcFact} от {v_Invoice["DateComplete"] == DBNull.Value ? " " : v_Invoice.DateComplete.ToShortDateString()}
 
 </Text>
@@ -3597,46 +3595,46 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text138>
-            <StartPointPrimitive1 Ref="237" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+            <StartPointPrimitive1 Ref="227" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
               <ClientRectangle>14.2,4.4,0,0</ClientRectangle>
               <Name>StartPointPrimitive1</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <ReferenceToGuid>6c9f132a38e54c2eb64a4a835a637037</ReferenceToGuid>
             </StartPointPrimitive1>
-            <HorizontalLinePrimitive1 Ref="238" type="HorizontalLinePrimitive" isKey="true">
+            <HorizontalLinePrimitive1 Ref="228" type="HorizontalLinePrimitive" isKey="true">
               <ClientRectangle>2.2,2.6,26.4,0.0254</ClientRectangle>
               <Color>Black</Color>
-              <EndCap Ref="239" type="Cap" isKey="true">
+              <EndCap Ref="229" type="Cap" isKey="true">
                 <Color>Black</Color>
               </EndCap>
               <Name>HorizontalLinePrimitive1</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <Size>2</Size>
-              <StartCap Ref="240" type="Cap" isKey="true">
+              <StartCap Ref="230" type="Cap" isKey="true">
                 <Color>Black</Color>
               </StartCap>
             </HorizontalLinePrimitive1>
-            <StartPointPrimitive3 Ref="241" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+            <StartPointPrimitive3 Ref="231" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
               <ClientRectangle>2.2,0,0,0</ClientRectangle>
               <Name>StartPointPrimitive3</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <ReferenceToGuid>d2d77556840b4031936931e3fa78ba44</ReferenceToGuid>
             </StartPointPrimitive3>
-            <EndPointPrimitive3 Ref="242" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+            <EndPointPrimitive3 Ref="232" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
               <ClientRectangle>2.2,2.6,0,0</ClientRectangle>
               <Name>EndPointPrimitive3</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <ReferenceToGuid>d2d77556840b4031936931e3fa78ba44</ReferenceToGuid>
             </EndPointPrimitive3>
-            <EndPointPrimitive1 Ref="243" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+            <EndPointPrimitive1 Ref="233" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
               <ClientRectangle>14.2,11,0,0</ClientRectangle>
               <Name>EndPointPrimitive1</Name>
               <Page isRef="4" />
-              <Parent isRef="141" />
+              <Parent isRef="131" />
               <ReferenceToGuid>6c9f132a38e54c2eb64a4a835a637037</ReferenceToGuid>
             </EndPointPrimitive1>
           </Components>
@@ -3645,10 +3643,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
         </FooterBand2>
-        <VerticalLinePrimitive1 Ref="244" type="VerticalLinePrimitive" isKey="true">
+        <VerticalLinePrimitive1 Ref="234" type="VerticalLinePrimitive" isKey="true">
           <ClientRectangle>14.2,22,0.0254,6.6</ClientRectangle>
           <Color>Black</Color>
-          <EndCap Ref="245" type="Cap" isKey="true">
+          <EndCap Ref="235" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Guid>6c9f132a38e54c2eb64a4a835a637037</Guid>
@@ -3656,14 +3654,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
           <Size>2</Size>
-          <StartCap Ref="246" type="Cap" isKey="true">
+          <StartCap Ref="236" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </VerticalLinePrimitive1>
-        <VerticalLinePrimitive2 Ref="247" type="VerticalLinePrimitive" isKey="true">
+        <VerticalLinePrimitive2 Ref="237" type="VerticalLinePrimitive" isKey="true">
           <ClientRectangle>2.2,1.4,0.0254,9.8</ClientRectangle>
           <Color>Black</Color>
-          <EndCap Ref="248" type="Cap" isKey="true">
+          <EndCap Ref="238" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Guid>a7e5226415e84d79a271a4ca6cdc53f5</Guid>
@@ -3671,14 +3669,14 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
           <Size>2</Size>
-          <StartCap Ref="249" type="Cap" isKey="true">
+          <StartCap Ref="239" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </VerticalLinePrimitive2>
-        <VerticalLinePrimitive3 Ref="250" type="VerticalLinePrimitive" isKey="true">
+        <VerticalLinePrimitive3 Ref="240" type="VerticalLinePrimitive" isKey="true">
           <ClientRectangle>2.2,17.6,0.0254,2.6</ClientRectangle>
           <Color>Black</Color>
-          <EndCap Ref="251" type="Cap" isKey="true">
+          <EndCap Ref="241" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Guid>d2d77556840b4031936931e3fa78ba44</Guid>
@@ -3686,7 +3684,7 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
           <Page isRef="4" />
           <Parent isRef="4" />
           <Size>2</Size>
-          <StartCap Ref="252" type="Cap" isKey="true">
+          <StartCap Ref="242" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </VerticalLinePrimitive3>
@@ -3701,13 +3699,13 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
       <PageWidth>29.7</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
-      <Watermark Ref="253" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="243" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="254" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="244" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -3719,10 +3717,10 @@ IIF(v_Invoice.idDefaultAdress == 3 &amp;&amp; v_Invoice.ClientAdressSubDiv == ""
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Отчет</ReportAlias>
-  <ReportChanged>5/18/2026 10:42:19 PM</ReportChanged>
+  <ReportChanged>5/27/2026 2:51:02 PM</ReportChanged>
   <ReportCreated>9/20/2010 7:52:02 AM</ReportCreated>
-  <ReportFile>D:\Develop\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\UPD_IZO.mrt</ReportFile>
-  <ReportGuid>c63103cc1c3348b5ac14732e42ae24fe</ReportGuid>
+  <ReportFile>C:\Program Files\PrimeSoft\Glass\ReportsGlass\UPD_IZO.mrt</ReportFile>
+  <ReportGuid>d4fb2ef4481047929edd117ded881e9b</ReportGuid>
   <ReportName>Отчет</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

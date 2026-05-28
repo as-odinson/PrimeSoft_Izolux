@@ -48,7 +48,7 @@
   </div>
   <div class="message"></div>
   <script src="/ConfigHandler.ashx"></script>
-  <script src="./Java/ScanCar.js?v=3"></script>
+  <script src="./Java/ScanCar.js?v=4"></script>
   <script src="./Java/Messages.js?v=3"></script>
 </body>
 </html>

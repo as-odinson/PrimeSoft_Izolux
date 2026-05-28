@@ -58,6 +58,7 @@ namespace NoPaper
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static object PostBarCode(string barcode, int idOperator)
     {
+      // bError, Message, Type
       Tuple<bool, string, int> result = new Tuple< bool, string, int >(false, "", (int)ETypeBarCode.e_type_unknow);
 
       try
@@ -82,6 +83,34 @@ namespace NoPaper
         else if (pyramidBarCodePrefix == m_sPyramidBarCodePrefix.ToLower() && barcode.Length > 0)
           result = WriteTransportPyramid(barcode);
 
+        using (SqlConnection conn = new SqlConnection(DbConfig.ConnectionString))
+        {
+          conn.Open();
+
+          SqlCommand cmd = new SqlCommand(
+            @"insert into ScanHistory
+            (
+              idOperator,
+              BarCode,
+              Type,
+              Message
+            )
+            values
+            (
+              @idOperator,
+              @barCode,
+              @TypeBarcode,
+              @message
+            )", 
+          conn);
+
+          cmd.Parameters.AddWithValue("@idOperator", idOperator);
+          cmd.Parameters.AddWithValue("@barCode", barcode);
+          cmd.Parameters.AddWithValue("@TypeBarcode", (int)result.Item3);
+          cmd.Parameters.AddWithValue("@message", result.Item2);
+
+          cmd.ExecuteNonQuery();
+        }
         return new
         {
           message         = result.Item2,
@@ -114,15 +143,15 @@ namespace NoPaper
           if (result != null)
           {
             m_idOperator = Convert.ToInt32(result);
-            return new Tuple<bool, string, int>(true, $"Отсканирован оператор: {barcode}", (int)ETypeBarCode.e_type_oper);
+            return new Tuple<bool, string, int>(false, $"Отсканирован оператор: {barcode}", (int)ETypeBarCode.e_type_oper);
           }
           else
-            return new Tuple<bool, string, int>(false, $"Отсканирован не найден: {barcode}", (int)ETypeBarCode.e_type_oper);
+            return new Tuple<bool, string, int>(true, $"Отсканирован не найден: {barcode}", (int)ETypeBarCode.e_type_oper);
         }
       }
       catch (Exception ex)
       {
-        return new Tuple<bool, string, int>(false, ex.Message, (int)ETypeBarCode.e_type_oper);
+        return new Tuple<bool, string, int>(true, ex.Message, (int)ETypeBarCode.e_type_oper);
       }
     }
 
@@ -146,7 +175,7 @@ namespace NoPaper
       }
       catch (Exception ex)
       {
-        return new Tuple<bool, string, int>(false, ex.Message, (int)ETypeBarCode.e_type_unknow);
+        return new Tuple<bool, string, int>(true, ex.Message, (int)ETypeBarCode.e_type_unknow);
       }
     }
 
@@ -187,16 +216,16 @@ namespace NoPaper
             SQLHelper.ExecuteCommand($"update PyramidOut set bReturned = 1, DateReturn = GetDate() where ID = {idPyramidOut}", conn);
           }
 
-          return new Tuple<bool, string, int>(true, $"Возврат пирамиды {barcodeText}", (int)ETypeBarCode.e_type_pyramid);
+          return new Tuple<bool, string, int>(false, $"Возврат пирамиды {barcodeText}", (int)ETypeBarCode.e_type_pyramid);
         }
       }
       catch
       {
         log.Error($"Ошибка при возврате пирамиды {barcodeText}");
-        return new Tuple<bool, string, int>(false, $"Ошибка при возврате пирамиды {barcodeText}", (int)ETypeBarCode.e_type_pyramid);
+        return new Tuple<bool, string, int>(true, $"Ошибка при возврате пирамиды {barcodeText}", (int)ETypeBarCode.e_type_pyramid);
       }
     }
-
+    
     // Сканирование отгрузки.
     public static Tuple<bool, string, int> AddShipment(string barcode)
     {
@@ -233,14 +262,14 @@ namespace NoPaper
               else
               {
                 log.Error($"Отгрузка с номером '{idShip}' не найдена в базе данных.");
-                return new Tuple<bool, string, int>(false, $"Отгрузка с номером '{idShip}' не найдена в базе данных.", (int)ETypeBarCode.e_type_ship);
+                return new Tuple<bool, string, int>(true, $"Отгрузка с номером '{idShip}' не найдена в базе данных.", (int)ETypeBarCode.e_type_ship);
               }
             }
 
             if (bLock)
             {
               log.Error($"ОШИБКА: Отгрузка (№{sShipNum}: {idShip}) уже была подтверждена.");
-              return new Tuple<bool, string, int>(false, $"ОШИБКА: Отгрузка № ({sShipNum}: {idShip}) уже была подтверждена.", (int)ETypeBarCode.e_type_ship);
+              return new Tuple<bool, string, int>(true, $"ОШИБКА: Отгрузка № ({sShipNum}: {idShip}) уже была подтверждена.", (int)ETypeBarCode.e_type_ship);
             }
 
             DateTime dNow = DateTime.Now;
@@ -255,11 +284,11 @@ namespace NoPaper
           }
         }
 
-        return new Tuple<bool, string, int>(true, $"Комманда скан отгрузки прошла успешно", (int)ETypeBarCode.e_type_ship);
+        return new Tuple<bool, string, int>(false, $"Комманда скан отгрузки прошла успешно", (int)ETypeBarCode.e_type_ship);
       }
       catch
       {
-        return new Tuple<bool, string, int>(false, $"ОШИБКА", (int)ETypeBarCode.e_type_ship);
+        return new Tuple<bool, string, int>(true, $"ОШИБКА", (int)ETypeBarCode.e_type_ship);
       }
     }
 

@@ -82,8 +82,8 @@ const BarcodeInput = async (event) => {
 
     localStorage.setItem('failedRequests', JSON.stringify(failedRequests));
     return;
-  }
-
+  } 
+  
   try {
     const response = await fetch('scan1.aspx/PostBarCode', {
       method: 'POST',
@@ -119,6 +119,7 @@ const BarcodeInput = async (event) => {
         TimeScan: new Date().toISOString(),
         ScanText: barCodeText
       };
+
       renderScanTable(row);
     }
 
