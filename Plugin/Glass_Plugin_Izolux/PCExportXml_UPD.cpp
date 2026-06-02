@@ -6,6 +6,59 @@
 #include "..\..\Design\ABMfc\ABMfc_Export.h"
 
 
+struct TPrdDoc
+{
+  CString sNum;
+  CString sDate;
+};
+
+
+void ParseDocAttribute(const CString& sSource, CArray<TPrdDoc, TPrdDoc&>& arrDocs, const char chParsed)
+{
+  arrDocs.RemoveAll();
+  int nStart = 0;
+
+  while ( nStart >= 0 )
+  {
+    CString sItem;
+
+    int nSepPos = sSource.Find(chParsed, nStart);
+
+    if ( nSepPos == -1 )
+    {
+      sItem = sSource.Mid(nStart);
+      nStart = -1;
+    }
+    else
+    {
+      sItem = sSource.Mid(nStart, nSepPos - nStart);
+      nStart = nSepPos + 1;
+    }
+
+    sItem.Trim();
+
+    if ( sItem.IsEmpty() )
+      continue;
+
+    int nFirstSpace = sItem.Find(_T(' '));
+    int nLastSpace = sItem.ReverseFind(_T(' '));
+
+    if ( nFirstSpace == -1 || nLastSpace == -1 )
+      continue;
+
+    TPrdDoc doc;
+
+    doc.sNum = sItem.Left(nFirstSpace);
+    doc.sDate = sItem.Mid(nLastSpace + 1);
+
+    doc.sNum.Trim();
+    doc.sDate.Trim();
+
+    if ( !doc.sNum.IsEmpty() && !doc.sDate.IsEmpty() )
+      arrDocs.Add(doc);
+  }
+}
+
 PCExportXml_UPD::PCExportXml_UPD()
 {
   m_idTask = 0;
@@ -256,32 +309,17 @@ bool PCExportXml_UPD::ComposeHeader()
 
     if ( !sKomission.IsEmpty() )
     {
-      CString sPRDNumDoc;
-      CString sPRDDateDoc;
+      CArray<TPrdDoc, TPrdDoc&> arrDocs;
 
-      CString sTemp = sKomission;
-      sTemp.Trim();
+      ParseDocAttribute(sKomission, arrDocs, _T(';'));
 
-      int nPos = sTemp.Find(_T("îò"));
-
-      if ( nPos != -1 )
+      for ( int i = 0; i < arrDocs.GetCount(); i++ )
       {
-        sPRDNumDoc = sTemp.Left(nPos);
-        sPRDNumDoc.Trim();
+        CXmlNode nodePrd = nodeCalcFact.NewChild(_T("ÑâÏÐÄ"));
 
-        sPRDDateDoc = sTemp.Mid(nPos + 2);
-        sPRDDateDoc.Trim();
+        nodePrd.SetAttribute(_T("ÍîìåðÏÐÄ"), arrDocs[i].sNum);
+        nodePrd.SetAttribute(_T("ÄàòàÏÐÄ"), arrDocs[i].sDate);
       }
-      else
-      {
-        sPRDNumDoc = sTemp;
-      }
-
-
-      CXmlNode nodePrd = nodeCalcFact.NewChild(_T("ÑâÏÐÄ"));
-
-      nodePrd.SetAttribute(_T("ÍîìåðÏÐÄ"), sPRDNumDoc);
-      nodePrd.SetAttribute(_T("ÄàòàÏÐÄ"), sPRDDateDoc);
     }
 
     CXmlNode nodeDocOtgr = nodeCalcFact.NewChild(_T("ÄîêÏîäòâÎòãðÍîì"));
@@ -342,32 +380,19 @@ bool PCExportXml_UPD::ComposeHeader()
 
     if ( !sANumCalcFact.IsEmpty() )
     {
-      CXmlNode nodeLastSopr = nodeDopSv.NewChild(_T("ÑîïðÄîêÔÕÆ"));
+      CArray<TPrdDoc, TPrdDoc&> arrDocs;
 
-      CString sNumDoc;
-      CString sDateDoc;
+      ParseDocAttribute(sANumCalcFact, arrDocs, _T(';'));
 
-      CString sTemp = sANumCalcFact;
-      sTemp.Trim();
-
-      int nPos = sTemp.Find(_T("îò"));
-
-      if ( nPos != -1 )
+      for ( int i = 0; i < arrDocs.GetCount(); i++ )
       {
-        sNumDoc = sTemp.Left(nPos);
-        sNumDoc.Trim();
+        CXmlNode nodePrd = nodeDopSv.NewChild(_T("ÑîïðÄîêÔÕÆ"));
 
-        sDateDoc = sTemp.Mid(nPos + 2);
-        sDateDoc.Trim();
-      }
-      else
-      {
-        sNumDoc = sTemp;
+        nodePrd.SetAttribute(_T("ÐåêâÍàèìÄîê"), _T("ÀÑ×Ô"));
+        nodePrd.SetAttribute(_T("ÐåêâÍîìåðÄîê"), arrDocs[i].sNum);
+        nodePrd.SetAttribute(_T("ÐåêâÄàòàÄîê"),  arrDocs[i].sDate);
       }
 
-      nodeLastSopr.SetAttribute(_T("ÐåêâÍàèìÄîê"), _T("ÀÑ×Ô"));
-      nodeLastSopr.SetAttribute(_T("ÐåêâÍîìåðÄîê"), sNumDoc);
-      nodeLastSopr.SetAttribute(_T("ÐåêâÄàòàÄîê"), sDateDoc);
     }
   }
   CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)

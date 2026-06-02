@@ -4,7 +4,7 @@
 <head runat="server">
   <title>История сканирования</title>
   <link href="css/Pages/ScanHistory.css" rel="stylesheet" />
-  <script src="Java/Pages/ScanHistory.js"></script>
+  <script src="Java/Pages/ScanHistory.js?v=2"></script>
 </head>
 <body>
   <form id="form1" runat="server">

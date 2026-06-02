@@ -1,4 +1,9 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+  const today = new Date().toISOString().split("T")[0];
+
+  document.getElementById("dateFrom").value = today;
+  document.getElementById("dateTo").value = today;
+
   loadHistory();
 
   document.getElementById("btnSearch")
@@ -45,7 +50,7 @@ function renderHistory(items) {
     html += `
       <tr>
         <td>${item.DateScan}</td>
-        <td>${item.IDOperator}</td>
+        <td>${item.OperatorName}</td>
         <td class="barcode">${item.BarCode}</td>
         <td>
           <span class="type-badge type-${item.TypeBarCode}">

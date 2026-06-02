@@ -42,18 +42,18 @@ namespace NoPaper
         @"select top 500
             DateScan,
             Operator.Name as OperatorName,
-            BarCode,
+            ScanHistory.BarCode,
             Type,
             Message
           from ScanHistory
-          left join Operator ScanHistory.idOperator = Operator.ID
+          left join Operator on ScanHistory.idOperator = Operator.ID
           where
             (@dateFrom = '' or cast(DateScan as date) >= cast(@dateFrom as date))
             and
             (@dateTo = '' or cast(DateScan as date) <= cast(@dateTo as date))
             and
             (@type = -1 or Type = @type)
-          order by ID desc";
+          order by ScanHistory.ID desc";
 
         using (SqlCommand cmd = new SqlCommand(sql, conn))
         {
