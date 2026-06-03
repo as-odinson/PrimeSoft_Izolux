@@ -944,7 +944,7 @@ namespace NoPaper.Controllers
 
       log.Debug($"Создание таблицы: \r\n {query}");
 
-      using (SqlCommand command = new SqlCommand(query, _conn))
+      using ( SqlCommand command = new SqlCommand(query, _conn))
       {
         command.CommandText = query;
         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
