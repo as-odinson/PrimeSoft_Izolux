@@ -1019,7 +1019,7 @@ namespace NoPaper
             // Делаем кнопку "Готово" для пирамиды видимой только если не в сборке
             Button pyramidButton  = (Button)e.Row.FindControl("MakePyramidButton");
             pyramidButton.Visible = true;
-            pyramidButton.CommandArgument = uniqueComboForMakePyramid;
+            pyramidButton.CommandArgument = $"{sIdGlassProcessingPyramid}_{sIdPiramid}_{sIdBarCode}";
 
             // Делаем видимым TextBox для ввода BarCode и кнопку для редактирования
             TextBox pyramidBarCodeTextBox = (TextBox)e.Row.FindControl("CurrentPyramidBarCode");
@@ -1164,6 +1164,7 @@ namespace NoPaper
 
             string sIdGlassProcessingPyramid = commandArgs[0];
             int    idPiramid                 = SafeConvert.ToInt(commandArgs[1]);
+            int    idBarCode                 = SafeConvert.ToInt(commandArgs[2]);
             int    idOperator                = SafeConvert.ToInt(ddListPerson.SelectedValue);
             OperatorInfo operatorInfo        = _operatorInfoList.FirstOrDefault(o => o.ID == idOperator);
 
@@ -1179,6 +1180,11 @@ namespace NoPaper
 
             if (!isSuccess)
               ShowMessage("Операция не возможна, не введен Штрих-код", false);
+            else
+            {
+              glassProcessingController.TryMarkBarCodeCompleteFull(idBarCode);
+            }
+
 
             break;
           }

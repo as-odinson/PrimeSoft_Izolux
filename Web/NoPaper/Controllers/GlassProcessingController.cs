@@ -518,6 +518,8 @@ namespace NoPaper.Controllers
 
           log.Info("Успех");
         }
+
+        TryMarkBarCodeComplete(glassOper.idBarCode ?? 0);
       }
       catch (Exception ex)
       {
@@ -577,6 +579,8 @@ namespace NoPaper.Controllers
           command.CommandText = $"update GlassProcessingPyramid set idPyramidBarCode = {idScanPyramid} where ID = {glassOper.sIdGlassProcessingPyramidList}";
           command.ExecuteNonQuery();
         }
+
+        TryMarkBarCodeComplete(glassOper.idBarCode ?? 0);
       }
       catch (Exception ex)
       {
@@ -830,6 +834,56 @@ namespace NoPaper.Controllers
         focusNextTextBox();  // Если бар код найден переходим на следующий TextBox пирамиды
 
       return true;
+    }
+
+    public void TryMarkBarCodeComplete(int idBarCode)
+    {
+      if (idBarCode == 0)
+        return;
+
+      try
+      {
+        string commandText = $@"exec sp_Mark_BarCode_Complete_GlassProcessing {idBarCode}";
+        SQLHelper.ExecuteCommand(commandText, _conn);
+      }
+      catch
+      { 
+        log.Error($"Штрихкод ID: {idBarCode} ошибка при изменении статуса");
+      }
+    }
+
+    public void TryMarkBarCodeCompleteFull(int idBarCode)
+    {
+      try
+      {
+        if (idBarCode == 0)
+          return;
+
+        int idProject = SQLHelper.GetIntFromSQL($"select idProject from BarCode where ID = {idBarCode}", _conn);
+
+        if (idProject != 0)
+        {
+          string cmdText = $"select ID from BarCode where idProject = {idProject}";
+
+          List<int> ids = new List<int>();
+          using (SqlCommand cmd = new SqlCommand(cmdText, _conn))
+          using (SqlDataReader reader = cmd.ExecuteReader())
+            while (reader.Read())
+            {
+              ids.Add(SafeConvert.ToInt(reader["ID"]));
+            }
+
+
+          foreach (int id in ids)
+          {
+            SQLHelper.ExecuteCommand($"exec sp_Mark_BarCode_Complete_GlassProcessing {id}", _conn);
+          }
+        }
+      }
+      catch
+      {
+        log.Error($"Штрихкод ID: {idBarCode} ошибка при изменении статуса всех штрихкодов заказа");
+      }
     }
 
     public void MakeTempTable(SectorManufactInfo sector)
