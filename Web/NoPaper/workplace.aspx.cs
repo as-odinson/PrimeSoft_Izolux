@@ -509,8 +509,6 @@ namespace NoPaper
     {
       List<OperatorInfo> brigadiers = new List<OperatorInfo>();
 
-      // 1. "Не назначен"
-      brigadiers.Add(new OperatorInfo(0, "Не назначен"));
       brigadiers.AddRange(_operatorInfoList.Where(o => o.bTeam));
 
       ddListBrigadier.DataSource = brigadiers;
@@ -808,9 +806,10 @@ namespace NoPaper
         using (SqlConnection conn = new SqlConnection(DbConfig.ConnectionString))
         {
           conn.Open();
-          OperatorInfo.CreateShedulePersonnel(conn);
 
-          if (_currentOperatorInfo.idSheduleOperator == 0)
+          _currentOperatorInfo.idSheduleOperator = OperatorInfo.CreateShedulePersonnel(conn);
+
+          if (_currentOperatorInfo.idSheduleOperator    == 0)
           {
             _currentOperatorInfo.idSheduleOperator = OperatorInfo.CreateSheduleOperator(conn, _currentOperatorInfo.ID);
             log.Info($"новый idSheduleOperator: {_currentOperatorInfo.idSheduleOperator}");

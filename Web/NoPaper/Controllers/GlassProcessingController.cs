@@ -483,7 +483,7 @@ namespace NoPaper.Controllers
         }
 
         // Сделать запись о бригадире и составе бриагд
-        OperatorInfo.CreateShedulePersonnel(_conn);
+        glassOper.operatorInfo.idSheduleOperator = OperatorInfo.CreateShedulePersonnel(_conn);
 
         // Создадим SheduleOperator если значение отсутствует
         if (glassOper.operatorInfo.idSheduleOperator == 0)
@@ -547,7 +547,7 @@ namespace NoPaper.Controllers
         }
 
         // Сделать запись о бригадире и составе бриагд
-        OperatorInfo.CreateShedulePersonnel(_conn);
+        glassOper.operatorInfo.idSheduleOperator = OperatorInfo.CreateShedulePersonnel(_conn);
 
         // Создадим если требуется
         if (glassOper.operatorInfo.idSheduleOperator == 0)
@@ -672,8 +672,7 @@ namespace NoPaper.Controllers
           }
         }
 
-        // Сделать запись о бригадире и составе бриагд
-        OperatorInfo.CreateShedulePersonnel(_conn);
+        operatorInfo.idSheduleOperator = OperatorInfo.CreateShedulePersonnel(_conn);
 
         for (int i = 0; i < idGlassProcessingPyramidList.Count; i++)
         {

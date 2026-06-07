@@ -120,7 +120,8 @@ namespace NoPaper.Models
       }
     }
 
-    public static void CreateShedulePersonnel(SqlConnection conn)
+    // Сделать запись о бригадире и составе бриагд
+    public static int CreateShedulePersonnel(SqlConnection conn)
     {
       try
       {
@@ -129,7 +130,7 @@ namespace NoPaper.Models
         List<object> currentGroup = currentGroupObj as List<object>;
 
         if (currentGroup == null || currentGroup.Count == 0)
-          return;
+          return 0;
 
         // Проверяем/создаём SheduleOperator бригадира
         Tuple<OperatorInfo, bool> brigadierInfo = CheckOperatorInfoByPlanCalendar(conn, idBrigadier);
@@ -167,7 +168,7 @@ namespace NoPaper.Models
         {
           int count = SafeConvert.ToInt(checkCmd.ExecuteScalar());
           if (count > 1)
-            return;
+            return idSheduleOperator;
         }
 
 
@@ -219,11 +220,15 @@ namespace NoPaper.Models
             cmd.ExecuteNonQuery();
           }
         }
+
+        return idSheduleOperator;
       }
       catch (Exception ex)
       {
         log.Error(ex.Message);
       }
+
+      return 0;
     }
 
     // Посмотрим существует ли введеный оператор в таблице SheduleOperator
