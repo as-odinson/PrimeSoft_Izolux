@@ -511,6 +511,7 @@ namespace NoPaper
 
       brigadiers.AddRange(_operatorInfoList.Where(o => o.bTeam));
 
+      brigadiers.Add(new OperatorInfo(0, "-"));
       ddListBrigadier.DataSource = brigadiers;
       ddListBrigadier.DataTextField = "Name";
       ddListBrigadier.DataValueField = "ID";

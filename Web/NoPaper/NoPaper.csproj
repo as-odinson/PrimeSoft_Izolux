@@ -95,6 +95,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Brigadies.aspx" />
+    <Content Include="css\Pages\brigadies.css" />
     <Content Include="css\Pages\ScanHistory.css" />
     <Content Include="css\Plot.css" />
     <Content Include="css\ScanBarcodes.css" />
@@ -113,6 +115,7 @@
     <Content Include="Java\Component\OperatorList.js" />
     <Content Include="Java\CustomError.js" />
     <Content Include="Java\Defect.js" />
+    <Content Include="Java\Pages\brigadies.js" />
     <Content Include="Java\Pages\ScanHistory.js" />
     <Content Include="Java\Plot.js" />
     <Content Include="Java\ScanCar.js" />
@@ -142,6 +145,13 @@
     <Content Include="workplace.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brigadies.aspx.cs">
+      <DependentUpon>Brigadies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Brigadies.aspx.designer.cs">
+      <DependentUpon>Brigadies.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\BarCodeController.cs" />
     <Compile Include="Controllers\GlassProcessingController.cs" />
     <Compile Include="Controllers\SawLimitController.cs" />
@@ -285,7 +295,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Java\Pages\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="SQL\" />
   </ItemGroup>
