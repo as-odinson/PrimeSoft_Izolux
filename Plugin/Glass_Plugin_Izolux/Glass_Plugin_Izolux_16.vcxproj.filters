@@ -42,6 +42,12 @@
     <ClCompile Include="PCExportXml_UPD.cpp">
       <Filter>Source Files\Features</Filter>
     </ClCompile>
+    <ClCompile Include="PCTaskView_Export.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook_CTaskView.cpp">
+      <Filter>Source Files\Hooks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Glass_Plugin_Izolux.def">
@@ -77,6 +83,12 @@
     </ClInclude>
     <ClInclude Include="PCExportXml_UPD.h">
       <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="PCTaskView_Export.h">
+      <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook_CTaskView.h">
+      <Filter>Header Files\Hooks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

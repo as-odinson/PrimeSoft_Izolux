@@ -93,8 +93,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600_x64;..\..\..\Lib\Prof-UIS\Bin_1430_x64;..\..\..\Lib\Prof-UIS\Bin_1420_x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\Lib\Prof-UIS\Include\;.\minhook-master\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\Lib\Prof-UIS\Bin_1600_x64;..\..\..\Lib\Prof-UIS\Bin_1430_x64;..\..\..\Lib\Prof-UIS\Bin_1420_x64;.\minhook-master\build\VC17\bin\Release;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\Bin\Release_x64_16\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
@@ -219,7 +219,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\Develop\Dev5\Plugin\Glass_Plugin_Izolux\minhook-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\minhook-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WIN64;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -239,10 +239,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Hook_CTaskView.cpp" />
     <ClCompile Include="PCExportXml_UPD.cpp" />
     <ClCompile Include="PCTaskViewGrid_Export.cpp" />
     <ClCompile Include="LoadHooks.cpp" />
     <ClCompile Include="Main_Export.cpp" />
+    <ClCompile Include="PCTaskView_Export.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -258,10 +260,12 @@
     <Midl Include="Glass_Plugin_Izolux.idl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Hook_CTaskView.h" />
     <ClInclude Include="PCExportXml_UPD.h" />
     <ClInclude Include="PCTaskViewGrid_Export.h" />
     <ClInclude Include="LoadHooks.h" />
     <ClInclude Include="Main_Export.h" />
+    <ClInclude Include="PCTaskView_Export.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

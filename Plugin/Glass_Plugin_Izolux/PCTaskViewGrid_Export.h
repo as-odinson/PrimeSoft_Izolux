@@ -19,4 +19,6 @@ public:
   afx_msg void OnPopupExportUPDToXML();
   afx_msg void OnPopupRecalcDepTransDocDate();
 
+protected:
+  void ExportUPDToXML(const CArray<long, long>& arSelectedId);
 };

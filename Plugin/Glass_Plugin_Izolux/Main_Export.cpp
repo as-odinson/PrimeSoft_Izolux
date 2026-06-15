@@ -3,7 +3,9 @@
 #include "Main_Export.h"
 
 #include "..\..\Design\ABMfc\ABCatch.h"
+#include "LoadHooks.h"
 #include "PCTaskViewGrid_Export.h"
+#include "PCTaskView_Export.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,7 +37,7 @@ BOOL CMain_Export::InitInstance()
 
   COleObjectFactory::RegisterAll();
 
-  // InitHooks();
+  InitHooks();
 
   return TRUE;
 }
@@ -116,6 +118,9 @@ extern __declspec(dllexport) CObject* PluginCreateObject(const TCHAR* File, cons
 
   if ( pClassNew == RUNTIME_CLASS(CTaskViewGrid) )
     return new PCTaskViewGrid_Export(_T("CTaskView\\Grid"));
+
+  if ( pClassNew == RUNTIME_CLASS(CTaskView) )
+    return new PCTaskView_Export();
 
   return NULL;
 }
