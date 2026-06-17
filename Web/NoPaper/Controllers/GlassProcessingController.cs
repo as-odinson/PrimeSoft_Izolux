@@ -560,8 +560,7 @@ namespace NoPaper.Controllers
         string commandText = $@"update GlassProcessing set 
                                TimeProcessingComplete = GetDate(),
                                TimeMarkManufact       = GetDate(),
-                               bFinished              = 1,
-                               idSheduleOperator      = {glassOper.operatorInfo.idSheduleOperator}
+                               bFinished              = 1
                              from GlassProcessing                                                         
                                inner join GlassDetails on GlassProcessing.idGlassDetails = GlassDetails.ID  
                              where idBarCode in ({glassOper.idBarCode})";
@@ -572,6 +571,13 @@ namespace NoPaper.Controllers
 
         command = new SqlCommand(commandText, _conn);
         command.ExecuteNonQuery();
+
+                               
+        SQLHelper.ExecuteCommand($@"update GlassProcessing 
+                                      set idSheduleOperator      = {glassOper.operatorInfo.idSheduleOperator} 
+                                    from GlassProcessing
+                                    inner join GlassDetails on GlassProcessing.idGlassDetails = GlassDetails.ID  
+                                    where idBarCode in ({glassOper.idBarCode}) and idSectorManufact = {glassOper.sectorManufact.ID}", _conn);
 
         // Если провели сканирование на этапе сборки, тогда выставим внутрицеховую пирамиду
         if (idScanPyramid != 0)
