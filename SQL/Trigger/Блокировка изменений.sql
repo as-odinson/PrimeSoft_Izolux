@@ -1,8 +1,7 @@
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[trg_Warn_ImportantObjects]') and OBJECTPROPERTY(id, N'IsTrigger') = 1)
-drop trigger [dbo].[trg_Warn_ImportantObjects]
+if exists (select * from sys.triggers where name = 'trg_Warn_ImportantObjects' and parent_class = 0)
+drop trigger trg_Warn_ImportantObjects on database
 go
 
--- Чтобы внести изменения нужно сначала провести синхранизацию
 create trigger trg_Warn_ImportantObjects
 on database
 for 
@@ -42,7 +41,7 @@ begin
         'f_SawTaskUE_Period_Operator_Shipment'
     )
     begin
-        print 'BLOCKED: modification of protected object ' + @schema + '.' + @obj
+        print 'Блокировка модификации объекта' + @schema + '.' + @obj
 
         rollback
     end
