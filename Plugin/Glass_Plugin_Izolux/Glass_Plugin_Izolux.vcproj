@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Glass_Plugin_Export_Forel"
+	Name="Glass_Plugin_Izolux"
 	ProjectGUID="{4FE3F5FB-CA48-45AD-A850-FA6BD2799D3C}"
-	RootNamespace="Glass_Plugin_Export_Forel"
+	RootNamespace="Glass_Plugin_Izolux"
 	Keyword="MFCDLLProj"
 	TargetFrameworkVersion="196613"
 	>
@@ -41,7 +41,7 @@
 				PreprocessorDefinitions="_DEBUG"
 				MkTypLibCompatible="false"
 				TargetEnvironment="1"
-				TypeLibraryName="$(IntDir)/Glass_Plugin_Export_Forel.tlb"
+				TypeLibraryName="$(IntDir)/Glass_Plugin_Izolux.tlb"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -72,7 +72,7 @@
 				AdditionalDependencies="..\..\Bin\Debug\Glass.lib ..\..\Bin\Debug\ABMfc.lib"
 				OutputFile="..\..\Bin\Debug\$(ProjectName).dll"
 				LinkIncremental="2"
-				ModuleDefinitionFile=".\Glass_Plugin_Export_Forel.def"
+				ModuleDefinitionFile=".\Glass_Plugin_Izolux.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -125,7 +125,7 @@
 				PreprocessorDefinitions="NDEBUG"
 				MkTypLibCompatible="false"
 				TargetEnvironment="1"
-				TypeLibraryName="$(IntDir)/Glass_Plugin_Export_Forel.tlb"
+				TypeLibraryName="$(IntDir)/Glass_Plugin_Izolux.tlb"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -156,7 +156,7 @@
 				AdditionalDependencies="..\..\Bin\Release\Glass.lib ..\..\Bin\Release\ABMfc.lib"
 				OutputFile="..\..\Bin\Release\$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=".\Glass_Plugin_Export_Forel.def"
+				ModuleDefinitionFile=".\Glass_Plugin_Izolux.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -195,15 +195,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Glass_Plugin_Export_Forel.cpp"
+				RelativePath=".\Glass_Plugin_Izolux.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Glass_Plugin_Export_Forel.def"
+				RelativePath=".\Glass_Plugin_Izolux.def"
 				>
 			</File>
 			<File
-				RelativePath=".\Glass_Plugin_Export_Forel.idl"
+				RelativePath=".\Glass_Plugin_Izolux.idl"
 				>
 			</File>
 			<File
@@ -233,7 +233,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Glass_Plugin_Export_Forel.h"
+				RelativePath=".\Glass_Plugin_Izolux.h"
 				>
 			</File>
 			<File
@@ -263,11 +263,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Glass_Plugin_Export_Forel.rc"
+				RelativePath=".\Glass_Plugin_Izolux.rc"
 				>
 			</File>
 			<File
-				RelativePath=".\res\Glass_Plugin_Export_Forel.rc2"
+				RelativePath=".\res\Glass_Plugin_Izolux.rc2"
 				>
 			</File>
 		</Filter>

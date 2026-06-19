@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Features">
       <UniqueIdentifier>{1d708a40-297f-4bb5-8571-a04222abf783}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{a803e42f-e283-47b2-83bb-d36b49f641d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{5f541e59-ac55-4ee3-b879-d7b5943afb99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -47,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="Hook_CTaskView.cpp">
       <Filter>Source Files\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook_CProjectView.cpp">
+      <Filter>Source Files\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgEventBridge.cpp">
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="Hook_CTaskView.h">
       <Filter>Header Files\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook_CProjectView.h">
+      <Filter>Header Files\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgEventBridge.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

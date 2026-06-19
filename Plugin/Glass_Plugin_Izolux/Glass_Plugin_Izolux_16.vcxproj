@@ -239,12 +239,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Hook_CProjectView.cpp" />
     <ClCompile Include="Hook_CTaskView.cpp" />
     <ClCompile Include="PCExportXml_UPD.cpp" />
     <ClCompile Include="PCTaskViewGrid_Export.cpp" />
     <ClCompile Include="LoadHooks.cpp" />
     <ClCompile Include="Main_Export.cpp" />
     <ClCompile Include="PCTaskView_Export.cpp" />
+    <ClCompile Include="ProgEventBridge.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -260,12 +262,14 @@
     <Midl Include="Glass_Plugin_Izolux.idl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Hook_CProjectView.h" />
     <ClInclude Include="Hook_CTaskView.h" />
     <ClInclude Include="PCExportXml_UPD.h" />
     <ClInclude Include="PCTaskViewGrid_Export.h" />
     <ClInclude Include="LoadHooks.h" />
     <ClInclude Include="Main_Export.h" />
     <ClInclude Include="PCTaskView_Export.h" />
+    <ClInclude Include="ProgEventBridge.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
