@@ -161,7 +161,8 @@ from
 where  
   PD.Type = 1 and  
   IsNull(BC.idBarCode_Reject, 0) > 0 and  
-  BC_R.idCombinationReject is not null  
+  IsNull(BC_R.idCombinationReject, 0) != 0
+
 group by  
   T.ID,  
   T.Num,  
@@ -412,7 +413,7 @@ from
 where  
   PD.Type = 1 and  
   IsNull(BC.idBarCode_Reject, 0) > 0 and  
-  BC_R.idCombinationReject_Declare is not null  
+  IsNull(BC_R.idCombinationReject_Declare, 0) != 0
   
 group by  
   T.ID,  

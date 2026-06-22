@@ -2,6 +2,7 @@
 
 #include "LoadHooks.h"
 #include "Hook_CTaskView.h"
+#include "Hook_CProjectView.h"
 #include <MinHook.h>
 
 
@@ -24,4 +25,5 @@ void InitHooks()
   }
 
   InitOnCreateHook();
+  InitProjectViewGrid_SetPriceM2_WithNDSHook();
 }

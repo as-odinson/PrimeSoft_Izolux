@@ -35,8 +35,6 @@ BOOL CMain_Export::InitInstance()
 {
   CWinApp::InitInstance();
 
-  COleObjectFactory::RegisterAll();
-
   InitHooks();
 
   return TRUE;
