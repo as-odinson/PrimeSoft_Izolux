@@ -2,14 +2,14 @@ if OBJECT_ID('v_Invoice_MXG', 'V') is not NULL
   drop view dbo.v_Invoice_MXG
 go
 
--- [OK]    -  17.03.2015   .
---      T.DateComplite -    ,     
---      CamCountStr    -   
--- [ab]      . 
---      ..       UserSignAuthority, 
---             .
---            v_Invoice_MXG_NoSign.
---            ,       UserSignAuthority.
+-- [OK] Источник для максгласа - сделан 17.03.2015 по приказу А.Бабченко
+--              T.DateComplite - может быть равным нуллу, в отличие от других 
+--              CamCountStr    - Имеет свой формат
+-- [ab] Запрос в МаксГлассе уже не используется. 
+--      Т.к. МаксГласс перешёл на множество записей в UserSignAuthority, 
+--      при которых данный запрос будет размножать позиции накладной.
+--      Для МакГласса был создан новый запрос v_Invoice_MXG_NoSign.
+--      Данный запрос продолжает использоваться в других компаниях, у которых только одна запись в UserSignAuthority.
 
 create view dbo.v_Invoice_MXG
 as
@@ -72,7 +72,7 @@ select
   IsNull(BK_S.BIC,          '')  as SellerBIC,
   IsNull(S.KPP,             '')  as SellerKPP,
   IsNull(S.ShiperName,      '')  as SellerShiperName, 
-  '  '    as SellerShiperPost, 
+  'Ответственный за погрузку'    as SellerShiperPost, 
 
   --Shipper
   CB_SH.KS                   as ShipperKS,
@@ -110,7 +110,7 @@ select
   IsNull(CSG.NameFull, IsNull(C.Name, '')) as ConsigneeNameFull,
   IsNull(CSG.Adress, C.Adress) as ConsigneeAdress,
   P.Num,
-  P.PriceS,    --   
+  P.PriceS,    -- цена за шпросы
   case when IsNull(P.IsPriceByCount, 0) = 1 and CPU.d_iNum = 0 and ISNULL(P.Area, 0) > 0 then P.PriceNDS/P.Area   else P.PriceNDS   end as PriceM2WithNDS,
   case when IsNull(P.IsPriceByCount, 0) = 1 and CPU.d_iNum = 0 and ISNULL(P.Area, 0) > 0 then P.PriceNoNDS/P.Area else P.PriceNoNDS end as PriceOfUnit,
   P.SumWithNDS as PriceWithNDS,
@@ -148,7 +148,7 @@ select
   
   dbo.f_GetCamCountStr(P.CamCount,  IsNull(CF.d_iNum, 0)) as CamCountStr,
   
-  P.PriceByM                                 as Pricekvm,     --   "-" (Task_Agreement_Common_2.rpt)   Pricekvm (  1 . .),  . .
+  P.PriceByM                                 as Pricekvm,     -- В отчете "Счет-договор" (Task_Agreement_Common_2.rpt) используется поле Pricekvm (цена за 1 кв. м.), которого нет. Добавляю.
   cast(IsNull(P.Thickness, 0) as varchar(3)) as Thickness,
   IsNull(P.Commentary, '')                   as Commentary,
   PD.Name as ProductName,
@@ -157,7 +157,7 @@ select
   IsNull(DSD_Ship.Address, '')               as SubDivisionAddress_Ship,
   IsNull(DSD.Tel, '')                        as DepotSubDivisionTel,
   --DSD.KPP as SubDivisionKPP,
-  IsNull(DSD.ManagerName, '') as ManagerName,            --    (.  v_InvoiceGroupByGPName)
+  IsNull(DSD.ManagerName, '') as ManagerName,            -- Для обратной совместимости (напр. с v_InvoiceGroupByGPName)
   IsNull(DSD.ManagerName, '') as SubDivisionManagerName,
   dbo.MassPhrase((select round(sum(Mass * nCount),        0) from Project where idTask = T.ID), 0) as MassPhraseTonn,
   dbo.MassPhrase((select round(sum(Mass * nCount * 1000), 0) from Project where idTask = T.ID), 1) as MassPhraseKg,
@@ -185,10 +185,10 @@ select
   null                          as TransportDate,
   
   DSD.AddTo_NumInvoice,
-  USA.InvoiceResponsName_1,                                --  
-  USA.InvoiceOrderPost_1,                                  -- 
-  USA.InvoiceOrderNum_1,                                   -- 
-  USA.InvoiceOrderDate_1,                                  --  
+  USA.InvoiceResponsName_1,                                -- расшифровка подписи
+  USA.InvoiceOrderPost_1,                                  -- должность
+  USA.InvoiceOrderNum_1,                                   -- приказ
+  USA.InvoiceOrderDate_1,                                  -- дата приказа
   USA.InvoiceResponsName_2,
   USA.InvoiceOrderPost_2,
   USA.InvoiceOrderNum_2,
@@ -226,19 +226,20 @@ from
   left  join Client S             on S.ID     = T.idSeller
   left  join Client Shipper       on Shipper.ID = T.idShipper
   left  join Client CSG           on CSG.ID   = T.idConsignee
-  left  join ClientBank CB_C      on CB_C.ID  = T.idClientBank_Client   --  KS    RS   .
-  left  join Bank BK_C            on BK_C.ID  = CB_C.idBank             --  Bank  BIC  .
-  left  join ClientBank CB_S      on CB_S.ID  = T.idClientBank_Seller   --  KS    RS   .
-  left  join Bank BK_S            on BK_S.ID  = CB_S.idBank             --  Bank  BIC  .
-  left  join ClientBank CB_SH  on CB_SH.ID    = T.idClientBank_Shipper  --  KS    RS   .
-  left  join Bank BK_SH        on BK_SH.ID    = CB_SH.idBank            --  Bank  BIC  .
+  left  join ClientBank CB_C      on CB_C.ID  = T.idClientBank_Client   -- Теперь KS   и RS  лежат тут.
+  left  join Bank BK_C            on BK_C.ID  = CB_C.idBank             -- Теперь Bank и BIC лежат тут.
+  left  join ClientBank CB_S      on CB_S.ID  = T.idClientBank_Seller   -- Теперь KS   и RS  лежат тут.
+  left  join Bank BK_S            on BK_S.ID  = CB_S.idBank             -- Теперь Bank и BIC лежат тут.
+  left  join ClientBank CB_SH  on CB_SH.ID    = T.idClientBank_Shipper  -- Теперь KS   и RS  лежат тут.
+  left  join Bank BK_SH        on BK_SH.ID    = CB_SH.idBank            -- Теперь Bank и BIC лежат тут.
   
   left  join DepotSubDivision  DSD on DSD.ID   = T.idDepotSubDivision
   left  join DepotSubDivision DSD_Ship  on DSD_Ship.ID   = T.idDepotSubDivision_Shipper
-  left  join UsersSignAutority USA on USA.guidDepotSubDivision = DSD.guid and           --    UsersSignAutority   ,    
-                                      (T.DateComplite >= USA.DateBegin and              -- ..   
-                                       T.DateComplite <= USA.DateEnd or 
-                                       T.DateComplite >= USA.DateBegin and
+
+  left  join UsersSignAutority USA on USA.guidDepotSubDivision = DSD.guid and  -- не добавлять в UsersSignAutority более одной записей, которые подходят по условию
+                                      (T.DateComplite >= USA.DateBegin    and  -- т.к. записи будут задваиваться
+                                       T.DateComplite <= USA.DateEnd      or 
+                                       T.DateComplite >= USA.DateBegin    and
                                        USA.DateEnd is null)
   left  join Users U              on lower(U.Name) = lower(SYSTEM_USER)
   left  join Config CF            on CF.Name  = 'FormatTypeOfGPName'
