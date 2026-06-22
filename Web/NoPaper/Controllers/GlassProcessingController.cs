@@ -492,6 +492,12 @@ namespace NoPaper.Controllers
           glassOper.operatorInfo.idSheduleOperator = OperatorInfo.CreateSheduleOperator(_conn, glassOper.operatorInfo.ID);
         }
 
+        // TODO: Мониторим, говорят что выставляется готовность, но не выставляется время и оператор
+        log.Info($@"CHECK QUERY: Выставляем готовность
+                        idGlassProcessingPyramid: {glassOper.sIdGlassProcessingPyramidList}, 
+                        idBarCode: {glassOper.idBarCode}, 
+                        участок: {glassOper.sectorManufact.Name},
+                        idSheduleOperator:  {glassOper.operatorInfo.idSheduleOperator}");
 
         log.Info("Перед пометкой о готовности");
         command.CommandText = $@"update GlassProcessing set 
@@ -555,6 +561,13 @@ namespace NoPaper.Controllers
           log.Warn("Отсутвует idSheduleOperator, попытка создать");
           glassOper.operatorInfo.idSheduleOperator = OperatorInfo.CreateSheduleOperator(_conn, glassOper.operatorInfo.ID);
         }
+
+        // TODO: Мониторим, говорят что выставляется готовность, но не выставляется время и оператор
+        log.Info($@"CHECK QUERY: Выставляем готовность сп 
+                        idGlassProcessingPyramid: {glassOper.sIdGlassProcessingPyramidList}, 
+                        idBarCode: {glassOper.idBarCode}, 
+                        участок: {glassOper.sectorManufact.Name},
+                        idSheduleOperator:  {glassOper.operatorInfo.idSheduleOperator}");
 
         log.Info("Перед пометкой о готовности");
         string commandText = $@"update GlassProcessing set 
@@ -702,8 +715,13 @@ namespace NoPaper.Controllers
             operatorInfo.idSheduleOperator = OperatorInfo.CreateSheduleOperator(_conn, operatorInfo.ID);
           }
 
+          // TODO: Мониторим, говорят что выставляется готовность, но не выставляется время и оператор
+          log.Info($@"CHECK QUERY:  Выставляем готовность пирамиды 
+                        idGlassProcessingPyramid: {idGlassProcessingPyramid}, 
+                        idPyramid: {idPyramid}, 
+                        участок: {sector.Name},
+                        idSheduleOperator: {operatorInfo.idSheduleOperator}");
 
-          log.Info($"Выставляем готовность пирамиды idGlassProcessingPyramid: {idGlassProcessingPyramid}, idPyramid: {idPyramid}, участок {sector.Name}");
           command.CommandText = $@"update GlassProcessing set 
                                    TimeProcessingComplete = GetDate(),
                                    TimeMarkManufact       = GetDate(),
