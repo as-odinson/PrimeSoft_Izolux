@@ -1,4 +1,4 @@
- if OBJECT_ID('v_ManagerReport', 'V') is not NULL
+if OBJECT_ID('v_ManagerReport', 'V') is not NULL
   drop view dbo.v_ManagerReport
 go
 
@@ -78,5 +78,4 @@ group by
   T.nState,  
   T.AccountNum,  
   TDT.SumDepTransAggregated  
-
-
+go
