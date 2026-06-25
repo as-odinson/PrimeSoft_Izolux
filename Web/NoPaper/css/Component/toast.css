@@ -1,0 +1,61 @@
+﻿.toast-root {
+  position: fixed;
+  bottom: 18px;
+  right: 40%;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  position: relative;
+  min-width: 260px;
+  max-width: 420px;
+  padding: 12px 40px 12px 14px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: 0.18s ease;
+  pointer-events: auto;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.hide {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.toast-success {
+  background: #16a34a;
+}
+
+.toast-error {
+  background: #dc2626;
+}
+
+.toast-info {
+  background: #2563eb;
+}
+
+.toast-warning {
+  background: #d97706;
+}
+
+.toast-close {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}

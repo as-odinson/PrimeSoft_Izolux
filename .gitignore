@@ -9,3 +9,5 @@ Web/NoPaper/NoPaper.csproj
 Web/NoPaper/NoPaper.csproj
 *.pubxml
 /Web/NoPaper/Properties/PublishProfiles
+/Web/NoPaper/java/Component
+/Web/NoPaper/java/Pages
