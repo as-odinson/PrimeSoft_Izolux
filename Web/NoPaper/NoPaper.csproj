@@ -98,6 +98,7 @@
     <Content Include="Brigadies.aspx" />
     <Content Include="css\Pages\brigadies.css" />
     <Content Include="css\Pages\ScanHistory.css" />
+    <Content Include="css\Pages\UserSettings.css" />
     <Content Include="css\Plot.css" />
     <Content Include="css\ScanBarcodes.css" />
     <Content Include="css\scan1.css" />
@@ -117,6 +118,7 @@
     <Content Include="Java\Defect.js" />
     <Content Include="Java\Pages\brigadies.js" />
     <Content Include="Java\Pages\ScanHistory.js" />
+    <Content Include="Java\Pages\UserSettings.js" />
     <Content Include="Java\Plot.js" />
     <Content Include="Java\ScanCar.js" />
     <Content Include="Java\Test.js" />
@@ -124,6 +126,7 @@
     <Content Include="Java\Scan1.js" />
     <Content Include="Java\Draw.js" />
     <Content Include="Java\RemakeModal.js" />
+    <Content Include="UserSettings.aspx" />
     <Content Include="ScanBarcodes.aspx" />
     <Content Include="scan1.aspx" />
     <Content Include="ScanCar.aspx" />
@@ -176,6 +179,13 @@
     <Compile Include="Models\SPIDInfo.cs" />
     <Compile Include="Models\СolumnsModel.cs" />
     <Compile Include="Models\TaskData.cs" />
+    <Compile Include="UserSettings.aspx.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSettings.aspx.designer.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Queries\GlobalTempData.cs" />
     <Compile Include="Queries\SawGlassProcessingData.cs" />
     <Compile Include="Queries\SawTaskMain.cs" />

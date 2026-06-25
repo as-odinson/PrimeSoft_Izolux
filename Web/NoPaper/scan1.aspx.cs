@@ -654,6 +654,7 @@ namespace NoPaper
             // Устанавливаем статус готовности
             if (m_sector.ID != 0)
             {
+              log.Info($"Участок {m_sector.Name} установка готовности для шк {barcodeText}");
               OperatorInfo operatorInfo = OperatorInfo.CheckOperatorInfoByPlanCalendar(conn, m_idOperator).Item1;
 
               GlassDetailsOper oper = new GlassDetailsOper(operatorInfo, m_sector, "", idBarCode);

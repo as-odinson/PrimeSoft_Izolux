@@ -1,20 +1,27 @@
-create table OperatorGroup
-(
-    ID int identity(1,1) primary key,
-    idOperatorBrigadier int null,
-    Name nvarchar(100)
-)
+if object_id('dbo.OperatorGroup', 'U') is null
+begin
+    create table OperatorGroup
+    (
+        ID int identity(1,1) primary key,
+        idOperatorBrigadier int null,
+        Name nvarchar(100)
+    )
+end
+go
 
+if object_id('dbo.OperatorGroupItem', 'U') is null
+begin
+    create table OperatorGroupItem
+    (
+        ID int identity(1,1) primary key,
 
-create table OperatorGroupItem
-(
-    ID int identity(1,1) primary key,
+        idOperatorGroup int not null,
+        idOperator int not null,
 
-    idOperatorGroup int not null,
-    idOperator int not null,
-
-    Coef float not null
-)
+        Coef float not null
+    )
+end
+go
 
 
 --insert into OperatorGroup (Name, idOperatorBrigadier)
@@ -30,15 +37,15 @@ create table OperatorGroupItem
 
 
 
-select *
-from Operator
-where Name like '%Британ%'
-   or Name like '%Абдулазизов%'
-   or Name like '%Азамов%'
-   or Name like '%Ахмадалиев%'
+--select *
+--from Operator
+--where Name like '%Британ%'
+--   or Name like '%Абдулазизов%'
+--   or Name like '%Азамов%'
+--   or Name like '%Ахмадалиев%'
 
 --select * from OperatorGroup
-update OperatorGroup set  idOperatorBrigadier = -11 where ID = 7
+--update OperatorGroup set  idOperatorBrigadier = -11 where ID = 7
 
 --insert into OperatorGroupItem(idOperatorGroup, idOperator, Coef)
 --values
@@ -84,6 +91,3 @@ update OperatorGroup set  idOperatorBrigadier = -11 where ID = 7
 --(5, 35, 5.0),
 --(5, 36, 5.0),
 --(5, 37, 7.0)
-
-
-select * from OperatorGroupItem where idOperatorGroup = 6
