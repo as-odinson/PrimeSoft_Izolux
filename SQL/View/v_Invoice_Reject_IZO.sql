@@ -57,8 +57,8 @@ select
   P.SumNoNDS + P.SumNDS as PriceWithNDS,  
   P.SumNDS as NDS,  
   P.SumNoNDS,  
-  P_R.SumNoNDS as SumNoNDS_Reject,
-  P_R.SumNoNDS + P_R.SumNDS as PriceWithNDS_Reject,
+  CostPrice.SumNoNDS as SumNoNDS_Reject,
+  CostPrice.SumWithNDS as PriceWithNDS_Reject,
   P.Mass * P.nCount as Mass,  
   case when IsNull(P.IsPriceByCount, 0) = 1  
        then 'шт.'  
@@ -150,7 +150,35 @@ from
   left  join Ship                      on Ship.ID  = TR.idShip  
   left  join Barcode             BC_R  on BC_R.ID  = BC.idBarCode_Reject  
   left  join Project             P_R   on P_R.ID   = BC_R.idProject  
-  left  join Task                T_R   on T_R.ID   = P_R.idTask  
+  left  join Task                T_R   on T_R.ID   = P_R.idTask
+  outer apply
+  (
+    select
+      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceNDSUnit, 0)) as decimal(18,2)) as SumWithNDS,
+      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceUnit, 0)) as decimal(18,2)) as SumNoNDS
+    from Project PR_Calc
+      join Task T_Calc on T_Calc.ID = PR_Calc.idTask
+      join WriteMater WM on PR_Calc.ID = WM.idProject
+      join Material M on M.ID = WM.idMaterial
+      join DepName DN on DN.idDepotSubDivision = T_Calc.idDepotSubDivision
+                     and DN.nType = 0
+      join DepNameList DNL on DN.ID = DNL.idDepName
+      join DepList DL on DL.ID = DNL.idDepList
+                      and DL.is1 = 1
+      outer apply
+      (
+        select top 1
+          DR.PriceUnit,
+          DR.PriceNDSUnit,
+          DR.Rest
+        from DepReg DR
+        where DR.idMaterial = M.ID
+          and DR.idDepList = DL.ID
+          and DR.DocDate <= T_Calc.Date
+        order by DR.DocDate desc, DR.ID desc
+      ) as RegPrice
+    where PR_Calc.ID = P.ID
+  ) as CostPrice -- себестоимость  
   left  join Team                      on Team.ID  = T_R.idTeam  
   left  join Team                Tm_BC on Tm_BC.ID = BC_R.idTeam  
   left  join AssemblyLine        AL    on AL.ID    = BC_R.idAssemblyLine  
@@ -226,8 +254,8 @@ group by
   P.PriceByM,  
   cast(P.Thickness as varchar(3)),  
   replace(IsNull(P.Commentary, ''), 'Переделка брака!!!', '') + ' ' + IsNull(P.CommentClient, '') + ' ' + IsNull(P.Comment_Film, '') + ' ' + IsNull(P.Comment_Form, ''),  
-  P_R.SumNoNDS,
-  P_R.SumNDS,
+  CostPrice.SumWithNDS,
+  CostPrice.SumNoNDS,
   PD.Name,  
   DSD.Name,  
   DSD.Tel,  
@@ -309,8 +337,8 @@ select
   P.SumNoNDS + P.SumNDS as PriceWithNDS,  
   P.SumNDS as NDS,  
   P.SumNoNDS,  
-  P_R.SumNoNDS as SumNoNDS_Reject,
-  P_R.SumNoNDS + P_R.SumNDS as PriceWithNDS_Reject,
+  CostPrice.SumNoNDS as SumNoNDS_Reject,
+  CostPrice.SumWithNDS as PriceWithNDS_Reject,
   P.Mass * P.nCount as Mass,  
   case when IsNull(P.IsPriceByCount, 0) = 1  
        then 'шт.'  
@@ -402,7 +430,35 @@ from
   left  join Ship                      on Ship.ID  = TR.idShip  
   left  join Barcode             BC_R  on BC_R.ID  = BC.idBarCode_Reject  
   left  join Project             P_R   on P_R.ID   = BC_R.idProject  
-  left  join Task                T_R   on T_R.ID   = P_R.idTask  
+  left  join Task                T_R   on T_R.ID   = P_R.idTask
+  outer apply
+  (
+    select
+      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceNDSUnit, 0)) as decimal(18,2)) as SumWithNDS,
+      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceUnit, 0)) as decimal(18,2)) as SumNoNDS
+    from Project PR_Calc
+      join Task T_Calc on T_Calc.ID = PR_Calc.idTask
+      join WriteMater WM on PR_Calc.ID = WM.idProject
+      join Material M on M.ID = WM.idMaterial
+      join DepName DN on DN.idDepotSubDivision = T_Calc.idDepotSubDivision
+                     and DN.nType = 0
+      join DepNameList DNL on DN.ID = DNL.idDepName
+      join DepList DL on DL.ID = DNL.idDepList
+                      and DL.is1 = 1
+      outer apply
+      (
+        select top 1
+          DR.PriceUnit,
+          DR.PriceNDSUnit,
+          DR.Rest
+        from DepReg DR
+        where DR.idMaterial = M.ID
+          and DR.idDepList = DL.ID
+          and DR.DocDate <= T_Calc.Date
+        order by DR.DocDate desc, DR.ID desc
+      ) as RegPrice
+    where PR_Calc.ID = P.ID
+  ) as CostPrice  
   left  join Team                      on Team.ID  = T_R.idTeam  
   left  join Team                Tm_BC on Tm_BC.ID = BC_R.idTeam  
   left  join AssemblyLine        AL    on AL.ID    = BC_R.idAssemblyLine  
@@ -480,6 +536,9 @@ group by
   replace(IsNull(P.Commentary, ''), 'Переделка брака!!!', '') + ' ' + IsNull(P.CommentClient, '') + ' ' + IsNull(P.Comment_Film, '') + ' ' + IsNull(P.Comment_Form, ''),  
   P_R.SumNoNDS,
   P_R.SumNDS,
+  P_R.ID,
+  CostPrice.SumWithNDS,
+  CostPrice.SumNoNDS,
   PD.Name,  
   DSD.Name,  
   DSD.Tel,  
@@ -508,4 +567,4 @@ group by
   vCR.NameRejectAct,  
   vCR.NameTypeExpense,  
   vCR.CommentReject  
-go
+  

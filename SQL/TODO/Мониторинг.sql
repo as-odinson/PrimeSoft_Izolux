@@ -87,9 +87,10 @@ begin
 end
 go
 
-select distinct GPA.New_idSheduleOperator, O.Name from GlassProcessing_Audit_Debug GPA
-join GlassDetails GD on GD.ID = GPA.idGlassDetails
-join SheduleOperator sh on sh.ID = GPA.New_idSheduleOperator
-join Operator O on O.ID = sh.idOperator
-where GD.idSawTaskMain = 2692
+select * from GlassProcessing_Audit_Debug GPA
+left join GlassDetails GD on GD.ID = GPA.idGlassDetails
+left join SheduleOperator sh on sh.ID = GPA.New_idSheduleOperator
+left join Operator O on O.ID = sh.idOperator
+where GD.idSawTaskMain = 2779
+
 

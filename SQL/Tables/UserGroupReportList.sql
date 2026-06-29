@@ -9,3 +9,11 @@ begin
   )
 end
 go
+
+if columnproperty(object_id('UserGroupReportList'), 'ReportStatusGrant', 'IsComputed') is null
+begin
+  alter table UserGroupReportList add 
+   ReportStatusGrant bit not null default 0
+end
+go
+

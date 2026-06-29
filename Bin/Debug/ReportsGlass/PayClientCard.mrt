@@ -1,0 +1,992 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <SEVEN2005 Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>SEVEN2005</Alias>
+        <ConnectionStringEncrypted>4DBTCd15GqRySei9aqDrm8JU4evGBUPI7FzNlHIlYn/lVtmPzXTDhWxG8WxN1OQXxGr3K1ZrWt1FEyVsTXTgl9E8U+tPWXuZ+mT1XOpcoBf0xM8tW06T8G8V6I1LeCXX2VjRL0Zck6R8bNUAYpzhP9Bgsw==</ConnectionStringEncrypted>
+        <Name>SEVEN2005</Name>
+      </SEVEN2005>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <sp_PaymentClientCard_1 Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>sp_PaymentClientCard;1</Alias>
+        <Columns isList="true" count="23">
+          <value>AccountNum,System.String</value>
+          <value>ClientName,System.String</value>
+          <value>Commentary,System.String</value>
+          <value>Credit,System.Double</value>
+          <value>Date,System.DateTime</value>
+          <value>DateBegin,System.DateTime</value>
+          <value>DateComplite,System.DateTime</value>
+          <value>DateEnd,System.DateTime</value>
+          <value>DateSort,System.DateTime</value>
+          <value>Debit,System.Double</value>
+          <value>ID,System.Int32</value>
+          <value>IsClosePeriod,System.Boolean</value>
+          <value>iType,System.Int32</value>
+          <value>nType,System.Int32</value>
+          <value>NumDoc,System.String</value>
+          <value>SumCreditPeriodCard,System.Double</value>
+          <value>SumDebtPeriodCard,System.Double</value>
+          <value>SumPay,System.Double</value>
+          <value>TaskNum,System.String</value>
+          <value>TaskPrice,System.Double</value>
+          <value>TypeOrder,System.Int32</value>
+          <value>TypeText,System.String</value>
+          <value>idSort,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>sp_PaymentClientCard_1</Name>
+        <NameInSource>SEVEN2005</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy
+exec sp_PaymentClientCardType 2, {sIdClient}, {sDateBeg}, {sDateEnd}, 0, 0, {DateSelect.SelectedKey}
+</SqlCommand>
+      </sp_PaymentClientCard_1>
+      <Client Ref="4" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>Client</Alias>
+        <Columns isList="true" count="3">
+          <value>ID,System.Int32</value>
+          <value>Name,System.String</value>
+          <value>nOrder,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Client</Name>
+        <NameInSource>SEVEN2005</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select ID, Name, 1 as nOrder
+	from Client
+	where Len(IsNull(Name, '')) &gt; 0
+	and Name like '%{sName}%'
+	order by nOrder, Name</SqlCommand>
+      </Client>
+      <DateType Ref="5" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>DateType</Alias>
+        <Columns isList="true" count="2">
+          <value>ID,System.Int32</value>
+          <value>Name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>DateType</Name>
+        <NameInSource>SEVEN2005</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select 0 as ID, '0' as Name
+union
+select 1 as ID, '2' as Name</SqlCommand>
+      </DateType>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="7">
+      <value>,sClient,sClient,System.Int32,,False,False</value>
+      <value>,TypeOfDate,TypeOfDate,System.Int32,,False,False</value>
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_2010-01-01_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_2010-01-01_x0027_,False,False</value>
+      <value>,sName,sName,System.String,_x0025_,False,False</value>
+      <value>,sType,sType,System.Int32,,False,False</value>
+      <value>,sIdClient,sIdClient,System.String,_x0030_,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="1">
+    <value>InternalVersion,_x0032_017.1.11.0</value>
+  </MetaTags>
+  <Pages isList="true" count="2">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="8">
+        <ReportHeader1 Ref="7" type="ReportTitleBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,20,1142.34,66.67</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text3 Ref="8" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>584.03,10.07,523.12,30.21</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>Карточка клиента</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text3>
+            <Text4 Ref="9" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>558.33,50,545.28,16.67</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>с  {Format("{0:dd.MM.yyyy}", sp_PaymentClientCard_1.DateBegin)}  по {Format("{0:dd.MM.yyyy}", sp_PaymentClientCard_1.DateEnd)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text4>
+            <ClientName1 Ref="10" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>12.08,12.08,537.71,28.19</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>ClientName1</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{sp_PaymentClientCard_1.ClientName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </ClientName1>
+            <Line1 Ref="11" type="Shape" isKey="true">
+              <BorderColor>Black</BorderColor>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.58,40.63,1085.42,1.39</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Name>Line1</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <ShapeType Ref="12" type="Stimulsoft.Report.Components.ShapeTypes.StiHorizontalLineShapeType" isKey="true" />
+              <Size>1.388889</Size>
+            </Line1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportHeader1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportHeader1>
+        <PageFooter1 Ref="13" type="PageFooterBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,3064.65,1142.34,16.67</ClientRectangle>
+          <Components isList="true" count="1">
+            <Field1 Ref="14" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0,0,138.68,13.33</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Verdana,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Field1</Name>
+              <Page isRef="6" />
+              <Parent isRef="13" />
+              <Text>{Format("{0:d}", Today)}</Text>
+              <TextBrush>Gray</TextBrush>
+            </Field1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooter1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageFooter1>
+        <PageHeader1 Ref="15" type="PageHeaderBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,126.67,1142.34,15.35</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Name>PageHeader1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageHeader1>
+        <GroupHeaderBand1 Ref="16" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,182.02,1142.34,31.5</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text34 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1138.98,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <Guid>da729261f3494201930d1063672ac1bd</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="6" />
+              <Parent isRef="16" />
+              <Text>{IIF(sp_PaymentClientCard_1.TypeText == "Б", "Тип 0", "Тип 2")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text34>
+          </Components>
+          <Condition>{sp_PaymentClientCard_1.TypeOrder}</Condition>
+          <Conditions isList="true" count="0" />
+          <Guid>9ae1fb81438c41f8859113421e468bba</Guid>
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupHeaderBand1>
+        <Headerpd Ref="18" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,253.52,1142.34,39.37</ClientRectangle>
+          <Components isList="true" count="8">
+            <Headerpd_id Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,181.1,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>70f8a641924d488a96c51e1ae1acf981</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_id</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Сч.дог./Заказ</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_id>
+            <Headerpd_dtdoc Ref="20" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>181.1,0,125.98,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>77a708e607f848129107192bbf2b0fea</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_dtdoc</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Дата приема</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_dtdoc>
+            <Headerpd_dtcre Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>307.09,0,125.98,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>5bd1d0f09ba7487ea17f9039a7d63a58</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_dtcre</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Дата отгрузки</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_dtcre>
+            <Headerpd_stoimost Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>433.07,0,118.11,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>6c3657125d8049dd846ab0e069dc6c9e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_stoimost</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Стоимость</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_stoimost>
+            <Headerpd_oplata Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>551.18,0,118.11,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>d25a0c66029e463ea68555592d2187f0</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_oplata</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Оплата</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_oplata>
+            <Headerpd_docnumber Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>669.29,0,173.23,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>0020efe776434a388ba44fa12119bb2b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_docnumber</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>№ документа оплаты</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_docnumber>
+            <Headerpd_dolg Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>842.52,0,125.98,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>8efd550308634a6c9f723b52bf34ccd4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_dolg</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Задолженность</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_dolg>
+            <Headerpd_credit Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>968.5,0,118.11,39.37</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>2907268e9b024055affa38417ac9af07</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Headerpd_credit</Name>
+              <Page isRef="6" />
+              <Parent isRef="18" />
+              <Text>Кредит</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Headerpd_credit>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>16760f0832ab40959ec08635aa81c871</Guid>
+          <Name>Headerpd</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </Headerpd>
+        <Datapd Ref="27" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,332.89,1142.34,23.62</ClientRectangle>
+          <Components isList="true" count="9">
+            <Datapd_id Ref="28" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,86.61,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>829f9d7db49746bbba911979d41a3730</Guid>
+              <HideZeros>True</HideZeros>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_id</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.TaskNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_id>
+            <Datapd_name Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>86.61,0,94.49,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>104e3dee43ca45e287be167fd58ceaf6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_name</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.AccountNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_name>
+            <Datapd_dtdoc Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>181.1,0,125.98,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>8a769529fafb4b169b8c6557e99fc727</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_dtdoc</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.Date}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="31" type="DateFormat" isKey="true" />
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_dtdoc>
+            <Datapd_dtcre Ref="32" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>307.09,0,125.98,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>c3240c163acc45118ba5d9f66ec1505d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_dtcre</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.DateComplite}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="33" type="DateFormat" isKey="true" />
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_dtcre>
+            <Datapd_stoimost Ref="34" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>433.07,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>9dda81bb99434ea18e7b93faccb6b179</Guid>
+              <HideZeros>True</HideZeros>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_stoimost</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.TaskPrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_stoimost>
+            <Datapd_oplata Ref="35" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>551.18,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>c20d688229024719a76bb27d542de6ff</Guid>
+              <HideZeros>True</HideZeros>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_oplata</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.SumPay}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_oplata>
+            <Datapd_docnumber Ref="36" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>669.29,0,173.23,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>3b4c45ec7a0d42a1be12a44afae521a2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_docnumber</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.NumDoc}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_docnumber>
+            <Datapd_dolg Ref="37" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>842.52,0,125.98,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>eea8abe4f9364b41acfb478edfa3d9a8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_dolg</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.Debit}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="38" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_dolg>
+            <Datapd_credit Ref="39" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>968.5,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>dd633a48e6554d0f8b8488ab5b9ec7c5</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Datapd_credit</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>{sp_PaymentClientCard_1.Credit}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="40" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Datapd_credit>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>sp_PaymentClientCard_1</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Guid>a45b5bbd8f2e47979ccda03f1e4c91b8</Guid>
+          <Name>Datapd</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>idSort</value>
+          </Sort>
+        </Datapd>
+        <GroupFooterBand1 Ref="41" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,396.51,1142.34,31.5</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text36 Ref="42" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>433.07,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>0f43503a098c49f8b598da48fc42abff</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="6" />
+              <Parent isRef="41" />
+              <Text>{Format("{0:N2}", Sum(sp_PaymentClientCard_1.TaskPrice))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+            <Text37 Ref="43" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>551.18,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>f7870a0fcfcf40ecbab91258dd28fcd4</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text37</Name>
+              <Page isRef="6" />
+              <Parent isRef="41" />
+              <Text>{Format("{0:N2}", Sum(sp_PaymentClientCard_1.SumPay))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text37>
+            <Text38 Ref="44" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>669.29,0,173.23,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>ba137bec203c43e79efcd65669cc8503</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text38</Name>
+              <Page isRef="6" />
+              <Parent isRef="41" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text38>
+            <Text39 Ref="45" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>842.52,0,125.98,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>d93f6555d204418c996fe8ebac3cdbc8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text39</Name>
+              <Page isRef="6" />
+              <Parent isRef="41" />
+              <Text>{Format("{0:N2}", Last(sp_PaymentClientCard_1.Debit))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text39>
+            <Text40 Ref="46" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>968.5,0,118.11,23.62</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>c3cc74e99f8c41f79949823ef703f903</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="6" />
+              <Parent isRef="41" />
+              <Text>{Format("{0:N2}", Last(sp_PaymentClientCard_1.Credit))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>81f38d3cb501473b8951e84acf78e10e</Guid>
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupFooterBand1>
+        <ReportFooter1 Ref="47" type="ReportSummaryBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,468.01,1142.34,15.97</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>ReportFooter1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportFooter1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>6e6fa1a935b24ef69b537e245e35ba05</Guid>
+      <LargeHeight>True</LargeHeight>
+      <Margins>13.33,13.33,50,6.67</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>827</PageHeight>
+      <PageWidth>1169</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <TitleBeforeHeader>True</TitleBeforeHeader>
+      <Watermark Ref="48" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Form1 Ref="49" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="11">
+        <ButtonControl1 Ref="50" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+TypeOfDate = 0;
+
+if (DateSelect.SelectedIndex == 1) {
+	TypeOfDate = 2;}
+
+//sClient = cbClient.SelectedKey;
+
+Client.Disconnect();
+sName = ClientList.SelectedItem.ToString();
+sIdClient = ClientList.SelectedValue.ToString();
+Client.Connect();
+
+sClient = Client.ID;
+
+sp_PaymentClientCard_1.ConnectOnStart = true;
+sp_PaymentClientCard_1.Disconnect();
+sp_PaymentClientCard_1.Connect();</ClickEvent>
+          <ClientRectangle>8,330,252,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Default>True</Default>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,10</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>71937fb5fb2845a5a8610e6433e80f76</Guid>
+          <Location>8, 330</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>252, 24</Size>
+          <Text>Готово</Text>
+        </ButtonControl1>
+        <LabelControl6 Ref="51" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,80,256,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>fc922b0295814cc3b8f85d6c3cd32e50</Guid>
+          <Location>8, 80</Location>
+          <Name>LabelControl6</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>256, 16</Size>
+          <Text>Клиент</Text>
+          <TextAlign>MiddleLeft</TextAlign>
+        </LabelControl6>
+        <LabelControl1 Ref="52" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,48,24,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,10</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>b6bacfec7c4e4af483b38b755d6468e8</Guid>
+          <Location>8, 48</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>24, 16</Size>
+          <Text>С</Text>
+        </LabelControl1>
+        <LabelControl2 Ref="53" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>144,48,24,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,10</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>947c8b26a27447a2bcfa88a9d964fe90</Guid>
+          <Location>144, 48</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>24, 16</Size>
+          <Text>по</Text>
+        </LabelControl2>
+        <DateTimePickerControl1 Ref="54" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>32,48,96,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,10</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>49c6a00435be4466a3e717ddbbc19d2a</Guid>
+          <Location>32, 48</Location>
+          <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2001 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>96, 20</Size>
+          <Value>9/22/2011 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="55" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>168,48,96,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,10</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>6bd69f8c7dcb49c0bc051dd2fe7299ca</Guid>
+          <Location>168, 48</Location>
+          <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>96, 20</Size>
+          <Value>9/16/2010 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <DateSelect Ref="56" type="Stimulsoft.Report.Dialogs.StiLookUpBoxControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>72,16,192,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>71c440ad12e54ced8ef50fddae03dac5</Guid>
+          <Items isList="true" count="0" />
+          <ItemsBinding>DateType.Name</ItemsBinding>
+          <Keys isList="true" count="0" />
+          <KeysBinding>DateType.ID</KeysBinding>
+          <Location>72, 16</Location>
+          <Name>DateSelect</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <SelectedItemBinding>DateType.Name</SelectedItemBinding>
+          <SelectedKeyBinding>DateType.ID</SelectedKeyBinding>
+          <Size>192, 20</Size>
+          <Text>LookUpBox</Text>
+        </DateSelect>
+        <LabelControl3 Ref="57" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,16,56,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>51bfc88d23b849198ed40e9b1750b9fa</Guid>
+          <Location>8, 16</Location>
+          <Name>LabelControl3</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>56, 16</Size>
+          <Text>Тип</Text>
+        </LabelControl3>
+        <ButtonControl2 Ref="58" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClientRectangle>8,128,256,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>8, 128</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>256, 24</Size>
+          <Text>Обновить</Text>
+        </ButtonControl2>
+        <TextBoxControl1 Ref="59" type="Stimulsoft.Report.Dialogs.StiTextBoxControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>8,104,256,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <LeaveEvent>Client.Disconnect();
+sName = "%" + TextBoxControl1.Text + "%";
+Client.Connect();
+
+ClientList.Control.DataSource = null;
+
+ClientList.Control.DisplayMember = "Name";
+ClientList.Control.ValueMember = "ID";
+ClientList.Control.DataSource = Client.DataTable;</LeaveEvent>
+          <Location>8, 104</Location>
+          <Name>TextBoxControl1</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <Size>256, 20</Size>
+          <Text />
+        </TextBoxControl1>
+        <ClientList Ref="60" type="Stimulsoft.Report.Dialogs.StiListBoxControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>8,160,256,168</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <Items isList="true" count="0" />
+          <Location>8, 160</Location>
+          <Name>ClientList</Name>
+          <Page isRef="49" />
+          <Parent isRef="49" />
+          <SelectedItemBinding>Client.Name</SelectedItemBinding>
+          <SelectedValueBinding>Client.ID</SelectedValueBinding>
+          <Size>256, 168</Size>
+        </ClientList>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>ed8bfa72f77b419e83d0dcdcadc782e6</Guid>
+      <LoadFormEvent>sIdClient = "0";
+
+ClientList.Control.DataSource = Client.DataTable;
+ClientList.Control.DisplayMember = "Name";
+ClientList.Control.ValueMember = "ID";</LoadFormEvent>
+      <Location>0, 0</Location>
+      <Name>Form1</Name>
+      <Report isRef="0" />
+      <Size>280, 392</Size>
+      <Text>Параметры</Text>
+    </Form1>
+  </Pages>
+  <PrinterSettings Ref="61" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportAuthor isNull="true" />
+  <ReportChanged>6/26/2026 6:16:18 PM</ReportChanged>
+  <ReportCreated>2/17/2025 2:01:07 PM</ReportCreated>
+  <ReportDescription isNull="true" />
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\PayClientCard.mrt</ReportFile>
+  <ReportGuid>bc0a1b16ef6b420fb8ab70601273e45b</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>HundredthsOfInch</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+		private string ToText(string x) { return x; }
+		private string ToText(double x) { return x.ToString(); }
+		private string ToText(double x, int y) { return x.ToString("F" + y.ToString()); }
+		private string ToText(DateTime x, string y) { return x.ToString(y); }
+		private string Trim(string st) { return st.Trim(); }
+		private string TrimRight(string st) { return st.TrimEnd(); }
+		private string TrimLeft(string st) { return st.TrimStart(); }
+		private string UpperCase(string st) { return st.ToUpper(); }
+		private string LowerCase(string st) { return st.ToLower(); }
+		private bool IsNull1(object obj) { return obj == null || obj == DBNull.Value; }
+		private DateTime DateValue(object obj) { return (DateTime)Stimulsoft.Base.StiConvert.ChangeType(obj, typeof(DateTime), true); }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

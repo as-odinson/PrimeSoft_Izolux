@@ -709,7 +709,7 @@ left join GlassWasteFinal GWF
               <Name>Text19</Name>
               <Page isRef="4" />
               <Parent isRef="29" />
-              <Text>{Format("{0:MM.dd.yyyy}", v_SawTask_Stats.Data)}</Text>
+              <Text>{Format("{0:dd.MM.yyyy}", v_SawTask_Stats.Data)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
@@ -1292,10 +1292,10 @@ v_SawTask_Stats.Connect();</ClickEvent>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/8/2026 9:29:00 AM</ReportChanged>
+  <ReportChanged>6/8/2026 4:37:51 PM</ReportChanged>
   <ReportCreated>12/22/2025 12:25:05 PM</ReportCreated>
   <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\SawTask_Statistic.mrt</ReportFile>
-  <ReportGuid>ee9ef9dcd5b344dea7c9d9c06c0808c6</ReportGuid>
+  <ReportGuid>cc65f3c0e7b64890a4b6b5d732a20ecc</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

@@ -1,0 +1,731 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <_ Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>_</Alias>
+        <ConnectionStringEncrypted>4BDB604IS8jMGKwcZEkll8J6u6FhUXPwaRn52GcE4I/jxGksYkxR3UVEpZx6ATIv3HizCVcYQ1VDdLWAanTrv41ai89PWUud82rNjfFx4RfZbpvjT1HZvO1kuYDvAWlu41rhaVBM84zsSaH0YlQnRsZo9cJIBaNZ7F3NzE7s</ConnectionStringEncrypted>
+        <Name>_</Name>
+      </_>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <w_Order Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>w_Order</Alias>
+        <Columns isList="true" count="109">
+          <value>Sense,System.Int32</value>
+          <value>SellerName,System.String</value>
+          <value>SellerAdress,System.String</value>
+          <value>SellerTel,System.String</value>
+          <value>SellerRS,System.String</value>
+          <value>SellerUNN,System.String</value>
+          <value>SellerKPP,System.String</value>
+          <value>SellerOKPO,System.String</value>
+          <value>SellerKS,System.String</value>
+          <value>SellerBIC,System.String</value>
+          <value>SellerOKOHX,System.String</value>
+          <value>SellerBank,System.String</value>
+          <value>SellerChiefName,System.String</value>
+          <value>SellerAccountantName,System.String</value>
+          <value>ClientName,System.String</value>
+          <value>ClientAdresTel,System.String</value>
+          <value>ClientAdress,System.String</value>
+          <value>ClientTel,System.String</value>
+          <value>ClientRS,System.String</value>
+          <value>ClientKS,System.String</value>
+          <value>ClientUNN,System.String</value>
+          <value>ClientBIC,System.String</value>
+          <value>ClientOKPO,System.String</value>
+          <value>ClientOKOHX,System.String</value>
+          <value>Name,System.String</value>
+          <value>Type,System.Int32</value>
+          <value>idTask,System.Int32</value>
+          <value>TaskNum,System.String</value>
+          <value>TaskAccountNum,System.String</value>
+          <value>DateGiveManufact,System.DateTime</value>
+          <value>DateCompliteGP,System.DateTime</value>
+          <value>DateComplite,System.DateTime</value>
+          <value>Date,System.DateTime</value>
+          <value>TaskPriceSumWithNDS,System.Double</value>
+          <value>TaskPriceSumNDS_Back,System.Double</value>
+          <value>Rebate,System.Double</value>
+          <value>TaskComment,System.String</value>
+          <value>TaskSumNDS,System.Decimal</value>
+          <value>bSelfDelivery,System.Boolean</value>
+          <value>DeliveryAddress,System.String</value>
+          <value>ID,System.Int32</value>
+          <value>ProjectID,System.Int32</value>
+          <value>Area,System.Double</value>
+          <value>AreaSum,System.Double</value>
+          <value>Mass,System.Double</value>
+          <value>PrjNum,System.Int32</value>
+          <value>Width,System.Double</value>
+          <value>Height,System.Double</value>
+          <value>Size,System.String</value>
+          <value>nCount,System.Int32</value>
+          <value>PriceByM,System.Decimal</value>
+          <value>Price,System.Decimal</value>
+          <value>PriceValute,System.Decimal</value>
+          <value>PrjPriceSumValuteWithNDS,System.Decimal</value>
+          <value>PrjSumNDS_Back,System.Double</value>
+          <value>SumWithNDS,System.Decimal</value>
+          <value>Plot,System.Byte[]</value>
+          <value>Commentary,System.String</value>
+          <value>PrjComment,System.String</value>
+          <value>bIsArgon1,System.Int32</value>
+          <value>bIsArgon2,System.Int32</value>
+          <value>Glass1,System.String</value>
+          <value>GlassFrame1,System.String</value>
+          <value>Glass2,System.String</value>
+          <value>GlassFrame2,System.String</value>
+          <value>Glass3,System.String</value>
+          <value>GlassName,System.String</value>
+          <value>bFilm,System.Boolean</value>
+          <value>bProcessing,System.Boolean</value>
+          <value>ValuteName,System.String</value>
+          <value>VRound,System.Int32</value>
+          <value>Course,System.Double</value>
+          <value>UnitName,System.String</value>
+          <value>UnitType,System.Int32</value>
+          <value>Ed,System.String</value>
+          <value>Tax,System.Byte</value>
+          <value>PriceByMReb,System.Double</value>
+          <value>PriceSVal,System.Double</value>
+          <value>PriceByMVal,System.Double</value>
+          <value>Prod,System.String</value>
+          <value>Price_Rebate,System.Double</value>
+          <value>Price_Reb_Bax,System.Double</value>
+          <value>IsRas,System.Int32</value>
+          <value>Price_Rebate_NotNDS,System.Double</value>
+          <value>C_Price,System.Double</value>
+          <value>Price_Reb_Bax_Tax,System.Double</value>
+          <value>PriceEdT,System.Double</value>
+          <value>Price_Rebate_NotNDS_MQ,System.Double</value>
+          <value>Price_Rebate_NotNDS_ED,System.Double</value>
+          <value>C_Price_NotNDS,System.Double</value>
+          <value>Price_AllTAX,System.Double</value>
+          <value>PriceT,System.Double</value>
+          <value>bPlotNeeded,System.Int32</value>
+          <value>RasInfoText,System.String</value>
+          <value>bNonStandard,System.Int32</value>
+          <value>SealantName,System.String</value>
+          <value>idSawTask,System.Int32</value>
+          <value>SawTaskName,System.String</value>
+          <value>SawTaskDate,System.DateTime</value>
+          <value>bShpros,System.Int32</value>
+          <value>bZak,System.Int32</value>
+          <value>PyramidSmallName,System.String</value>
+          <value>PyramidBigName,System.String</value>
+          <value>PyramidSmallMaxHeight,System.Int32</value>
+          <value>PyramidSmallMaxWidth,System.Int32</value>
+          <value>PyramidSmallMaxWeight,System.Int32</value>
+          <value>PyramidBigMaxHeight,System.Int32</value>
+          <value>PyramidBigMaxWidth,System.Int32</value>
+          <value>PyramidBigMaxWeight,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>w_Order</Name>
+        <NameInSource>_</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy
+select * from v_TaskManuf_izo where idSawTask in (1) and bZak = 1 </SqlCommand>
+      </w_Order>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="1">
+    <value>InternalVersion,_x0032_017.1.11.0</value>
+  </MetaTags>
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="7">
+        <ReportHeader1 Ref="5" type="ReportTitleBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,20,777,5</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Name>ReportHeader1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportHeader1>
+        <PageFooter1 Ref="6" type="PageFooterBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,1114,777,5</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Name>PageFooter1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooter1>
+        <PageHeader1 Ref="7" type="PageHeaderBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,65,777,35</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text20 Ref="8" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0,5,758,22</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>Раскрой {w_Order.SawTaskName} от {Format("{0:dd.MM.yyyy}", w_Order.SawTaskDate)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text20>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeader1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageHeader1>
+        <GroupHeader1 Ref="9" type="GroupHeaderBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,140,777,165</ClientRectangle>
+          <Components isList="true" count="11">
+            <Text1 Ref="10" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>5,2,764,78</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Сменное задание в цех на закалку № {w_Order.TaskAccountNum} от {Format("{0:dd.MM.yyyy}", w_Order.DateComplite)} 
+Клиент: {w_Order.ClientName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text1>
+            <Text3 Ref="11" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>40,130,140,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Комментарий</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0,130,40,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text6 Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>180,130,320,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Формула</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text14 Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>500,130,120,18</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Размер в мм</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text14>
+            <Text16 Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>560,148,60,17</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Высота</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text16>
+            <Text15 Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>500,148,60,17</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Ширина</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text15>
+            <Text17 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>620,130,45,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>К-во
+шт.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>665,130,50,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,7</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Площадь
+1 шт.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>715,130,60,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,7</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>Площадь
+кв.м.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <TaskComment1 Ref="20" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>8,79,760,43</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>TaskComment1</Name>
+              <Page isRef="4" />
+              <Parent isRef="9" />
+              <Text>{w_Order.TaskComment}
+&lt;br&gt;&lt;font-size=11&gt;Герметик: {w_Order.SealantName}&lt;/font-size=11&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+            </TaskComment1>
+          </Components>
+          <Condition>{w_Order.idTask} &amp;&amp; {w_Order.SealantName}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeader1</Name>
+          <NewPageBefore>True</NewPageBefore>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupHeader1>
+        <Details1 Ref="21" type="DataBand" isKey="true">
+          <Brush>White</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,345,777,36</ClientRectangle>
+          <Components isList="true" count="8">
+            <PrjNum1 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,40,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>PrjNum1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.PrjNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </PrjNum1>
+            <Commentary1 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>40,0,140,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Commentary1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.Commentary}
+Раскл. {IIF(w_Order.bShpros == 1, "Да", "Нет")}
+Сл. форма {IIF(w_Order.bNonStandard == 1, "Да", "Нет")}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Commentary1>
+            <Glass11 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>180,0,320,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Glass11</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.GlassName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Glass11>
+            <Width1 Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>500,0,60,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Width1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.Width}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Width1>
+            <Height1 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>560,0,60,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Height1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.Height}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Height1>
+            <nCount1 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>620,0,45,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>nCount1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.nCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </nCount1>
+            <Area1 Ref="28" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>665,0,50,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Area1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.Area}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="29" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <VertAlignment>Center</VertAlignment>
+            </Area1>
+            <AreaTotal1 Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>715,0,60,36</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>AreaTotal1</Name>
+              <Page isRef="4" />
+              <Parent isRef="21" />
+              <Text>{w_Order.nCount * w_Order.Area}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="31" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </AreaTotal1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>w_Order</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>Details1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="4">
+            <value>ASC</value>
+            <value>idTask</value>
+            <value>ASC</value>
+            <value>PrjNum</value>
+          </Sort>
+        </Details1>
+        <GroupFooter1 Ref="32" type="GroupFooterBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,421,777,60</ClientRectangle>
+          <Components isList="true" count="6">
+            <SumofnCount1 Ref="33" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>620,0,45,25</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofnCount1</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>{Sum(w_Order.nCount)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </SumofnCount1>
+            <SumofAreaTotal1 Ref="34" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>665,0,110,25</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofAreaTotal1</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>{Sum(w_Order.nCount*w_Order.Area)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="35" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </SumofAreaTotal1>
+            <SumofMass1 Ref="36" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>122,8,79,20</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofMass1</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>{Sum(w_Order.Mass)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </SumofMass1>
+            <Text2 Ref="37" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>4,6,111,19</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>Масса заказа</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text2>
+            <Text7 Ref="38" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>210,8,33,19</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>кг.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text7>
+            <Text5 Ref="39" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0,29,400,19</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Guid>402bf81936ed4e5aaf6652eddab0445f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="32" />
+              <Text>{ "Больших: " + Math.Ceiling(Totals.Sum(w_Order, ((w_Order.Width &gt; w_Order.PyramidSmallMaxWidth || w_Order.Height &gt; w_Order.PyramidSmallMaxHeight) &amp;&amp; (w_Order.Height &gt; w_Order.PyramidSmallMaxWidth || w_Order.Width &gt; w_Order.PyramidSmallMaxHeight)) ? w_Order.Mass : 0) / (w_Order.PyramidBigMaxWeight &gt; 0 ? w_Order.PyramidBigMaxWeight : 1)) + ", Стандартных: " + Math.Ceiling(Totals.Sum(w_Order, ((w_Order.Width &lt;= w_Order.PyramidSmallMaxWidth &amp;&amp; w_Order.Height &lt;= w_Order.PyramidSmallMaxHeight) || (w_Order.Height &lt;= w_Order.PyramidSmallMaxWidth &amp;&amp; w_Order.Width &lt;= w_Order.PyramidSmallMaxHeight)) ? w_Order.Mass : 0) / (w_Order.PyramidSmallMaxWeight &gt; 0 ? w_Order.PyramidSmallMaxWeight : 1)) }</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text5>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooter1</Name>
+          <NewPageAfter>True</NewPageAfter>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupFooter1>
+        <ReportFooter1 Ref="40" type="ReportSummaryBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,521,777,7</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Name>ReportFooter1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportFooter1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>bf34c7e9885e458791f405f8351a3e2d</Guid>
+      <Margins>25,25,25,25</Margins>
+      <Name>Page1</Name>
+      <Report isRef="0" />
+      <TitleBeforeHeader>True</TitleBeforeHeader>
+      <Watermark Ref="41" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="42" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>4/13/2026 4:02:38 PM</ReportChanged>
+  <ReportCreated>9/9/2024 1:22:48 PM</ReportCreated>
+  <ReportFile>D:\Develop\Dev5Old\Design\Bin\Debug\ReportsGlass\Task_Manuf_zak_IZO.mrt</ReportFile>
+  <ReportGuid>3c70051c25f54d01a4e74fbc80538fa3</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>HundredthsOfInch</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+		private string ToText(string x) { return x; }
+		private string ToText(double x) { return x.ToString(); }
+		private string ToText(double x, int y) { return x.ToString("F" + y.ToString()); }
+		private string ToText(DateTime x, string y) { return x.ToString(y); }
+		private string Trim(string st) { return st.Trim(); }
+		private string TrimRight(string st) { return st.TrimEnd(); }
+		private string TrimLeft(string st) { return st.TrimStart(); }
+		private string UpperCase(string st) { return st.ToUpper(); }
+		private string LowerCase(string st) { return st.ToLower(); }
+		private bool IsNull1(object obj) { return obj == null || obj == DBNull.Value; }
+		private DateTime DateValue(object obj) { return (DateTime)Stimulsoft.Base.StiConvert.ChangeType(obj, typeof(DateTime), true); }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
