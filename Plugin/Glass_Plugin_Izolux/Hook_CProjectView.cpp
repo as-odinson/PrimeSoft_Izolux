@@ -122,7 +122,9 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
 
       sProtocol.AppendFormat(_T("\r\n%.2f * %.2f = %.2f"), fPriceAll, fTaskRebate, finalPriceAll);
 
-      fPriceAll = finalPriceAll;
+      fPriceAll = finalPriceAll > 0
+                ? finalPriceAll
+                : 0;
     }
 
     PluginAddProtocol(sProtocol);

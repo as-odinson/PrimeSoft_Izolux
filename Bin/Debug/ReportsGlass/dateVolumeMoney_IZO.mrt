@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <_ Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>_</Alias>
+        <ConnectionStringEncrypted>4BBl604IS83MGKzc6kzgl8Ju+c9WWZPwcWT5jeUEsS/jYMmDTVRRnUZvoJxqAWXb31Sdz9lWY4HzSdVYahhiu9FamaHNfBPZawZNCO8lbnP8NHGCUFHKgeFlpcxhBPZjwsTNwmFpu4zLBrls4D3jKt9g3WhhCTHNy0GcGGFE6z+BWg==</ConnectionStringEncrypted>
+        <Name>_</Name>
+      </_>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <v_Volume_Money_SubDivision Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>v_Volume_Money_SubDivision</Alias>
+        <Columns isList="true" count="9">
+          <value>SumPrice,System.Double</value>
+          <value>SumArea,System.Double</value>
+          <value>SumPosCount,System.Int32</value>
+          <value>idClient,System.Int32</value>
+          <value>Date,System.DateTime</value>
+          <value>TypeOrder,System.Int32</value>
+          <value>TypeOrderName,System.String</value>
+          <value>ClientName,System.String</value>
+          <value>SubDivisionName,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>v_Volume_Money_SubDivision</Name>
+        <NameInSource>_</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy
+select * from v_Volume_Money_SubDivision where Date &gt;= {sDateBeg} and Date &lt;= {sDateEnd}</SqlCommand>
+      </v_Volume_Money_SubDivision>
+      <TypeOrder Ref="4" type="Stimulsoft.Report.Dictionary.StiVirtualSource" isKey="true">
+        <Alias>TypeOrder</Alias>
+        <Columns isList="true" count="3">
+          <value>TypeOrderName,System.String</value>
+          <value>SumArea.Sum,System.Decimal</value>
+          <value>SumPrice.Sum,System.Decimal</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Filters isList="true" count="0" />
+        <GroupColumns isList="true" count="1">
+          <value>TypeOrderName</value>
+        </GroupColumns>
+        <Name>TypeOrder</Name>
+        <NameInSource>v_Volume_Money_SubDivision</NameInSource>
+        <Results isList="true" count="6">
+          <value>SumArea</value>
+          <value>Sum</value>
+          <value>SumArea.Sum</value>
+          <value>SumPrice</value>
+          <value>Sum</value>
+          <value>SumPrice.Sum</value>
+        </Results>
+        <Sort isList="true" count="0" />
+      </TypeOrder>
+      <SubDiv Ref="5" type="Stimulsoft.Report.Dictionary.StiVirtualSource" isKey="true">
+        <Alias>SubDiv</Alias>
+        <Columns isList="true" count="3">
+          <value>SubDivisionName,System.String</value>
+          <value>SumArea.Sum,System.Decimal</value>
+          <value>SumPrice.Sum,System.Decimal</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Filters isList="true" count="0" />
+        <GroupColumns isList="true" count="1">
+          <value>SubDivisionName</value>
+        </GroupColumns>
+        <Name>SubDiv</Name>
+        <NameInSource>v_Volume_Money_SubDivision</NameInSource>
+        <Results isList="true" count="6">
+          <value>SumArea</value>
+          <value>Sum</value>
+          <value>SumArea.Sum</value>
+          <value>SumPrice</value>
+          <value>Sum</value>
+          <value>SumPrice.Sum</value>
+        </Results>
+        <Sort isList="true" count="0" />
+      </SubDiv>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="4">
+      <value>Formula_x0020_Fields,MinDate,MinDate,System.String,CDate_x0020__x0028_Minimum_x0020__x0028__x007B_v_Volume_Money_SubDivision.Date_x007D__x0029__x0029_,True,False,True</value>
+      <value>Formula_x0020_Fields,MaxDate,MaxDate,System.String,CDate_x0020__x0028_Maximum_x0020__x0028__x007B_v_Volume_Money_SubDivision.Date_x007D__x0029__x0029_,True,False,True</value>
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="1">
+    <value>InternalVersion,_x0032_017.1.11.0</value>
+  </MetaTags>
+  <Pages isList="true" count="2">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="11">
+        <ReportHeader1 Ref="7" type="ReportTitleBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,0.4,19.73,1.54</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text13 Ref="8" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0.69,1.04,13.19,0.39</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>C {sDateBeg} по {sDateEnd}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text13>
+            <Text12 Ref="9" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0.69,0.15,18.87,0.54</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>Объём производства в денежном выражении</Text>
+              <TextBrush>[103:176:79]</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text12>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportHeader1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportHeader1>
+        <ReportHeader1_1 Ref="10" type="ReportTitleBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,2.74,19.73,3.75</ClientRectangle>
+          <Components isList="true" count="2">
+            <Chart1 Ref="11" type="Stimulsoft.Report.Chart.StiChart" isKey="true">
+              <Area Ref="12" type="Stimulsoft.Report.Chart.StiClusteredColumnArea" isKey="true">
+                <BorderColor>171, 172, 173</BorderColor>
+                <Brush>[255:255:255]</Brush>
+                <Chart isRef="11" />
+                <GridLinesHor Ref="13" type="Stimulsoft.Report.Chart.StiGridLinesHor" isKey="true">
+                  <Area isRef="12" />
+                  <Color>100, 105, 105, 105</Color>
+                  <MinorColor>100, 105, 105, 105</MinorColor>
+                </GridLinesHor>
+                <GridLinesHorRight Ref="14" type="Stimulsoft.Report.Chart.StiGridLinesHor" isKey="true">
+                  <Area isRef="12" />
+                  <Color>Silver</Color>
+                  <MinorColor>Gainsboro</MinorColor>
+                  <Visible>False</Visible>
+                </GridLinesHorRight>
+                <GridLinesVert Ref="15" type="Stimulsoft.Report.Chart.StiGridLinesVert" isKey="true">
+                  <Area isRef="12" />
+                  <Color>100, 105, 105, 105</Color>
+                  <MinorColor>100, 105, 105, 105</MinorColor>
+                </GridLinesVert>
+                <InterlacingHor Ref="16" type="Stimulsoft.Report.Chart.StiInterlacingHor" isKey="true">
+                  <Area isRef="12" />
+                  <InterlacedBrush>[10:155:155:155]</InterlacedBrush>
+                </InterlacingHor>
+                <InterlacingVert Ref="17" type="Stimulsoft.Report.Chart.StiInterlacingVert" isKey="true">
+                  <Area isRef="12" />
+                  <InterlacedBrush>[10:155:155:155]</InterlacedBrush>
+                </InterlacingVert>
+                <XAxis Ref="18" type="Stimulsoft.Report.Chart.StiXBottomAxis" isKey="true">
+                  <Area isRef="12" />
+                  <DateTimeStep Ref="19" type="Stimulsoft.Report.Chart.StiAxisDateTimeStep" isKey="true">
+                    <NumberOfValues>1</NumberOfValues>
+                  </DateTimeStep>
+                  <Interaction Ref="20" type="Stimulsoft.Report.Chart.StiAxisInteraction" isKey="true" />
+                  <Labels Ref="21" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="22" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="23" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true">
+                    <Visible>False</Visible>
+                  </Ticks>
+                  <Title Ref="24" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,6,Bold</Font>
+                    <Text>Цех</Text>
+                  </Title>
+                </XAxis>
+                <XTopAxis Ref="25" type="Stimulsoft.Report.Chart.StiXTopAxis" isKey="true">
+                  <Area isRef="12" />
+                  <Interaction Ref="26" type="Stimulsoft.Report.Chart.StiAxisInteraction" isKey="true" />
+                  <Labels Ref="27" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Ticks Ref="28" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true">
+                    <Visible>False</Visible>
+                  </Ticks>
+                  <Title Ref="29" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </XTopAxis>
+                <YAxis Ref="30" type="Stimulsoft.Report.Chart.StiYLeftAxis" isKey="true">
+                  <Area isRef="12" />
+                  <Interaction Ref="31" type="Stimulsoft.Report.Chart.StiAxisInteraction" isKey="true" />
+                  <Labels Ref="32" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,6</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="33" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="34" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true">
+                    <Visible>False</Visible>
+                  </Ticks>
+                  <Title Ref="35" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>BottomToTop</Direction>
+                    <Font>Tahoma,6,Bold</Font>
+                    <Text>Площадь</Text>
+                  </Title>
+                </YAxis>
+                <YRightAxis Ref="36" type="Stimulsoft.Report.Chart.StiYRightAxis" isKey="true">
+                  <Area isRef="12" />
+                  <Interaction Ref="37" type="Stimulsoft.Report.Chart.StiAxisInteraction" isKey="true" />
+                  <Labels Ref="38" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                    <TextAlignment>Left</TextAlignment>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="39" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="40" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true" />
+                  <Title Ref="41" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>TopToBottom</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </YRightAxis>
+              </Area>
+              <Border>None;Black;1;Solid;False;4;EmptyBrush</Border>
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>1.49,0.19,6.96,3.25</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <ConstantLines isList="true" count="0" />
+              <CustomStyleName />
+              <Filters isList="true" count="0" />
+              <Legend Ref="42" type="Stimulsoft.Report.Chart.StiLegend" isKey="true">
+                <BorderColor>105, 105, 105</BorderColor>
+                <Brush>[255:255:255]</Brush>
+                <Chart isRef="11" />
+                <Font>Arial,8</Font>
+                <HorAlignment>RightOutside</HorAlignment>
+                <LabelsColor>140, 140, 140</LabelsColor>
+                <MarkerSize>10, 10</MarkerSize>
+                <TitleColor>105, 105, 105</TitleColor>
+                <TitleFont>Arial,14,Bold</TitleFont>
+                <VertAlignment>Center</VertAlignment>
+                <Visible>False</Visible>
+              </Legend>
+              <Name>Chart1</Name>
+              <Page isRef="6" />
+              <Parent isRef="10" />
+              <Series isList="true" count="1">
+                <Item11 Ref="43" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries" isKey="true">
+                  <ArgumentDataColumn>SubDiv.SubDivisionName</ArgumentDataColumn>
+                  <BorderColor>255, 255, 255</BorderColor>
+                  <Brush>[112:173:71]</Brush>
+                  <BrushNegative>Firebrick</BrushNegative>
+                  <Chart isRef="11" />
+                  <Conditions isList="true" count="0" />
+                  <Filters isList="true" count="0" />
+                  <SeriesLabels Ref="44" type="Stimulsoft.Report.Chart.StiCenterAxisLabels" isKey="true">
+                    <BorderColor>140, 140, 140</BorderColor>
+                    <Brush>[255:255:255]</Brush>
+                    <Chart isRef="11" />
+                    <Font>Arial,7</Font>
+                    <LabelColor>90, 90, 90</LabelColor>
+                    <MarkerSize>8, 6</MarkerSize>
+                    <ValueTypeSeparator>-</ValueTypeSeparator>
+                  </SeriesLabels>
+                  <Title>Лобаново</Title>
+                  <TopN Ref="45" type="Stimulsoft.Report.Chart.StiSeriesTopN" isKey="true" />
+                  <TrendLine Ref="46" type="Stimulsoft.Report.Chart.StiTrendLineNone" isKey="true">
+                    <LineColor>Black</LineColor>
+                    <ShowShadow>True</ShowShadow>
+                  </TrendLine>
+                  <ValueDataColumn>SubDiv.SumArea_Sum</ValueDataColumn>
+                </Item11>
+              </Series>
+              <SeriesLabels Ref="47" type="Stimulsoft.Report.Chart.StiNoneLabels" isKey="true">
+                <Chart isRef="11" />
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <SeriesLabelsConditions isList="true" count="0" />
+              <Sort isList="true" count="0" />
+              <Strips isList="true" count="0" />
+              <Style Ref="48" type="Stimulsoft.Report.Chart.StiStyle25" isKey="true" />
+              <Table Ref="49" type="Stimulsoft.Report.Chart.StiChartTable" isKey="true">
+                <Font>Tahoma,8</Font>
+                <GridLineColor>105, 105, 105</GridLineColor>
+                <TextColor>140, 140, 140</TextColor>
+              </Table>
+              <Title Ref="50" type="Stimulsoft.Report.Chart.StiChartTitle" isKey="true">
+                <Brush>[140:140:140]</Brush>
+                <Font>Tahoma,8,Bold</Font>
+                <Text>Площадь/Цех</Text>
+                <Visible>True</Visible>
+              </Title>
+              <VertSpacing>1</VertSpacing>
+            </Chart1>
+            <Chart2 Ref="51" type="Stimulsoft.Report.Chart.StiChart" isKey="true">
+              <Area Ref="52" type="Stimulsoft.Report.Chart.StiClusteredColumnArea" isKey="true">
+                <BorderColor>171, 172, 173</BorderColor>
+                <Brush>[255:255:255]</Brush>
+                <Chart isRef="51" />
+                <GridLinesHor Ref="53" type="Stimulsoft.Report.Chart.StiGridLinesHor" isKey="true">
+                  <Area isRef="52" />
+                  <Color>100, 105, 105, 105</Color>
+                  <MinorColor>100, 105, 105, 105</MinorColor>
+                </GridLinesHor>
+                <GridLinesHorRight Ref="54" type="Stimulsoft.Report.Chart.StiGridLinesHor" isKey="true">
+                  <Area isRef="52" />
+                  <Color>Silver</Color>
+                  <MinorColor>Gainsboro</MinorColor>
+                  <Visible>False</Visible>
+                </GridLinesHorRight>
+                <GridLinesVert Ref="55" type="Stimulsoft.Report.Chart.StiGridLinesVert" isKey="true">
+                  <Area isRef="52" />
+                  <Color>100, 105, 105, 105</Color>
+                  <MinorColor>100, 105, 105, 105</MinorColor>
+                </GridLinesVert>
+                <InterlacingHor Ref="56" type="Stimulsoft.Report.Chart.StiInterlacingHor" isKey="true">
+                  <Area isRef="52" />
+                  <InterlacedBrush>[10:155:155:155]</InterlacedBrush>
+                </InterlacingHor>
+                <InterlacingVert Ref="57" type="Stimulsoft.Report.Chart.StiInterlacingVert" isKey="true">
+                  <Area isRef="52" />
+                  <InterlacedBrush>[10:155:155:155]</InterlacedBrush>
+                </InterlacingVert>
+                <XAxis Ref="58" type="Stimulsoft.Report.Chart.StiXBottomAxis" isKey="true">
+                  <Area isRef="52" />
+                  <DateTimeStep isRef="19" />
+                  <Interaction isRef="20" />
+                  <Labels Ref="59" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="60" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="61" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true">
+                    <Visible>False</Visible>
+                  </Ticks>
+                  <Title Ref="62" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,6,Bold</Font>
+                    <Text>Цех</Text>
+                  </Title>
+                </XAxis>
+                <XTopAxis Ref="63" type="Stimulsoft.Report.Chart.StiXTopAxis" isKey="true">
+                  <Area isRef="52" />
+                  <Interaction isRef="26" />
+                  <Labels Ref="64" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Ticks Ref="65" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true" />
+                  <Title Ref="66" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,6,Bold</Font>
+                    <Text>Цех</Text>
+                  </Title>
+                </XTopAxis>
+                <YAxis Ref="67" type="Stimulsoft.Report.Chart.StiYLeftAxis" isKey="true">
+                  <Area isRef="52" />
+                  <Interaction isRef="31" />
+                  <Labels Ref="68" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,6</Font>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="69" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="70" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true">
+                    <Visible>False</Visible>
+                  </Ticks>
+                  <Title Ref="71" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>BottomToTop</Direction>
+                    <Font>Tahoma,6,Bold</Font>
+                    <Text>Стоимость</Text>
+                  </Title>
+                </YAxis>
+                <YRightAxis Ref="72" type="Stimulsoft.Report.Chart.StiYRightAxis" isKey="true">
+                  <Area isRef="52" />
+                  <Interaction isRef="37" />
+                  <Labels Ref="73" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Font>Tahoma,8</Font>
+                    <TextAlignment>Left</TextAlignment>
+                  </Labels>
+                  <LineColor>140, 140, 140</LineColor>
+                  <Range Ref="74" type="Stimulsoft.Report.Chart.StiAxisRange" isKey="true" />
+                  <Ticks Ref="75" type="Stimulsoft.Report.Chart.StiAxisTicks" isKey="true" />
+                  <Title Ref="76" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                    <Color>140, 140, 140</Color>
+                    <Direction>TopToBottom</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </YRightAxis>
+              </Area>
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>9.8,0.19,8.4,3.25</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <ConstantLines isList="true" count="0" />
+              <CustomStyleName />
+              <Filters isList="true" count="0" />
+              <Guid>62755963bdab479285ea6568be1ccda1</Guid>
+              <HorSpacing>2</HorSpacing>
+              <Legend Ref="77" type="Stimulsoft.Report.Chart.StiLegend" isKey="true">
+                <BorderColor>105, 105, 105</BorderColor>
+                <Brush>[255:255:255]</Brush>
+                <Chart isRef="51" />
+                <Font>Arial,8</Font>
+                <HorAlignment>RightOutside</HorAlignment>
+                <LabelsColor>140, 140, 140</LabelsColor>
+                <MarkerSize>10, 10</MarkerSize>
+                <TitleColor>105, 105, 105</TitleColor>
+                <TitleFont>Arial,14,Bold</TitleFont>
+                <VertAlignment>Center</VertAlignment>
+                <Visible>False</Visible>
+              </Legend>
+              <Name>Chart2</Name>
+              <Page isRef="6" />
+              <Parent isRef="10" />
+              <Series isList="true" count="1">
+                <Item13 Ref="78" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries" isKey="true">
+                  <ArgumentDataColumn>SubDiv.SubDivisionName</ArgumentDataColumn>
+                  <BorderColor>255, 255, 255</BorderColor>
+                  <Brush>[112:173:71]</Brush>
+                  <BrushNegative>Firebrick</BrushNegative>
+                  <Chart isRef="51" />
+                  <Conditions isList="true" count="0" />
+                  <Filters isList="true" count="0" />
+                  <SeriesLabels Ref="79" type="Stimulsoft.Report.Chart.StiCenterAxisLabels" isKey="true">
+                    <BorderColor>140, 140, 140</BorderColor>
+                    <Brush>[255:255:255]</Brush>
+                    <Chart isRef="51" />
+                    <Font>Arial,7</Font>
+                    <LabelColor>90, 90, 90</LabelColor>
+                    <MarkerSize>8, 6</MarkerSize>
+                    <ValueTypeSeparator>-</ValueTypeSeparator>
+                  </SeriesLabels>
+                  <Title>Лобаново</Title>
+                  <TopN Ref="80" type="Stimulsoft.Report.Chart.StiSeriesTopN" isKey="true" />
+                  <TrendLine Ref="81" type="Stimulsoft.Report.Chart.StiTrendLineNone" isKey="true">
+                    <LineColor>Black</LineColor>
+                    <ShowShadow>True</ShowShadow>
+                  </TrendLine>
+                  <ValueDataColumn>SubDiv.SumPrice_Sum</ValueDataColumn>
+                </Item13>
+              </Series>
+              <SeriesLabels Ref="82" type="Stimulsoft.Report.Chart.StiNoneLabels" isKey="true">
+                <Chart isRef="51" />
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <SeriesLabelsConditions isList="true" count="0" />
+              <Sort isList="true" count="0" />
+              <Strips isList="true" count="0" />
+              <Style Ref="83" type="Stimulsoft.Report.Chart.StiStyle25" isKey="true" />
+              <Table Ref="84" type="Stimulsoft.Report.Chart.StiChartTable" isKey="true">
+                <Font>Tahoma,8</Font>
+                <GridLineColor>105, 105, 105</GridLineColor>
+                <TextColor>140, 140, 140</TextColor>
+              </Table>
+              <Title Ref="85" type="Stimulsoft.Report.Chart.StiChartTitle" isKey="true">
+                <Brush>[140:140:140]</Brush>
+                <Font>Tahoma,8,Bold</Font>
+                <Text>Стоимость/Цех</Text>
+                <Visible>True</Visible>
+              </Title>
+              <VertSpacing>1</VertSpacing>
+            </Chart2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportHeader1_1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportHeader1_1>
+        <PageFooter1 Ref="86" type="PageFooterBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,55.96,19.73,0.9</ClientRectangle>
+          <Components isList="true" count="4">
+            <Field2 Ref="87" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>17.06,0.25,2.5,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Field2</Name>
+              <Page isRef="6" />
+              <Parent isRef="86" />
+              <Text>{PageNofM}</Text>
+              <TextBrush>[103:176:79]</TextBrush>
+            </Field2>
+            <Text1 Ref="88" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.69,0.3,10.86,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="6" />
+              <Parent isRef="86" />
+              <Text>Дата распечатки: {Time}</Text>
+              <TextBrush>[103:176:79]</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text1>
+            <StartPointPrimitive4 Ref="89" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+              <ClientRectangle>0.25,0.15,0,0</ClientRectangle>
+              <Name>StartPointPrimitive4</Name>
+              <Page isRef="6" />
+              <Parent isRef="86" />
+              <ReferenceToGuid>1723848ae9184653a27765531db9e144</ReferenceToGuid>
+            </StartPointPrimitive4>
+            <EndPointPrimitive5 Ref="90" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+              <ClientRectangle>19.7,0.85,0,0</ClientRectangle>
+              <Name>EndPointPrimitive5</Name>
+              <Page isRef="6" />
+              <Parent isRef="86" />
+              <ReferenceToGuid>1723848ae9184653a27765531db9e144</ReferenceToGuid>
+            </EndPointPrimitive5>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooter1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageFooter1>
+        <PageHeader1 Ref="91" type="PageHeaderBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,7.29,19.73,0.61</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Name>PageHeader1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageHeader1>
+        <GroupHeaderBand2 Ref="92" type="GroupHeaderBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,8.7,19.73,0.58</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text29 Ref="93" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>1.73,0,6.27,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <Guid>6e614c970cca4698b04e44100686592a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="6" />
+              <Parent isRef="92" />
+              <Text>{v_Volume_Money_SubDivision.TypeOrderName}</Text>
+              <TextBrush>Green</TextBrush>
+              <Type>DataColumn</Type>
+            </Text29>
+            <HorizontalLinePrimitive2 Ref="94" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>1.73,0.02,17.83,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="95" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>5f7a630e27354a77abf631f36a70045c</Guid>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="6" />
+              <Parent isRef="92" />
+              <Size>1.388889</Size>
+              <StartCap Ref="96" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Condition>{v_Volume_Money_SubDivision.TypeOrderName}</Condition>
+          <Conditions isList="true" count="0" />
+          <Guid>670363a6187f4ae58e9f0e4c7e7dce75</Guid>
+          <Name>GroupHeaderBand2</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupHeaderBand2>
+        <GroupHeaderBand3 Ref="97" type="GroupHeaderBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <ClientRectangle>0,10.08,19.73,0.39</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{v_Volume_Money_SubDivision.ClientName}</Condition>
+          <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
+          <Guid>19c24fac68e749328aec6dd452db4da5</Guid>
+          <Name>GroupHeaderBand3</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupHeaderBand3>
+        <DataBand1 Ref="98" type="DataBand" isKey="true">
+          <Brush>HatchBrush,BackwardDiagonal,DarkGray,White</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <CalcInvisible>True</CalcInvisible>
+          <ClientRectangle>0,11.27,19.73,0.39</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>v_Volume_Money_SubDivision</DataSourceName>
+          <Enabled>False</Enabled>
+          <Filters isList="true" count="0" />
+          <Guid>8ed66c0727da40a788d793c2626b7f51</Guid>
+          <Name>DataBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="6">
+            <value>ASC</value>
+            <value>SubDivisionName</value>
+            <value>ASC</value>
+            <value>TypeOrderName</value>
+            <value>ASC</value>
+            <value>ClientName</value>
+          </Sort>
+        </DataBand1>
+        <GroupFooterBand3 Ref="99" type="GroupFooterBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,12.46,19.73,0.4</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text2 Ref="100" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0.69,0,7.31,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>8c7c959ba66246689208d6e0e055fe1f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="6" />
+              <Parent isRef="99" />
+              <Text>{v_Volume_Money_SubDivision.ClientName}:	</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text2>
+            <Text3 Ref="101" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>16.05,0,3.51,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>1d684e869e1549bf9d337de6c5b23a5c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="6" />
+              <Parent isRef="99" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPrice)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="102" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text3>
+            <Text14 Ref="103" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>12,0,4.05,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>aa54764841ca4a2a91783035feba6f04</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="6" />
+              <Parent isRef="99" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumArea)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="104" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text14>
+            <Text15 Ref="105" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>8,0,4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>8abf3ccdb42f4b4fb9f8eafe05444164</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="6" />
+              <Parent isRef="99" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPosCount)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="106" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>7513375795ed4890afa6d8f65d8a9bf6</Guid>
+          <Name>GroupFooterBand3</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupFooterBand3>
+        <GroupFooterBand2 Ref="107" type="GroupFooterBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,13.66,19.73,0.59</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text16 Ref="108" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>1.73,0,6.27,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>0a4a0f585aa34dab846887c243a03089</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="6" />
+              <Parent isRef="107" />
+              <Text>Сумма по {v_Volume_Money_SubDivision.TypeOrderName}:	</Text>
+              <TextBrush>Green</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text16>
+            <Text17 Ref="109" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>16.05,0,3.51,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>dadaae5414b1450994adc1fe02c911da</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="6" />
+              <Parent isRef="107" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPrice)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="110" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text17>
+            <Text18 Ref="111" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>12,0,4.05,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>18b767cef9b044349d8568ee0d082d84</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="6" />
+              <Parent isRef="107" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumArea)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="112" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text18>
+            <Text19 Ref="113" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>8,0,4,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>a0470a5b58c1432483cb0a6579564ded</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="6" />
+              <Parent isRef="107" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPosCount)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="114" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text19>
+            <Line4 Ref="115" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>1.73,0.51,17.83,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="116" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>Line4</Name>
+              <Page isRef="6" />
+              <Parent isRef="107" />
+              <Size>1.388889</Size>
+              <StartCap Ref="117" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </Line4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>395124d686b8433d87798406fd1deac4</Guid>
+          <Name>GroupFooterBand2</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupFooterBand2>
+        <ReportFooter1 Ref="118" type="ReportSummaryBand" isKey="true">
+          <Brush>White</Brush>
+          <ClientRectangle>0,15.05,19.73,0.5</ClientRectangle>
+          <Components isList="true" count="5">
+            <SumofSumPrice1 Ref="119" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>16.05,0,3.51,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofSumPrice1</Name>
+              <Page isRef="6" />
+              <Parent isRef="118" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPrice)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="120" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </SumofSumPrice1>
+            <SumofSumArea1 Ref="121" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>12,0,4.05,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofSumArea1</Name>
+              <Page isRef="6" />
+              <Parent isRef="118" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumArea)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="122" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </SumofSumArea1>
+            <SumofSumPosCount1 Ref="123" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>8,0,4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SumofSumPosCount1</Name>
+              <Page isRef="6" />
+              <Parent isRef="118" />
+              <Text>{Sum(v_Volume_Money_SubDivision.SumPosCount)}</Text>
+              <TextBrush>Green</TextBrush>
+              <TextFormat Ref="124" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+            </SumofSumPosCount1>
+            <Text11 Ref="125" type="Text" isKey="true">
+              <Brush>[0:255:255:255]</Brush>
+              <ClientRectangle>0.69,0,7.31,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="6" />
+              <Parent isRef="118" />
+              <Text>Итого</Text>
+              <TextBrush>Green</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+            </Text11>
+            <Line1 Ref="126" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0.69,0.02,18.86,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="127" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>Line1</Name>
+              <Page isRef="6" />
+              <Parent isRef="118" />
+              <Size>1.388889</Size>
+              <StartCap Ref="128" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </Line1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportFooter1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportFooter1>
+        <Box1 Ref="129" type="RectanglePrimitive" isKey="true">
+          <ClientRectangle>0.25,56.11,19.45,0.7</ClientRectangle>
+          <Color>103, 176, 79</Color>
+          <Guid>1723848ae9184653a27765531db9e144</Guid>
+          <Name>Box1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </Box1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>5756c4e7ab704871b0fd4de739b8539e</Guid>
+      <LargeHeight>True</LargeHeight>
+      <LargeHeightFactor>2</LargeHeightFactor>
+      <Margins>0.635,0.635,0.635,0.635</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <TitleBeforeHeader>True</TitleBeforeHeader>
+      <Watermark Ref="130" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Form1 Ref="131" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="6">
+        <DateTimePickerControl1 Ref="132" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>24,16,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Location>24, 16</Location>
+          <MaxDate>12/31/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2000 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>104, 20</Size>
+          <Value>2/10/2021 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="133" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>160,16,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>043048a751214c7a8c73216c8d13ee65</Guid>
+          <Location>160, 16</Location>
+          <MaxDate>12/31/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2000 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>104, 20</Size>
+          <Value>2/10/2021 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <LabelControl2 Ref="134" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,16,16,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>8, 16</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>16, 16</Size>
+          <Text>С</Text>
+        </LabelControl2>
+        <LabelControl1 Ref="135" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>136,16,24,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>28ce3e93a0894d17a7d3ea0339035d43</Guid>
+          <Location>136, 16</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>24, 16</Size>
+          <Text>По</Text>
+        </LabelControl1>
+        <ButtonControl1 Ref="136" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+v_Volume_Money_SubDivision.ConnectOnStart = true;
+v_Volume_Money_SubDivision.Disconnect();
+v_Volume_Money_SubDivision.Connect();</ClickEvent>
+          <ClientRectangle>8,48,120,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <ComponentStyle>Style1</ComponentStyle>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,8,Bold</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>8, 48</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>120, 24</Size>
+          <Text>ОК</Text>
+        </ButtonControl1>
+        <ButtonControl2 Ref="137" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <Cancel>True</Cancel>
+          <ClientRectangle>136,48,128,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <ComponentStyle>Style3</ComponentStyle>
+          <Font>Microsoft Sans Serif,8,Bold</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>dd009faf8ea64c269ba877e55d9a9b64</Guid>
+          <Location>136, 48</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="131" />
+          <Parent isRef="131" />
+          <Size>128, 24</Size>
+          <Text>Отмена</Text>
+        </ButtonControl2>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>90057f411f624538ab63e34a95d34231</Guid>
+      <Location>0, 0</Location>
+      <Name>Form1</Name>
+      <Report isRef="0" />
+      <Size>280, 104</Size>
+      <Text>Выберите временной интервал</Text>
+    </Form1>
+  </Pages>
+  <PrinterSettings Ref="138" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>12/20/2025 5:01:01 PM</ReportChanged>
+  <ReportCreated>8/13/2024 3:17:25 PM</ReportCreated>
+  <ReportFile>D:\Develop\Dev5Old\Design\Bin\Debug\ReportsGlass\dateVolumeMoney_IZO.mrt</ReportFile>
+  <ReportGuid>adb34857e8864d11b3e4193e73974157</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+		private string ToText(string x) { return x; }
+		private string ToText(double x) { return x.ToString(); }
+		private string ToText(double x, int y) { return x.ToString("F" + y.ToString()); }
+		private string ToText(DateTime x, string y) { return x.ToString(y); }
+		private string Trim(string st) { return st.Trim(); }
+		private string TrimRight(string st) { return st.TrimEnd(); }
+		private string TrimLeft(string st) { return st.TrimStart(); }
+		private string UpperCase(string st) { return st.ToUpper(); }
+		private string LowerCase(string st) { return st.ToLower(); }
+		private bool IsNull1(object obj) { return obj == null || obj == DBNull.Value; }
+		private DateTime DateValue(object obj) { return (DateTime)Stimulsoft.Base.StiConvert.ChangeType(obj, typeof(DateTime), true); }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -40,19 +40,29 @@ void ParseDocAttribute(const CString& sSource, CArray<TPrdDoc, TPrdDoc&>& arrDoc
     if ( sItem.IsEmpty() )
       continue;
 
-    int nFirstSpace = sItem.Find(_T(' '));
-    int nLastSpace = sItem.ReverseFind(_T(' '));
+    int nOtPos = sItem.Find(_T(" от "));
+    int lenOtPos = 4; // Длина разделителя
 
-    if ( nFirstSpace == -1 || nLastSpace == -1 )
+    if ( nOtPos == -1 )
       continue;
 
     TPrdDoc doc;
 
-    doc.sNum = sItem.Left(nFirstSpace);
-    doc.sDate = sItem.Mid(nLastSpace + 1);
+    doc.sNum = sItem.Left(nOtPos);
+    doc.sDate = sItem.Mid(nOtPos + lenOtPos);
 
     doc.sNum.Trim();
     doc.sDate.Trim();
+
+    // Убираем пробелы после запятых: "А3307, А3341" -> "А3307,А3341"
+    while ( doc.sNum.Replace(_T(", "), _T(",")) > 0 )
+    {
+    }
+
+    // На всякий случай убираем пробел перед запятой: "А3307 ,А3341" -> "А3307,А3341"
+    while ( doc.sNum.Replace(_T(" ,"), _T(",")) > 0 )
+    {
+    }
 
     if ( !doc.sNum.IsEmpty() && !doc.sDate.IsEmpty() )
       arrDocs.Add(doc);
