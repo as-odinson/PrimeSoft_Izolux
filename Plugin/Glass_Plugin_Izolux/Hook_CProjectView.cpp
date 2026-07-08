@@ -125,8 +125,8 @@ void RecalcAllProjectsPrice(_RecordsetPtr rc)
     if ( !rc )
       return;
 
+    // Закладка
     _variant_t vBookmark = rc->Bookmark;
-    rc->MoveFirst();
 
     for ( rc->MoveFirst(); !rc->adoEOF; rc->MoveNext() )
       PluginFireGlassPackCalcPrice();
