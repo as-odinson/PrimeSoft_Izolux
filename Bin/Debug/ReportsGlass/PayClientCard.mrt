@@ -944,11 +944,11 @@ ClientList.Control.ValueMember = "ID";</LoadFormEvent>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
   <ReportAuthor isNull="true" />
-  <ReportChanged>6/26/2026 6:16:18 PM</ReportChanged>
+  <ReportChanged>7/6/2026 12:23:09 PM</ReportChanged>
   <ReportCreated>2/17/2025 2:01:07 PM</ReportCreated>
   <ReportDescription isNull="true" />
   <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\PayClientCard.mrt</ReportFile>
-  <ReportGuid>bc0a1b16ef6b420fb8ab70601273e45b</ReportGuid>
+  <ReportGuid>8a0fd524feb046d7977b3f8f665b6590</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

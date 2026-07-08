@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ProgEventBridge.h"
 #include "..\..\Design\ABMfc\ADOGridRecord.h"
-
+#include "..\..\Design\ABMfc\CmdTargetPlus.h"
 
 namespace
 {
@@ -19,9 +19,19 @@ namespace
   };
 
   const DISPID kDispIdAddProtocol = 22; // CProgEvent::AddProtocol
+  const UINT   kEventIdGlassPackCalcPrice = 9L; // GlassPackCalcPrice
 
   CCmdTarget* g_pCachedProgEvent = NULL;
   bool        g_bProgEventSearchFailed = false;
+
+  class CProgEventAccessor : public CCmdTargetPlus
+  {
+  public:
+    void FireGlassPackCalcPrice_Plugin()
+    {
+      FireEvent(kEventIdGlassPackCalcPrice, EVENT_PARAM(VTS_NONE));
+    }
+  };
 
   bool IsReadablePtr(const void* p)
   {
@@ -166,6 +176,25 @@ void PluginAddProtocol(LPCTSTR sProt)
 
       SaveError(__TFILE__, __LINE__, __TFUNCTION__, _T("CProgEvent::AddProtocol InvokeAddProtocol failed"), false, true);
     }
+  }
+  CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
+}
+
+// Повторный вызов 
+void PluginFireGlassPackCalcPrice()
+{
+  try
+  {
+    CCmdTarget* pProgEvent = GetProgEvent();
+
+    if ( !pProgEvent )
+      return;
+
+    CProgEventAccessor* pAccessor = (CProgEventAccessor*)pProgEvent;
+
+    pAccessor->FireGlassPackCalcPrice_Plugin();
+
+    SaveError(__TFILE__, __LINE__, __TFUNCTION__, _T("CProgEvent::FireGlassPackCalcPrice called"), false, true);
   }
   CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
 }

@@ -46,6 +46,96 @@ Decimal::~Decimal(void)
 {
 }
 
+bool HasProjectRebateSkipFlags(_RecordsetPtr rc)
+{
+  try
+  {
+    if ( !rc )
+      return false;
+
+    long nCount = rc->RecordCount;
+
+    if ( nCount <= 0 )
+      return false;
+
+    // ставим закладку
+    _variant_t vBookmark = rc->Bookmark;
+
+    rc->MoveFirst();
+
+    bool bFound = false;
+
+    for ( long i = 0; i < nCount; i++ )
+    {
+      if ( ConvertDouble(rc, _T("SumWithNDS_Discount"), 0) == 1.0 )
+      {
+        bFound = true;
+        break;
+      }
+
+      if ( i + 1 < nCount )
+        rc->MoveNext();
+    }
+
+    // возвращаемся
+    rc->Bookmark = vBookmark;
+
+    return bFound;
+  }
+  CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
+
+  return false;
+}
+
+void ClearProjectRebateSkipFlags(_RecordsetPtr rc)
+{
+  try
+  {
+    if ( !rc )
+      return;
+
+    long nCount = rc->RecordCount;
+
+    if ( nCount <= 0 )
+      return;
+
+    // ставим закладку
+    _variant_t vBookmark = rc->Bookmark;
+
+    rc->MoveFirst();
+
+    for ( long i = 0; i < nCount; i++ )
+    {
+      rc->Fields->GetItem("SumWithNDS_Discount")->Value = 0.0;
+
+      if ( i + 1 < nCount )
+        rc->MoveNext();
+    }
+
+    // возвращаеся
+    rc->Bookmark = vBookmark;
+  }
+  CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
+}
+
+void RecalcAllProjectsPrice(_RecordsetPtr rc)
+{
+  try
+  {
+    if ( !rc )
+      return;
+
+    _variant_t vBookmark = rc->Bookmark;
+    rc->MoveFirst();
+
+    for ( rc->MoveFirst(); !rc->adoEOF; rc->MoveNext() )
+      PluginFireGlassPackCalcPrice();
+
+    rc->Bookmark = vBookmark;
+  }
+  CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
+}
+
 void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis, double fPriceM2)
 {
   try
@@ -54,6 +144,8 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
 
     _ConnectionPtr  pConn(__uuidof(Connection));
     pConn = pThis->m_Recordset->GetActiveConnection();
+
+    const double MIN_PRICE = 100.0; // Минимальная цена
 
     // Если нет коннекта, то поднимем его
     if ( !pConn && GetConnectFunc() )
@@ -85,6 +177,7 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
     Decimal dePriceM2R(2, fPriceM2R);
 
     bool IsPriceByCount = ConvertBool(pThis->m_Recordset, _T("IsPriceByCount"));
+    bool bSkipRebate = ConvertDouble(pThis->m_Recordset, _T("SumWithNDS_Discount"), 0) == (double)1;
     double fArea = ConvertDouble(pThis->m_Recordset, _T("Area"));
     double fRebate = ConvertDouble(pThis->m_Recordset, _T("Rebate"));
     double fRebateCoef = ConvertDouble(pThis->m_Recordset, _T("RebateCoef"), 1);
@@ -105,6 +198,10 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
       double fPriceCoef = ConvertDouble(pThis->m_Recordset, _T("PriceCoef"));
       double fPriceOper = ConvertDouble(pThis->m_Recordset, _T("PriceOperation"));
 
+      // Если скип тогда позиции не применям скидку
+      if ( bSkipRebate )
+        fRebate = 0; 
+
       if ( IsPriceByCount )
         fPriceAll = pThis->RoundMoney((fPriceM2R * fRebateCoefReal - fRebate) * fPriceCoef);
       else
@@ -114,6 +211,24 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
                   
       // Скидка/наценка на заказ
       double finalPriceAll = fPriceAll * fTaskRebate;
+
+      if ( !bSkipRebate && fRebate > 0 && finalPriceAll < MIN_PRICE )
+      {
+        // Эта позиция не может принять равномерную скидку.
+        // Помечаем её и считаем заново БЕЗ скидки заказа.
+        pThis->m_Recordset->Fields->GetItem("SumWithNDS_Discount")->Value = 1.0;
+        fRebate = 0; 
+
+        sProtocol.AppendFormat(_T("\r\nСкидка заказа для позиции исключена: сумма %.2f меньше минимума %.2f."), finalPriceAll, MIN_PRICE);
+
+        if ( IsPriceByCount )
+          fPriceAll = pThis->RoundMoney((fPriceM2R * fRebateCoefReal - fRebate) * fPriceCoef);
+        else
+          fPriceAll = pThis->RoundMoney((fPriceM2R * fRebateCoefReal - fRebate) * fArea * fPriceCoef);
+
+        fPriceAll += pThis->RoundMoney(fPriceS) + pThis->RoundMoney(fPriceOper);
+        finalPriceAll = fPriceAll * fTaskRebate;
+      }
 
       sProtocol.AppendFormat(_T("\r\nСумма с НДС = (%.2f * %.2f - %.2f)"), fPriceM2R, fRebateCoefReal, fRebate);
       if ( !IsPriceByCount )
@@ -130,6 +245,28 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
     PluginAddProtocol(sProtocol);
 
     pThis->SetPrice_WithNDS_Reverse(fPriceAll, false, dePriceM2R);
+
+    static bool bInRepeatCalc = false;
+    bool bLastProject = false;
+    
+    try
+    {
+      bLastProject = pThis->m_Recordset->AbsolutePosition == pThis->m_Recordset->RecordCount;
+    }
+    catch ( ... )
+    {
+      bLastProject = false;
+    }
+
+    if ( bLastProject && !bInRepeatCalc && HasProjectRebateSkipFlags(pThis->m_Recordset) )
+    {
+      bInRepeatCalc = true;
+
+      RecalcAllProjectsPrice(pThis->m_Recordset);
+      ClearProjectRebateSkipFlags(pThis->m_Recordset);
+
+      bInRepeatCalc = false;
+    }
 
     //g_originalProjectViewGrid_SetPriceM2_WithNDS(pThis, fPriceM2);
   }

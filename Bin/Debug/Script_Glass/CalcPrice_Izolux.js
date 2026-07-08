@@ -202,7 +202,7 @@ function Prog::GlassPackCalcPrice()
         Prog.AddProtocol("\r\n  Максимальное значение стороны: " + fSideValue.toFixed(2) + "\r\n");
       } 
       
-      fCoefArea = objPrice.GetGPAreaAndSideCoefByID(fArea, width, height, idAreaCategory, bEquallyMinValue, idPricePeriod);
+      // fCoefArea = objPrice.GetGPAreaAndSideCoefByID(fArea, width, height, idAreaCategory, bEquallyMinValue, idPricePeriod);
 
       if ( GP.ChangedFieldName == "PriceNDS"  ||  GP.ChangedFieldName == "PriceByM"  ||
            GP.ChangedFieldName == "PriceS"    ||  GP.ChangedFieldName == "PriceCoef" )
@@ -485,6 +485,17 @@ function Prog::GlassPackCalcPrice()
               var fPriceM2_tmp = Math.round(objPrice.GlassPackPricePeriodForMargin(2, iWidth - iWdth1, fArea, Prog.idClient, Prog.idPricePeriod, Prog.idPricePeriodDiscount, const_chamber_thickness.double_chamber));
               Prog.AddProtocol("\nСтоимость второй двухкамерной части: " + fPriceM2_tmp + " "); 
               fPriceM2 += fPriceM2_tmp;
+
+              var fCoefOnThreeCamber = objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 55, Prog.idPricePeriod, Prog.idPricePeriodDiscount);
+
+              fCoefOnThreeCamber = (fCoefOnThreeCamber / 100.);
+
+              if ( fCoefOnThreeCamber != 0 )
+              {
+                Prog.AddProtocol("\nНаценка на трехкамерный пакет: " + fCoefOnThreeCamber);
+                
+                NonStandardCoef += fCoefOnThreeCamber; // учтем Коэффициент на площадь
+              }
             }
             else if (nCamCount == 2) // Иначе расчет стоимости стеклопакета (СП) с учетом логики толщины рамок
             {
@@ -629,8 +640,8 @@ function Prog::GlassPackCalcPrice()
       } 
         // Коэффициент на площадь и надбавка за площадь, 
         // Коэффициент на площадь берем при размерах одной из строн больше 2м
-        //if ( width >= 2000 || height >= 2000 )
-        //  fCoefArea = objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 33, Prog.idPricePeriod, Prog.idPricePeriodDiscount);
+        if ( width >= 2000 || height >= 2000 )
+         fCoefArea = objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 33, Prog.idPricePeriod, Prog.idPricePeriodDiscount);
 
         fAddArea  = objPrice.GetGPAreaAddPrice(fArea, false, Prog.idPricePeriod);
         
@@ -895,7 +906,30 @@ function Prog::GlassPackCalcPrice()
 
         // Запишем на позиции, скидку и наценку
         if (fRebateVal)
-          fRebateVal = Math.round((fRebateVal / nCountProject) * 100) / 100;
+        {
+          var bSkipRebate = Prog.rcProject("SumWithNDS_Discount").Value || 0;
+        
+          if (bSkipRebate == 1)
+          {
+            fRebateVal = 0;
+            sProtRebate += "\r\nСкидка заказа на позицию не применяется: позиция исключена;";
+          }
+          else
+          {       
+            var nCountRebate = GetRebateProjectCount();
+        
+            if (nCountRebate > 0)
+            {
+              fRebateVal = Math.round((fRebateVal / nCountRebate) * 100) / 100;
+              // Prog.MessageBox(nCountRebate);
+            }
+            else
+            {
+              fRebateVal = 0;
+              sProtRebate += "\r\nНет позиций для распределения скидки;";
+            }
+          }
+        }
        
         if (fPriceAddVal)
         {
@@ -1045,6 +1079,41 @@ function Prog::CalcPriceTask()
   Prog.SaveError("Prog::CalcPriceTask - использование метода не предусмотрено", false);
 }
 
+function GetRebateProjectCount()
+{
+  var nCount = 0;
+  var rc = null;
+
+  try
+  {
+    rc = Prog.rcProject.Clone();
+    rc.Filter = "";
+
+    if (!(rc.BOF && rc.EOF))
+    {
+      rc.MoveFirst();
+
+      for (; !rc.EOF; rc.MoveNext())
+      {
+        var bSkip = rc("SumWithNDS_Discount").Value || 0;
+        var nCountPos = rc("nCount").Value || 1;
+
+        if (bSkip != 1)
+          nCount += nCountPos;
+      }
+    }
+
+    try { rc.Close(); } catch(eClose) {}
+  }
+  catch(e)
+  {
+    Prog.SaveError("GetRebateProjectCount: " + e.message, true);
+    nCount = GP.GetProjectCount();
+  }
+
+  return nCount;
+}
+
 function CalcRasPrice(ObjGlass)
 {
   if ( ObjGlass.Int("CalcPriceMethod") == 2 ) // По погонным метрам.
@@ -1185,55 +1254,7 @@ function GetPriceOperationWithoutOperProcessing(numGlass, idClient, idGlass, idP
   return result;
 }
 
-// Цена пленки на стекло
-function Prog::GlassPriceFilm()
-{
-  try
-  {
-    /* Требование клиента, что цена за пленку должна добавляться к цене м2 по прайсу
-    if ( !objPrice )
-      InitObjPrice();
-    
-    Prog.Protocol = "";
 
-    // Загрузим справочники
-    LoadReference();
-
-    var bObjectPrice = GetPricePeriodValue(Prog.idPricePeriod, "bObjectPrice");  // Объектовый прайс
-
-    // Объектовый прайс - цена = 0 по требованию клиента
-    if ( bObjectPrice )
-        GP.GlassPriceOper = 0;
-    // Не объектовый прайс
-    else
-    if ( objPrice )
-    {
-      var  idClient               = 0,
-           idPricePeriod          = 0,
-           idPricePeriodDiscount  = 0,
-           fPriceFilm             = 0.0,
-           fCoefArea              = 0.,  // Коэф. наценки в процентах зависит от площади и ее категории
-           fPriceCoef             = GetFormTypeCoef( GP.GetLong("idFormType"), GP.GetLong("CamCount")),
-           bEquallyMinValue       = Prog.Select_Int("select d_iNum from config where Name = 'nTypeDefineAreaGP'", "d_iNum", true);
-
-      idClient               = Prog.idClient;
-      idPricePeriod          = Prog.idPricePeriod;
-      idPricePeriodDiscount  = Prog.idPricePeriodDiscount;
-      fPriceFilm             = objPrice.GetMarginFilm(idClient, GP.idFilm, idPricePeriod, idPricePeriodDiscount);
-      fCoefArea              = objPrice.GetGPAreaCoef(GP.Area, bEquallyMinValue, idPricePeriod); // По решению руководства не нужно умножать на коэффициент площадной
-      fPriceFilm             = fPriceFilm * ( 1 + fCoefArea / 100.) * fPriceCoef;
-
-      Prog.AddProtocol("\nДоплата за пленку : " + fPriceFilm);
-      GP.GlassPriceOper = fPriceFilm;
-    }
-    */
-    GP.GlassPriceOper = 0;
-  }
-  catch (e)
-  {
-    Prog.SaveError("Prog::GlassPriceFilm " + e.message, true);
-  }
-}
 
 function GetCrossPrice (ObjGlass)
 {
