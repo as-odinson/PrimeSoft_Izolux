@@ -202,7 +202,7 @@ function Prog::GlassPackCalcPrice()
         Prog.AddProtocol("\r\n  Максимальное значение стороны: " + fSideValue.toFixed(2) + "\r\n");
       } 
       
-      // fCoefArea = objPrice.GetGPAreaAndSideCoefByID(fArea, width, height, idAreaCategory, bEquallyMinValue, idPricePeriod);
+      fCoefArea = objPrice.GetGPAreaAndSideCoefByID(fArea, width, height, idAreaCategory, bEquallyMinValue, idPricePeriod);
 
       if ( GP.ChangedFieldName == "PriceNDS"  ||  GP.ChangedFieldName == "PriceByM"  ||
            GP.ChangedFieldName == "PriceS"    ||  GP.ChangedFieldName == "PriceCoef" )
@@ -640,8 +640,8 @@ function Prog::GlassPackCalcPrice()
       } 
         // Коэффициент на площадь и надбавка за площадь, 
         // Коэффициент на площадь берем при размерах одной из строн больше 2м
-        if ( width >= 2000 || height >= 2000 )
-         fCoefArea = objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 33, Prog.idPricePeriod, Prog.idPricePeriodDiscount);
+        //if ( width >= 2000 || height >= 2000 )
+        //  fCoefArea = objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 33, Prog.idPricePeriod, Prog.idPricePeriodDiscount);
 
         fAddArea  = objPrice.GetGPAreaAddPrice(fArea, false, Prog.idPricePeriod);
         
@@ -887,15 +887,20 @@ function Prog::GlassPackCalcPrice()
         }
       }
 
-      var fPriceAdd        = 0,
-          fPriceRebate     = 0,
-          fRebateVal      = 0, // Скидка в рублях на заказ
-          PriceAddVal     = 0, // Наценка в рублях на заказ
-          PriceAdd        = 0,
-          PriceAdd_NoCoef = GP.GetFloat("PriceAdd_NoCoef"),    // Наценка на позицию
-          fRebate         = GP.GetFloat("Rebate");             // Скидка на позицию
-          sProtPriceAdd = "", // Протоколируем наценку
-          sProtRebate   = ""; // Протоколируем скидку
+      var fPriceAdd          = 0,
+          fPriceRebate       = 0,
+          fRebateVal         = 0, // Скидка в рублях на заказ
+          fOrderRebate       = 0, // Новая часть Rebate от скидки заказа
+          fOldOrderRebate    = GP.GetFloat("SumNoNDS_Discount"),
+          PriceAddVal        = 0,
+          PriceAdd           = 0,
+          PriceAdd_NoCoef    = GP.GetFloat("PriceAdd_NoCoef"),
+          fRebate            = GP.GetFloat("Rebate") - fOldOrderRebate,
+          sProtPriceAdd      = "",
+          sProtRebate        = "";
+
+      if (fRebate < 0)
+        fRebate = 0;
 
       if (nCountProject > 0)
       {
@@ -976,15 +981,22 @@ function Prog::GlassPackCalcPrice()
       // Добавим скидку на заказ если она есть
       if ( fRebateVal )
       {
-        sProtRebate   += "Скидка на заказ = " + fRebateVal;
+        sProtRebate += "Скидка на заказ = " + fRebateVal;
+      
         if ( !bPiecePrice && fArea != 0 )
         {
-          fPriceRebate    += fRebateVal / fArea; 
-          sProtRebate += " / " + fArea.toFixed(2) + " = " + fPriceRebate.toFixed(2);
+          fOrderRebate = Math.round((fRebateVal / fArea) * 100) / 100;
+          fPriceRebate += fOrderRebate;
+        
+          sProtRebate += " / " + fArea.toFixed(2) +
+                         " = " + fOrderRebate.toFixed(2);
         }
         else
-          fPriceRebate    += fRebateVal; 
-        
+        {
+          fOrderRebate = fRebateVal;
+          fPriceRebate += fOrderRebate;
+        }
+      
         sProtRebate += "; ";
       }
 
@@ -992,8 +1004,11 @@ function Prog::GlassPackCalcPrice()
       if ( NonStandardCoef != 1 )
       {
         fPriceRebate /= NonStandardCoef;
-        if ( sProtRebate != "")
-          sProtRebate    += " С коэффициентом " + NonStandardCoef + " = " + fPriceRebate.toFixed(2) + ";";
+        fOrderRebate /= NonStandardCoef;
+      
+        if ( sProtRebate != "" )
+          sProtRebate += " С коэффициентом " + NonStandardCoef +
+                         " = " + fPriceRebate.toFixed(2) + ";";
       }
 
       // Если наценка есть наценка тогда запишем
@@ -1001,8 +1016,8 @@ function Prog::GlassPackCalcPrice()
         Prog.rcProject("PriceAdd_NoCoef").Value = fPriceAdd;
 
       // Если есть скидка тогда запишем
-      if ( fPriceRebate )
-        Prog.rcProject("Rebate").Value = fPriceRebate;
+      Prog.rcProject("SumNoNDS_Discount").Value = fOrderRebate;
+      Prog.rcProject("Rebate").Value = fPriceRebate;
       
       if ( sProtPriceAdd != "" )
         Prog.AddProtocol("\r\n" + sProtPriceAdd);
