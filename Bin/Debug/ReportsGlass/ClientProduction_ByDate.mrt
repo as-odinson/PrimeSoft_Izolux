@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <PrimeSoft Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>PrimeSoft</Alias>
+        <ConnectionStringEncrypted>4NbN68UW0+3iR72caAn2m8I634hhA0L1RWfNgGBM4D/0evfPZ3FRmelr5fDuCeAT0XLNYFdKQ/lrXKTU+3jjm8NUd2hPWXntQ2z98XHAJRffxMGjSE4ByMNbTb3DBOAqxVrVAlVd+5lvYdmlTXHnZ8MaZePGa9MJywg=</ConnectionStringEncrypted>
+        <Name>PrimeSoft</Name>
+      </PrimeSoft>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <qwe Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>qwe</Alias>
+        <Columns isList="true" count="5">
+          <value>Name,System.String</value>
+          <value>NameShort,System.String</value>
+          <value>DateGiveManufact,System.DateTime</value>
+          <value>Area,System.Double</value>
+          <value>ID,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>qwe</Name>
+        <NameInSource>PrimeSoft</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy;
+select
+	Client.ID,
+	Client.Name,
+	IsNull(Client.NameShort, '')      as NameShort,
+	dbo.f_TruncDate(Task.{sDateType}) as DateGiveManufact,
+	sum(Task.Area) as Area
+from Client
+	left join Task on Client.ID = Task.idClient
+where
+	Task.nState &amp; 2 = 2
+	and dbo.f_TruncDate(Task.{sDateType}) &gt;= {sDateBeg} 
+	and dbo.f_TruncDate(Task.{sDateType}) &lt;= {sDateEnd}
+group by 
+	Client.ID,
+	Client.Name,
+	Client.NameShort,
+	dbo.f_TruncDate(Task.{sDateType})
+</SqlCommand>
+      </qwe>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="3">
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDateType,sDateType,System.String,Date,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <NumberOfPass>DoublePass</NumberOfPass>
+  <Pages isList="true" count="2">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="3">
+        <PageFooterBand1 Ref="5" type="PageFooterBand" isKey="true">
+          <Border>Top;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,19.5,28.2,0.5</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text41 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,5.2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>51cd084ea0db458790a55dd554726f61</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text41</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Дата: {Time}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="7" type="DateFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Text41>
+            <Text70 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.2,0,18.9,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9.75,Bold</Font>
+              <Guid>a302024d74d8478bace8963d777f4d84</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text70</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Объем производства с {DateTimePickerControl1.Value.ToString("dd.MM.yyyy")} по {DateTimePickerControl2.Value.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text70>
+            <Text2 Ref="9" type="Text" isKey="true">
+              <Border>None;[216:216:216];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>24.1,0,4.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9.75</Font>
+              <Guid>8e3cf1735708498ead134de2d8acedb4</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Страница {PageNumberThrough} из {TotalPageCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>63220f24eed04825aeccef9789f1f1ee</Guid>
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <Text1 Ref="10" type="Text" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0,28.2,0.8</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <DockStyle>Top</DockStyle>
+          <Font>Arial,20</Font>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Text>Объем производства по дате {cbDateType.Text} с {DateTimePickerControl1.Value.ToString("dd.MM.yyyy")} по {DateTimePickerControl2.Value.ToString("dd.MM.yyyy")}</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text1>
+        <DataBand1 Ref="11" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,1.2,28.2,4.6</ClientRectangle>
+          <Components isList="true" count="1">
+            <CrossTab1 Ref="12" type="Stimulsoft.Report.CrossTab.StiCrossTab" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanShrink>True</CanShrink>
+              <ClientRectangle>0,0,28.2,4.5</ClientRectangle>
+              <Components isList="true" count="8">
+                <CrossTab1_RowTotal1 Ref="13" type="CrossRowTotal" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>0,3.7,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>c0fbae23ebcb47ffb25110d21de9c569</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Итого:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </CrossTab1_RowTotal1>
+                <CrossTab1_Row1_Title Ref="14" type="CrossTitle" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,0.45,1.6,2.8</ClientRectangle>
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>9bc21f2ceed540f09e6b322996c5687e</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>4,0</MaxSize>
+                  <Name>CrossTab1_Row1_Title</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Клиент</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <TypeOfComponent>Row:CrossTab1_Row1</TypeOfComponent>
+                </CrossTab1_Row1_Title>
+                <CrossTab1_LeftTitle Ref="15" type="CrossTitle" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,0,1.6,0.4</ClientRectangle>
+                  <Enabled>False</Enabled>
+                  <Font>Arial,8</Font>
+                  <Guid>4781dbbbf0f646a091803a61f762f5d4</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_LeftTitle</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>qwe</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TypeOfComponent>LeftTitle</TypeOfComponent>
+                </CrossTab1_LeftTitle>
+                <CrossTab1_ColTotal1 Ref="16" type="CrossColumnTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>2.85,0.45,1.4,2.8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>5fbc0cdd220d4948acc9d27e475bde77</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_ColTotal1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Итого</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </CrossTab1_ColTotal1>
+                <CrossTab1_RightTitle Ref="17" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>1.65,0,2.6,0.4</ClientRectangle>
+                  <Enabled>False</Enabled>
+                  <Font>Arial,8</Font>
+                  <Guid>4d5027db93cc408480b13a06ecd78698</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MergeHeaders>False</MergeHeaders>
+                  <Name>CrossTab1_RightTitle</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <PrintOnAllPages>False</PrintOnAllPages>
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>DateGiveManufact</Text>
+                  <TextBrush>[105:105:105]</TextBrush>
+                  <TypeOfComponent>RightTitle</TypeOfComponent>
+                </CrossTab1_RightTitle>
+                <CrossTab1_Row1 Ref="18" type="CrossRow" isKey="true">
+                  <Alias>NameShort</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,3.3,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{qwe.Name}</DisplayValue>
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>066cc6be99f2408faecb2dad24afe3f2</Guid>
+                  <HorAlignment>Left</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>4,0</MaxSize>
+                  <Name>CrossTab1_Row1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>NameShort</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <TotalGuid>c0fbae23ebcb47ffb25110d21de9c569</TotalGuid>
+                  <Value>{qwe.Name}</Value>
+                </CrossTab1_Row1>
+                <CrossTab1_Column1 Ref="19" type="CrossColumn" isKey="true">
+                  <Alias>DateGiveManufact</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>1.65,0.45,1.2,2.8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{qwe.DateGiveManufact.ToString("dd.MM.yyyy")}</DisplayValue>
+                  <Font>Arial,8</Font>
+                  <Guid>9143d723d223479b9fe1c1c115df6d9c</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Column1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <SortType>ByValue</SortType>
+                  <Text>DateGiveManufact</Text>
+                  <TextBrush>[105:105:105]</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=False, Angle=90, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <TotalGuid>5fbc0cdd220d4948acc9d27e475bde77</TotalGuid>
+                  <Value>{qwe.DateGiveManufact}</Value>
+                </CrossTab1_Column1>
+                <CrossTab1_Sum1 Ref="20" type="CrossSummary" isKey="true">
+                  <Alias>Area</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>1.65,3.3,1.2,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>33e466201d154c9c953452e799d53de6</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Sum1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="12" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>0</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="21" type="NumberFormat" isKey="true">
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator> </GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                  </TextFormat>
+                  <Value>{qwe.Area}</Value>
+                </CrossTab1_Sum1>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DataRelationName />
+              <DataSourceName>qwe</DataSourceName>
+              <EmptyValue />
+              <FilterOn>False</FilterOn>
+              <Filters isList="true" count="0" />
+              <GrowToHeight>True</GrowToHeight>
+              <Name>CrossTab1</Name>
+              <Page isRef="4" />
+              <Parent isRef="11" />
+              <Sort isList="true" count="0" />
+            </CrossTab1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>qwe</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>5ade07d8be6648cfbf47d49d51cc4e02</Guid>
+      <Margins>0.5,1,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21</PageHeight>
+      <PageWidth>29.7</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="22" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Form1 Ref="23" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="8">
+        <LabelControl1 Ref="24" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>20,72,52,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>8937db0b98064eee9db6051067dac530</Guid>
+          <Location>20, 72</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>52, 20</Size>
+          <Text>С</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl1>
+        <LabelControl2 Ref="25" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>20,104,52,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>e14579d4c4384576bac61179ddb046b4</Guid>
+          <Location>20, 104</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>52, 20</Size>
+          <Text>По</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl2>
+        <DateTimePickerControl1 Ref="26" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>80,70,136,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>64b300c19fbe4f22bc79d9f7e195282b</Guid>
+          <Location>80, 70</Location>
+          <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <RightToLeft>Inherit</RightToLeft>
+          <Size>136, 20</Size>
+          <Value>9/22/2011 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="27" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>80,102,136,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>b080d0333dd54eb591e8fcf5615879a8</Guid>
+          <Location>80, 102</Location>
+          <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>136, 20</Size>
+          <Value>9/16/2010 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <ButtonControl1 Ref="28" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+if ( cbDateType.Text == "Приема" )
+	sDateType = "Date";
+else if ( cbDateType.Text == "Производства" )
+	sDateType = "DateGiveManufact";
+else if ( cbDateType.Text == "Произведено" )
+	sDateType = "DateCompliteGP";
+else
+	sDateType = "DateComplite";
+
+qwe.Connect();</ClickEvent>
+          <ClientRectangle>20,152,80,30</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Default>True</Default>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>883449e5875b4e5fb08378a57440f062</Guid>
+          <Location>20, 152</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>80, 30</Size>
+          <Text>Готово</Text>
+        </ButtonControl1>
+        <ButtonControl2 Ref="29" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <Cancel>True</Cancel>
+          <ClientRectangle>136,152,80,30</ClientRectangle>
+          <Components isList="true" count="0" />
+          <DialogResult>Cancel</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>ef3d52f49d1947659421652f111261c9</Guid>
+          <Location>136, 152</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>80, 30</Size>
+          <Text>Отмена</Text>
+        </ButtonControl2>
+        <LabelControl3 Ref="30" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>16,18,56,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>16, 18</Location>
+          <Name>LabelControl3</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>56, 20</Size>
+          <Text>Дата</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl3>
+        <cbDateType Ref="31" type="Stimulsoft.Report.Dialogs.StiComboBoxControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>80,16,136,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <DropDownStyle>DropDownList</DropDownStyle>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Items isList="true" count="4">
+            <value>Приема</value>
+            <value>Производства</value>
+            <value>Произведено</value>
+            <value>Отгрузки</value>
+          </Items>
+          <Location>80, 16</Location>
+          <Name>cbDateType</Name>
+          <Page isRef="23" />
+          <Parent isRef="23" />
+          <Size>136, 20</Size>
+          <Text />
+        </cbDateType>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>4c39a77937b2437eb960276a50dbe1ec</Guid>
+      <Location>0, 0</Location>
+      <Name>Form1</Name>
+      <Report isRef="0" />
+      <Size>248, 224</Size>
+      <Text>Выбор диапазона дат</Text>
+    </Form1>
+  </Pages>
+  <PrinterSettings Ref="32" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>7/17/2026 4:57:06 PM</ReportChanged>
+  <ReportCreated>9/19/2011 9:44:08 AM</ReportCreated>
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\ClientProduction_ByDate.mrt</ReportFile>
+  <ReportGuid>16a37504542f47b1bc4ac91afe7b8485</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

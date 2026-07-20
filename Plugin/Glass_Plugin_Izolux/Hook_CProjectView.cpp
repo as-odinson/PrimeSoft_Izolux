@@ -179,9 +179,10 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
     bool IsPriceByCount = ConvertBool(pThis->m_Recordset, _T("IsPriceByCount"));
     bool bSkipRebate = ConvertDouble(pThis->m_Recordset, _T("SumWithNDS_Discount"), 0) == (double)1;
     double fArea = ConvertDouble(pThis->m_Recordset, _T("Area"));
-    double fRebate = ConvertDouble(pThis->m_Recordset, _T("Rebate"));
+    double fRebate = ConvertDouble(pThis->m_Recordset, _T("Rebate")); // Скидка
     double fRebateCoef = ConvertDouble(pThis->m_Recordset, _T("RebateCoef"), 1);
-    double fTaskRebate = ConvertDouble(pThis->m_rcTask, _T("Rebate"));
+    double fTaskRebate = ConvertDouble(pThis->m_rcTask, _T("Rebate")); // Скидка на заказ
+    double fPriceDelivSumWithNDS = ConvertDouble(pThis->m_Recordset, _T("PriceDelivSumWithNDS"));
     double fPriceAll = 0;
     double fRebateCoefReal = 2 - fRebateCoef;
 
@@ -241,6 +242,16 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
                 ? finalPriceAll
                 : 0;
     }
+
+    if ( fPriceDelivSumWithNDS != 0 )
+    {
+      double fPriceBeforeMarkup = fPriceAll;
+
+      fPriceAll = pThis->RoundMoney(fPriceAll + pThis->RoundMoney(fPriceDelivSumWithNDS));
+
+      sProtocol.AppendFormat(_T("\r\nНаценка на позицию = %.2f + %.2f = %.2f"), fPriceBeforeMarkup, fPriceDelivSumWithNDS, fPriceAll);
+    }
+
 
     PluginAddProtocol(sProtocol);
 
