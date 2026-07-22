@@ -24,10 +24,13 @@ begin
     declare @schema sysname = @data.value('(/EVENT_INSTANCE/SchemaName)[1]', 'sysname')
 
     if @obj in (
-        'v_Invoice_Reject_IZO',
+        'v_Report_GlassWasteBySawTask',
         'v_SawTask_Statistics',
         'v_SawItemSelect_Task',
+        'v_Invoice_Reject_IZO',
+        'v_Volume_Money_SubDivision',
         'v_Invoice_MXG',
+        'v_ManagerReport',
         'v_InvoiceUKD',
 
         'sp_DepCalcReg_Add_Group',
@@ -35,6 +38,8 @@ begin
         'sp_GetPendingDepTrans',
         'sp_Invoice_IZO_Ship_Only',
         'sp_UPD_Task_XLS_Izolux',
+        'sp_GetMaterialsWithDateGap',
+        'sp_RTB_ProjectCopy',
 
         'f_GetNextAccountNum_BW',
         'f_SawTaskUE_Period_Detail_Shipment',

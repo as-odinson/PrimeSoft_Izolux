@@ -152,8 +152,8 @@ WasteStat as
     end as WastePct,
 
     round(
-        ((SheetSquare - (IsNull(SumAreaRest, 0) + UsedArea)) * 100.0)
-        / SheetSquare,
+        ((SheetSquare_NoMargin - (IsNull(SumAreaRest, 0) + UsedArea)) * 100.0)
+        / SheetSquare_NoMargin,
         2
     ) as WastePctReal
 
@@ -164,12 +164,12 @@ WasteStat as
             C.idGlass,
             C.idSawTaskMain,
 
-            C.SheetSquare,
+            C.SheetSquare_NoMargin,
 
             BR.SumAreaRest,
 
             -- ÏËÎÙÀÄÜ Ñ ÎÒÑÒÓÏÎÌ
-            C.SheetSquare - isnull(BR.SumAreaRest, 0) as SheetArea,
+            C.SheetSquare_NoMargin - isnull(BR.SumAreaRest, 0) as SheetArea,
             -- ÈÑÏÎËÜÇÎÂÀÍÍÀß ÏËÎÙÀÄÜ
             case
                 when isnull(C.SquareUsed, 0) > 0

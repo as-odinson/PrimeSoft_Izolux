@@ -51,4 +51,3 @@ begin
 end
 go
 
-select * From UserGroupPermission

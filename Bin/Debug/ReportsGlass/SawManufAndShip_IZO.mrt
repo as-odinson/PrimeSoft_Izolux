@@ -12,7 +12,7 @@
     <DataSources isList="true" count="1">
       <ReportData Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
         <Alias>ReportData</Alias>
-        <Columns isList="true" count="21">
+        <Columns isList="true" count="22">
           <value>ClientName,System.String</value>
           <value>idTask,System.Int32</value>
           <value>AccountNum,System.String</value>
@@ -21,7 +21,7 @@
           <value>nState,System.Int32</value>
           <value>DateComplite,System.DateTime</value>
           <value>DateCompliteGP,System.DateTime</value>
-          <value>SawTaskDate,System.DateTime</value>
+          <value>SawTaskDate,System.String</value>
           <value>idShip,System.Int32</value>
           <value>ShipDate,System.DateTime</value>
           <value>BarCodeState,System.Int32</value>
@@ -34,6 +34,7 @@
           <value>BarCodeScaned,System.Int32</value>
           <value>ListGlass,System.String</value>
           <value>ListOperation,System.String</value>
+          <value>SawTaskName,System.String</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
@@ -53,7 +54,8 @@ select
 	TaskState.Name as nStateName,
 	T.DateComplite,
 	T.DateCompliteGP,
-	max(STM.Data) as SawTaskDate,
+	S_AGG.SawTaskName,
+	S_AGG.SawTaskDate,
 	max(SH.Date)   as ShipDate,
 	B.nState as BarCodeState,
 	B.ID as idBarCode,
@@ -79,30 +81,47 @@ select top 1 *                              -- Выбираем первый п�
 ) as TaskState
 outer apply
 (
+select 
+	string_agg(x.SawTaskName, '&lt;br /&gt;') as SawTaskName,
+	string_agg(x.SawTaskDate, '&lt;br /&gt;') as SawTaskDate
+	from
+  (
+select distinct
+	STM2.Name as SawTaskName,
+	convert(varchar(10), STM2.Data, 104) as SawTaskDate
+	from SawTaskMain STM2
+        inner join GlassDetails GD2 on GD2.idSawTaskMain = STM2.ID
+        inner join Project P2 on P2.ID = GD2.idProject
+        where P2.idTask = T.ID
+  ) x
+) S_AGG
+outer apply
+(
 select string_agg(x.ListGlass, ', ') as ListGlass
 	from
-    (
+  (
 select distinct STM2.ListGlass
 	from SawTaskMain STM2
         inner join GlassDetails GD2 on GD2.idSawTaskMain = STM2.ID
         inner join Project P2 on P2.ID = GD2.idProject
         where P2.idTask = T.ID
-    ) x
+  ) x
 ) G_AGG
 outer apply
 (
 select string_agg(x.ListOperation, ', ') as ListOperation
 	from
-    (
+  (
 select distinct STM2.ListOperation
 	from SawTaskMain STM2
         inner join GlassDetails GD2 on GD2.idSawTaskMain = STM2.ID
         inner join Project P2 on P2.ID = GD2.idProject
         where P2.idTask = T.ID
-    ) x
+  ) x
 ) O_AGG
 where 
  T.DateComplite &gt;= {sDateBeg} and T.DateComplite &lt;= {sDateEnd}
+ --T.DateComplite &gt;= '01.06.2026' and T.DateComplite &lt;= '01.07.2026' and STM.ID = 2273
 group by
   C.Name,
   T.ID,
@@ -112,12 +131,18 @@ group by
   T.nState,
   T.DateComplite,
   T.DateCompliteGP,
+  S_AGG.SawTaskName,
+  S_AGG.SawTaskDate,
   G_Agg.ListGlass,
   O_Agg.ListOperation,
   B.ID,
   B.nState,
   B.TimeScan,
   TaskState.Name
+
+
+
+
 </SqlCommand>
       </ReportData>
     </DataSources>
@@ -182,7 +207,7 @@ group by
         <HeaderReportData Ref="8" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,4.2,27.7,1.1</ClientRectangle>
-          <Components isList="true" count="13">
+          <Components isList="true" count="14">
             <HeaderReportData_GPName Ref="9" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
@@ -205,7 +230,7 @@ group by
             <HeaderReportData_GPArea Ref="10" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.5,0,2.1,1.1</ClientRectangle>
+              <ClientRectangle>15.9,0,1.9,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>8544e5aeae984d3f9beb232df9573f58</Guid>
@@ -260,7 +285,7 @@ group by
             <HeaderReportData_GlassType Ref="13" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.6,0,1.9,1.1</ClientRectangle>
+              <ClientRectangle>14,0,1.9,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>4a4061f7f29b42739bfa6ac18b0869be</Guid>
@@ -278,7 +303,7 @@ group by
             <HeaderReportData_KoefRest Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0,2.2,1.1</ClientRectangle>
+              <ClientRectangle>17.8,0,2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>54ed0387fd8b41eb93f273cad4c480a0</Guid>
@@ -296,7 +321,7 @@ group by
             <Text5 Ref="15" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.8,0,2,1.1</ClientRectangle>
+              <ClientRectangle>19.8,0,1.4,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>eb82e742944542ebbcb4fae54c6a913c</Guid>
@@ -306,7 +331,7 @@ group by
               <Page isRef="4" />
               <Parent isRef="8" />
               <Text>Кол-во 
-раскроенных 
+раскроен.
 изделий</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
@@ -316,7 +341,7 @@ group by
             <Text6 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.8,0,2.4,1.1</ClientRectangle>
+              <ClientRectangle>21.2,0,2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>da3e0049284c4d4b86bc9643c36a3c45</Guid>
@@ -326,7 +351,7 @@ group by
               <Page isRef="4" />
               <Parent isRef="8" />
               <Text>Кол-во 
-отсканированных 
+отскан.
 изделий</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
@@ -425,6 +450,24 @@ group by
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text18>
+            <Text21 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.6,0,1.4,1.1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>eb5ec99967894245901b139701f21331</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="4" />
+              <Parent isRef="8" />
+              <Text>Номер раскроя</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
           </Components>
           <Conditions isList="true" count="0" />
           <Guid>8ae4d12d4d3e45f4b4eff8dde77695ee</Guid>
@@ -432,244 +475,294 @@ group by
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderReportData>
-        <GroupHeaderBand2 Ref="22" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand2 Ref="23" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,6.1,27.7,1.1</ClientRectangle>
-          <Components isList="true" count="13">
-            <Text1 Ref="23" type="Text" isKey="true">
+          <Components isList="true" count="14">
+            <Text1 Ref="24" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>5.4,0,1.5,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>be37a6abb3a84eff88168914ca3c8f6c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.AccountNum}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text2 Ref="24" type="Text" isKey="true">
+            <Text2 Ref="25" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>10.1,0,1.3,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>0e006d74e8d44371b7bab26d3ef87847</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.PosCount}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text3 Ref="25" type="Text" isKey="true">
+            <Text3 Ref="26" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.5,0,2.1,1.1</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15.9,0,1.9,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>3b09b6cf9bb14db5ad4708ef1a2d9d64</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.DateCompliteGP}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="26" type="Text" isKey="true">
+            <Text4 Ref="27" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
               <ClientRectangle>11.4,0,1.2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>4fd3c66916ec430592979faca1c528f3</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.Area}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text9 Ref="27" type="Text" isKey="true">
+            <Text9 Ref="28" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.6,0,1.9,1.1</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>14,0,1.9,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>e35711f2bbc74b0a9e453e8ee2aa9ae0</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
-              <Text>{ReportData.SawTaskDate.ToString("dd.MM.yyyy")}</Text>
+              <Parent isRef="23" />
+              <Text>{ReportData.SawTaskDate.ToString()}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="28" type="Text" isKey="true">
+            <Text10 Ref="29" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0,2.2,1.1</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>17.8,0,2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>24a809410f3246788c926fe421aca1ae</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.nStateName}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="29" type="Text" isKey="true">
+            <Text11 Ref="30" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.8,0,2,1.1</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>19.8,0,1.4,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>7c93efd307214e3ba06b6be5e2d6202e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{Sum(DataReportData,ReportData.BarCodeSawed)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="30" type="Text" isKey="true">
+            <Text12 Ref="31" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.8,0,2.4,1.1</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>21.2,0,2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>51cb279177b744cd997116b2c5eccae1</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{Sum(DataReportData,ReportData.BarCodeScaned)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text13 Ref="31" type="Text" isKey="true">
+            <Text13 Ref="32" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>23.2,0,2,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>e7f2c5e453d64b55b991263cd912bd37</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.DateComplite.ToString("dd.MM.yyyy")}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text14 Ref="32" type="Text" isKey="true">
+            <Text14 Ref="33" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>25.2,0,2.5,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>95a5a6a3077f4357b6775040dd7494bb</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.ShipDate}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text16 Ref="33" type="Text" isKey="true">
+            <Text16 Ref="34" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,5.4,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,7</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>ec1764f6156b45f39c8bf4886bfe7b8e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.ClientName}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text16>
-            <Text19 Ref="34" type="Text" isKey="true">
+            <Text19 Ref="35" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>8.6,0,1.5,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>4f5a46dc4001442ebd62cc8c66d1ef1f</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.ListOperation}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text19>
-            <Text20 Ref="35" type="Text" isKey="true">
+            <Text20 Ref="36" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
               <ClientRectangle>6.9,0,1.7,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
               <Guid>7481a6d2b8c146448244c416fd72e225</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="23" />
               <Text>{ReportData.ListGlass}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text20>
+            <Text22 Ref="37" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,0,1.4,1.1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>902502da4bc64749ad12185b846a08ba</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="4" />
+              <Parent isRef="23" />
+              <Text>{ReportData.SawTaskName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
           </Components>
           <Condition>{ReportData.idTask}</Condition>
           <Conditions isList="true" count="0" />
@@ -677,7 +770,7 @@ group by
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupHeaderBand2>
-        <DataReportData Ref="36" type="DataBand" isKey="true">
+        <DataReportData Ref="38" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <CanShrink>True</CanShrink>
@@ -693,7 +786,7 @@ group by
           <Parent isRef="4" />
           <Sort isList="true" count="0" />
         </DataReportData>
-        <GroupFooterBand1 Ref="37" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand1 Ref="39" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,8.8,27.7,0</ClientRectangle>
           <Components isList="true" count="0" />
@@ -702,7 +795,7 @@ group by
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupFooterBand1>
-        <GroupFooterBand2 Ref="38" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand2 Ref="40" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,9.6,27.7,0</ClientRectangle>
           <Components isList="true" count="0" />
@@ -721,15 +814,15 @@ group by
       <PageHeight>21</PageHeight>
       <PageWidth>29.7</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="39" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="41" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
-    <Form1 Ref="40" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+    <Form1 Ref="42" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
       <BackColor>Control</BackColor>
       <Components isList="true" count="6">
-        <LabelControl1 Ref="41" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+        <LabelControl1 Ref="43" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
           <BackColor>Control</BackColor>
           <ClientRectangle>16,16,16,16</ClientRectangle>
           <Components isList="true" count="0" />
@@ -738,12 +831,12 @@ group by
           <Guid>0f48117abe0e4a7089e4690673779c8e</Guid>
           <Location>16, 16</Location>
           <Name>LabelControl1</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>16, 16</Size>
           <Text>С</Text>
         </LabelControl1>
-        <LabelControl2 Ref="42" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+        <LabelControl2 Ref="44" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
           <BackColor>Control</BackColor>
           <ClientRectangle>136,16,24,16</ClientRectangle>
           <Components isList="true" count="0" />
@@ -752,12 +845,12 @@ group by
           <Guid>7e2ad018f6814f3db5b91a88c3ef168c</Guid>
           <Location>136, 16</Location>
           <Name>LabelControl2</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>24, 16</Size>
           <Text>по</Text>
         </LabelControl2>
-        <DateTimePickerControl1 Ref="43" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+        <DateTimePickerControl1 Ref="45" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
           <BackColor>Window</BackColor>
           <ClientRectangle>32,16,80,20</ClientRectangle>
           <Components isList="true" count="0" />
@@ -769,12 +862,12 @@ group by
           <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
           <MinDate>1/1/2001 12:00:00 AM</MinDate>
           <Name>DateTimePickerControl1</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>80, 20</Size>
           <Value>9/22/2011 12:00:00 AM</Value>
         </DateTimePickerControl1>
-        <DateTimePickerControl2 Ref="44" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+        <DateTimePickerControl2 Ref="46" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
           <BackColor>Window</BackColor>
           <ClientRectangle>160,16,80,20</ClientRectangle>
           <Components isList="true" count="0" />
@@ -786,12 +879,12 @@ group by
           <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
           <MinDate>1/1/2010 12:00:00 AM</MinDate>
           <Name>DateTimePickerControl2</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>80, 20</Size>
           <Value>9/16/2010 12:00:00 AM</Value>
         </DateTimePickerControl2>
-        <ButtonControl1 Ref="45" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+        <ButtonControl1 Ref="47" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
           <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
 sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</ClickEvent>
           <ClientRectangle>16,48,96,32</ClientRectangle>
@@ -803,12 +896,12 @@ sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</Cli
           <Guid>17bc0c19028c45efb65cb6ba0b9332aa</Guid>
           <Location>16, 48</Location>
           <Name>ButtonControl1</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>96, 32</Size>
           <Text>Готово</Text>
         </ButtonControl1>
-        <ButtonControl2 Ref="46" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+        <ButtonControl2 Ref="48" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
           <Cancel>True</Cancel>
           <ClientRectangle>136,48,104,32</ClientRectangle>
           <Components isList="true" count="0" />
@@ -818,8 +911,8 @@ sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</Cli
           <Guid>718e5f7ffbd742c2bdbe63028d6672d7</Guid>
           <Location>136, 48</Location>
           <Name>ButtonControl2</Name>
-          <Page isRef="40" />
-          <Parent isRef="40" />
+          <Page isRef="42" />
+          <Parent isRef="42" />
           <Size>104, 32</Size>
           <Text>Отмена</Text>
         </ButtonControl2>
@@ -833,7 +926,7 @@ sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</Cli
       <Text>Выберите дату</Text>
     </Form1>
   </Pages>
-  <PrinterSettings Ref="47" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="49" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -845,10 +938,10 @@ sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";</Cli
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/15/2026 1:13:40 PM</ReportChanged>
+  <ReportChanged>7/1/2026 11:23:27 AM</ReportChanged>
   <ReportCreated>2/16/2012 12:49:06 PM</ReportCreated>
   <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\SawManufAndShip.mrt</ReportFile>
-  <ReportGuid>d7656b2881c347a08fb5f7d1b12ca668</ReportGuid>
+  <ReportGuid>bc885dfa9c0e4a8387fc61fe4a1af70a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

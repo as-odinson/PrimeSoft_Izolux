@@ -1,5 +1,5 @@
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[f_GetNextAccountNum_BW]') and xtype in (N'FN', N'IF', N'TF'))
-  drop function [dbo].[f_GetNextAccountNum_BW]
+drop function [dbo].[f_GetNextAccountNum_BW]
 go
 
 create function dbo.f_GetNextAccountNum_BW (@idClient int, @TypeOrder int, @idTaskExlude int) RETURNS varchar(100)  
@@ -53,12 +53,12 @@ begin
     ID <> @idTaskExlude and  
     (TypeOrder = @TypeOrder1 or TypeOrder = @TypeOrder2 or @TaskAccountNum_Type = 1) and  
     Date >= @ShortDate  
-  order by
-    case
-      when try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int) is not null
-      then try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int)
-      else 0
-    end desc
+    order by
+        case
+            when try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int) is not null
+            then try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int)
+            else 0
+        end desc
   
   set  @num = Cast( case when IsNumeric(Stuff(isnull(@Num, ''), 1, len(@sTaskPrefix), '')) = 1  
                          Then Cast     (Stuff(       @Num,      1, len(@sTaskPrefix), '') as int) + 1  
@@ -69,9 +69,10 @@ begin
   if @TypeOrder = 0   
     set @num = '0' + @num  
   
+  
   -- Вставляем префикс  
   set @num = @sTaskPrefix + @num  
   
+  
   return @num  
-end
-go
+end  

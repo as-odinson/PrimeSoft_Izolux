@@ -88,7 +88,9 @@ select
   ''                              as CommentClient,    
   0                               as bPlot,    
   0                               as bPlotAwait,    
-  upper(BSum.WinAccountNum)       as WinAccountNum,    
+  upper(BSum.WinAccountNum)       as WinAccountNum,   
+  IsNull(BSum.CamCount, 0) as CamCount,
+  convert(varchar(2), IsNull(BSum.CamCount, 0)) as CamCountStr,
   -- Бывшие статистические    
   BSum.nCountNoSawed,    
   BSum.nCountNoSawedShow,    

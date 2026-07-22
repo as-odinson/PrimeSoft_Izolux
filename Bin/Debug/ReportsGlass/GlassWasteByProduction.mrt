@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <PrimeSoft Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>PrimeSoft</Alias>
+        <ConnectionStringEncrypted>4NbN68UW0+3iR72caAn2m8I634hhA0L1RWfNgGBM4D/0evfPZ3FRmelr5fDuCeAT0XLNYFdKQ/lrXKTU+3jjm8NUd2hPWXntQ2z98XHAJRffxMGjSE4ByMNbTb3DBOAqxVrVAlVd+5lvYdmlTXHnZ8MaZePGa9MJywg=</ConnectionStringEncrypted>
+        <Name>PrimeSoft</Name>
+      </PrimeSoft>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <GlassWaste Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>GlassWaste</Alias>
+        <Columns isList="true" count="7">
+          <value>idProduct,System.Int32</value>
+          <value>ProductName,System.String</value>
+          <value>ProductType,System.Int32</value>
+          <value>AvgWastePct_Schelkovo,System.Decimal</value>
+          <value>AvgWastePct_Stupino,System.Decimal</value>
+          <value>SawTaskCount_Schelkovo,System.Int32</value>
+          <value>SawTaskCount_Stupino,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>GlassWaste</Name>
+        <NameInSource>PrimeSoft</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy
+	select
+		P.ID   as idProduct,
+		P.Name as ProductName,
+		P.Type as ProductType,
+		cast
+		(
+		avg
+		(
+		case when V.DepotSubDivisionName = 'Щелково'
+        then convert(decimal(18, 4), V.WastePct)
+        else null
+        end
+      ) as decimal(18, 2)
+    ) as AvgWastePct_Schelkovo,
+
+    cast
+    (
+      avg
+      (
+        case when V.DepotSubDivisionName = 'Ступино'
+          then convert(decimal(18, 4), V.WastePct)
+          else null
+        end
+      ) as decimal(18, 2)
+    ) as AvgWastePct_Stupino,
+
+    sum
+    (
+      case when V.DepotSubDivisionName = 'Щелково'
+        then 1
+        else 0
+      end
+    ) as SawTaskCount_Schelkovo,
+
+    sum
+    (
+     case when V.DepotSubDivisionName = 'Ступино'
+       then 1
+       else 0
+     end
+    ) as SawTaskCount_Stupino
+
+from Product P
+left join dbo.v_Report_GlassWasteBySawTask V on V.idProduct = P.ID
+                                         and V.SawTaskDate &gt;= {sDateBeg}
+                                         and V.SawTaskDate &lt; dateadd(day, 1, {sDateEnd})
+
+where P.Type in (5, 105)
+
+group by
+    P.ID,
+    P.Name,
+    P.Type
+
+order by
+    P.Type desc,
+    P.Name
+</SqlCommand>
+      </GlassWaste>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="2">
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <NumberOfPass>DoublePass</NumberOfPass>
+  <Pages isList="true" count="2">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="6">
+        <Text2 Ref="5" type="Text" isKey="true">
+          <Border>None;[216:216:216];1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>24.1,27.7,4.1,0.5</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Font>Arial,9.75</Font>
+          <Guid>8e3cf1735708498ead134de2d8acedb4</Guid>
+          <HorAlignment>Right</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text2</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Text>Страница {PageNumberThrough} из {TotalPageCount}</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+        </Text2>
+        <Text3 Ref="6" type="Text" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>21.4,4.6,2.4,0.75</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Font>Arial,9</Font>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text3</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Text>{GlassWaste.AvgWastePct_Schelkovo}</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>DataColumn</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text3>
+        <ReportTitleBand1 Ref="7" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,1.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <TitleText Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,1.1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Guid>2b75bf5aa3024283ba6cb5a988dccdb6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>TitleText</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>Средний процент отхода по видам стекла</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </TitleText>
+            <PeriodText Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.1,19,0.7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>fd8d8d3743444236a6b0da40706a6087</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>PeriodText</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>Период: {sDateBeg} — {sDateEnd}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </PeriodText>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>d60b513c51684db884ee33ace0b03a71</Guid>
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportTitleBand1>
+        <GroupHeaderBand1 Ref="10" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3,19,0.8</ClientRectangle>
+          <Components isList="true" count="3">
+            <HeaderProduct Ref="11" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[255:255:0]</Brush>
+              <ClientRectangle>0,0,11,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>daba7078f3bf4722a12e5a6a754f2a6a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0.2,0.1,0.2,0.1</Margins>
+              <Name>HeaderProduct</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Наименование вида стекла</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderProduct>
+            <HeaderSchelkovo Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[255:255:0]</Brush>
+              <ClientRectangle>11,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>31896be1b8f2460d8551660734517e0e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0.1,0.1,0.1,0.1</Margins>
+              <Name>HeaderSchelkovo</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Щёлково
+Средний отход, %</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderSchelkovo>
+            <HeaderStupino Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[255:255:0]</Brush>
+              <ClientRectangle>15,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>8347a9db6c604f69884b2e3fff43d0e8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0.1,0.1,0.1,0.1</Margins>
+              <Name>HeaderStupino</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Ступино
+Средний отход, %</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderStupino>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupHeaderBand1>
+        <DataBand1 Ref="14" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,4.6,19,0.55</ClientRectangle>
+          <Components isList="true" count="3">
+            <ProductNameText Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,11,0.55</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <Guid>5e1225c47a654f1bbe65eddc4f01c8cb</Guid>
+              <Margins>0.2,0.05,0.2,0.05</Margins>
+              <Name>ProductNameText</Name>
+              <Page isRef="4" />
+              <Parent isRef="14" />
+              <Text>{GlassWaste.ProductName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </ProductNameText>
+            <SchelkovoText Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11,0,4,0.55</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <Guid>07399f37bf9041f3aed21ff4e5792164</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0.1,0.05,0.1,0.05</Margins>
+              <Name>SchelkovoText</Name>
+              <Page isRef="4" />
+              <Parent isRef="14" />
+              <Text>{GlassWaste.AvgWastePct_Schelkovo}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </SchelkovoText>
+            <StupinoText Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,0,4,0.55</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <Guid>557a9bc7f38f48c1ade1be158752a791</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0.1,0.05,0.1,0.05</Margins>
+              <Name>StupinoText</Name>
+              <Page isRef="4" />
+              <Parent isRef="14" />
+              <Text>{GlassWaste.AvgWastePct_Stupino}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </StupinoText>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>GlassWaste</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Guid>dd04a2d36bef49f1833c57eafa273569</Guid>
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <GroupFooterBand1 Ref="18" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,5.95,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupFooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>5ade07d8be6648cfbf47d49d51cc4e02</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="19" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Form1 Ref="20" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="6">
+        <LabelControl1 Ref="21" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>12,38,20,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>8937db0b98064eee9db6051067dac530</Guid>
+          <Location>12, 38</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <Size>20, 20</Size>
+          <Text>С</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl1>
+        <LabelControl2 Ref="22" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>130,38,28,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>e14579d4c4384576bac61179ddb046b4</Guid>
+          <Location>130, 38</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <Size>28, 20</Size>
+          <Text>По</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl2>
+        <DateTimePickerControl1 Ref="23" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>40,38,80,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>64b300c19fbe4f22bc79d9f7e195282b</Guid>
+          <Location>40, 38</Location>
+          <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <RightToLeft>Inherit</RightToLeft>
+          <Size>80, 20</Size>
+          <Value>9/22/2011 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="24" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>160,38,88,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>b080d0333dd54eb591e8fcf5615879a8</Guid>
+          <Location>160, 38</Location>
+          <MaxDate>1/1/9998 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <Size>88, 20</Size>
+          <Value>9/16/2010 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <ButtonControl1 Ref="25" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+
+GlassWaste.ConnectOnStart = true;
+GlassWaste.Disconnect();
+GlassWaste.Connect();</ClickEvent>
+          <ClientRectangle>12,72,112,30</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Default>True</Default>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>883449e5875b4e5fb08378a57440f062</Guid>
+          <Location>12, 72</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <Size>112, 30</Size>
+          <Text>Готово</Text>
+        </ButtonControl1>
+        <ButtonControl2 Ref="26" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <Cancel>True</Cancel>
+          <ClientRectangle>128,72,120,30</ClientRectangle>
+          <Components isList="true" count="0" />
+          <DialogResult>Cancel</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>ef3d52f49d1947659421652f111261c9</Guid>
+          <Location>128, 72</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="20" />
+          <Parent isRef="20" />
+          <Size>120, 30</Size>
+          <Text>Отмена</Text>
+        </ButtonControl2>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>4c39a77937b2437eb960276a50dbe1ec</Guid>
+      <Location>0, 0</Location>
+      <Name>Form1</Name>
+      <Report isRef="0" />
+      <Size>264, 144</Size>
+      <Text>Выбор диапазона дат</Text>
+    </Form1>
+  </Pages>
+  <PrinterSettings Ref="27" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>7/21/2026 11:52:04 AM</ReportChanged>
+  <ReportCreated>9/19/2011 9:44:08 AM</ReportCreated>
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\GlassWasteByProduction.mrt</ReportFile>
+  <ReportGuid>8ace3a45d6c247c9ba0596e6568f5114</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

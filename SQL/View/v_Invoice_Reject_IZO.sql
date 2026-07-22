@@ -5,7 +5,7 @@ go
 -- Вьюха для распечатки Актов по браку (объединенная: обычный брак и заявленный брак)  
 -- Это информация о заказах переделках, которые были сделаны на основании брака.  
 -- Выводить нужно инфу о виде брака из заказа,в котором был брак , а не из в переделки  
-create view v_Invoice_Reject_IZO  
+create view v_Invoice_Reject_IZO
 as  
 -- Обычный брак (Reject)  
 select  
@@ -151,11 +151,27 @@ from
   left  join Barcode             BC_R  on BC_R.ID  = BC.idBarCode_Reject  
   left  join Project             P_R   on P_R.ID   = BC_R.idProject  
   left  join Task                T_R   on T_R.ID   = P_R.idTask
+  
   outer apply
   (
     select
-      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceNDSUnit, 0)) as decimal(18,2)) as SumWithNDS,
-      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceUnit, 0)) as decimal(18,2)) as SumNoNDS
+      cast(
+        round(
+          round(sum(IsNull(WM.MaterUse, 0)), 4) *
+          IsNull(max(RegPrice.PriceNDSUnit), 0),
+          6
+        )
+        as decimal(18, 4)
+      ) as SumWithNDS,
+      
+      cast(
+        round(
+          round(sum(IsNull(WM.MaterUse, 0)), 4) *
+          IsNull(max(RegPrice.PriceUnit), 0),
+          6
+        )
+        as decimal(18, 4)
+      ) as SumNoNDS
     from Project PR_Calc
       join Task T_Calc on T_Calc.ID = PR_Calc.idTask
       join WriteMater WM on PR_Calc.ID = WM.idProject
@@ -164,7 +180,7 @@ from
                      and DN.nType = 0
       join DepNameList DNL on DN.ID = DNL.idDepName
       join DepList DL on DL.ID = DNL.idDepList
-                      and DL.is1 = 1
+                      and DL.is2 = 1
       outer apply
       (
         select top 1
@@ -174,7 +190,7 @@ from
         from DepReg DR
         where DR.idMaterial = M.ID
           and DR.idDepList = DL.ID
-          and DR.DocDate <= T_Calc.Date
+          and DR.DocDate <= T.Date
         order by DR.DocDate desc, DR.ID desc
       ) as RegPrice
     where PR_Calc.ID = P.ID
@@ -434,8 +450,23 @@ from
   outer apply
   (
     select
-      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceNDSUnit, 0)) as decimal(18,2)) as SumWithNDS,
-      cast(sum(IsNull(WM.MaterUseFactCoef, 0) * IsNull(RegPrice.PriceUnit, 0)) as decimal(18,2)) as SumNoNDS
+      cast(
+        round(
+          round(sum(IsNull(WM.MaterUse, 0)), 4) *
+          IsNull(max(RegPrice.PriceNDSUnit), 0),
+          5
+        )
+        as decimal(18, 4)
+      ) as SumWithNDS,
+      
+      cast(
+        round(
+          round(sum(IsNull(WM.MaterUse, 0)), 4) *
+          IsNull(max(RegPrice.PriceUnit), 0),
+          5
+        )
+        as decimal(18, 4)
+      ) as SumNoNDS
     from Project PR_Calc
       join Task T_Calc on T_Calc.ID = PR_Calc.idTask
       join WriteMater WM on PR_Calc.ID = WM.idProject
@@ -444,7 +475,7 @@ from
                      and DN.nType = 0
       join DepNameList DNL on DN.ID = DNL.idDepName
       join DepList DL on DL.ID = DNL.idDepList
-                      and DL.is1 = 1
+                      and DL.is2 = 1
       outer apply
       (
         select top 1
@@ -454,7 +485,7 @@ from
         from DepReg DR
         where DR.idMaterial = M.ID
           and DR.idDepList = DL.ID
-          and DR.DocDate <= T_Calc.Date
+          and DR.DocDate <= T.Date
         order by DR.DocDate desc, DR.ID desc
       ) as RegPrice
     where PR_Calc.ID = P.ID
