@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <sql2012 Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>sql2012</Alias>
+        <ConnectionStringEncrypted>4BDB604IS8jMGKwcZEkll8J6u6FhUXPwaRn52GcE4I/jxGksYkxR3UVEpZx6ATIv3HizCVcYQ1VDdLWAanTrv41ai89PWUud82rNjfFx4RfZbpvjT1HZvO1kuYDvAWlu41rhaVBM84zsSaH0YlQnRsZo9cJIBaNZ7F3NzE7s</ConnectionStringEncrypted>
+        <Key>d7fc0279adc84b35a9ec91a3e13ccf49</Key>
+        <Name>sql2012</Name>
+      </sql2012>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <w_GPEtiketRam Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>w_GPEtiketRam</Alias>
+        <Columns isList="true" count="130">
+          <value>LabelNum,System.Int32</value>
+          <value>SecondOrder,System.Int32</value>
+          <value>AssemblyLine,System.String</value>
+          <value>idTask,System.Int32</value>
+          <value>AccountNum,System.String</value>
+          <value>QueryCode,System.String</value>
+          <value>TaskNum,System.String</value>
+          <value>ClientNum,System.String</value>
+          <value>Date,System.DateTime</value>
+          <value>ID_Import,System.Int32</value>
+          <value>DateComplite,System.DateTime</value>
+          <value>CommentTask,System.String</value>
+          <value>CommentTaskLabel,System.String</value>
+          <value>bSelfDelivery,System.Boolean</value>
+          <value>idProject,System.Int32</value>
+          <value>PosNum,System.Int32</value>
+          <value>NumOrder,System.Int32</value>
+          <value>NumClient,System.Int32</value>
+          <value>Width,System.Double</value>
+          <value>Height,System.Double</value>
+          <value>GPArea,System.Double</value>
+          <value>nCount,System.Int32</value>
+          <value>Mass,System.Double</value>
+          <value>CommentProject,System.String</value>
+          <value>CommentProjectOnly,System.String</value>
+          <value>ClientName,System.String</value>
+          <value>ClientShortName,System.String</value>
+          <value>ClientNameForLabel,System.String</value>
+          <value>ClientFax,System.String</value>
+          <value>ClientTel,System.String</value>
+          <value>ClientEmail,System.String</value>
+          <value>ClientAdress,System.String</value>
+          <value>ClientCity,System.String</value>
+          <value>ClientCountry,System.String</value>
+          <value>ClientCommentaryManuf,System.String</value>
+          <value>ClientManufactoryName,System.String</value>
+          <value>eMail,System.String</value>
+          <value>SellerSite,System.String</value>
+          <value>SellerAdress,System.String</value>
+          <value>ConsumerName,System.String</value>
+          <value>SellerName,System.String</value>
+          <value>SellerTel,System.String</value>
+          <value>GName,System.String</value>
+          <value>GNameM1,System.String</value>
+          <value>GNameMark,System.String</value>
+          <value>GlassName,System.String</value>
+          <value>ListGlass,System.String</value>
+          <value>GPThickness,System.Single</value>
+          <value>PiramidNum,System.String</value>
+          <value>PiramidNumCell,System.String</value>
+          <value>PiramidCell,System.Byte</value>
+          <value>PiramidSide,System.Int32</value>
+          <value>PiramidPack,System.Int16</value>
+          <value>NarezkaCode,System.String</value>
+          <value>PiramidOrder,System.Int32</value>
+          <value>GPNum,System.Int32</value>
+          <value>idBarCode,System.Int32</value>
+          <value>BarCodeNum,System.Int32</value>
+          <value>BarCode,System.String</value>
+          <value>StarredBarCode,System.String</value>
+          <value>GroupOrder,System.Int32</value>
+          <value>bRemakeReject,System.Int32</value>
+          <value>idSawTask,System.Int32</value>
+          <value>SawName,System.String</value>
+          <value>SawTaskComment,System.String</value>
+          <value>SawTask_Data,System.DateTime</value>
+          <value>TextSeparateLabel,System.String</value>
+          <value>TripPyr_Order,System.Int16</value>
+          <value>TripPyrPack_Side,System.Byte</value>
+          <value>TripPyrPack_SideName,System.String</value>
+          <value>TripPyrPack_Num_ResetByPyr,System.Byte</value>
+          <value>TripPyrPack_Num,System.Int32</value>
+          <value>TripPyrPackPos_GPNumPack,System.Byte</value>
+          <value>Complex,System.Int32</value>
+          <value>Comment_Form,System.String</value>
+          <value>Comment_Film,System.String</value>
+          <value>Quant,System.Int32</value>
+          <value>BarCodeClient,System.String</value>
+          <value>GroupClient,System.String</value>
+          <value>StarredBarCodeClient,System.String</value>
+          <value>SawGlassPos,System.Int32</value>
+          <value>DateDelivery,System.DateTime</value>
+          <value>DateComplite_,System.DateTime</value>
+          <value>CamCount,System.Byte</value>
+          <value>PackOnSide1Count,System.Int32</value>
+          <value>PackOnSide2Count,System.Int32</value>
+          <value>CommentClient,System.String</value>
+          <value>CamCountStr,System.String</value>
+          <value>GlassPackNum,System.Int32</value>
+          <value>nCountGPSawTaskMain,System.Int32</value>
+          <value>AddressDelivery,System.String</value>
+          <value>AddressDeliveryCust,System.String</value>
+          <value>Shpros,System.String</value>
+          <value>Plot,System.Byte[]</value>
+          <value>ClientContract,System.String</value>
+          <value>nLabelType,System.Int32</value>
+          <value>ClientLogo,System.Byte[]</value>
+          <value>TaskDateDelivery,System.DateTime</value>
+          <value>nPartDelivery,System.Int32</value>
+          <value>DateTimeDelivery,System.DateTime</value>
+          <value>MarkDepotSubDivision,System.String</value>
+          <value>DepotSubDivisionName,System.String</value>
+          <value>DepotSubDivisionNum,System.Int32</value>
+          <value>CutOrder,System.Int32</value>
+          <value>idGlass,System.Int32</value>
+          <value>nNumBillet,System.Int16</value>
+          <value>nNumStripe,System.Byte</value>
+          <value>nNumDetail,System.Byte</value>
+          <value>TypeOrder,System.Int32</value>
+          <value>bShowTrader,System.Boolean</value>
+          <value>bShowClient,System.Boolean</value>
+          <value>bShowTrader_Client,System.Boolean</value>
+          <value>bShowClient_Client,System.Boolean</value>
+          <value>IsEnergySafe,System.Int32</value>
+          <value>Barcode_Client,System.String</value>
+          <value>nLabelSubType,System.Int32</value>
+          <value>sGroup,System.String</value>
+          <value>TypeOper,System.Int32</value>
+          <value>GOST,System.String</value>
+          <value>GOST_by_Frame,System.String</value>
+          <value>nCountProject,System.Int32</value>
+          <value>idOrderItem,System.Int32</value>
+          <value>ProjectNumClient,System.Int32</value>
+          <value>ColorRAL,System.String</value>
+          <value>FrameList,System.String</value>
+          <value>ListGlassName,System.String</value>
+          <value>FormTypebDef,System.Boolean</value>
+          <value>FormTypeName,System.String</value>
+          <value>listOperation,System.String</value>
+          <value>GlassDesc,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>a53b821b76e34d51ae0bb126207ea883</Key>
+        <Name>w_GPEtiketRam</Name>
+        <NameInSource>sql2012</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from v_GPEtiket_Crystal_Task_Long where idSawTask = 1</SqlCommand>
+      </w_GPEtiketRam>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <UserFunctions isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>0162ab7cd72d44e8bb95d9f9de8f5ebc</Key>
+  <MetaTags isList="true" count="1">
+    <value>InternalVersion,_x0032_017.1.11.0</value>
+  </MetaTags>
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="4">
+        <GroupHeaderBand1 Ref="5" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4,80.3,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{w_GPEtiketRam.idSawTask}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupHeaderBand1>
+        <DataBand1 Ref="6" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,12,80.3,124</ClientRectangle>
+          <Components isList="true" count="22">
+            <BarCode1 Ref="7" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <AutoScale>True</AutoScale>
+              <BackColor>Transparent</BackColor>
+              <BarCodeType Ref="8" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true">
+                <BodyBrush>EmptyBrush</BodyBrush>
+                <EyeBallBrush>EmptyBrush</EyeBallBrush>
+                <EyeFrameBrush>EmptyBrush</EyeFrameBrush>
+              </BarCodeType>
+              <ClientRectangle>43,105,18,18</ClientRectangle>
+              <Code>{w_GPEtiketRam.BarCode}</Code>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>Black</ForeColor>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode1</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode1>
+            <Text2 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,75,53,15</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <Text>{w_GPEtiketRam.GlassName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text2>
+            <BarCode2 Ref="10" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <Angle>Angle270</Angle>
+              <AutoScale>True</AutoScale>
+              <BackColor>Transparent</BackColor>
+              <BarCodeType Ref="11" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true">
+                <BodyBrush>EmptyBrush</BodyBrush>
+                <EyeBallBrush>EmptyBrush</EyeBallBrush>
+                <EyeFrameBrush>EmptyBrush</EyeFrameBrush>
+              </BarCodeType>
+              <ClientRectangle>0,79,19,32</ClientRectangle>
+              <Code>{w_GPEtiketRam.BarCode}</Code>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>Black</ForeColor>
+              <Guid>b86bbb3febf044a785a629da921f1b1f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode2</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode2>
+            <Text3 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,91,51,7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <Guid>252ac2f8fe2949d68dae3fcad45f1573</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.Width} x {w_GPEtiketRam.Height}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text3>
+            <Text4 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,98,52,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{Format("{0:dd.MM.yyyy}", w_GPEtiketRam.DateComplite_)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text4>
+            <Text5 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>51,24,26,9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <Text>{Format("{0:dd.MM.yyyy}", Today)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text5>
+            <Text6 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,57,52,16</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.CommentProject}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text6>
+            <Text7 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,0,5,33</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>4f9471a0e3804c85a1c57da6fb4a8bb1</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.GlassName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text7>
+            <Text8 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7,36,5,33</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>93a0909b807749ac8738bd4566c24ffd</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.Width} x {w_GPEtiketRam.Height}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text8>
+            <Text9 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>58,34,20,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.PiramidNumCell}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text9>
+            <Text10 Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>62,117,18,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>Поз. № {w_GPEtiketRam.PosNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text10>
+            <Text11 Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1,37,5,31</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.PiramidNumCell}   {PageNumber} из {TotalPageCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text11>
+            <Text12 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25,24,25,9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <Text>№ {w_GPEtiketRam.AccountNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text12>
+            <Text13 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14,0,5,25</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>3e428471a3ff410f8b94714dd5630fbe</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>№ {w_GPEtiketRam.AccountNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text13>
+            <Shape1 Ref="23" type="Shape" isKey="true">
+              <BackgroundColor>Transparent</BackgroundColor>
+              <BorderColor>Black</BorderColor>
+              <Brush>Black</Brush>
+              <ClientRectangle>23,0,57,13</ClientRectangle>
+              <Conditions isList="true" count="1">
+                <value>w_GPEtiketRam.ClientName,NotContaining,ПРИОРГЛАСС,,String,Red,Transparent,Arial_x002C_8,False,False,,,None</value>
+              </Conditions>
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <ForeColor>Black</ForeColor>
+              <Margins>0,0,0,0</Margins>
+              <Name>Shape1</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ShapeType Ref="24" type="Stimulsoft.Report.Components.ShapeTypes.StiRectangleShapeType" isKey="true" />
+            </Shape1>
+            <Text15 Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25,15,53,9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Guid>b652144ad4af41af9dda6ea06422ad9d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <Text>{w_GPEtiketRam.ClientName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+            </Text15>
+            <Text16 Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14,35,4,52</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>64b5b5f8621f4638b2b625bb70827a12</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.ClientName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text16>
+            <Text17 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,38,52,18</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>f3691f1e1d5a46d0897cef5838c6cc8c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.CommentTask}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+            </Text17>
+            <Text1 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>60,107,20,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,7</Font>
+              <Guid>2ef718b56c5042d082ece6004456a942</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.BarCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text14 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,104,4,17</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,7</Font>
+              <Guid>ed178d7384b549c6b5e7cab5c9177faa</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.BarCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,,Angle=270</TextOptions>
+              <Type>Expression</Type>
+            </Text14>
+            <StartPointPrimitive1 Ref="30" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+              <ClientRectangle>19,0,0,0</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Name>StartPointPrimitive1</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ReferenceToGuid>e7f0bda3064c4cdfb4971b397b06d23d</ReferenceToGuid>
+            </StartPointPrimitive1>
+            <EndPointPrimitive1 Ref="31" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+              <ClientRectangle>19,118,0,0</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Name>EndPointPrimitive1</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <ReferenceToGuid>e7f0bda3064c4cdfb4971b397b06d23d</ReferenceToGuid>
+            </EndPointPrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>w_GPEtiketRam</DataSourceName>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>PiramidOrder</value>
+          </Sort>
+        </DataBand1>
+        <EndPointPrimitive2 Ref="32" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+          <ClientRectangle>165.1,161.36,0,0</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>EndPointPrimitive2</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <ReferenceToGuid>67ae3646f9884d29b865e68d994fc314</ReferenceToGuid>
+        </EndPointPrimitive2>
+        <VerticalLinePrimitive1 Ref="33" type="VerticalLinePrimitive" isKey="true">
+          <ClientRectangle>19,12,0.254,118</ClientRectangle>
+          <Color>Black</Color>
+          <Conditions isList="true" count="0" />
+          <EndCap Ref="34" type="Cap" isKey="true">
+            <Color>Black</Color>
+          </EndCap>
+          <Expressions isList="true" count="0" />
+          <Guid>e7f0bda3064c4cdfb4971b397b06d23d</Guid>
+          <Name>VerticalLinePrimitive1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <StartCap Ref="35" type="Cap" isKey="true">
+            <Color>Black</Color>
+          </StartCap>
+          <Style>Dot</Style>
+        </VerticalLinePrimitive1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
+      <Guid>fcac2aa2c2424ed697dbf247de61dffd</Guid>
+      <Margins>6.35,6.35,6.35,0</Margins>
+      <Name>Page1</Name>
+      <PageHeight>143</PageHeight>
+      <PageWidth>93</PageWidth>
+      <Report isRef="0" />
+      <TitleBeforeHeader>True</TitleBeforeHeader>
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>7/29/2026 12:13:53 PM</ReportChanged>
+  <ReportCreated>9/23/2024 3:12:55 PM</ReportCreated>
+  <ReportFile>D:\Develop\Dev5\Bin\Debug\ReportsGlass\Etiket_IZO_QR_PiramidOrder.mrt</ReportFile>
+  <ReportGuid>3f369637c5d4431cb9dde269209075cc</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2024.1.2.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+		private string ToText(string x) { return x; }
+		private string ToText(double x) { return x.ToString(); }
+		private string ToText(double x, int y) { return x.ToString("F" + y.ToString()); }
+		private string ToText(DateTime x, string y) { return x.ToString(y); }
+		private string Trim(string st) { return st.Trim(); }
+		private string TrimRight(string st) { return st.TrimEnd(); }
+		private string TrimLeft(string st) { return st.TrimStart(); }
+		private string UpperCase(string st) { return st.ToUpper(); }
+		private string LowerCase(string st) { return st.ToLower(); }
+		private bool IsNull1(object obj) { return obj == null || obj == DBNull.Value; }
+		private DateTime DateValue(object obj) { return (DateTime)Stimulsoft.Base.StiConvert.ChangeType(obj, typeof(DateTime), true); }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
