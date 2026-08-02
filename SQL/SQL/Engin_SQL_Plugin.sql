@@ -1,6 +1,6 @@
 /*
   Update: Engin_SQL_Plugin
-  Generated: 22.07.2026 09:15:36
+  Generated: 30.07.2026 14:31:04
   Generator: Engine_Auto.vbs
 */
 
@@ -43,6 +43,16 @@ begin
 end
 go
 
+if col_length('dbo.OperatorGroup', 'idSectorManufact') is null
+  alter table dbo.OperatorGroup add idSectorManufact int null
+go
+
+if exists (select top 1 idSectorManufact from OperatorGroup order by idSectorManufact desc)
+begin
+  update OperatorGroup set idSectorManufact = 1 where Name in ('Резка1', 'Резка2')
+  update OperatorGroup set idSectorManufact = 4 where Name in ('Закалка1', 'Закалка2')
+  update OperatorGroup set idSectorManufact = 6 where Name in ('Лисик', 'Вондек')
+end
 
 --insert into OperatorGroup (Name, idOperatorBrigadier)
 --values
@@ -1622,6 +1632,46 @@ go
 print convert(varchar, getdate(), 20) + ' : finish View\v_ManagerReport.sql'
 go
 
+print convert(varchar, getdate(), 20) + ' : start View\v_OperatorBrigadierMap.sql'
+go
+
+-- ============================================================
+-- File: View\v_OperatorBrigadierMap.sql
+-- ============================================================
+if object_id(N'dbo.v_OperatorBrigadierMap', N'V') is not null
+  drop view dbo.v_OperatorBrigadierMap
+go
+
+create view dbo.v_OperatorBrigadierMap
+as
+
+-- Сам бригадир
+select
+  OG.idOperatorBrigadier as idOperator,
+  OG.idOperatorBrigadier,
+  OG.ID as idOperatorGroup,
+  OG.idSectorManufact,
+  cast(1 as bit) as bBrigadier
+from OperatorGroup OG
+
+union all
+
+-- Подчинённые
+select
+  OGI.idOperator,
+  OG.idOperatorBrigadier,
+  OG.ID as idOperatorGroup,
+  OG.idSectorManufact,
+  cast(0 as bit) as bBrigadier
+from OperatorGroupItem OGI
+inner join OperatorGroup OG on OG.ID = OGI.idOperatorGroup
+where OGI.idOperator <> OG.idOperatorBrigadier
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_OperatorBrigadierMap.sql'
+go
+
 print convert(varchar, getdate(), 20) + ' : start View\v_Report_GlassWasteBySawTask.sql'
 go
 
@@ -2197,6 +2247,1967 @@ go
 print convert(varchar, getdate(), 20) + ' : finish View\v_SawTask_Statistics.sql'
 go
 
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Detail_Assembly_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Detail_Assembly_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Detail_Assembly_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Detail_Assembly_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Detail_Assembly_IZO
+as
+
+with OperatorMap as
+(
+  select
+    idOperator,
+    idSectorManufact,
+    min(idOperatorBrigadier) as idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap
+  group by idOperator, idSectorManufact
+  having count(distinct idOperatorBrigadier) = 1
+),
+
+PlanCalendarOne as
+(
+  select
+    max(ID) as ID,
+    Data,
+    nSmena
+  from PlanCalendar
+  where nSmena in (1, 2)
+  group by Data, nSmena
+),
+
+SheduleOperatorOne as
+(
+  select
+    max(ID) as ID,
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact,
+    idTeam
+  from SheduleOperator
+  group by
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact,
+    idTeam
+),
+
+BrigadierScheduleCandidate as
+(
+  select
+    SO.ID as idSheduleOperator,
+    SO.idPlanCalendar,
+    SO.idTeam,
+    SO.idOperator as idOperatorBrigadier,
+
+    case
+      when exists
+      (
+        select 1
+        from ShedulePersonnel SP
+        where SP.idSheduleOperator = SO.ID
+      ) then 0
+      else 1
+    end as PersonnelPriority
+
+  from SheduleOperator SO
+  where isnull(SO.idTeam, 0) <> 0
+    and exists
+    (
+      select 1
+      from OperatorGroup OG
+      where OG.idOperatorBrigadier = SO.idOperator
+    )
+),
+
+BrigadierScheduleRanked as
+(
+  select
+    idSheduleOperator,
+    idPlanCalendar,
+    idTeam,
+    idOperatorBrigadier,
+
+    row_number() over
+    (
+      partition by idPlanCalendar, idTeam
+      order by PersonnelPriority, idSheduleOperator desc
+    ) as RowNum
+
+  from BrigadierScheduleCandidate
+),
+
+GlassBase as
+(
+  select
+    GD.ID as idGlassDetails,
+    GD.idGlass,
+    GD.idProject,
+
+    coalesce
+    (
+      nullif(GD.idSawTaskMain, 0),
+      nullif(GP.idSawTaskMain, 0)
+    ) as idSawTaskMain,
+
+    GD.Width,
+    GD.Height,
+
+    GP.idSectorManufact,
+    GP.idSawLimit,
+    GP.idSheduleOperator as idSheduleOperatorSource,
+    GP.TimeMarkManufact,
+
+    STM.idTeam,
+    STM.idAssemblyLine,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) < 8 then
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact) - 1, 0)
+      else
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact), 0)
+    end as DateComplete,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) >= 8
+       and datepart(hour, GP.TimeMarkManufact) < 20 then 1
+      else 2
+    end as nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+
+  inner join SawTaskMain STM
+    on STM.ID = coalesce
+    (
+      nullif(GD.idSawTaskMain, 0),
+      nullif(GP.idSawTaskMain, 0)
+    )
+
+  where SM.nType = 2
+    and GP.TimeMarkManufact is not null
+),
+
+ResolvedBase as
+(
+  select
+    GB.idGlassDetails,
+    GB.idGlass,
+    GB.idProject,
+    GB.idSawTaskMain,
+    GB.Width,
+    GB.Height,
+
+    GB.idSectorManufact,
+    GB.idSawLimit,
+    GB.TimeMarkManufact,
+
+    CalendarResolved.idPlanCalendar,
+    TeamResolved.idTeam,
+    GB.idAssemblyLine,
+
+    GB.DateComplete,
+    GB.nSmena,
+
+    ResolvedOperator.idOperatorBrigadier,
+
+    coalesce
+    (
+      BS.idSheduleOperator,
+      ResolvedSOExact.ID,
+      ResolvedSONull.ID,
+
+      case
+        when SourceValid.bValid = 1
+         and SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then
+          SourceSO.ID
+      end
+    ) as idSheduleOperatorBrigadier,
+
+    case
+      when SourceValid.bValid = 1
+       and SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then 1
+
+      when SourceValid.bValid = 1
+       and OM.idOperatorBrigadier is not null then 2
+
+      when BS.idOperatorBrigadier is not null then 3
+
+      else 0
+    end as BrigadierResolveType
+
+  from GlassBase GB
+
+  left join SheduleOperator SourceSO
+    on SourceSO.ID = nullif(GB.idSheduleOperatorSource, 0)
+
+  left join PlanCalendarOne PC
+    on PC.Data = GB.DateComplete
+   and PC.nSmena = GB.nSmena
+
+  cross apply
+  (
+    select
+      coalesce(PC.ID, SourceSO.idPlanCalendar) as idPlanCalendar
+  ) CalendarResolved
+
+  cross apply
+  (
+    select
+      coalesce
+      (
+        nullif(GB.idTeam, 0),
+        nullif(SourceSO.idTeam, 0)
+      ) as idTeam
+  ) TeamResolved
+
+  cross apply
+  (
+    select
+      case
+        when SourceSO.ID is not null
+         and nullif(SourceSO.idTeam, 0) = TeamResolved.idTeam then 1
+        else 0
+      end as bValid
+  ) SourceValid
+
+  left join OperatorMap OM
+    on OM.idOperator = SourceSO.idOperator
+   and OM.idSectorManufact = GB.idSectorManufact
+   and SourceValid.bValid = 1
+
+  left join BrigadierScheduleRanked BS
+    on BS.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and BS.idTeam = TeamResolved.idTeam
+   and BS.RowNum = 1
+
+  cross apply
+  (
+    select
+      case
+        when SourceValid.bValid = 1
+         and OM.idOperatorBrigadier is not null then
+          OM.idOperatorBrigadier
+
+        when BS.idOperatorBrigadier is not null then
+          BS.idOperatorBrigadier
+
+        when SourceValid.bValid = 1
+         and exists
+         (
+           select 1
+           from OperatorGroup OG
+           where OG.idOperatorBrigadier = SourceSO.idOperator
+         ) then
+          SourceSO.idOperator
+
+        else null
+      end as idOperatorBrigadier
+  ) ResolvedOperator
+
+  left join SheduleOperatorOne ResolvedSOExact
+    on ResolvedSOExact.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSOExact.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSOExact.idSectorManufact = GB.idSectorManufact
+   and ResolvedSOExact.idTeam = TeamResolved.idTeam
+
+  left join SheduleOperatorOne ResolvedSONull
+    on ResolvedSONull.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSONull.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSONull.idSectorManufact is null
+   and ResolvedSONull.idTeam = TeamResolved.idTeam
+)
+
+select
+  Task.ID as idTask,
+  Task.AccountNum,
+
+  SawTaskMain.ID as idSawTask,
+  SawTaskMain.Name as SawTaskName,
+
+  RB.idTeam,
+  RB.idAssemblyLine,
+
+  RB.DateComplete,
+  RB.nSmena,
+  RB.idPlanCalendar,
+
+  Product.ID as idGlass,
+  Product.Name as GlassName,
+
+  FinalSO.ID as idSheduleOperatorBrigadier,
+  RB.idOperatorBrigadier,
+  RB.BrigadierResolveType,
+
+  count(1) as nCountDetails,
+  Project.GPName,
+
+  cast
+  (
+    sum(dbo.f_GetUE_ForAssemblyPlastica(Project.ID))
+    as decimal(18, 6)
+  ) as SumUE
+
+from ResolvedBase RB
+inner join Product on Product.ID = RB.idGlass
+inner join SawTaskMain on SawTaskMain.ID = RB.idSawTaskMain
+inner join Project on Project.ID = RB.idProject
+inner join Task on Task.ID = Project.idTask
+
+left join SheduleOperator FinalSO
+  on FinalSO.ID = RB.idSheduleOperatorBrigadier
+
+group by
+  Task.ID, Task.AccountNum,
+  SawTaskMain.ID, SawTaskMain.Name,
+
+  RB.idTeam,
+  RB.idAssemblyLine,
+
+  RB.DateComplete,
+  RB.nSmena,
+  RB.idPlanCalendar,
+
+  Product.ID,
+  Product.Name,
+
+  FinalSO.ID,
+  RB.idOperatorBrigadier,
+  RB.BrigadierResolveType,
+
+  Project.GPName
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Detail_Assembly_IZO.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Detail_Cut_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Detail_Cut_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Detail_Cut_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Detail_Cut_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Detail_Cut_IZO
+as
+
+select
+  Task.ID as idTask,
+  Task.AccountNum,
+  SawTaskMain.ID as idSawTask,
+  SawTaskMain.Name as SawTaskName,
+  CuttingTable.Name as CuttingTableName,
+
+  CalendarResolved.DateComplete,
+  CalendarResolved.nSmena,
+  CalendarResolved.idPlanCalendar,
+
+  Product.ID as idGlass,
+  Product.Name as GlassName,
+
+  BrigadierSO.ID as idSheduleOperatorBrigadier,
+  ResolvedBrigadier.idOperatorBrigadier,
+  coalesce(BrigadierSO.idTeam, SheduleOperatorSource.idTeam) as idTeam,
+
+  case
+    when DirectBrigadier.idOperatorBrigadier = SheduleOperatorSource.idOperator then 1
+    when DirectBrigadier.idOperatorBrigadier is not null then 2
+    when InferredBrigadier.BrigadierCount = 1 then 3
+    else 0
+  end as BrigadierResolveType,
+
+  count(1) as nCountDetails,
+
+  cast
+  (
+    sum(1.0 * GlassDetails.Width * GlassDetails.Height) / 1000000.0
+    as decimal(18,6)
+  ) as SumArea,
+
+  cast
+  (
+    sum((GlassDetails.Width * GlassDetails.Height) / 1000000.0)
+    as decimal(18,6)
+  ) as SumAreaUZM,
+
+  cast
+  (
+    isnull(UGA.WasteArea, 0) /
+    nullif(count(*) over(partition by SawTaskMain.ID, Product.ID), 0)
+    as decimal(18,6)
+  ) as SumWasteArea,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 0 then 1
+    else 0
+  end as bTripNoCoat,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 1 then 1
+    else 0
+  end as bTripCoat
+
+from GlassDetails
+inner join Product on Product.ID = GlassDetails.idGlass
+inner join GlassProcessing on GlassProcessing.idGlassDetails = GlassDetails.ID
+inner join SectorManufact on SectorManufact.ID = GlassProcessing.idSectorManufact
+inner join SawTaskMain on SawTaskMain.ID = GlassDetails.idSawTaskMain
+inner join Project on Project.ID = GlassDetails.idProject
+inner join Task on Task.ID = Project.idTask
+
+left join SheduleOperator SheduleOperatorSource  on SheduleOperatorSource.ID = nullif(GlassProcessing.idSheduleOperator, 0)
+left join PlanCalendar PlanCalendarSource        on PlanCalendarSource.ID = SheduleOperatorSource.idPlanCalendar
+
+left join Cutting on Cutting.idSawTaskMain = SawTaskMain.ID
+                       and Cutting.idGlass = Product.ID
+                         and Cutting.bMain = 1
+
+left join CuttingTable on CuttingTable.ID = Cutting.idCuttingTable
+
+left join
+(
+  select
+    UG.idSawTask,
+    UG.idGlass,
+
+    cast
+    (
+      sum
+      (
+        case
+          when UG.Width < 0 then
+            UG.Width * UG.BilletHeight * UG.nCount -
+            (UG.Width - P.MarginLeft - P.MarginRight - P.MarginInner) *
+            (UG.BilletHeight - P.MarginBottom - P.MarginInner) * UG.nCount
+          else
+            UG.BilletWidth * UG.BilletHeight * UG.nCount -
+            (UG.BilletWidth - P.MarginLeft) *
+            (UG.BilletHeight - P.MarginBottom - P.MarginInner) * UG.nCount
+        end
+      ) / 1000000.0
+      as decimal(18, 6)
+    ) as WasteArea
+
+  from UsedGlass UG
+  inner join Product P on P.ID = UG.idGlass
+  group by UG.idSawTask, UG.idGlass
+) UGA
+  on UGA.idSawTask = SawTaskMain.ID
+ and UGA.idGlass = Product.ID
+
+/*
+  Определяем производственную дату и смену по TimeMarkManufact.
+
+  1 смена: 08:00–20:00.
+  2 смена: 20:00–08:00 следующего дня.
+*/
+cross apply
+(
+  select
+    case
+      when datepart(hour, GlassProcessing.TimeMarkManufact) < 8 then
+        dateadd(day, datediff(day, 0, GlassProcessing.TimeMarkManufact) - 1, 0)
+      else
+        dateadd(day, datediff(day, 0, GlassProcessing.TimeMarkManufact), 0)
+    end as DateComplete,
+
+    case
+      when datepart(hour, GlassProcessing.TimeMarkManufact) >= 8
+       and datepart(hour, GlassProcessing.TimeMarkManufact) < 20 then 1
+      else 2
+    end as nSmena
+) ShiftInfo
+
+/*
+  По рассчитанным дате и смене находим настоящую строку PlanCalendar.
+  TOP 1 не даст размножить детали, если там внезапно есть дубли.
+*/
+outer apply
+(
+  select top 1
+    PC.ID,
+    PC.Data,
+    PC.nSmena
+  from PlanCalendar PC
+  where PC.Data = ShiftInfo.DateComplete
+    and PC.nSmena = ShiftInfo.nSmena
+  order by PC.ID desc
+) PlanCalendarByTime
+
+/*
+  Сначала используем PlanCalendar, найденный по TimeMarkManufact.
+  Старый PlanCalendar от idSheduleOperator — только запасной вариант.
+*/
+cross apply
+(
+  select
+    coalesce(PlanCalendarByTime.ID, PlanCalendarSource.ID) as idPlanCalendar,
+    coalesce(PlanCalendarByTime.Data, PlanCalendarSource.Data, ShiftInfo.DateComplete) as DateComplete,
+    coalesce(PlanCalendarByTime.nSmena, PlanCalendarSource.nSmena, ShiftInfo.nSmena) as nSmena
+) CalendarResolved
+
+-- Если в старом SheduleOperator записан подчинённый, получаем его бригадира.
+outer apply
+(
+  select top 1
+    OBM.idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap OBM
+  where OBM.idOperator = SheduleOperatorSource.idOperator
+  order by
+    case
+      when OBM.idOperator = OBM.idOperatorBrigadier then 0
+      else 1
+    end,
+    OBM.idOperatorGroup
+) DirectBrigadier
+
+/*
+  Если исходного SheduleOperator нет, ищем бригадира
+  среди расписаний этого участка, даты и смены.
+
+  Используем только если найден один уникальный бригадир.
+*/
+outer apply
+(
+  select
+    count(distinct SO2.idOperator) as BrigadierCount,
+    min(SO2.idOperator) as idOperatorBrigadier
+  from SheduleOperator SO2
+  where SO2.idSectorManufact = GlassProcessing.idSectorManufact
+    and
+    (
+      SO2.idPlanCalendar = CalendarResolved.idPlanCalendar
+      or
+      (
+        CalendarResolved.idPlanCalendar is null
+        and GlassProcessing.TimeMarkManufact >= SO2.dtBegin
+        and GlassProcessing.TimeMarkManufact < SO2.dtEnd
+      )
+    )
+    and exists
+    (
+      select 1
+      from dbo.v_OperatorBrigadierMap OBM2
+      where OBM2.idOperator = SO2.idOperator
+        and OBM2.idOperatorBrigadier = SO2.idOperator
+    )
+) InferredBrigadier
+
+cross apply
+(
+  select
+    coalesce
+    (
+      DirectBrigadier.idOperatorBrigadier,
+      case
+        when InferredBrigadier.BrigadierCount = 1 then
+          InferredBrigadier.idOperatorBrigadier
+        else null
+      end
+    ) as idOperatorBrigadier
+) ResolvedBrigadier
+
+-- Получаем уже конкретную строку SheduleOperator именно бригадира.
+outer apply
+(
+  select top 1
+    SO3.ID,
+    SO3.idPlanCalendar,
+    SO3.idOperator,
+    SO3.idTeam
+  from SheduleOperator SO3
+  where SO3.idOperator = ResolvedBrigadier.idOperatorBrigadier
+    and SO3.idSectorManufact = GlassProcessing.idSectorManufact
+    and
+    (
+      SO3.idPlanCalendar = CalendarResolved.idPlanCalendar
+      or
+      (
+        CalendarResolved.idPlanCalendar is null
+        and GlassProcessing.TimeMarkManufact >= SO3.dtBegin
+        and GlassProcessing.TimeMarkManufact < SO3.dtEnd
+      )
+    )
+  order by
+    case
+      when SO3.idPlanCalendar = CalendarResolved.idPlanCalendar then 0
+      else 1
+    end,
+    SO3.ID desc
+) BrigadierSO
+
+where SectorManufact.nType = 1
+  and GlassProcessing.TimeMarkManufact is not null
+
+group by
+  Task.ID, Task.AccountNum,
+  SawTaskMain.ID, SawTaskMain.Name,
+  CuttingTable.Name,
+  CalendarResolved.DateComplete, CalendarResolved.nSmena,
+  CalendarResolved.idPlanCalendar,
+  Product.ID, Product.Name,
+  BrigadierSO.ID,
+  ResolvedBrigadier.idOperatorBrigadier,
+  coalesce(BrigadierSO.idTeam, SheduleOperatorSource.idTeam),
+
+  case
+    when DirectBrigadier.idOperatorBrigadier = SheduleOperatorSource.idOperator then 1
+    when DirectBrigadier.idOperatorBrigadier is not null then 2
+    when InferredBrigadier.BrigadierCount = 1 then 3
+    else 0
+  end,
+
+  UGA.WasteArea,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 0 then 1
+    else 0
+  end,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 1 then 1
+    else 0
+  end
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Detail_Cut_IZO.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Detail_ZAK_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Detail_ZAK_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Detail_ZAK_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Detail_ZAK_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Detail_ZAK_IZO
+as
+
+with OperatorMap as
+(
+  select
+    idOperator,
+    idSectorManufact,
+    min(idOperatorBrigadier) as idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap
+  group by idOperator, idSectorManufact
+  having count(distinct idOperatorBrigadier) = 1
+),
+
+PlanCalendarOne as
+(
+  select
+    max(ID) as ID,
+    Data,
+    nSmena
+  from PlanCalendar
+  where nSmena in (1, 2)
+  group by Data, nSmena
+),
+
+SheduleOperatorOne as
+(
+  select
+    max(ID) as ID,
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact
+  from SheduleOperator
+  group by idPlanCalendar, idOperator, idSectorManufact
+),
+
+BrigadierScheduleCandidate as
+(
+  select distinct
+    SO.ID as idSheduleOperator,
+    SO.idPlanCalendar,
+    SO.idOperator as idOperatorBrigadier,
+    OG.idSectorManufact,
+
+    case
+      when SO.idSectorManufact = OG.idSectorManufact then 0
+      when SO.idSectorManufact is null then 1
+      else 2
+    end as Priority
+
+  from SheduleOperator SO
+  inner join OperatorGroup OG on OG.idOperatorBrigadier = SO.idOperator
+
+  where SO.idSectorManufact = OG.idSectorManufact
+     or SO.idSectorManufact is null
+),
+
+BrigadierScheduleRanked as
+(
+  select
+    idSheduleOperator,
+    idPlanCalendar,
+    idOperatorBrigadier,
+    idSectorManufact,
+
+    row_number() over
+    (
+      partition by idPlanCalendar, idSectorManufact
+      order by Priority, idSheduleOperator desc
+    ) as RowNum
+
+  from BrigadierScheduleCandidate
+),
+
+ZakOperation as
+(
+  select
+    idProject,
+    nGlass,
+    nGlassTriplex,
+    idProd
+  from ProjectItem
+  where isnull(nTypeOper, 0) = 2
+    and nType = 8
+),
+
+GlassBase as
+(
+  select
+    GD.ID as idGlassDetails,
+    GD.idGlass,
+    GD.idProject,
+    GD.idProjectItem,
+    GD.idSawTaskMain,
+    GD.Width,
+    GD.Height,
+
+    GP.idSectorManufact,
+    GP.idSheduleOperator as idSheduleOperatorSource,
+    GP.TimeMarkManufact,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) < 8 then
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact) - 1, 0)
+      else
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact), 0)
+    end as DateComplete,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) >= 8
+       and datepart(hour, GP.TimeMarkManufact) < 20 then 1
+      else 2
+    end as nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+
+  where SM.nType = 3
+    and GP.TimeMarkManufact is not null
+),
+
+ResolvedBase as
+(
+  select
+    GB.idGlassDetails,
+    GB.idGlass,
+    GB.idProject,
+    GB.idProjectItem,
+    GB.idSawTaskMain,
+    GB.Width,
+    GB.Height,
+    GB.idSectorManufact,
+    GB.TimeMarkManufact,
+
+    CalendarResolved.idPlanCalendar,
+    GB.DateComplete,
+    GB.nSmena,
+
+    ResolvedOperator.idOperatorBrigadier,
+
+    coalesce
+    (
+      ResolvedSOExact.ID,
+      ResolvedSONull.ID,
+
+      case
+        when SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then
+          SourceSO.ID
+      end,
+
+      BS.idSheduleOperator
+    ) as idSheduleOperatorBrigadier,
+
+    case
+      when OM.idOperatorBrigadier = SourceSO.idOperator then 1
+      when OM.idOperatorBrigadier is not null then 2
+      when SourceSO.ID is null
+       and BS.idOperatorBrigadier is not null then 3
+      when SourceSO.ID is not null then 4
+      else 0
+    end as BrigadierResolveType
+
+  from GlassBase GB
+
+  left join SheduleOperator SourceSO
+    on SourceSO.ID = nullif(GB.idSheduleOperatorSource, 0)
+
+  left join PlanCalendarOne PC
+    on PC.Data = GB.DateComplete
+   and PC.nSmena = GB.nSmena
+
+  cross apply
+  (
+    select
+      coalesce(PC.ID, SourceSO.idPlanCalendar) as idPlanCalendar
+  ) CalendarResolved
+
+  left join OperatorMap OM
+    on OM.idOperator = SourceSO.idOperator
+   and OM.idSectorManufact = GB.idSectorManufact
+
+  left join BrigadierScheduleRanked BS
+    on BS.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and BS.idSectorManufact = GB.idSectorManufact
+   and BS.RowNum = 1
+
+  cross apply
+  (
+    select
+      case
+        when OM.idOperatorBrigadier is not null then
+          OM.idOperatorBrigadier
+
+        when SourceSO.ID is not null then
+          SourceSO.idOperator
+
+        else
+          BS.idOperatorBrigadier
+      end as idOperatorBrigadier
+  ) ResolvedOperator
+
+  left join SheduleOperatorOne ResolvedSOExact
+    on ResolvedSOExact.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSOExact.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSOExact.idSectorManufact = GB.idSectorManufact
+
+  left join SheduleOperatorOne ResolvedSONull
+    on ResolvedSONull.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSONull.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSONull.idSectorManufact is null
+)
+
+select
+  Task.ID as idTask,
+  Task.AccountNum,
+
+  SawTaskMain.ID as idSawTask,
+  SawTaskMain.Name as SawTaskName,
+
+  RB.DateComplete,
+  RB.nSmena,
+  RB.idPlanCalendar,
+
+  Product.ID as idGlass,
+  Product.Name as GlassName,
+
+  FinalSO.ID as idSheduleOperatorBrigadier,
+  RB.idOperatorBrigadier,
+  FinalSO.idTeam,
+  RB.BrigadierResolveType,
+
+  case
+    when isnull(GlassWorkAdd.dCoefUZM, 0) = 0 then
+      Product.dCoefUZM
+    else
+      GlassWorkAdd.dCoefUZM
+  end as dCoefUZM,
+
+  count(1) as nCountDetails,
+
+  cast
+  (
+    sum(1.0 * RB.Width * RB.Height) / 1000000.0
+    as decimal(18, 6)
+  ) as SumArea,
+
+  cast
+  (
+    sum
+    (
+      1.0 * RB.Width * RB.Height / 1000000.0 *
+      case
+        when isnull(GlassWorkAdd.dCoefUZM, 0) = 0 then
+          Product.dCoefUZM
+        else
+          GlassWorkAdd.dCoefUZM
+      end
+    )
+    as decimal(18, 6)
+  ) as SumAreaUZM
+
+from ResolvedBase RB
+inner join Product on Product.ID = RB.idGlass
+inner join SawTaskMain on SawTaskMain.ID = RB.idSawTaskMain
+inner join Project on Project.ID = RB.idProject
+inner join Task on Task.ID = Project.idTask
+
+inner join ProjectItem
+  on ProjectItem.ID = RB.idProjectItem
+
+inner join ZakOperation ZAK
+  on ZAK.idProject = ProjectItem.idProject
+ and ZAK.nGlass = ProjectItem.nGlass
+ and ZAK.nGlassTriplex = ProjectItem.nGlassTriplex
+
+left join GlassWorkAdd
+  on GlassWorkAdd.idProduct_Glass = Product.ID
+ and GlassWorkAdd.idProduct_Work = ZAK.idProd
+
+left join SheduleOperator FinalSO
+  on FinalSO.ID = RB.idSheduleOperatorBrigadier
+
+where isnull(Product.dCoefUZM, 0) > 0
+
+group by
+  Task.ID,
+  Task.AccountNum,
+
+  SawTaskMain.ID,
+  SawTaskMain.Name,
+
+  RB.DateComplete,
+  RB.nSmena,
+  RB.idPlanCalendar,
+
+  Product.ID,
+  Product.Name,
+  Product.dCoefUZM,
+  GlassWorkAdd.dCoefUZM,
+
+  FinalSO.ID,
+  FinalSO.idTeam,
+  RB.idOperatorBrigadier,
+  RB.BrigadierResolveType
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Detail_ZAK_IZO.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Operator_Assembly_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Operator_Assembly_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Operator_Assembly_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Operator_Assembly_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Operator_Assembly_IZO
+as
+
+with OperatorMap as
+(
+  select
+    idOperator,
+    idSectorManufact,
+    min(idOperatorBrigadier) as idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap
+  group by idOperator, idSectorManufact
+  having count(distinct idOperatorBrigadier) = 1
+),
+
+PlanCalendarOne as
+(
+  select
+    max(ID) as ID,
+    Data,
+    nSmena
+  from PlanCalendar
+  where nSmena in (1, 2)
+  group by Data, nSmena
+),
+
+SheduleOperatorOne as
+(
+  select
+    max(ID) as ID,
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact,
+    idTeam
+  from SheduleOperator
+  group by
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact,
+    idTeam
+),
+
+BrigadierScheduleCandidate as
+(
+  select
+    SO.ID as idSheduleOperator,
+    SO.idPlanCalendar,
+    SO.idTeam,
+    SO.idOperator as idOperatorBrigadier,
+
+    case
+      when exists
+      (
+        select 1
+        from ShedulePersonnel SP
+        where SP.idSheduleOperator = SO.ID
+      ) then 0
+      else 1
+    end as PersonnelPriority
+
+  from SheduleOperator SO
+  where isnull(SO.idTeam, 0) <> 0
+    and exists
+    (
+      select 1
+      from OperatorGroup OG
+      where OG.idOperatorBrigadier = SO.idOperator
+    )
+),
+
+BrigadierScheduleRanked as
+(
+  select
+    idSheduleOperator,
+    idPlanCalendar,
+    idTeam,
+    idOperatorBrigadier,
+
+    row_number() over
+    (
+      partition by idPlanCalendar, idTeam
+      order by PersonnelPriority, idSheduleOperator desc
+    ) as RowNum
+
+  from BrigadierScheduleCandidate
+),
+
+GlassBase as
+(
+  select
+    GD.ID as idGlassDetails,
+    GD.idGlass,
+    GD.idProject,
+
+    coalesce
+    (
+      nullif(GD.idSawTaskMain, 0),
+      nullif(GP.idSawTaskMain, 0)
+    ) as idSawTaskMain,
+
+    GD.Width,
+    GD.Height,
+
+    GP.idSectorManufact,
+    GP.idSawLimit,
+    GP.idSheduleOperator as idSheduleOperatorSource,
+    GP.TimeMarkManufact,
+
+    STM.idTeam,
+    STM.idAssemblyLine,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) < 8 then
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact) - 1, 0)
+      else
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact), 0)
+    end as DateComplete,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) >= 8
+       and datepart(hour, GP.TimeMarkManufact) < 20 then 1
+      else 2
+    end as nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+
+  inner join SawTaskMain STM
+    on STM.ID = coalesce
+    (
+      nullif(GD.idSawTaskMain, 0),
+      nullif(GP.idSawTaskMain, 0)
+    )
+
+  where SM.nType = 2
+    and GP.TimeMarkManufact is not null
+),
+
+ResolvedBase as
+(
+  select
+    GB.idGlassDetails,
+    GB.idGlass,
+    GB.idProject,
+    GB.idSawTaskMain,
+    GB.Width,
+    GB.Height,
+
+    GB.idSectorManufact,
+    GB.idSawLimit,
+    GB.TimeMarkManufact,
+
+    CalendarResolved.idPlanCalendar,
+    TeamResolved.idTeam,
+    GB.idAssemblyLine,
+
+    GB.DateComplete,
+    GB.nSmena,
+
+    ResolvedOperator.idOperatorBrigadier,
+
+    coalesce
+    (
+      BS.idSheduleOperator,
+      ResolvedSOExact.ID,
+      ResolvedSONull.ID,
+
+      case
+        when SourceValid.bValid = 1
+         and SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then
+          SourceSO.ID
+      end
+    ) as idSheduleOperator
+
+  from GlassBase GB
+
+  left join SheduleOperator SourceSO
+    on SourceSO.ID = nullif(GB.idSheduleOperatorSource, 0)
+
+  left join PlanCalendarOne PC
+    on PC.Data = GB.DateComplete
+   and PC.nSmena = GB.nSmena
+
+  cross apply
+  (
+    select
+      coalesce(PC.ID, SourceSO.idPlanCalendar) as idPlanCalendar
+  ) CalendarResolved
+
+  cross apply
+  (
+    select
+      coalesce
+      (
+        nullif(GB.idTeam, 0),
+        nullif(SourceSO.idTeam, 0)
+      ) as idTeam
+  ) TeamResolved
+
+  cross apply
+  (
+    select
+      case
+        when SourceSO.ID is not null
+         and nullif(SourceSO.idTeam, 0) = TeamResolved.idTeam then 1
+        else 0
+      end as bValid
+  ) SourceValid
+
+  left join OperatorMap OM
+    on OM.idOperator = SourceSO.idOperator
+   and OM.idSectorManufact = GB.idSectorManufact
+   and SourceValid.bValid = 1
+
+  left join BrigadierScheduleRanked BS
+    on BS.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and BS.idTeam = TeamResolved.idTeam
+   and BS.RowNum = 1
+
+  cross apply
+  (
+    select
+      case
+        when SourceValid.bValid = 1
+         and OM.idOperatorBrigadier is not null then
+          OM.idOperatorBrigadier
+
+        when BS.idOperatorBrigadier is not null then
+          BS.idOperatorBrigadier
+
+        when SourceValid.bValid = 1
+         and exists
+         (
+           select 1
+           from OperatorGroup OG
+           where OG.idOperatorBrigadier = SourceSO.idOperator
+         ) then
+          SourceSO.idOperator
+
+        else null
+      end as idOperatorBrigadier
+  ) ResolvedOperator
+
+  left join SheduleOperatorOne ResolvedSOExact
+    on ResolvedSOExact.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSOExact.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSOExact.idSectorManufact = GB.idSectorManufact
+   and ResolvedSOExact.idTeam = TeamResolved.idTeam
+
+  left join SheduleOperatorOne ResolvedSONull
+    on ResolvedSONull.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and ResolvedSONull.idOperator = ResolvedOperator.idOperatorBrigadier
+   and ResolvedSONull.idSectorManufact is null
+   and ResolvedSONull.idTeam = TeamResolved.idTeam
+)
+
+select
+  Personnel.ID,
+  Personnel.Name,
+
+  SawTaskMain.ID as idSawTask,
+  SawTaskMain.Name as SawTaskName,
+  SawLimit.Name as SawLimitName,
+
+  RB.idTeam,
+  RB.idAssemblyLine,
+
+  FinalSO.ID as idSheduleOperator,
+  RB.idOperatorBrigadier,
+
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+
+  RB.DateComplete,
+  RB.nSmena,
+
+  SectorManufact.dPriceOfUnitProd,
+
+  count(1) as nCountDetails,
+
+  cast
+  (
+    sum(dbo.f_GetUE_ForAssemblyPlastica(Project.ID)) *
+    ShedulePersonnel.KTU /
+    nullif(KTU.SumKTU, 0)
+
+    as decimal(18, 6)
+  ) as SumUE
+
+from ResolvedBase RB
+inner join SectorManufact on SectorManufact.ID = RB.idSectorManufact
+inner join Project on Project.ID = RB.idProject
+inner join SawTaskMain on SawTaskMain.ID = RB.idSawTaskMain
+
+left join SawLimit on SawLimit.ID = RB.idSawLimit
+
+inner join SheduleOperator FinalSO
+  on FinalSO.ID = RB.idSheduleOperator
+
+inner join
+(
+  select
+    idSheduleOperator,
+    sum(KTU) as SumKTU
+  from ShedulePersonnel
+  group by idSheduleOperator
+) KTU on KTU.idSheduleOperator = FinalSO.ID
+
+left join ShedulePersonnel
+  on ShedulePersonnel.idSheduleOperator = FinalSO.ID
+
+left join Personnel
+  on Personnel.ID = ShedulePersonnel.idPersonnel
+
+group by
+  Personnel.ID,
+  Personnel.Name,
+
+  SawTaskMain.ID,
+  SawTaskMain.Name,
+  SawLimit.Name,
+
+  RB.idTeam,
+  RB.idAssemblyLine,
+
+  FinalSO.ID,
+  RB.idOperatorBrigadier,
+
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+
+  RB.DateComplete,
+  RB.nSmena,
+
+  SectorManufact.dPriceOfUnitProd
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Operator_Assembly_IZO.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Operator_Cut_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Operator_Cut_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Operator_Cut_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Operator_Cut_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Operator_Cut_IZO
+as
+
+with OperatorMap as
+(
+  select
+    idOperator,
+    idSectorManufact,
+    min(idOperatorBrigadier) as idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap
+  group by idOperator, idSectorManufact
+  having count(distinct idOperatorBrigadier) = 1
+),
+
+SheduleOperatorOne as
+(
+  select
+    max(ID) as ID,
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact
+  from SheduleOperator
+  group by idPlanCalendar, idOperator, idSectorManufact
+),
+
+BrigadierScheduleCandidate as
+(
+  select
+    SO.ID as idSheduleOperator,
+    SO.idPlanCalendar,
+    SO.idOperator as idOperatorBrigadier,
+    OG.idSectorManufact,
+
+    case
+      when SO.idSectorManufact = OG.idSectorManufact then 0
+      when SO.idSectorManufact is null then 1
+      else 2
+    end as Priority
+
+  from SheduleOperator SO
+  inner join OperatorGroup OG on OG.idOperatorBrigadier = SO.idOperator
+
+  where SO.idSectorManufact = OG.idSectorManufact
+     or SO.idSectorManufact is null
+),
+
+BrigadierScheduleRanked as
+(
+  select
+    idSheduleOperator,
+    idPlanCalendar,
+    idOperatorBrigadier,
+    idSectorManufact,
+
+    row_number() over
+    (
+      partition by idPlanCalendar, idSectorManufact
+      order by Priority, idSheduleOperator desc
+    ) as RowNum
+
+  from BrigadierScheduleCandidate
+),
+Base as
+(
+  /*
+    Основной путь — для строк, где idSheduleOperator есть.
+  */
+  select
+    GD.idGlass,
+    GD.idProject,
+    GD.idSawTaskMain,
+    GD.Width,
+    GD.Height,
+    GP.idSectorManufact,
+
+    case
+      when OM.idOperatorBrigadier is null then SourceSO.ID
+      else coalesce(BrigadierSOExact.ID, BrigadierSONull.ID)
+    end as idSheduleOperator,
+
+    PC.Data as DateComplete,
+    GP.TimeMarkManufact,
+    PC.nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+  inner join SheduleOperator SourceSO on SourceSO.ID = GP.idSheduleOperator
+  inner join PlanCalendar PC on PC.ID = SourceSO.idPlanCalendar
+
+  left join OperatorMap OM on OM.idOperator = SourceSO.idOperator
+                          and OM.idSectorManufact = GP.idSectorManufact
+
+  left join SheduleOperatorOne BrigadierSOExact
+    on BrigadierSOExact.idPlanCalendar = PC.ID
+   and BrigadierSOExact.idOperator = OM.idOperatorBrigadier
+   and BrigadierSOExact.idSectorManufact = GP.idSectorManufact
+
+  left join SheduleOperatorOne BrigadierSONull
+    on BrigadierSONull.idPlanCalendar = PC.ID
+   and BrigadierSONull.idOperator = OM.idOperatorBrigadier
+   and BrigadierSONull.idSectorManufact is null
+
+  where SM.nType = 1
+
+  union all
+
+  /*
+    Запасной путь — для строк без idSheduleOperator.
+    Бригадир определяется по календарю смены и участку.
+  */
+  select
+    GD.idGlass,
+    GD.idProject,
+    GD.idSawTaskMain,
+    GD.Width,
+    GD.Height,
+    GP.idSectorManufact,
+
+    BS.idSheduleOperator,
+
+    PC.Data as DateComplete,
+    GP.TimeMarkManufact,
+    PC.nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+
+  left join SheduleOperator SourceSO on SourceSO.ID = nullif(GP.idSheduleOperator, 0)
+
+  inner join PlanCalendar PC
+    on PC.Data = dateadd
+    (
+      day,
+      datediff(day, 0, dateadd(hour, -8, GP.TimeMarkManufact)),
+      0
+    )
+   and PC.nSmena =
+    case
+      when datepart(hour, GP.TimeMarkManufact) >= 8
+       and datepart(hour, GP.TimeMarkManufact) < 20 then 1
+      else 2
+    end
+
+  inner join BrigadierScheduleRanked BS
+    on BS.idPlanCalendar = PC.ID
+   and BS.idSectorManufact = GP.idSectorManufact
+   and BS.RowNum = 1
+
+  where SM.nType = 1
+    and SourceSO.ID is null
+    and GP.TimeMarkManufact is not null
+)
+
+select
+  Personnel.ID,
+  Personnel.Name,
+  FinalSO.ID as idSheduleOperator,
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+
+  PriceChina.DataCalc as PriceChina,
+  PriceLisec.DataCalc as PriceLisec,
+
+  CuttingTable.Name as CuttingTableName,
+  Base.DateComplete,
+  Base.nSmena,
+
+  SectorManufact.dPriceOfUnitProd,
+
+  count(1) as nCountDetails,
+  round(sum((Base.Width * Base.Height) / 1000000.0), 2) as SumArea,
+  round(sum((Base.Width * Base.Height) / 1000000.0), 2) as SumAreaUZM,
+
+  round
+  (
+    sum((Base.Width * Base.Height) / 1000000.0) *
+    ShedulePersonnel.KTU * SectorManufact.dPriceOfUnitProd / KTU.SumKTU,
+    2
+  ) as SumUE,
+
+  round
+  (
+    sum((Base.Width * Base.Height) / 1000000.0) *
+    ShedulePersonnel.KTU * PriceChina.DataCalc / KTU.SumKTU,
+    2
+  ) as SumUEChina,
+
+  round
+  (
+    (
+      sum((Base.Width * Base.Height) / 1000000.0) +
+      sum(isnull(UGA.WasteArea, 0) / TaskStats.TotalCount)
+    ) *
+    ShedulePersonnel.KTU * PriceLisec.DataCalc / KTU.SumKTU,
+    2
+  ) as SumUELisec,
+
+  round(sum(isnull(UGA.WasteArea, 0) / TaskStats.TotalCount), 2) as SumWasteArea,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 0 then 1
+    else 0
+  end as bTripNoCoat,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 1 then 1
+    else 0
+  end as bTripCoat,
+
+  isnull(Product.IsTriplex, 0) as bTriplex
+
+from Base
+inner join Product on Product.ID = Base.idGlass
+inner join SectorManufact on SectorManufact.ID = Base.idSectorManufact
+inner join Project on Project.ID = Base.idProject
+inner join SheduleOperator FinalSO on FinalSO.ID = Base.idSheduleOperator
+
+inner join
+(
+  select
+    idSheduleOperator,
+    sum(KTU) as SumKTU
+  from ShedulePersonnel
+  group by idSheduleOperator
+) KTU on KTU.idSheduleOperator = FinalSO.ID
+
+left join ShedulePersonnel on ShedulePersonnel.idSheduleOperator = FinalSO.ID
+left join Personnel on Personnel.ID = ShedulePersonnel.idPersonnel
+
+inner join SawTaskMain on SawTaskMain.ID = Base.idSawTaskMain
+
+left join Cutting on Cutting.idSawTaskMain = SawTaskMain.ID
+                       and Cutting.idGlass = Product.ID
+                       and Cutting.bMain = 1
+
+inner join
+(
+  select
+    idSawTaskMain,
+    idGlass,
+    count(idGlass) as TotalCount
+  from GlassDetails
+  group by idSawTaskMain, idGlass
+) TaskStats on TaskStats.idSawTaskMain = SawTaskMain.ID
+           and TaskStats.idGlass = Product.ID
+
+left join CuttingTable on CuttingTable.ID = Cutting.idCuttingTable
+left join Config PriceChina on PriceChina.Name = 'dPriceUEChina'
+left join Config PriceLisec on PriceLisec.Name = 'dPriceUELisec'
+
+left join
+(
+  select
+    UG.idSawTask,
+    UG.idGlass,
+
+    round
+    (
+      sum
+      (
+        case
+          when UG.Width < 0 then
+            UG.Width * UG.BilletHeight * UG.nCount -
+            (UG.Width - P.MarginLeft - P.MarginRight - P.MarginInner) *
+            (UG.BilletHeight - P.MarginBottom - P.MarginInner) * UG.nCount
+          else
+            UG.BilletWidth * UG.BilletHeight * UG.nCount -
+            (UG.BilletWidth - P.MarginLeft) *
+            (UG.BilletHeight - P.MarginBottom - P.MarginInner) * UG.nCount
+        end
+      ) / 1000000.0,
+      4
+    ) as WasteArea
+
+  from UsedGlass UG
+  inner join Product P on P.ID = UG.idGlass
+  group by UG.idSawTask, UG.idGlass
+) UGA on UGA.idSawTask = SawTaskMain.ID
+     and UGA.idGlass = Product.ID
+
+where Base.idSheduleOperator is not null
+
+group by
+  Personnel.ID, Personnel.Name,
+  FinalSO.ID,
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+  PriceChina.DataCalc, PriceLisec.DataCalc,
+  CuttingTable.Name,
+  Base.DateComplete, Base.nSmena,
+  SectorManufact.dPriceOfUnitProd,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 0 then 1
+    else 0
+  end,
+
+  case
+    when isnull(Product.IsTriplex, 0) = 1
+     and isnull(Product.bCoating, 0) = 1 then 1
+    else 0
+  end,
+
+  isnull(Product.IsTriplex, 0)
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Operator_Cut_IZO.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start View\v_SawTaskUE_Period_Operator_ZAK_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\v_SawTaskUE_Period_Operator_ZAK_IZO.sql
+-- ============================================================
+if object_id(N'dbo.v_SawTaskUE_Period_Operator_ZAK_IZO', N'V') is not null
+  drop view dbo.v_SawTaskUE_Period_Operator_ZAK_IZO
+go
+
+create view dbo.v_SawTaskUE_Period_Operator_ZAK_IZO
+as
+
+with OperatorMap as
+(
+  select
+    idOperator,
+    idSectorManufact,
+    min(idOperatorBrigadier) as idOperatorBrigadier
+  from dbo.v_OperatorBrigadierMap
+  group by idOperator, idSectorManufact
+  having count(distinct idOperatorBrigadier) = 1
+),
+
+PlanCalendarOne as
+(
+  select
+    max(ID) as ID,
+    Data,
+    nSmena
+  from PlanCalendar
+  where nSmena in (1, 2)
+  group by Data, nSmena
+),
+
+SheduleOperatorOne as
+(
+  select
+    max(ID) as ID,
+    idPlanCalendar,
+    idOperator,
+    idSectorManufact
+  from SheduleOperator
+  group by idPlanCalendar, idOperator, idSectorManufact
+),
+
+BrigadierScheduleCandidate as
+(
+  select distinct
+    SO.ID as idSheduleOperator,
+    SO.idPlanCalendar,
+    SO.idOperator as idOperatorBrigadier,
+    OG.idSectorManufact,
+
+    case
+      when SO.idSectorManufact = OG.idSectorManufact then 0
+      when SO.idSectorManufact is null then 1
+      else 2
+    end as Priority
+
+  from SheduleOperator SO
+  inner join OperatorGroup OG on OG.idOperatorBrigadier = SO.idOperator
+
+  where SO.idSectorManufact = OG.idSectorManufact
+     or SO.idSectorManufact is null
+),
+
+BrigadierScheduleRanked as
+(
+  select
+    idSheduleOperator,
+    idPlanCalendar,
+    idOperatorBrigadier,
+    idSectorManufact,
+
+    row_number() over
+    (
+      partition by idPlanCalendar, idSectorManufact
+      order by Priority, idSheduleOperator desc
+    ) as RowNum
+
+  from BrigadierScheduleCandidate
+),
+
+ZakOperation as
+(
+  select
+    idProject,
+    nGlass,
+    nGlassTriplex,
+    idProd
+  from ProjectItem
+  where isnull(nTypeOper, 0) = 2
+    and nType = 8
+),
+
+GlassBase as
+(
+  select
+    GD.ID as idGlassDetails,
+    GD.idGlass,
+    GD.idProject,
+    GD.idProjectItem,
+    GD.idSawTaskMain,
+    GD.Width,
+    GD.Height,
+
+    GP.idSectorManufact,
+    GP.idSheduleOperator as idSheduleOperatorSource,
+    GP.TimeMarkManufact,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) < 8 then
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact) - 1, 0)
+      else
+        dateadd(day, datediff(day, 0, GP.TimeMarkManufact), 0)
+    end as DateComplete,
+
+    case
+      when datepart(hour, GP.TimeMarkManufact) >= 8
+       and datepart(hour, GP.TimeMarkManufact) < 20 then 1
+      else 2
+    end as nSmena
+
+  from GlassDetails GD
+  inner join GlassProcessing GP on GP.idGlassDetails = GD.ID
+  inner join SectorManufact SM on SM.ID = GP.idSectorManufact
+
+  where SM.nType = 3
+    and GP.TimeMarkManufact is not null
+),
+
+ResolvedBase as
+(
+  select
+    GB.idGlassDetails,
+    GB.idGlass,
+    GB.idProject,
+    GB.idProjectItem,
+    GB.idSawTaskMain,
+    GB.Width,
+    GB.Height,
+    GB.idSectorManufact,
+    GB.TimeMarkManufact,
+
+    CalendarResolved.idPlanCalendar,
+    GB.DateComplete,
+    GB.nSmena,
+
+    ResolvedOperator.idOperatorBrigadier,
+
+    coalesce
+    (
+      ResolvedSOExact.ID,
+      ResolvedSONull.ID,
+
+      case
+        when SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then
+          SourceSO.ID
+      end,
+
+      BS.idSheduleOperator
+    ) as idSheduleOperator
+
+  from GlassBase GB
+
+  left join SheduleOperator SourceSO on SourceSO.ID = nullif(GB.idSheduleOperatorSource, 0)
+
+  left join PlanCalendarOne PC on PC.Data = GB.DateComplete
+                            and PC.nSmena = GB.nSmena
+
+  cross apply
+  (
+    select
+      coalesce(PC.ID, SourceSO.idPlanCalendar) as idPlanCalendar
+  ) CalendarResolved
+
+  left join OperatorMap OM
+    on OM.idOperator = SourceSO.idOperator
+   and OM.idSectorManufact = GB.idSectorManufact
+
+  left join BrigadierScheduleRanked BS
+    on BS.idPlanCalendar = CalendarResolved.idPlanCalendar
+   and BS.idSectorManufact = GB.idSectorManufact
+   and BS.RowNum = 1
+
+  cross apply
+  (
+    select
+      case
+        when OM.idOperatorBrigadier is not null then
+          OM.idOperatorBrigadier
+
+        when SourceSO.ID is not null then
+          SourceSO.idOperator
+
+        else
+          BS.idOperatorBrigadier
+      end as idOperatorBrigadier
+  ) ResolvedOperator
+
+  left join SheduleOperatorOne ResolvedSOExact on ResolvedSOExact.idPlanCalendar = CalendarResolved.idPlanCalendar
+                                            and ResolvedSOExact.idOperator       = ResolvedOperator.idOperatorBrigadier
+                                            and ResolvedSOExact.idSectorManufact = GB.idSectorManufact
+
+  left join SheduleOperatorOne ResolvedSONull on ResolvedSONull.idPlanCalendar = CalendarResolved.idPlanCalendar
+                                                 and ResolvedSONull.idOperator = ResolvedOperator.idOperatorBrigadier
+                                                 and ResolvedSONull.idSectorManufact is null
+)
+
+select
+  Personnel.ID,
+  Personnel.Name,
+
+  FinalSO.ID as idSheduleOperator,
+  FinalSO.idOperator as idOperatorBrigadier,
+  FinalSO.idTeam,
+
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+
+  RB.DateComplete,
+  RB.nSmena,
+
+  SectorManufact.dPriceOfUnitProd,
+
+  count(1) as nCountDetails,
+
+  cast
+  (
+    sum(1.0 * RB.Width * RB.Height) / 1000000.0
+    as decimal(18, 6)
+  ) as SumArea,
+
+  cast
+  (
+    sum
+    (
+      1.0 * RB.Width * RB.Height / 1000000.0 *
+      case
+        when isnull(GlassWorkAdd.dCoefUZM, 0) = 0 then
+          Product.dCoefUZM
+        else
+          GlassWorkAdd.dCoefUZM
+      end
+    )
+    as decimal(18, 6)
+  ) as SumAreaUZM,
+
+  cast
+  (
+    sum
+    (
+      1.0 * RB.Width * RB.Height / 1000000.0 *
+      case
+        when isnull(GlassWorkAdd.dCoefUZM, 0) = 0 then
+          Product.dCoefUZM
+        else
+          GlassWorkAdd.dCoefUZM
+      end
+    ) *
+    ShedulePersonnel.KTU *
+    SectorManufact.dPriceOfUnitProd /
+    nullif(KTU.SumKTU, 0)
+
+    as decimal(18, 6)
+  ) as SumUE
+
+from ResolvedBase RB
+inner join Product on Product.ID = RB.idGlass
+inner join SectorManufact on SectorManufact.ID = RB.idSectorManufact
+inner join Project on Project.ID = RB.idProject
+
+inner join ProjectItem on ProjectItem.ID = RB.idProjectItem
+
+inner join ZakOperation ZAK on ZAK.idProject = ProjectItem.idProject
+                              and ZAK.nGlass = ProjectItem.nGlass
+                       and ZAK.nGlassTriplex = ProjectItem.nGlassTriplex
+
+left join GlassWorkAdd on GlassWorkAdd.idProduct_Glass = Product.ID
+                       and GlassWorkAdd.idProduct_Work = ZAK.idProd
+
+inner join SheduleOperator FinalSO on FinalSO.ID = RB.idSheduleOperator
+
+inner join
+(
+  select
+    idSheduleOperator,
+    sum(KTU) as SumKTU
+  from ShedulePersonnel
+  group by idSheduleOperator
+) KTU on KTU.idSheduleOperator = FinalSO.ID
+
+left join ShedulePersonnel
+  on ShedulePersonnel.idSheduleOperator = FinalSO.ID
+
+left join Personnel
+  on Personnel.ID = ShedulePersonnel.idPersonnel
+
+where isnull(Product.dCoefUZM, 0) > 0
+
+group by
+  Personnel.ID,
+  Personnel.Name,
+
+  FinalSO.ID,
+  FinalSO.idOperator,
+  FinalSO.idTeam,
+
+  ShedulePersonnel.KTU,
+  KTU.SumKTU,
+
+  RB.DateComplete,
+  RB.nSmena,
+
+  SectorManufact.dPriceOfUnitProd
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\v_SawTaskUE_Period_Operator_ZAK_IZO.sql'
+go
+
 print convert(varchar, getdate(), 20) + ' : start View\v_Volume_Money_SubDivision.sql'
 go
 
@@ -2266,83 +4277,122 @@ go
 -- File: Function\f_GetNextAccountNum_BW.sql
 -- ============================================================
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[f_GetNextAccountNum_BW]') and xtype in (N'FN', N'IF', N'TF'))
-drop function [dbo].[f_GetNextAccountNum_BW]
+drop function dbo.f_GetNextAccountNum_BW
 go
 
-create function dbo.f_GetNextAccountNum_BW (@idClient int, @TypeOrder int, @idTaskExlude int) RETURNS varchar(100)  
-as   
---[OK] Опеределить следующий номер заказа по клиенту, TypeOrder и текущему году  
---     Является аналогом изогласовской f_GetNextAccountNum_BW с некоторыми косметическими изменениями  
-begin  
-  declare @num                  varchar(100),  
-          @TypeOrder1           int,  
-          @TypeOrder2           int,  
-          @CurDate              datetime,  
-          @ShortDate            datetime,  
-          @Year                 smallint,  
-          @TaskAccountNum_Type  int,  
-          @sTaskPrefix          varchar(10)  
-  
-  -- Смотрим префикс  
-  select  @sTaskPrefix = d_string from Config where Name = 'AccountNumPrefix'  
-  select  @sTaskPrefix = IsNull(@sTaskPrefix, '')  
-  
-  -- Тип рассчёта номера нового заказа:  
-  -- 0 - по клиентам, 1 - сквозная нумерация  
-  select @TaskAccountNum_Type = d_iNum from Config where Name = 'TaskAccountNum'  
-  
- --select @ShortDate           = d_iNum-2 from Config where Name = 'BeginCalcNum' --[SE]Не нашел использования в коде  
-  
-  -- [ab]->[автору] BeginCalcNum - это что за номер? И почему он в дату преобразуется?  
-  --                А что делать в новом году? Программа сама не поймет, что надо нумерацию с нуля начинать?  
-  --                Раньше понимала.  
-  if @ShortDate is null  
-    set @ShortDate = convert(datetime,cast(year(getdate())as nvarchar)+'-01-01', 20)  
-  
-  if @TypeOrder = 1  
-  begin  
-    set @TypeOrder1 = 1  
-    set @TypeOrder2 = 2  
-  end  
-  else  
-  begin  
-    set @TypeOrder1 = 0  
-    set @TypeOrder2 = 0  
-  end  
-    
-  -- Взять максимальный по данному клиенту или по всем клиентам:  
-  select top 1    
-    @num = AccountNum  
-  from   
-    Task   
-  where   
-    (idClient = @idClient                               or @TaskAccountNum_Type = 1) and  
-    ID <> @idTaskExlude and  
-    (TypeOrder = @TypeOrder1 or TypeOrder = @TypeOrder2 or @TaskAccountNum_Type = 1) and  
-    Date >= @ShortDate  
+create function dbo.f_GetNextAccountNum_BW (@idClient int, @TypeOrder int, @idTaskExlude int) returns varchar(100)
+as
+begin
+  declare @num                  varchar(100),
+          @TypeOrder1           int,
+          @TypeOrder2           int,
+          @ShortDate            datetime,
+          @TaskAccountNum_Type  int,
+          @sTaskPrefix          varchar(10)
+
+  -- Префикс заказа, например "С"
+  select @sTaskPrefix = d_string
+  from Config
+  where Name = 'AccountNumPrefix'
+
+  set @sTaskPrefix = isnull(@sTaskPrefix, '')
+
+  -- 0 - нумерация отдельно по клиентам
+  -- 1 - сквозная нумерация
+  select @TaskAccountNum_Type = d_iNum
+  from Config
+  where Name = 'TaskAccountNum'
+
+  set @TaskAccountNum_Type = isnull(@TaskAccountNum_Type, 0)
+
+  -- Смотрим заказы только с начала текущего года
+  set @ShortDate = convert(datetime, cast(year(getdate()) as varchar(4)) + '-01-01', 20)
+
+  -- Для TypeOrder = 1 общая серия для типов 1 и 2
+  if @TypeOrder = 1
+  begin
+    set @TypeOrder1 = 1
+    set @TypeOrder2 = 2
+  end
+  else
+  begin
+    set @TypeOrder1 = 0
+    set @TypeOrder2 = 0
+  end
+
+  if @TypeOrder != 1
+  begin
+    -- Для TypeOrder 0 ищем только номера, начинающиеся с "С0"
+    -- Например: С099, С0100, С0101, С0103
+    select top 1
+      @num = T.AccountNum
+    from
+      Task T
+    where
+      (T.idClient = @idClient or @TaskAccountNum_Type = 1) and
+      T.ID <> @idTaskExlude and
+      (T.TypeOrder = @TypeOrder1 or T.TypeOrder = @TypeOrder2 or @TaskAccountNum_Type = 1) and
+      T.Date >= @ShortDate and
+
+      -- Номер обязательно должен начинаться с С0
+      left(T.AccountNum, len(@sTaskPrefix) + 1) = @sTaskPrefix + '0' and
+
+      -- После удаления С должны остаться цифры
+      try_cast(stuff(T.AccountNum, 1, len(@sTaskPrefix), '') as int) is not null and
+
+      -- ВРЕМЕННО этот заказ у клиента московские окна не смотрим
+      not
+      (
+        T.idClient = 1269 and
+        T.AccountNum = 'С0411'
+      ) 
+
     order by
-        case
-            when try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int) is not null
-            then try_cast(Stuff(AccountNum, 1, len(@sTaskPrefix), '') as int)
-            else 0
-        end desc
-  
-  set  @num = Cast( case when IsNumeric(Stuff(isnull(@Num, ''), 1, len(@sTaskPrefix), '')) = 1  
-                         Then Cast     (Stuff(       @Num,      1, len(@sTaskPrefix), '') as int) + 1  
-                         else 1  
-                    end as varchar(100) )    
-                      
-  -- [ab] У нас Б заказы с нуля начинаются, Изолюксу надо  
-  if @TypeOrder = 0   
-    set @num = '0' + @num  
-  
-  
-  -- Вставляем префикс  
-  set @num = @sTaskPrefix + @num  
-  
-  
-  return @num  
-end  
+      try_cast(stuff(T.AccountNum, 1, len(@sTaskPrefix), '') as int) desc
+
+    -- С0103 -> убираем С -> 0103 -> 103 + 1 = 104
+    set @num = cast(isnull(try_cast(stuff(isnull(@num, ''), 1, len(@sTaskPrefix), '') as int), 0 ) + 1 as varchar(100))
+
+    -- Добавляем С0 -> получаем С0104
+    set @num = @sTaskPrefix + '0' + @num
+  end
+  else
+  begin
+    -- Для остальных типов ищем любые номера с префиксом С
+    select top 1
+      @num = T.AccountNum
+    from
+      Task T
+    where
+      (T.idClient = @idClient or @TaskAccountNum_Type = 1) and
+      T.ID <> @idTaskExlude and
+      (T.TypeOrder = @TypeOrder1 or T.TypeOrder = @TypeOrder2 or @TaskAccountNum_Type = 1) and
+      T.Date >= @ShortDate and
+
+      -- Номер должен начинаться с С
+      left(T.AccountNum, len(@sTaskPrefix)) = @sTaskPrefix and
+
+      -- После удаления С должны остаться цифры
+      try_cast(stuff(T.AccountNum, 1, len(@sTaskPrefix), '') as int) is not null
+    order by
+      try_cast(stuff(T.AccountNum, 1, len(@sTaskPrefix), '') as int) desc
+
+    -- С0411 -> убираем С -> 0411 -> 411 + 1 = 412
+    set @num = cast(
+      isnull(
+        try_cast(stuff(isnull(@num, ''), 1, len(@sTaskPrefix), '') as int),
+        0
+      ) + 1
+      as varchar(100)
+    )
+
+    -- Добавляем С -> получаем С412
+    set @num = @sTaskPrefix + @num
+  end
+
+  return @num
+end
+go
 
 go
 print convert(varchar, getdate(), 20) + ' : finish Function\f_GetNextAccountNum_BW.sql'
@@ -2484,6 +4534,109 @@ go
    SP
    ============================================================ */
 
+
+print convert(varchar, getdate(), 20) + ' : start SP\sp_CreateSheduleOperator_IZO.sql'
+go
+
+-- ============================================================
+-- File: SP\sp_CreateSheduleOperator_IZO.sql
+-- ============================================================
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_CreateSheduleOperator_IZO]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[sp_CreateSheduleOperator]
+GO
+
+-- [ao] создать оператора    
+create procedure sp_CreateSheduleOperator_IZO @idOperator int, @date datetime, @idSheduleOperatorNew int output    
+as    
+begin    
+  set nocount on    
+    
+  set @idSheduleOperatorNew = null    
+    
+  -- Ищем есть ли такой, чтобы не двоить    
+  select     
+    @idSheduleOperatorNew = ID     
+  from     
+    SheduleOperator    
+  where    
+    idOperator = @idOperator and    
+    @date >= dtBegin         and    
+    @date <  dtEnd    
+    
+  if @idSheduleOperatorNew is not null    
+    return    
+    
+  -- 2. Пытаемся создать    
+  declare     
+    @idPlanCalendar int,    
+    @nSmena         int,    
+    @DatePC         datetime         
+      
+  select    
+    @idPlanCalendar = ID,    
+    @nSmena         = nSmena,    
+    @DatePC         = Data    
+  from    
+    PlanCalendar    
+  where    
+    dbo.f_GetSmenaBeg(Data, nSmena) <= @date and    
+    dbo.f_GetSmenaEnd(Data, nSmena) >  @date    
+    
+  if @idPlanCalendar is null    
+  begin    
+    -- Не заполнен план-календарь - надо создать PlanCalendar    
+    exec sp_PlanCalendarMake @date, @date    
+     
+    -- И еще раз прочитаем данные     
+    select    
+      @idPlanCalendar = ID,    
+      @nSmena         = nSmena,    
+      @DatePC         = Data    
+    from    
+      PlanCalendar    
+    where    
+      dbo.f_GetSmenaBeg(Data, nSmena) <= @date and    
+      dbo.f_GetSmenaEnd(Data, nSmena) >  @date    
+    -- return    
+  end     
+    
+  insert into SheduleOperator    
+  (    
+    idPlanCalendar,    
+    idOperator,    
+    dtBegin,    
+    dtEnd    
+  )    
+  select    
+    @idPlanCalendar,    
+    @idOperator,    
+    dbo.f_GetSmenaBeg(@DatePC, @nSmena),    
+    dbo.f_GetSmenaEnd(@DatePC, @nSmena)    
+      
+  select @idSheduleOperatorNew = scope_identity()    
+    
+  -- Добавляем состав бригады из 1 чел этого оператора    
+  insert into ShedulePersonnel    
+  (    
+    idSheduleOperator,    
+    idPersonnel,    
+    KTU    
+  )    
+  select    
+    @idSheduleOperatorNew,    
+    Operator.idPersonnel,    
+    1.0    
+  from    
+    Operator     
+  where    
+    ID = @idOperator            
+          
+  return    
+end 
+
+go
+print convert(varchar, getdate(), 20) + ' : finish SP\sp_CreateSheduleOperator_IZO.sql'
+go
 
 print convert(varchar, getdate(), 20) + ' : start SP\sp_DepCalcReg_Add_Group.sql'
 go
@@ -2921,6 +5074,110 @@ end
 
 go
 print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetPendingDepTrans.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start SP\sp_GetRest_AllDepList.sql'
+go
+
+-- ============================================================
+-- File: SP\sp_GetRest_AllDepList.sql
+-- ============================================================
+-- Для отчета "Остатки ТМЦ".  
+if object_id('dbo.sp_GetRest_AllDepList', 'P') is not null
+  drop procedure dbo.sp_GetRest_AllDepList
+go
+
+--drop proc sp_GetRest_AllDepList
+create procedure sp_GetRest_AllDepList @idSubDivision       int,  
+                                       @DocDateEnd          datetime,  
+                                       @bNDS                bit  
+as  
+begin  
+  set nocount on  
+   
+  
+  create table #DepList  
+  (  
+    ID            int,  
+    Name          varchar(100),  
+    nOrderDepList int  
+  )  
+  
+  create table #MaterialColor  
+  (  
+    idMaterial  int,  
+    FolderPath  varchar(1000)  
+  )  
+  
+  insert into #DepList (ID, Name, nOrderDepList)   
+    select   
+      DL.ID,   
+      DL.Name,   
+      DL.nOrder   
+    from DepList DL  
+    inner join DepNameList DNL on DNL.idDepList = DL.ID  
+    inner join DepName     DN  on DNL.idDepName = DN.ID  
+    where DL.is1 = 1 and
+          (
+            DN.idDepotSubDivision = @idSubDivision
+            or @idSubDivision = 0
+          )   -- Если не передали параметр выводим все из всех складов  
+  insert into #MaterialColor (idMaterial, FolderPath)  
+    select M.ID, dbo.f_GetTreeMaterialFolder(IsNull(M.IdtGroup, 0))  
+    from Material M  
+      
+  
+  declare @sDepList varchar(2000)  
+  set @sDepList = ''  
+  
+  select @sDepList = @sDepList + Name + ', ' from #DepList  
+  
+  if DATALENGTH (@sDepList) > 0  
+    select @sDepList = left(@sDepList, LEN(@sDepList) - 2)  -- заменим datalength() на len(), datalength() для nvarchar вернет длину x2   
+  
+  declare @idDepList     int,          -- Для строк с папками.  
+          @sDepListName  varchar(100), -- Для строк с папками.  
+          @nOrderDepList int           -- Для строк с папками.  
+  
+  select top 1 @idDepList = ID, @sDepListName = Name, @nOrderDepList = nOrderDepList from #DepList  
+  
+  select  
+    2 as nOrder,  
+    DL.nOrderDepList,  
+    MC.idMaterial,  
+    RC.MaterName as Name,  
+    MC.FolderPath,  
+    @DocDateEnd as DateEnd,  
+    case when @bNDS = 1 then 'с НДС' else 'без НДС' end as sNDS,  
+    @sDepList as sDepList,  
+    RC.DocDate,  
+    RC.MaterArt,  
+    RC.UnitName,  
+    RC.DepListName,  
+    RC.idDepList,  
+    round(RT.Rest, 3) as Rest,  
+    RT.PriceSum,  
+    RC.Mass,  
+    RC.dTotalCount,  
+    RC.dTotalWeight,  
+    round(IsNull(RC.PriceAvg, 0), 2) as PriceAvg,  
+    RT.PriceUnit  
+  from #MaterialColor MC  
+    inner join dbo.f_GetRest_Cross(@DocDateEnd, @bNDS) RC on RC.idMaterial = MC.idMaterial      
+    inner join #DepList DL on DL.ID = RC.idDepList--) t  
+    inner join dbo.f_GetrestTMC(@DocDateEnd) RT on RT.idMaterial = RC.idMaterial
+                                               and RT.idDepList  = RC.idDepList
+  --order by  
+  --  FolderPath, nOrder, idMaterial, idColorIns, idColorBase, idColorExt  
+  
+  drop table #DepList  
+  drop table #MaterialColor  
+  
+  set nocount off  
+end  
+
+go
+print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetRest_AllDepList.sql'
 go
 
 print convert(varchar, getdate(), 20) + ' : start SP\sp_GetTaskTreeLogistic.sql'
@@ -6526,6 +8783,83 @@ go
 
 go
 print convert(varchar, getdate(), 20) + ' : finish Trigger\t_DepTrans_insert_NumInovice.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start Trigger\trg_GlassProcessing_SetTimeMarkManufact.sql'
+go
+
+-- ============================================================
+-- File: Trigger\trg_GlassProcessing_SetTimeMarkManufact.sql
+-- ============================================================
+if object_id(N'dbo.trg_GlassProcessing_SetTimeMarkManufact', N'TR') is not null
+    drop trigger dbo.trg_GlassProcessing_SetTimeMarkManufact
+go
+
+-- Гарантия что установим TimeManufact после того как проставим готовность
+create trigger dbo.trg_GlassProcessing_SetTimeMarkManufact
+on dbo.GlassProcessing
+after insert, update
+as
+begin
+    set nocount on
+
+    -- Защита от повторного входа после update внутри триггера
+    if trigger_nestlevel() > 1
+        return
+
+    update GP
+    set
+        GP.TimeMarkManufact =
+            case
+                -- Готовность только что поставили
+                when isnull(I.bFinished, 0) = 1
+                 and isnull(D.bFinished, 0) = 0
+                then
+                    case
+                        -- Новая запись, дата уже передана приложением
+                        when D.ID is null 
+                         and I.TimeMarkManufact is not null
+                            then I.TimeMarkManufact
+
+                        -- При обновлении приложение передало новую дату
+                        when D.ID is not null
+                         and I.TimeMarkManufact is not null
+                         and
+                         (
+                             D.TimeMarkManufact is null
+                             or I.TimeMarkManufact <> D.TimeMarkManufact
+                         )
+                            then I.TimeMarkManufact
+
+                        -- Когда в диалге ИзоГласс просто поставили галку готовности, а дату не передали
+                        else getdate()
+                    end
+
+                -- Готовность сняли
+                when isnull(I.bFinished, 0) = 0
+                 and isnull(D.bFinished, 0) = 1
+                    then null
+
+                else GP.TimeMarkManufact
+            end
+    from dbo.GlassProcessing GP
+    inner join inserted I on I.ID = GP.ID
+    left join deleted D on D.ID = I.ID
+    where
+        (
+            isnull(I.bFinished, 0) = 1
+            and isnull(D.bFinished, 0) = 0
+        )
+        or
+        (
+            isnull(I.bFinished, 0) = 0
+            and isnull(D.bFinished, 0) = 1
+        )
+end
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish Trigger\trg_GlassProcessing_SetTimeMarkManufact.sql'
 go
 
 print convert(varchar, getdate(), 20) + ' : update script finished'

@@ -23,6 +23,16 @@ begin
 end
 go
 
+if col_length('dbo.OperatorGroup', 'idSectorManufact') is null
+  alter table dbo.OperatorGroup add idSectorManufact int null
+go
+
+if exists (select top 1 idSectorManufact from OperatorGroup order by idSectorManufact desc)
+begin
+  update OperatorGroup set idSectorManufact = 1 where Name in ('Резка1', 'Резка2')
+  update OperatorGroup set idSectorManufact = 4 where Name in ('Закалка1', 'Закалка2')
+  update OperatorGroup set idSectorManufact = 6 where Name in ('Лисик', 'Вондек')
+end
 
 --insert into OperatorGroup (Name, idOperatorBrigadier)
 --values

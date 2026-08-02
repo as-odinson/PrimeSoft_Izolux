@@ -6,6 +6,7 @@
 #include "LoadHooks.h"
 #include "PCTaskViewGrid_Export.h"
 #include "PCTaskView_Export.h"
+#include "PCProjectViewGrid_Export.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -116,6 +117,9 @@ extern __declspec(dllexport) CObject* PluginCreateObject(const TCHAR* File, cons
 
   if ( pClassNew == RUNTIME_CLASS(CTaskViewGrid) )
     return new PCTaskViewGrid_Export(_T("CTaskView\\Grid"));
+
+  if ( pClassNew == RUNTIME_CLASS(CProjectViewGrid) )
+    return new PCProjectViewGrid_Export(_T("CProjectView\\Grid"));
 
   if ( pClassNew == RUNTIME_CLASS(CTaskView) )
     return new PCTaskView_Export();

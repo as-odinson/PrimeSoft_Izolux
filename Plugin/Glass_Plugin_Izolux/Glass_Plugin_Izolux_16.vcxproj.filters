@@ -60,6 +60,9 @@
     <ClCompile Include="ProgEventBridge.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="PCProjectViewGrid_Export.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Glass_Plugin_Izolux.def">
@@ -107,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="ProgEventBridge.h">
       <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="PCProjectViewGrid_Export.h">
+      <Filter>Header Files\Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

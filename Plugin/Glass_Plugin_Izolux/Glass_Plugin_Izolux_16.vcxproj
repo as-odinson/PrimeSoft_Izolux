@@ -242,6 +242,7 @@
     <ClCompile Include="Hook_CProjectView.cpp" />
     <ClCompile Include="Hook_CTaskView.cpp" />
     <ClCompile Include="PCExportXml_UPD.cpp" />
+    <ClCompile Include="PCProjectViewGrid_Export.cpp" />
     <ClCompile Include="PCTaskViewGrid_Export.cpp" />
     <ClCompile Include="LoadHooks.cpp" />
     <ClCompile Include="Main_Export.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="Hook_CProjectView.h" />
     <ClInclude Include="Hook_CTaskView.h" />
     <ClInclude Include="PCExportXml_UPD.h" />
+    <ClInclude Include="PCProjectViewGrid_Export.h" />
     <ClInclude Include="PCTaskViewGrid_Export.h" />
     <ClInclude Include="LoadHooks.h" />
     <ClInclude Include="Main_Export.h" />

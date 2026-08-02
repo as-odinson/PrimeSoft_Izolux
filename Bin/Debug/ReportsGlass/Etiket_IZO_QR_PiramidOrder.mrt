@@ -5,8 +5,7 @@
     <Databases isList="true" count="1">
       <sql2012 Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
         <Alias>sql2012</Alias>
-        <ConnectionStringEncrypted>4BDB604IS8jMGKwcZEkll8J6u6FhUXPwaRn52GcE4I/jxGksYkxR3UVEpZx6ATIv3HizCVcYQ1VDdLWAanTrv41ai89PWUud82rNjfFx4RfZbpvjT1HZvO1kuYDvAWlu41rhaVBM84zsSaH0YlQnRsZo9cJIBaNZ7F3NzE7s</ConnectionStringEncrypted>
-        <Key>d7fc0279adc84b35a9ec91a3e13ccf49</Key>
+        <ConnectionStringEncrypted>4NbN68UW0+3iR72caAn2m8I634hhA0L1RWfNgGBM4D/0evfPZ3FRmelr5fDuCeAT0XLNYFdKQ/lrXKTU+3jjm8NUd2hPWXntQ2z98XHAJRffxMGjSE4ByMNbTb3DBOAqxVrVAlVd+5lvYdmlTXHnZ8MaZePGa9MJywg=</ConnectionStringEncrypted>
         <Name>sql2012</Name>
       </sql2012>
     </Databases>
@@ -147,22 +146,18 @@
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
-        <Key>a53b821b76e34d51ae0bb126207ea883</Key>
         <Name>w_GPEtiketRam</Name>
         <NameInSource>sql2012</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select * from v_GPEtiket_Crystal_Task_Long where idSawTask = 1</SqlCommand>
+        <SqlCommand>select * from v_GPEtiket_Crystal_Task_Long where idSawTask = 4375</SqlCommand>
       </w_GPEtiketRam>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
-    <Resources isList="true" count="0" />
-    <UserFunctions isList="true" count="0" />
     <Variables isList="true" count="0" />
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
-  <Key>0162ab7cd72d44e8bb95d9f9de8f5ebc</Key>
   <MetaTags isList="true" count="1">
     <value>InternalVersion,_x0032_017.1.11.0</value>
   </MetaTags>
@@ -177,7 +172,6 @@
           <Components isList="true" count="0" />
           <Condition>{w_GPEtiketRam.idSawTask}</Condition>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>GroupHeaderBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -186,19 +180,14 @@
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,12,80.3,124</ClientRectangle>
-          <Components isList="true" count="22">
+          <Components isList="true" count="23">
             <BarCode1 Ref="7" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
               <AutoScale>True</AutoScale>
               <BackColor>Transparent</BackColor>
-              <BarCodeType Ref="8" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true">
-                <BodyBrush>EmptyBrush</BodyBrush>
-                <EyeBallBrush>EmptyBrush</EyeBallBrush>
-                <EyeFrameBrush>EmptyBrush</EyeFrameBrush>
-              </BarCodeType>
+              <BarCodeType Ref="8" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true" />
               <ClientRectangle>43,105,18,18</ClientRectangle>
               <Code>{w_GPEtiketRam.BarCode}</Code>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,8,Bold,Pixel</Font>
               <ForeColor>Black</ForeColor>
               <HorAlignment>Center</HorAlignment>
@@ -211,7 +200,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>26,75,53,15</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,16,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
@@ -220,22 +208,17 @@
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <Text>{w_GPEtiketRam.GlassName}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text2>
             <BarCode2 Ref="10" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
               <Angle>Angle270</Angle>
               <AutoScale>True</AutoScale>
               <BackColor>Transparent</BackColor>
-              <BarCodeType Ref="11" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true">
-                <BodyBrush>EmptyBrush</BodyBrush>
-                <EyeBallBrush>EmptyBrush</EyeBallBrush>
-                <EyeFrameBrush>EmptyBrush</EyeFrameBrush>
-              </BarCodeType>
-              <ClientRectangle>0,79,19,32</ClientRectangle>
+              <BarCodeType Ref="11" type="Stimulsoft.Report.BarCodes.StiQRCodeBarCodeType" isKey="true" />
+              <ClientRectangle>0,81,19,32</ClientRectangle>
               <Code>{w_GPEtiketRam.BarCode}</Code>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,8,Bold,Pixel</Font>
               <ForeColor>Black</ForeColor>
               <Guid>b86bbb3febf044a785a629da921f1b1f</Guid>
@@ -249,7 +232,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>26,91,51,7</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,14,Bold</Font>
               <Guid>252ac2f8fe2949d68dae3fcad45f1573</Guid>
               <Margins>0,0,0,0</Margins>
@@ -264,7 +246,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>26,98,52,5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,14,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
@@ -278,7 +259,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>51,24,26,9</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,16,Bold</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -288,14 +268,13 @@
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <Text>{Format("{0:dd.MM.yyyy}", Today)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text5>
             <Text6 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>26,57,52,16</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
@@ -303,14 +282,13 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.CommentProject}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text6>
             <Text7 Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>6,0,5,33</ClientRectangle>
+              <ClientRectangle>0,43,7,23</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>4f9471a0e3804c85a1c57da6fb4a8bb1</Guid>
               <Margins>0,0,0,0</Margins>
@@ -319,14 +297,13 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.GlassName}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text7>
             <Text8 Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>7,36,5,33</ClientRectangle>
+              <ClientRectangle>7,64,5,23</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>93a0909b807749ac8738bd4566c24ffd</Guid>
               <HorAlignment>Right</HorAlignment>
@@ -336,14 +313,13 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.Width} x {w_GPEtiketRam.Height}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=False, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text8>
             <Text9 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>58,34,20,5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -358,7 +334,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>62,117,18,5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -369,27 +344,10 @@
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text10>
-            <Text11 Ref="20" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>1,37,5,31</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Arial,10</Font>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
-              <Page isRef="4" />
-              <Parent isRef="6" />
-              <Text>{w_GPEtiketRam.PiramidNumCell}   {PageNumber} из {TotalPageCount}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
-              <Type>Expression</Type>
-            </Text11>
-            <Text12 Ref="21" type="Text" isKey="true">
+            <Text12 Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>25,24,25,9</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,16,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
@@ -398,14 +356,13 @@
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <Text>№ {w_GPEtiketRam.AccountNum}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text12>
-            <Text13 Ref="22" type="Text" isKey="true">
+            <Text13 Ref="21" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14,0,5,25</ClientRectangle>
+              <ClientRectangle>7,43,5,19</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>3e428471a3ff410f8b94714dd5630fbe</Guid>
               <Margins>0,0,0,0</Margins>
@@ -414,31 +371,25 @@
               <Parent isRef="6" />
               <Text>№ {w_GPEtiketRam.AccountNum}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text13>
-            <Shape1 Ref="23" type="Shape" isKey="true">
-              <BackgroundColor>Transparent</BackgroundColor>
+            <Shape1 Ref="22" type="Shape" isKey="true">
               <BorderColor>Black</BorderColor>
               <Brush>Black</Brush>
               <ClientRectangle>23,0,57,13</ClientRectangle>
               <Conditions isList="true" count="1">
                 <value>w_GPEtiketRam.ClientName,NotContaining,ПРИОРГЛАСС,,String,Red,Transparent,Arial_x002C_8,False,False,,,None</value>
               </Conditions>
-              <Expressions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <ForeColor>Black</ForeColor>
-              <Margins>0,0,0,0</Margins>
               <Name>Shape1</Name>
               <Page isRef="4" />
               <Parent isRef="6" />
-              <ShapeType Ref="24" type="Stimulsoft.Report.Components.ShapeTypes.StiRectangleShapeType" isKey="true" />
+              <ShapeType Ref="23" type="Stimulsoft.Report.Components.ShapeTypes.StiRectangleShapeType" isKey="true" />
             </Shape1>
-            <Text15 Ref="25" type="Text" isKey="true">
+            <Text15 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>25,15,53,9</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,16,Bold</Font>
               <Guid>b652144ad4af41af9dda6ea06422ad9d</Guid>
               <Margins>0,0,0,0</Margins>
@@ -448,14 +399,13 @@
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <Text>{w_GPEtiketRam.ClientName}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
             </Text15>
-            <Text16 Ref="26" type="Text" isKey="true">
+            <Text16 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14,35,4,52</ClientRectangle>
+              <ClientRectangle>12,43,6,46</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>64b5b5f8621f4638b2b625bb70827a12</Guid>
               <Margins>0,0,0,0</Margins>
@@ -464,14 +414,13 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.ClientName}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text16>
-            <Text17 Ref="27" type="Text" isKey="true">
+            <Text17 Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>26,38,52,18</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>f3691f1e1d5a46d0897cef5838c6cc8c</Guid>
               <Margins>0,0,0,0</Margins>
@@ -480,14 +429,13 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.CommentTask}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>DataColumn</Type>
             </Text17>
-            <Text1 Ref="28" type="Text" isKey="true">
+            <Text1 Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>60,107,20,5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,7</Font>
               <Guid>2ef718b56c5042d082ece6004456a942</Guid>
               <HorAlignment>Right</HorAlignment>
@@ -499,11 +447,10 @@
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text1>
-            <Text14 Ref="29" type="Text" isKey="true">
+            <Text14 Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>8,104,4,17</ClientRectangle>
+              <ClientRectangle>8,106,4,17</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,7</Font>
               <Guid>ed178d7384b549c6b5e7cab5c9177faa</Guid>
               <HorAlignment>Right</HorAlignment>
@@ -513,22 +460,51 @@
               <Parent isRef="6" />
               <Text>{w_GPEtiketRam.BarCode}</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,,Angle=270</TextOptions>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=False, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text14>
-            <StartPointPrimitive1 Ref="30" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
-              <ClientRectangle>19,0,0,0</ClientRectangle>
+            <Text11 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,66,7,21</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <Text>{w_GPEtiketRam.PiramidNumCell}   {PageNumber} из {TotalPageCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=False, Angle=270, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <BarCode3 Ref="30" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <Angle>Angle270</Angle>
+              <AutoScale>True</AutoScale>
+              <BackColor>Transparent</BackColor>
+              <BarCodeType Ref="31" type="Stimulsoft.Report.BarCodes.StiCode128AutoBarCodeType" isKey="true" />
+              <ClientRectangle>0,0,17,44</ClientRectangle>
+              <Code>{w_GPEtiketRam.CommentProject}</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>Black</ForeColor>
+              <Guid>bd5f1a58e9954480bbb230c2de1a435c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode3</Name>
+              <Page isRef="4" />
+              <Parent isRef="6" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode3>
+            <StartPointPrimitive1 Ref="32" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+              <ClientRectangle>19,0,0,0</ClientRectangle>
               <Name>StartPointPrimitive1</Name>
               <Page isRef="4" />
               <Parent isRef="6" />
               <ReferenceToGuid>e7f0bda3064c4cdfb4971b397b06d23d</ReferenceToGuid>
             </StartPointPrimitive1>
-            <EndPointPrimitive1 Ref="31" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+            <EndPointPrimitive1 Ref="33" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
               <ClientRectangle>19,118,0,0</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Name>EndPointPrimitive1</Name>
               <Page isRef="4" />
               <Parent isRef="6" />
@@ -538,7 +514,6 @@
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
           <DataSourceName>w_GPEtiketRam</DataSourceName>
-          <Expressions isList="true" count="0" />
           <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
           <Page isRef="4" />
@@ -548,35 +523,30 @@
             <value>PiramidOrder</value>
           </Sort>
         </DataBand1>
-        <EndPointPrimitive2 Ref="32" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+        <EndPointPrimitive2 Ref="34" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
           <ClientRectangle>165.1,161.36,0,0</ClientRectangle>
-          <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>EndPointPrimitive2</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
           <ReferenceToGuid>67ae3646f9884d29b865e68d994fc314</ReferenceToGuid>
         </EndPointPrimitive2>
-        <VerticalLinePrimitive1 Ref="33" type="VerticalLinePrimitive" isKey="true">
+        <VerticalLinePrimitive1 Ref="35" type="VerticalLinePrimitive" isKey="true">
           <ClientRectangle>19,12,0.254,118</ClientRectangle>
           <Color>Black</Color>
-          <Conditions isList="true" count="0" />
-          <EndCap Ref="34" type="Cap" isKey="true">
+          <EndCap Ref="36" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
-          <Expressions isList="true" count="0" />
           <Guid>e7f0bda3064c4cdfb4971b397b06d23d</Guid>
           <Name>VerticalLinePrimitive1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="35" type="Cap" isKey="true">
+          <StartCap Ref="37" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
           <Style>Dot</Style>
         </VerticalLinePrimitive1>
       </Components>
       <Conditions isList="true" count="0" />
-      <Expressions isList="true" count="0" />
       <Guid>fcac2aa2c2424ed697dbf247de61dffd</Guid>
       <Margins>6.35,6.35,6.35,0</Margins>
       <Name>Page1</Name>
@@ -584,8 +554,13 @@
       <PageWidth>93</PageWidth>
       <Report isRef="0" />
       <TitleBeforeHeader>True</TitleBeforeHeader>
+      <Watermark Ref="38" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
     </Page1>
   </Pages>
+  <PrinterSettings Ref="39" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -597,13 +572,13 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/29/2026 12:13:53 PM</ReportChanged>
+  <ReportChanged>7/31/2026 12:35:38 PM</ReportChanged>
   <ReportCreated>9/23/2024 3:12:55 PM</ReportCreated>
-  <ReportFile>D:\Develop\Dev5\Bin\Debug\ReportsGlass\Etiket_IZO_QR_PiramidOrder.mrt</ReportFile>
-  <ReportGuid>3f369637c5d4431cb9dde269209075cc</ReportGuid>
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\Etiket_IZO_QR_PiramidOrder.mrt</ReportFile>
+  <ReportGuid>a15d16c3c925479fa28978e801cb79cc</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
-  <ReportVersion>2024.1.2.0</ReportVersion>
+  <ReportVersion>2013.1.1600</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -621,6 +596,33 @@ namespace Reports
         public Report()        {
             this.InitializeComponent();
         }
+		
+		public string Translit(string text)
+		{
+			if (string.IsNullOrEmpty(text))
+				return text;
+
+			string[] rus =
+				{
+				"а","б","в","г","д","е","ё","ж","з","и","й",
+				"к","л","м","н","о","п","р","с","т","у","ф",
+				"х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я"
+				};
+
+			string[] eng =
+				{
+				"a","b","v","g","d","e","e","zh","z","i","y",
+				"k","l","m","n","o","p","r","s","t","u","f",
+				"h","c","ch","sh","sch","","y","","e","yu","ya"
+				};
+
+			string result = text.ToLower();
+
+			for (int i = 0; i &lt; rus.Length; i++)
+				result = result.Replace(rus[i], eng[i]);
+
+			return result;
+		}
 
 		private string ToText(string x) { return x; }
 		private string ToText(double x) { return x.ToString(); }

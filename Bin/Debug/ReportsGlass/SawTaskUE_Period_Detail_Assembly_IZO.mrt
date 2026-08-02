@@ -5,86 +5,83 @@
     <Databases isList="true" count="1">
       <PrimeSoft Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
         <Alias>PrimeSoft</Alias>
-        <ConnectionStringEncrypted>4BBl604IS83MGKzc6kzgl8Ju+c9WWZPwcWT5jfkEsS/jYMmDTVRRnUZvvJxzAWXb31S1z9lWY4HzSdVYahhiu/xamaHNfBPZawZNCHMlbnP8NHGCUFHKgeF4pcxhxPZjwsTNwmFpu4zLBrls4D3jKt9g3WhhCTFty0GcGGFE6z+BWg==</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>4FTL7ctde6RgQeHcThSxbtlY2UxPb3PI4hNZ8Gpc4SfDcNkoT0uTTctPxcTqcK2z38SLwk1Nq5lqRO1MZ3ThE43Q4S1VSvP17Aic7HfssZfccN8JRmijCexM/dzkfORj71bRSEZ+E4HLCOiQ5YRiM8JaYctFA/KZc3u5bGTY4//VxM2hSGy6gWxvnPRiXOBn5FTZyEh8u6R/WujY6VzjKpA6uc9iWdmZYgg5pf5J4eff0rPr1VHbkOkInNxiiHcT4xbf68VqMfHiac0c6RxhEt9aU4NhXTGJ42H1KOpMsbvERsspTVvTgWtJdUTp2CV63mzZiWFRo81FWG2E5RglZ8XyzQLdBTFVaWmhXOpsoi/ZVLVLxVA=</ConnectionStringEncrypted>
+        <Key>6ac4d3d097db4290a88dda07f94a85f3</Key>
         <Name>PrimeSoft</Name>
       </PrimeSoft>
     </Databases>
     <DataSources isList="true" count="2">
-      <f_SawTaskUE_Period_Detail Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
-        <Alias>f_SawTaskUE_Period_Detail</Alias>
-        <Columns isList="true" count="13">
+      <f_SawTaskUE_Period_Detail_Assembly Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>f_SawTaskUE_Period_Detail_Assembly</Alias>
+        <Columns isList="true" count="11">
           <value>idTask,System.Int32</value>
           <value>AccountNum,System.String</value>
           <value>idSawTask,System.Int32</value>
           <value>SawTaskName,System.String</value>
-          <value>CuttingTableName,System.String</value>
           <value>DateComplete,System.DateTime</value>
           <value>nSmena,System.Byte</value>
           <value>idGlass,System.Int32</value>
           <value>GlassName,System.String</value>
           <value>nCountDetails,System.Int32</value>
-          <value>SumArea,System.Double</value>
-          <value>SumAreaUZM,System.Double</value>
-          <value>SumWasteArea,System.Double</value>
+          <value>GPName,System.String</value>
+          <value>SumUE,System.Double</value>
         </Columns>
-        <CommandTimeout>30</CommandTimeout>
-        <ConnectOnStart>False</ConnectOnStart>
+        <CommandTimeout>600</CommandTimeout>
         <Dictionary isRef="1" />
-        <Name>f_SawTaskUE_Period_Detail</Name>
+        <Key>7bfcc96157fb4ae08db581f375308556</Key>
+        <Name>f_SawTaskUE_Period_Detail_Assembly</Name>
         <NameInSource>PrimeSoft</NameInSource>
         <Parameters isList="true" count="0" />
         <SqlCommand>set dateformat dmy
-select * from dbo.f_SawTaskUE_Period_Detail_Cut({sDateBeg}, {sDateEnd}, 0)</SqlCommand>
-      </f_SawTaskUE_Period_Detail>
-      <f_SawTaskUE_Period_Operator Ref="4" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
-        <Alias>f_SawTaskUE_Period_Operator</Alias>
-        <Columns isList="true" count="17">
+select * from dbo.f_SawTaskUE_Period_Detail_Assembly({sDateBeg}, {sDateEnd}, 0)</SqlCommand>
+      </f_SawTaskUE_Period_Detail_Assembly>
+      <f_SawTaskUE_Period_Operator_Assembly Ref="4" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>f_SawTaskUE_Period_Operator_Assembly</Alias>
+        <Columns isList="true" count="13">
           <value>ID,System.Int32</value>
           <value>Name,System.String</value>
-          <value>DateComplete,System.DateTime</value>
-          <value>nCountDetails,System.Int32</value>
-          <value>SumArea,System.Double</value>
-          <value>SumAreaUZM,System.Double</value>
           <value>KTU,System.Decimal</value>
           <value>SumKTU,System.Decimal</value>
-          <value>dPriceOfUnitProd,System.Single</value>
-          <value>SumUE,System.Double</value>
+          <value>DateComplete,System.DateTime</value>
           <value>nSmena,System.Byte</value>
-          <value>CuttingTableName,System.String</value>
-          <value>PriceChina,System.Double</value>
-          <value>PriceLisec,System.Double</value>
-          <value>SumUEChina,System.Double</value>
-          <value>SumUELisec,System.Double</value>
-          <value>SumWasteArea,System.Double</value>
+          <value>dPriceOfUnitProd,System.Single</value>
+          <value>nCountDetails,System.Int32</value>
+          <value>GPName,System.String</value>
+          <value>SumUE,System.Double</value>
+          <value>idSawTask,System.Int32</value>
+          <value>SawTaskName,System.String</value>
+          <value>SawLimitName,System.String</value>
         </Columns>
-        <CommandTimeout>30</CommandTimeout>
+        <CommandTimeout>600</CommandTimeout>
         <Dictionary isRef="1" />
-        <Name>f_SawTaskUE_Period_Operator</Name>
+        <Key>472ea1f65b5146b9a13cb62a2a21bdb8</Key>
+        <Name>f_SawTaskUE_Period_Operator_Assembly</Name>
         <NameInSource>PrimeSoft</NameInSource>
         <Parameters isList="true" count="0" />
         <SqlCommand>set dateformat dmy
-
-
-select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</SqlCommand>
-      </f_SawTaskUE_Period_Operator>
+select * from dbo.f_SawTaskUE_Period_Operator_Assembly({sDateBeg}, {sDateEnd}, 0)</SqlCommand>
+      </f_SawTaskUE_Period_Operator_Assembly>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <UserFunctions isList="true" count="0" />
     <Variables isList="true" count="4">
-      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2010_x0027_,False,False</value>
-      <value>,sDateEnd,sDateEnd,System.String,_x0027_01.01.2050_x0027_,False,False</value>
-      <value>,dCoefTeam1,dCoefTeam1,System.Double,_x0031_.2,False,False</value>
-      <value>,dCoefTeam2,dCoefTeam2,System.Double,_x0032_.2,False,False</value>
+      <value>,sDateBeg,sDateBeg,,System.String,_x0027_01.01.2026_x0027_,False,False,False,False,,_x0037_3c409f493754cf99552e08f8004e2be</value>
+      <value>,sDateEnd,sDateEnd,,System.String,_x0027_01.01.2026_x0027_,False,False,False,False,,_x0038_06b6beff80a4c959278398491769d5d</value>
+      <value>,dCoefTeam1,dCoefTeam1,,System.Double,_x0031_.2,False,False,False,False</value>
+      <value>,dCoefTeam2,dCoefTeam2,,System.Double,_x0032_.2,False,False,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
+  <Key>3d9637a6a5cb4b94b84797c1cb0c5873</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="2">
     <Page1 Ref="5" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="29">
+      <Components isList="true" count="23">
         <PageHeaderBand1 Ref="6" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19,2.3</ClientRectangle>
@@ -93,12 +90,13 @@ select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</S
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,17.7,0.7</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,16,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="5" />
               <Parent isRef="6" />
-              <Text>Объём производства с {sDateBeg} по {sDateEnd} Подробный</Text>
+              <Text>Объём производства с {sDateBeg} по {sDateEnd}</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -107,64 +105,43 @@ select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</S
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.7,5.6,1.1</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>af4c03ff5362466a99bdca5ab43a7934</Guid>
               <Margins>10,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="5" />
               <Parent isRef="6" />
-              <Text>Участок: раскрой стекла</Text>
+              <Text>Участок: сборка СП</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
           </Components>
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Name>PageHeaderBand1</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </PageHeaderBand1>
-        <GroupHeaderBand9 Ref="9" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand2 Ref="9" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,3.5,19,0.8</ClientRectangle>
+          <ClientRectangle>0,3.5,19,0.9</ClientRectangle>
           <Components isList="true" count="1">
-            <Text16 Ref="10" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,19,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,16,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text16</Name>
-              <Page isRef="5" />
-              <Parent isRef="9" />
-              <Text>Стол {f_SawTaskUE_Period_Detail.CuttingTableName}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text16>
-          </Components>
-          <Condition>{f_SawTaskUE_Period_Detail.CuttingTableName}</Condition>
-          <Conditions isList="true" count="0" />
-          <Name>GroupHeaderBand9</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand9>
-        <GroupHeaderBand2 Ref="11" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,5.1,19,0.9</ClientRectangle>
-          <Components isList="true" count="1">
-            <Text30 Ref="12" type="Text" isKey="true">
+            <Text30 Ref="10" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightGreen</Brush>
-              <ClientRectangle>0,0,16.1,0.9</ClientRectangle>
+              <ClientRectangle>0,0,14.3,0.9</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
               <Guid>273e21043c164281975f3dd516fe86c3</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="5" />
-              <Parent isRef="11" />
-              <Text>Участок раскроя</Text>
+              <Parent isRef="9" />
+              <Text>Участок Сборки СП</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -172,280 +149,280 @@ select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</S
           </Components>
           <Condition>1=1</Condition>
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Guid>0ddb9386edfa448088df5e307803e0ba</Guid>
           <Name>GroupHeaderBand2</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </GroupHeaderBand2>
-        <ChildBand1 Ref="13" type="ChildBand" isKey="true">
+        <ChildBand1 Ref="11" type="ChildBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,6.8,19,1.2</ClientRectangle>
-          <Components isList="true" count="8">
-            <Text10 Ref="14" type="Text" isKey="true">
+          <ClientRectangle>0,5.2,19,1.2</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text10 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>0,0,2.1,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>9348091c59bd4207a307c748f562b3e4</Guid>
               <Margins>10,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
+              <Parent isRef="11" />
               <Text>Дата</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text14 Ref="15" type="Text" isKey="true">
+            <Text14 Ref="13" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>10.3,0,2,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>c7afb6e9a7f04b60923fc1c8e70fdb49</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
-              <Text>Площадь</Text>
+              <Parent isRef="11" />
+              <Text>УЕ</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text22 Ref="16" type="Text" isKey="true">
+            <Text22 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>4.8,0,2.4,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>c6621705a20f4b3ea9cd2152985c673e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
+              <Parent isRef="11" />
               <Text>№ Оптим.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text22>
-            <Text2 Ref="17" type="Text" isKey="true">
+            <Text2 Ref="15" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>3.4,0,1.4,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>8f9d5c88333d4a41a7c3076ba92f1f9e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
-              <Text>К-во стекла</Text>
+              <Parent isRef="11" />
+              <Text>К-во СП</Text>
               <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text4 Ref="18" type="Text" isKey="true">
+            <Text4 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>7.2,0,3.1,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>ba02d9f45b3e4a90ac9bd45190d8a213</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
-              <Text>Стекло</Text>
+              <Parent isRef="11" />
+              <Text>СП</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text17 Ref="19" type="Text" isKey="true">
+            <Text17 Ref="17" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
-              <ClientRectangle>14.1,0,2,1.2</ClientRectangle>
+              <ClientRectangle>12.3,0,2,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>92bdc578a94245d391673136eee3b14d</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
+              <Parent isRef="11" />
               <Text>№ Заказа</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text17>
-            <Text51 Ref="20" type="Text" isKey="true">
+            <Text51 Ref="18" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>LightCyan</Brush>
               <ClientRectangle>2.1,0,1.3,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Guid>4a854985779d42f0ac311a248cbc6519</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text51</Name>
               <Page isRef="5" />
-              <Parent isRef="13" />
+              <Parent isRef="11" />
               <Text>Смена</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text51>
-            <Text28 Ref="21" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>12.3,0,1.8,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>fe6049731f0d480bb7ab8cca0f5e1abd</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text28</Name>
-              <Page isRef="5" />
-              <Parent isRef="13" />
-              <Text>Площадь кромки</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text28>
           </Components>
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Name>ChildBand1</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </ChildBand1>
-        <GroupHeaderBand5 Ref="22" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand5 Ref="19" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,8.8,19,0</ClientRectangle>
+          <ClientRectangle>0,7.2,19,0</ClientRectangle>
           <Components isList="true" count="0" />
-          <Condition>{f_SawTaskUE_Period_Detail.DateComplete}</Condition>
+          <Condition>{f_SawTaskUE_Period_Detail_Assembly.DateComplete}</Condition>
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Name>GroupHeaderBand5</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </GroupHeaderBand5>
-        <GroupHeaderBand8 Ref="23" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand8 Ref="20" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9.6,19,0.5</ClientRectangle>
+          <ClientRectangle>0,8,19,0.5</ClientRectangle>
           <Components isList="true" count="3">
-            <Text71 Ref="24" type="Text" isKey="true">
+            <Text71 Ref="21" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Gainsboro</Brush>
               <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8,Bold</Font>
               <Guid>4f35059b128e41b6ae4bba515753f6ec</Guid>
               <Margins>2,0,0,0</Margins>
               <Name>Text71</Name>
               <Page isRef="5" />
-              <Parent isRef="23" />
-              <Text>     {f_SawTaskUE_Period_Detail.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <Parent isRef="20" />
+              <Text>     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text71>
-            <Text72 Ref="25" type="Text" isKey="true">
+            <Text72 Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Gainsboro</Brush>
               <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8,Bold</Font>
               <Guid>ceb2bf693bfb44dea9eee828a49cf17a</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,2,0,0</Margins>
               <Name>Text72</Name>
               <Page isRef="5" />
-              <Parent isRef="23" />
-              <Text>{f_SawTaskUE_Period_Detail.nSmena}</Text>
+              <Parent isRef="20" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.nSmena}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text72>
-            <Text73 Ref="26" type="Text" isKey="true">
+            <Text73 Ref="23" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Gainsboro</Brush>
-              <ClientRectangle>3.4,0,12.7,0.5</ClientRectangle>
+              <ClientRectangle>3.4,0,10.9,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8,Bold</Font>
               <Guid>fb26fdc61ad14a80ba364686702aec87</Guid>
               <Margins>0,2,0,0</Margins>
               <Name>Text73</Name>
               <Page isRef="5" />
-              <Parent isRef="23" />
+              <Parent isRef="20" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text73>
           </Components>
-          <Condition>{f_SawTaskUE_Period_Detail.nSmena}</Condition>
+          <Condition>{f_SawTaskUE_Period_Detail_Assembly.nSmena}</Condition>
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Guid>3b0da28de01d43d28a787cfb32532465</Guid>
           <Name>GroupHeaderBand8</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </GroupHeaderBand8>
-        <DataBand2 Ref="27" type="DataBand" isKey="true">
+        <DataBand2 Ref="24" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,10.9,19,0.5</ClientRectangle>
-          <Components isList="true" count="8">
-            <Text9 Ref="28" type="Text" isKey="true">
+          <ClientRectangle>0,9.3,19,0.5</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text9 Ref="25" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>2,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>     {f_SawTaskUE_Period_Detail.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <Parent isRef="24" />
+              <Text>     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text12 Ref="29" type="Text" isKey="true">
+            <Text12 Ref="26" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.4,0,1.4,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>4481b1094449404fbc251e941e8928e1</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,2,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.nCountDetails}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.nCountDetails}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text13 Ref="30" type="Text" isKey="true">
+            <Text13 Ref="27" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>456e16e3150147f5bc666438402f137d</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,2,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.SumArea}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.SumUE}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="31" type="NumberFormat" isKey="true">
+              <TextFormat Ref="28" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -453,89 +430,1286 @@ select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</S
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text3 Ref="32" type="Text" isKey="true">
+            <Text3 Ref="29" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>4.8,0,2.4,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>a77767782ad54a9a8a059dba747eea74</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>2,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.SawTaskName}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.SawTaskName}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text6 Ref="33" type="Text" isKey="true">
+            <Text6 Ref="30" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.2,0,3.1,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>816425bc211548508c03f4406ad4d70e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>2,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.GlassName}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.GPName}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text25 Ref="34" type="Text" isKey="true">
+            <Text25 Ref="31" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.1,0,2,0.5</ClientRectangle>
+              <ClientRectangle>12.3,0,2,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>7b7acb587260425dbbcd97a9e82a69b3</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>2,0,0,0</Margins>
               <Name>Text25</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.AccountNum}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.AccountNum}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text25>
-            <Text7 Ref="35" type="Text" isKey="true">
+            <Text7 Ref="32" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>32f0b30b4d0940eea50010911e66d297</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,2,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.nSmena}</Text>
+              <Parent isRef="24" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.nSmena}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>f_SawTaskUE_Period_Detail_Assembly</DataSourceName>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand2</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataBand2>
+        <GroupFooterBand8 Ref="33" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10.6,19,0.8</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text74 Ref="34" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>b17b58e7098b433d93ef7c0f2c9f0e90</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text74</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <Text>     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text74>
+            <Text75 Ref="35" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>6cd34ea8428b494daeac067b9c4e7551</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text75</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <Text>{f_SawTaskUE_Period_Detail_Assembly.nSmena}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text75>
+            <Text76 Ref="36" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>4.8,0,5.5,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>e3fc4ca623394110b1ba093831d818b0</Guid>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text76</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <Text>   Суммарно:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text76>
+            <Text77 Ref="37" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>073d448857da42e99f1b0aba26997da6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text77</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <Text>{Sum(f_SawTaskUE_Period_Detail_Assembly.SumUE)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="38" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text77>
+            <Text80 Ref="39" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>12.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>13505bdc2fb047fba6a4a2d62e233565</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text80</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="40" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text80>
+            <Text82 Ref="41" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>3.4,0,1.4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>5486101f58e0471dac4188d37a2766f3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text82</Name>
+              <Page isRef="5" />
+              <Parent isRef="33" />
+              <Text>{Sum(f_SawTaskUE_Period_Detail_Assembly.nCountDetails)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text82>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>4bd239890b674111a21ded230fb35c27</Guid>
+          <Name>GroupFooterBand8</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand8>
+        <GroupFooterBand7 Ref="42" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,12.2,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>f10670e6e420479695618df7761e31c4</Guid>
+          <Name>GroupFooterBand7</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand7>
+        <GroupFooterBand2 Ref="43" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,13,19,2.5</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text18 Ref="44" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>d7055b3c25a345eda1c28bf5b0edcfdf</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <Text>Итого:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="45" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>3.4,0,1.4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>7ff6e1d8f830400cb307c48656001222</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <Text>{Sum(f_SawTaskUE_Period_Detail_Assembly.nCountDetails)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text20 Ref="46" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>4.8,0,2.4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>8f08a520155e4f5da770ce8202443142</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="47" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text21 Ref="48" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>7.2,0,3.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>7414ae4f17c44bf199af89acde866cff</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="49" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text23 Ref="50" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>2a98033496ed4f72a843f8614c1a69ff</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <Text>{Sum(f_SawTaskUE_Period_Detail_Assembly.SumUE)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="51" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text26 Ref="52" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>12.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>deb5aace6286404b9ace33cf52c2becf</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="53" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+            <Text8 Ref="54" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>95694fe942694d81aa34453154f9f16e</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="5" />
+              <Parent isRef="43" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupFooterBand2</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand2>
+        <GroupHeaderBand1 Ref="55" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,16.3,19,0.9</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text36 Ref="56" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>0,0,18.1,0.9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>d0112e77a01f4bb09149bd05fdf06771</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="5" />
+              <Parent isRef="55" />
+              <Text>Участок сборки (цена : {f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+          </Components>
+          <Condition>1=1</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>a334daa80e0940e9ad1929263053349f</Guid>
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand1>
+        <ChildBand2 Ref="57" type="ChildBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,18,19,1.2</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text38 Ref="58" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>0,0,2.1,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>c5b973f2b4d6494f87ca366e84d00e9e</Guid>
+              <Margins>10,0,0,0</Margins>
+              <Name>Text38</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Дата</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text38>
+            <Text45 Ref="59" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>7.2,0,5,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>2c41326037b64f04a69d522a24cbd8f2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Оператор</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text45>
+            <Text46 Ref="60" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>14.1,0,2,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>66a6aafac6b34e9cbacbae2dd292ae05</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text46</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>У.Е.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text46>
+            <Text11 Ref="61" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>2.1,0,1.3,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>cdde2c70edd8494f96cf873ae6948f7f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Смена</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text16 Ref="62" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>16.1,0,2,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>cdb38cf15d004794a717ad77fb169325</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Сумма</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text33 Ref="63" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>5,0,2.2,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>53efd25d3cdd40369838e945d790d30e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text33</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Производ. задание</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text33>
+            <Text41 Ref="64" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>12.2,0,1.9,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>6a8ebec609a4440b913f03373286b9bb</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text41</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>КТУ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text41>
+            <Text47 Ref="65" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightCyan</Brush>
+              <ClientRectangle>3.4,0,1.6,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>9d5bd0a323674123b732070fe54bce2c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text47</Name>
+              <Page isRef="5" />
+              <Parent isRef="57" />
+              <Text>Линия</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text47>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>095c03725a484368974788fa64c6560d</Guid>
+          <Name>ChildBand2</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </ChildBand2>
+        <GroupHeaderBand6 Ref="66" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,20,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{f_SawTaskUE_Period_Operator_Assembly.DateComplete}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>2fcd1e443f274942a1ae9251ce04eb74</Guid>
+          <Name>GroupHeaderBand6</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand6>
+        <GroupHeaderBand7 Ref="67" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,20.8,19,0.5</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text61 Ref="68" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>aa4f09a769314997bb09c001b6e49ce7</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text61</Name>
+              <Page isRef="5" />
+              <Parent isRef="67" />
+              <Text>   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text61>
+            <Text62 Ref="69" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>e1ae45778ef14e2b9809b59768ca0219</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text62</Name>
+              <Page isRef="5" />
+              <Parent isRef="67" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.nSmena}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text62>
+            <Text70 Ref="70" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>5,0,13.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>da81df94df4a4c76b57005190d141951</Guid>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text70</Name>
+              <Page isRef="5" />
+              <Parent isRef="67" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text70>
+            <Text54 Ref="71" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>3.4,0,1.6,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>4b333fe0af4143a897844c1fe2bc2620</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text54</Name>
+              <Page isRef="5" />
+              <Parent isRef="67" />
               <TextBrush>Black</TextBrush>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text7>
-            <Text29 Ref="36" type="Text" isKey="true">
+            </Text54>
+          </Components>
+          <Condition>{f_SawTaskUE_Period_Operator_Assembly.nSmena}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>8342544d625d4fdf9ffd4e2d9545d14c</Guid>
+          <Name>GroupHeaderBand7</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand7>
+        <DataBand1 Ref="72" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,22.1,19,0.5</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text31 Ref="73" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.3,0,1.8,0.5</ClientRectangle>
+              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>b710cac2c1db4dfbb53c5abf1d02e79c</Guid>
+              <Guid>2c12d73d7b9343c39d5e57247521ccb1</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text31</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text31>
+            <Text32 Ref="74" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.2,0,5,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>30fd2f534c3b43c78f95a11863185efc</Guid>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text32</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.Name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text32>
+            <Text48 Ref="75" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.1,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>d78797e1d4f6472c94aa91836ed9b3ed</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.SumUE}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="76" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text48>
+            <Text15 Ref="77" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>154bc5a9439440e3944d6cc6e564fab1</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.nSmena}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text24 Ref="78" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.1,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>7cb3243d122a44ce9b460ebbef860219</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="79" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text34 Ref="80" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,0,2.2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>53e2ae7f77194038b691ed84a6ae4e23</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.SawTaskName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text34>
+            <Text42 Ref="81" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.2,0,1.9,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6e2bd2aa3b9645e193daa58d0e4f155b</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.KTU}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="82" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text42>
+            <Text55 Ref="83" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.4,0,1.6,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>5579b3ddeb134e34b01a55cc053a251c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text55</Name>
+              <Page isRef="5" />
+              <Parent isRef="72" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.SawLimitName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text55>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>f_SawTaskUE_Period_Operator_Assembly</DataSourceName>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Guid>c880f1523cc349979cfe8b07e0077782</Guid>
+          <Name>DataBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <GroupFooterBand6 Ref="84" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,23.4,19,0.9</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text63 Ref="85" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>a416709c6cd34383bb5a24ec69a55528</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text63</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <Text>   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text63>
+            <Text64 Ref="86" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>508b8d47f53649f9afa21aeb0f5dbcb2</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text64</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.nSmena}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text64>
+            <Text65 Ref="87" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>7.2,0,5,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>0b228f236f2045d5aa0ad80f8b2d870a</Guid>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text65</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <Text>Всего</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text65>
+            <Text68 Ref="88" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>14.1,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>262968528a664a22bc01f2591bbf68fc</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text68</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="89" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text68>
+            <Text27 Ref="90" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>16.1,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>a2716d67759744b2a2bd8b127ee0c883</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="91" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text35 Ref="92" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>5,0,2.2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>c6f796c1f4b74a9eb60d6dc405703e97</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text35</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text35>
+            <Text43 Ref="93" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>12.2,0,1.9,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>3710b6c1afc64f799f6a6bc328d7b134</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text43</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="94" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text43>
+            <Text53 Ref="95" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Gainsboro</Brush>
+              <ClientRectangle>3.4,0,1.6,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>0a58ad6175da433898c6ba3584a97519</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text53</Name>
+              <Page isRef="5" />
+              <Parent isRef="84" />
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text53>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>a58225277cf5487c933a123ed000ae1b</Guid>
+          <Name>GroupFooterBand6</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand6>
+        <GroupFooterBand5 Ref="96" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,25.1,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>3ad3a653af964650b5ce8e6c33c16d8c</Guid>
+          <Name>GroupFooterBand5</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand5>
+        <GroupFooterBand1 Ref="97" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,25.9,19,1.2</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text37 Ref="98" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>0,0,14.2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>065e2549a23349b0b045bdb00030beb0</Guid>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text37</Name>
+              <Page isRef="5" />
+              <Parent isRef="97" />
+              <Text>Итого:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text37>
+            <Text49 Ref="99" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>14.2,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>f917a7cf78144bc6ad6beb4dc8cb8a40</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text49</Name>
+              <Page isRef="5" />
+              <Parent isRef="97" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="100" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text49>
+            <Text28 Ref="101" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>16.2,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>af8fe08b11c2472095614a44f803a89f</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="5" />
+              <Parent isRef="97" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="102" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>4e919f619c3c490189c105c47a16f2a1</Guid>
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand1>
+        <GroupHeaderBand4 Ref="103" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,27.9,19,0.9</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text44 Ref="104" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>0,0,14.3,0.9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>51f0cf59daef48fc9df62aa9cb6b1194</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text44</Name>
+              <Page isRef="5" />
+              <Parent isRef="103" />
+              <Text>Всего</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text44>
+            <Text39 Ref="105" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>10.3,0,2,0.9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>531f85b5f3684abc945efe6d21006b5b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text39</Name>
+              <Page isRef="5" />
+              <Parent isRef="103" />
+              <Text>У.Е.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="106" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text39>
+            <Text40 Ref="107" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>LightGreen</Brush>
+              <ClientRectangle>12.3,0,2,0.9</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>471725ed376c48f8be756dcb7a71b1ff</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="5" />
+              <Parent isRef="103" />
+              <Text>У.Е. * Цена</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="108" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+          </Components>
+          <Condition>1=1</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>2105888e856c46fa8a1f1a3339bdb1e1</Guid>
+          <Name>GroupHeaderBand4</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand4>
+        <GroupHeaderBand3 Ref="109" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,29.6,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{f_SawTaskUE_Period_Operator_Assembly.Name}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>1cfc1206644a44a9aa17637051fcf8b8</Guid>
+          <Name>GroupHeaderBand3</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand3>
+        <DataBand3 Ref="110" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,30.4,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>f_SawTaskUE_Period_Operator_Assembly</DataSourceName>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Guid>81682a2bec194719a25d14876561dbb0</Guid>
+          <Name>DataBand3</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataBand3>
+        <GroupFooterBand3 Ref="111" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,31.2,19,0.5</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text52 Ref="112" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,3.4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>18e9d7d5704241aab46e9aa6e42028ae</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>2,0,0,0</Margins>
+              <Name>Text52</Name>
+              <Page isRef="5" />
+              <Parent isRef="111" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text52>
+            <Text56 Ref="113" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.4,0,6.9,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>db47edd8482d4e71b5b892380fb6330b</Guid>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text56</Name>
+              <Page isRef="5" />
+              <Parent isRef="111" />
+              <Text>{f_SawTaskUE_Period_Operator_Assembly.Name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text56>
+            <Text50 Ref="114" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6587e742b5474fa1809200af2d248fc0</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,2,0,0</Margins>
+              <Name>Text50</Name>
+              <Page isRef="5" />
+              <Parent isRef="111" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="115" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text50>
+            <Text29 Ref="116" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.3,0,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>a13d1c61465b41a69a6d98b1f6702c1a</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,2,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="5" />
-              <Parent isRef="27" />
-              <Text>{f_SawTaskUE_Period_Detail.SumWasteArea}</Text>
+              <Parent isRef="111" />
+              <Text>{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="37" type="NumberFormat" isKey="true">
+              <TextFormat Ref="117" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator> </GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -545,1276 +1719,29 @@ select * from dbo.f_SawTaskUE_Period_Operator_Cut({sDateBeg}, {sDateEnd}, 0);</S
             </Text29>
           </Components>
           <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>f_SawTaskUE_Period_Detail</DataSourceName>
-          <Filters isList="true" count="0" />
-          <Name>DataBand2</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-          <Sort isList="true" count="8">
-            <value>ASC</value>
-            <value>DateComplete</value>
-            <value>ASC</value>
-            <value>nSmena</value>
-            <value>ASC</value>
-            <value>GlassName</value>
-            <value>ASC</value>
-            <value>SawTaskName</value>
-          </Sort>
-        </DataBand2>
-        <GroupFooterBand8 Ref="38" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.2,19,0.8</ClientRectangle>
-          <Components isList="true" count="7">
-            <Text74 Ref="39" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>b17b58e7098b433d93ef7c0f2c9f0e90</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text74</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>     {f_SawTaskUE_Period_Detail.DateComplete.ToString("dd.MM.yyyy")}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text74>
-            <Text75 Ref="40" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>6cd34ea8428b494daeac067b9c4e7551</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text75</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>{f_SawTaskUE_Period_Detail.nSmena}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text75>
-            <Text76 Ref="41" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>4.8,0,5.5,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>e3fc4ca623394110b1ba093831d818b0</Guid>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text76</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>   Суммарно:</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text76>
-            <Text77 Ref="42" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>073d448857da42e99f1b0aba26997da6</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text77</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.SumArea)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="43" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text77>
-            <Text80 Ref="44" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>14.1,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>13505bdc2fb047fba6a4a2d62e233565</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text80</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="45" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text80>
-            <Text82 Ref="46" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>3.4,0,1.4,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>5486101f58e0471dac4188d37a2766f3</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text82</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.nCountDetails)}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text82>
-            <Text35 Ref="47" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>12.3,0,1.8,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>2ad7ebc47b2f4efaaadd0f51a9d5163d</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text35</Name>
-              <Page isRef="5" />
-              <Parent isRef="38" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.SumWasteArea)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="48" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text35>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Guid>4bd239890b674111a21ded230fb35c27</Guid>
-          <Name>GroupFooterBand8</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand8>
-        <GroupFooterBand9 Ref="49" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,13.8,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <Guid>349005a87bb14c4eada544fd56273849</Guid>
-          <Name>GroupFooterBand9</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand9>
-        <GroupFooterBand7 Ref="50" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,14.6,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <Guid>f10670e6e420479695618df7761e31c4</Guid>
-          <Name>GroupFooterBand7</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand7>
-        <GroupFooterBand2 Ref="51" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,15.4,19,2.5</ClientRectangle>
-          <Components isList="true" count="8">
-            <Text18 Ref="52" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>d7055b3c25a345eda1c28bf5b0edcfdf</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text18</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <Text>Итого:</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text18>
-            <Text19 Ref="53" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>3.4,0,1.4,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>7ff6e1d8f830400cb307c48656001222</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text19</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.nCountDetails)}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text19>
-            <Text20 Ref="54" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>4.8,0,2.4,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>8f08a520155e4f5da770ce8202443142</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text20</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="55" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text20>
-            <Text21 Ref="56" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>7.2,0,3.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>7414ae4f17c44bf199af89acde866cff</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text21</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="57" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text21>
-            <Text23 Ref="58" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>2a98033496ed4f72a843f8614c1a69ff</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text23</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.SumArea)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="59" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text23>
-            <Text26 Ref="60" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>14.1,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>deb5aace6286404b9ace33cf52c2becf</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text26</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="61" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text26>
-            <Text8 Ref="62" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>95694fe942694d81aa34453154f9f16e</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text8</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text8>
-            <Text40 Ref="63" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>12.3,0,1.8,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>1e0dd3a117244b50852cd0a3da0a0b62</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text40</Name>
-              <Page isRef="5" />
-              <Parent isRef="51" />
-              <Text>{Sum(f_SawTaskUE_Period_Detail.SumWasteArea)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="64" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text40>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Name>GroupFooterBand2</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand2>
-        <GroupHeaderBand10 Ref="65" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,18.7,19,0.8</ClientRectangle>
-          <Components isList="true" count="1">
-            <Text24 Ref="66" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,19,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,16,Bold</Font>
-              <Guid>7c0235132e91404fa8dad6328bfb600c</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text24</Name>
-              <Page isRef="5" />
-              <Parent isRef="65" />
-              <Text>{f_SawTaskUE_Period_Operator.CuttingTableName}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-            </Text24>
-          </Components>
-          <Condition>{f_SawTaskUE_Period_Operator.CuttingTableName}</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>c6ff9a03d2ef420686244a74dc31e17c</Guid>
-          <Name>GroupHeaderBand10</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand10>
-        <GroupHeaderBand1 Ref="67" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,20.3,19,0.9</ClientRectangle>
-          <Components isList="true" count="1">
-            <Text36 Ref="68" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>0,0,17.2,0.9</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,12,Bold</Font>
-              <Guid>d0112e77a01f4bb09149bd05fdf06771</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text36</Name>
-              <Page isRef="5" />
-              <Parent isRef="67" />
-              <Text>Участок раскроя (цена : {
-IIF(f_SawTaskUE_Period_Operator.CuttingTableName == "Китай",   f_SawTaskUE_Period_Operator.PriceChina,
-IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskUE_Period_Operator.PriceLisec, f_SawTaskUE_Period_Operator.dPriceOfUnitProd))})</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text36>
-          </Components>
-          <Condition>1=1</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>a334daa80e0940e9ad1929263053349f</Guid>
-          <Name>GroupHeaderBand1</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand1>
-        <ChildBand2 Ref="69" type="ChildBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,22,19,1.2</ClientRectangle>
-          <Components isList="true" count="7">
-            <Text38 Ref="70" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>0,0,2.1,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>c5b973f2b4d6494f87ca366e84d00e9e</Guid>
-              <Margins>10,0,0,0</Margins>
-              <Name>Text38</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>Дата</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text38>
-            <Text39 Ref="71" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>10.3,0,2,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>6f16c4a6d3924a358ef31b3d05d918d4</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text39</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>Площадь</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text39>
-            <Text45 Ref="72" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>3.4,0,6.9,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>2c41326037b64f04a69d522a24cbd8f2</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text45</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>Оператор</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text45>
-            <Text47 Ref="73" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>13.9,0,1.3,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>2ed348d0a5e347309e89e5e398fe5963</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text47</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>КТУ</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text47>
-            <Text46 Ref="74" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>15.2,0,2,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>66a6aafac6b34e9cbacbae2dd292ae05</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text46</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>руб.</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text46>
-            <Text11 Ref="75" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>2.1,0,1.3,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>cdde2c70edd8494f96cf873ae6948f7f</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>Смена</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text43 Ref="76" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightCyan</Brush>
-              <ClientRectangle>12.3,0,1.6,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>7b1d27172b284758a1e37fe6ea8910e0</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text43</Name>
-              <Page isRef="5" />
-              <Parent isRef="69" />
-              <Text>Площ. кромки</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text43>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Guid>095c03725a484368974788fa64c6560d</Guid>
-          <Name>ChildBand2</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </ChildBand2>
-        <GroupHeaderBand6 Ref="77" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,24,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Condition>{f_SawTaskUE_Period_Operator.DateComplete}</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>2fcd1e443f274942a1ae9251ce04eb74</Guid>
-          <Name>GroupHeaderBand6</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand6>
-        <GroupHeaderBand7 Ref="78" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,24.8,19,0.5</ClientRectangle>
-          <Components isList="true" count="3">
-            <Text61 Ref="79" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>aa4f09a769314997bb09c001b6e49ce7</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text61</Name>
-              <Page isRef="5" />
-              <Parent isRef="78" />
-              <Text>   {f_SawTaskUE_Period_Operator.DateComplete.ToString("dd.MM.yyyy")}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text61>
-            <Text62 Ref="80" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>e1ae45778ef14e2b9809b59768ca0219</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text62</Name>
-              <Page isRef="5" />
-              <Parent isRef="78" />
-              <Text>{f_SawTaskUE_Period_Operator.nSmena}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text62>
-            <Text70 Ref="81" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>3.4,0,13.8,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>da81df94df4a4c76b57005190d141951</Guid>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text70</Name>
-              <Page isRef="5" />
-              <Parent isRef="78" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text70>
-          </Components>
-          <Condition>{f_SawTaskUE_Period_Operator.nSmena}</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>8342544d625d4fdf9ffd4e2d9545d14c</Guid>
-          <Name>GroupHeaderBand7</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand7>
-        <DataBand1 Ref="82" type="DataBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,26.1,19,0.5</ClientRectangle>
-          <Components isList="true" count="7">
-            <Text31 Ref="83" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>2c12d73d7b9343c39d5e57247521ccb1</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text31</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>   {f_SawTaskUE_Period_Operator.DateComplete.ToString("dd.MM.yyyy")}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text31>
-            <Text32 Ref="84" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>3.4,0,6.9,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>30fd2f534c3b43c78f95a11863185efc</Guid>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text32</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{f_SawTaskUE_Period_Operator.Name}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text32>
-            <Text33 Ref="85" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>07c099891709415495581211b7cf1153</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text33</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{f_SawTaskUE_Period_Operator.SumArea}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="86" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text33>
-            <Text34 Ref="87" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>13.9,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>1092b0bc23444f3f87dc52dc619082c2</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text34</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{f_SawTaskUE_Period_Operator.KTU}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="88" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text34>
-            <Text48 Ref="89" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>15.2,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>d78797e1d4f6472c94aa91836ed9b3ed</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text48</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{
-IIF(f_SawTaskUE_Period_Operator.CuttingTableName == "Китай",   f_SawTaskUE_Period_Operator.SumUEChina,
-IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE))}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="90" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text48>
-            <Text15 Ref="91" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>154bc5a9439440e3944d6cc6e564fab1</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text15</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{f_SawTaskUE_Period_Operator.nSmena}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text15>
-            <Text55 Ref="92" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>12.3,0,1.6,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>670116a6e11e4bd381864c21df8220f8</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text55</Name>
-              <Page isRef="5" />
-              <Parent isRef="82" />
-              <Text>{f_SawTaskUE_Period_Operator.SumWasteArea}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="93" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text55>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>f_SawTaskUE_Period_Operator</DataSourceName>
-          <Filters isList="true" count="0" />
-          <Guid>c880f1523cc349979cfe8b07e0077782</Guid>
-          <Name>DataBand1</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-          <Sort isList="true" count="8">
-            <value>ASC</value>
-            <value>DateComplete</value>
-            <value>ASC</value>
-            <value>nSmena</value>
-            <value>DESC</value>
-            <value>KTU</value>
-            <value>ASC</value>
-            <value>Name</value>
-          </Sort>
-        </DataBand1>
-        <GroupFooterBand6 Ref="94" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,27.4,19,0.9</ClientRectangle>
-          <Components isList="true" count="7">
-            <Text63 Ref="95" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>0,0,2.1,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>a416709c6cd34383bb5a24ec69a55528</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text63</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <Text>   {f_SawTaskUE_Period_Operator.DateComplete.ToString("dd.MM.yyyy")}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text63>
-            <Text64 Ref="96" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>2.1,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>508b8d47f53649f9afa21aeb0f5dbcb2</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text64</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <Text>{f_SawTaskUE_Period_Operator.nSmena}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text64>
-            <Text65 Ref="97" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>3.4,0,6.9,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>0b228f236f2045d5aa0ad80f8b2d870a</Guid>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text65</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <Text>Всего</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text65>
-            <Text66 Ref="98" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>e2309679fc454cbe996edaf9c18c7cae</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text66</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="99" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text66>
-            <Text68 Ref="100" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>15.2,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>262968528a664a22bc01f2591bbf68fc</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text68</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <Text>{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == "Китай",   f_SawTaskUE_Period_Operator.SumUEChina,
-	 IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}
-</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="101" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text68>
-            <Text69 Ref="102" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>13.9,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>2cfbcd9c9cd8466d8fd590c67632b4cb</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text69</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="103" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text69>
-            <Text57 Ref="104" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Gainsboro</Brush>
-              <ClientRectangle>12.3,0,1.6,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>f9bae319b2454ea5b34f0539ca957e97</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text57</Name>
-              <Page isRef="5" />
-              <Parent isRef="94" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="105" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text57>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Guid>a58225277cf5487c933a123ed000ae1b</Guid>
-          <Name>GroupFooterBand6</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand6>
-        <GroupFooterBand5 Ref="106" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,29.1,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <Guid>3ad3a653af964650b5ce8e6c33c16d8c</Guid>
-          <Name>GroupFooterBand5</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand5>
-        <GroupFooterBand1 Ref="107" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,29.9,19,1.2</ClientRectangle>
-          <Components isList="true" count="5">
-            <Text37 Ref="108" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>0,0,10.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8,Bold</Font>
-              <Guid>065e2549a23349b0b045bdb00030beb0</Guid>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text37</Name>
-              <Page isRef="5" />
-              <Parent isRef="107" />
-              <Text>Итого:</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text37>
-            <Text41 Ref="109" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>942d4b19106a49e581d382b5b586684a</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text41</Name>
-              <Page isRef="5" />
-              <Parent isRef="107" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="110" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text41>
-            <Text42 Ref="111" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>13.9,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>4ffc65f0c4464c589c0bce85e3dd020a</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text42</Name>
-              <Page isRef="5" />
-              <Parent isRef="107" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="112" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text42>
-            <Text49 Ref="113" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>15.2,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>f917a7cf78144bc6ad6beb4dc8cb8a40</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text49</Name>
-              <Page isRef="5" />
-              <Parent isRef="107" />
-              <Text>{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == "Китай",   f_SawTaskUE_Period_Operator.SumUEChina,
-	 IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="114" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text49>
-            <Text58 Ref="115" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>12.3,0,1.6,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>0bfbda2e772e4c1cb9731977322917f4</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text58</Name>
-              <Page isRef="5" />
-              <Parent isRef="107" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="116" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text58>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Guid>4e919f619c3c490189c105c47a16f2a1</Guid>
-          <Name>GroupFooterBand1</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand1>
-        <GroupFooterBand10 Ref="117" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,31.9,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <Guid>9dc2e635b4df4c3f800de3d7597f839d</Guid>
-          <Name>GroupFooterBand10</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand10>
-        <GroupHeaderBand11 Ref="118" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,32.7,19,0.8</ClientRectangle>
-          <Components isList="true" count="1">
-            <Text27 Ref="119" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,19,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,16,Bold</Font>
-              <Guid>eac85b4a72db41b99631f4bebe29bffb</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text27</Name>
-              <Page isRef="5" />
-              <Parent isRef="118" />
-              <Text>{f_SawTaskUE_Period_Operator.CuttingTableName}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
-            </Text27>
-          </Components>
-          <Condition>{f_SawTaskUE_Period_Operator.CuttingTableName}</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>c0e6ee3e36d5454b919bfb706678e53c</Guid>
-          <Name>GroupHeaderBand11</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand11>
-        <GroupHeaderBand4 Ref="120" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,34.3,19,0.9</ClientRectangle>
-          <Components isList="true" count="1">
-            <Text44 Ref="121" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>LightGreen</Brush>
-              <ClientRectangle>0,0,15.6,0.9</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,12,Bold</Font>
-              <Guid>51f0cf59daef48fc9df62aa9cb6b1194</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text44</Name>
-              <Page isRef="5" />
-              <Parent isRef="120" />
-              <Text>Всего</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text44>
-          </Components>
-          <Condition>1=1</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>2105888e856c46fa8a1f1a3339bdb1e1</Guid>
-          <Name>GroupHeaderBand4</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand4>
-        <GroupHeaderBand3 Ref="122" type="GroupHeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,36,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Condition>{f_SawTaskUE_Period_Operator.Name}</Condition>
-          <Conditions isList="true" count="0" />
-          <Guid>1cfc1206644a44a9aa17637051fcf8b8</Guid>
-          <Name>GroupHeaderBand3</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupHeaderBand3>
-        <DataBand3 Ref="123" type="DataBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,36.8,19,0</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>f_SawTaskUE_Period_Operator</DataSourceName>
-          <Filters isList="true" count="0" />
-          <Guid>81682a2bec194719a25d14876561dbb0</Guid>
-          <Name>DataBand3</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-          <Sort isList="true" count="2">
-            <value>ASC</value>
-            <value>DateComplete</value>
-          </Sort>
-        </DataBand3>
-        <GroupFooterBand3 Ref="124" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,37.6,19,0.5</ClientRectangle>
-          <Components isList="true" count="5">
-            <Text52 Ref="125" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,3.4,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>18e9d7d5704241aab46e9aa6e42028ae</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>2,0,0,0</Margins>
-              <Name>Text52</Name>
-              <Page isRef="5" />
-              <Parent isRef="124" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text52>
-            <Text53 Ref="126" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.3,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>685a6638fbc24cf3848851146cd5e5dc</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text53</Name>
-              <Page isRef="5" />
-              <Parent isRef="124" />
-              <Text>{IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), 
-	 Sum(f_SawTaskUE_Period_Operator.SumArea + f_SawTaskUE_Period_Operator.SumWasteArea), 
-	 Sum(f_SawTaskUE_Period_Operator.SumArea))}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="127" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text53>
-            <Text54 Ref="128" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>12.3,0,1.3,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>6be7d8d9446c4bbf8824b00a671175af</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text54</Name>
-              <Page isRef="5" />
-              <Parent isRef="124" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="129" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text54>
-            <Text56 Ref="130" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>3.4,0,6.9,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>db47edd8482d4e71b5b892380fb6330b</Guid>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text56</Name>
-              <Page isRef="5" />
-              <Parent isRef="124" />
-              <Text>{f_SawTaskUE_Period_Operator.Name}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text56>
-            <Text50 Ref="131" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,0,2,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>6587e742b5474fa1809200af2d248fc0</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,2,0,0</Margins>
-              <Name>Text50</Name>
-              <Page isRef="5" />
-              <Parent isRef="124" />
-              <Text>{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == "Китай",   f_SawTaskUE_Period_Operator.SumUEChina,
-	 IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="132" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator> </GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text50>
-          </Components>
-          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Guid>97d7cc5381c8482e876aecdd378faeef</Guid>
           <Name>GroupFooterBand3</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </GroupFooterBand3>
-        <GroupFooterBand4 Ref="133" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand4 Ref="118" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,38.9,19,0.8</ClientRectangle>
+          <ClientRectangle>0,32.5,19,0.8</ClientRectangle>
           <Components isList="true" count="0" />
           <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Guid>979f02c1f0694efa82fe508e0e624f43</Guid>
           <Name>GroupFooterBand4</Name>
           <Page isRef="5" />
           <Parent isRef="5" />
         </GroupFooterBand4>
-        <GroupFooterBand11 Ref="134" type="GroupFooterBand" isKey="true">
+        <ReportSummaryBand1 Ref="119" type="ReportSummaryBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,40.5,19,0</ClientRectangle>
+          <ClientRectangle>0,34.1,19,0.8</ClientRectangle>
           <Components isList="true" count="0" />
           <Conditions isList="true" count="0" />
-          <Guid>b9178b1860e34ab2a7b033c416376149</Guid>
-          <Name>GroupFooterBand11</Name>
-          <Page isRef="5" />
-          <Parent isRef="5" />
-        </GroupFooterBand11>
-        <ReportSummaryBand1 Ref="135" type="ReportSummaryBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,41.3,19,0.8</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Guid>5c5be11d18a84d109e670dd92a561e14</Guid>
           <Name>ReportSummaryBand1</Name>
           <Page isRef="5" />
@@ -1822,6 +1749,7 @@ IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskU
         </ReportSummaryBand1>
       </Components>
       <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
       <Guid>5d823d0781244827a39b88dc5945deae</Guid>
       <LargeHeight>True</LargeHeight>
       <Margins>1,1,1,1</Margins>
@@ -1829,48 +1757,47 @@ IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskU
       <PageHeight>29.7</PageHeight>
       <PageWidth>21</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="136" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
-        <Font>Arial,100</Font>
-        <TextBrush>[50:0:0:0]</TextBrush>
-      </Watermark>
     </Page1>
-    <Form1 Ref="137" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+    <Form1 Ref="120" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
       <BackColor>Control</BackColor>
       <Components isList="true" count="6">
-        <LabelControl1 Ref="138" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+        <LabelControl1 Ref="121" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
           <BackColor>Control</BackColor>
           <ClientRectangle>8,8,16,20</ClientRectangle>
           <Components isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Guid>b92a31b696784240a4ecb11280550679</Guid>
           <Location>8, 8</Location>
           <Name>LabelControl1</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>16, 20</Size>
           <Text>С</Text>
           <TextAlign>MiddleRight</TextAlign>
         </LabelControl1>
-        <LabelControl2 Ref="139" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+        <LabelControl2 Ref="122" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
           <BackColor>Control</BackColor>
           <ClientRectangle>120,8,24,20</ClientRectangle>
           <Components isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Guid>2eea1d6ccdb541a0a7ef7b4118155018</Guid>
           <Location>120, 8</Location>
           <Name>LabelControl2</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>24, 20</Size>
           <Text>по</Text>
           <TextAlign>MiddleCenter</TextAlign>
         </LabelControl2>
-        <DateTimePickerControl1 Ref="140" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+        <DateTimePickerControl1 Ref="123" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
           <BackColor>Window</BackColor>
           <ClientRectangle>32,8,80,20</ClientRectangle>
           <Components isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Format>Short</Format>
@@ -1879,16 +1806,17 @@ IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskU
           <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
           <MinDate>1/1/2001 12:00:00 AM</MinDate>
           <Name>DateTimePickerControl1</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>80, 20</Size>
           <Today>False</Today>
           <Value>9/1/2025 12:00:00 AM</Value>
         </DateTimePickerControl1>
-        <DateTimePickerControl2 Ref="141" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+        <DateTimePickerControl2 Ref="124" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
           <BackColor>Window</BackColor>
           <ClientRectangle>160,8,80,20</ClientRectangle>
           <Components isList="true" count="0" />
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Format>Short</Format>
@@ -1897,19 +1825,19 @@ IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith("Lisec"), f_SawTaskU
           <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
           <MinDate>1/1/2010 12:00:00 AM</MinDate>
           <Name>DateTimePickerControl2</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>80, 20</Size>
           <Today>False</Today>
           <Value>9/30/2025 12:00:00 AM</Value>
         </DateTimePickerControl2>
-        <ButtonControl1 Ref="142" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+        <ButtonControl1 Ref="125" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
           <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
 sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
 
 
-f_SawTaskUE_Period_Detail.Connect();
-f_SawTaskUE_Period_Operator.Connect();
+f_SawTaskUE_Period_Detail_Assembly.Connect();
+f_SawTaskUE_Period_Operator_Assembly.Connect();
 
 /*
 
@@ -1951,32 +1879,35 @@ catch (Exception ex)
           <Components isList="true" count="0" />
           <Default>True</Default>
           <DialogResult>OK</DialogResult>
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Guid>9a6fa5b4302b4a6698327c6779cd220e</Guid>
           <Location>16, 40</Location>
           <Name>ButtonControl1</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>80, 32</Size>
           <Text>Готово</Text>
         </ButtonControl1>
-        <ButtonControl2 Ref="143" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+        <ButtonControl2 Ref="126" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
           <Cancel>True</Cancel>
           <ClientRectangle>152,40,80,32</ClientRectangle>
           <Components isList="true" count="0" />
           <DialogResult>Cancel</DialogResult>
+          <Expressions isList="true" count="0" />
           <Font>Microsoft Sans Serif,8</Font>
           <ForeColor>Black</ForeColor>
           <Guid>7705b94568644baf9b95405ada4e0729</Guid>
           <Location>152, 40</Location>
           <Name>ButtonControl2</Name>
-          <Page isRef="137" />
-          <Parent isRef="137" />
+          <Page isRef="120" />
+          <Parent isRef="120" />
           <Size>80, 32</Size>
           <Text>Отмена</Text>
         </ButtonControl2>
       </Components>
+      <Expressions isList="true" count="0" />
       <Font>Microsoft Sans Serif,8</Font>
       <Guid>29ae027b64f0473d8942537ce2e9ac03</Guid>
       <LoadFormEvent>try
@@ -2017,7 +1948,6 @@ catch (Exception ex)
       <Text>Form1</Text>
     </Form1>
   </Pages>
-  <PrinterSettings Ref="144" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -2029,13 +1959,13 @@ catch (Exception ex)
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/26/2026 3:16:23 PM</ReportChanged>
+  <ReportChanged>7/30/2026 1:00:10 PM</ReportChanged>
   <ReportCreated>4/7/2019 6:23:17 PM</ReportCreated>
-  <ReportFile>D:\Develop\Dev5Old\Design\Bin\Debug\ReportsGlass\SawTaskUE_Period_Detail_Cut.mrt</ReportFile>
-  <ReportGuid>241401c082354e09be91c7312373794a</ReportGuid>
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\SawTaskUE_Period_Detail_Assembly.mrt</ReportFile>
+  <ReportGuid>eebf163592984201988f0bf247c5176f</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
-  <ReportVersion>2013.1.1600</ReportVersion>
+  <ReportVersion>2024.1.2.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

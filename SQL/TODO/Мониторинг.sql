@@ -87,10 +87,11 @@ begin
 end
 go
 
+set dateformat dmy;
 select * from GlassProcessing_Audit_Debug GPA
 left join GlassDetails GD on GD.ID = GPA.idGlassDetails
 left join SheduleOperator sh on sh.ID = GPA.New_idSheduleOperator
 left join Operator O on O.ID = sh.idOperator
-where GD.idSawTaskMain = 2779
+where DateLog >= '22.07.2026'
 
-
+select * from ProductionWorkSession
