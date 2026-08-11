@@ -18,6 +18,7 @@ select
 
   Product.ID as idGlass,
   Product.Name as GlassName,
+  Product.dCoefUZM,
 
   BrigadierSO.ID as idSheduleOperatorBrigadier,
   ResolvedBrigadier.idOperatorBrigadier,
@@ -256,12 +257,15 @@ where SectorManufact.nType = 1
   and GlassProcessing.TimeMarkManufact is not null
 
 group by
-  Task.ID, Task.AccountNum,
-  SawTaskMain.ID, SawTaskMain.Name,
+  Task.ID,
+  Task.AccountNum,
+  SawTaskMain.ID,
+  SawTaskMain.Name,
   CuttingTable.Name,
-  CalendarResolved.DateComplete, CalendarResolved.nSmena,
+  CalendarResolved.DateComplete,
+  CalendarResolved.nSmena,
   CalendarResolved.idPlanCalendar,
-  Product.ID, Product.Name,
+  Product.ID, Product.Name, Product.dCoefUZM,
   BrigadierSO.ID,
   ResolvedBrigadier.idOperatorBrigadier,
   coalesce(BrigadierSO.idTeam, SheduleOperatorSource.idTeam),

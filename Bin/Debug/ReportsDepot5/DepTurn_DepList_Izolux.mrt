@@ -48,7 +48,7 @@
         <Name>f_GetRest_Cross</Name>
         <NameInSource>PrimeSoft</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>exec sp_GetRest_AllDepList 2, 46201.000000, 0</SqlCommand>
+        <SqlCommand>exec sp_GetRest_DepTurnDepList 2, 46201.000000, 0</SqlCommand>
       </f_GetRest_Cross>
     </DataSources>
     <Relations isList="true" count="0" />
@@ -178,7 +178,7 @@
             <Text13 Ref="13" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,3,0.6</ClientRectangle>
+              <ClientRectangle>17.2,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8,Bold</Font>
               <Guid>5b1943338cae48b38cce6d63552255af</Guid>
@@ -195,7 +195,7 @@
             <Text14 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.2,0,3,0.6</ClientRectangle>
+              <ClientRectangle>14.2,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8,Bold</Font>
               <Guid>97793a9ac5034cfa8f0cd3911df01280</Guid>
@@ -275,7 +275,7 @@
             <Text7 Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,3,0.6</ClientRectangle>
+              <ClientRectangle>17.2,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
@@ -321,7 +321,7 @@
             <Text9 Ref="23" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.2,0,3,0.6</ClientRectangle>
+              <ClientRectangle>14.2,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
@@ -331,9 +331,9 @@
               <Name>Text9</Name>
               <Page isRef="4" />
               <Parent isRef="16" />
-              <Text>{f_GetRest_Cross.PriceUnit}</Text>
+              <Text>{Format("{0:N2}", f_GetRest_Cross.PriceUnit)}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
           </Components>
@@ -379,7 +379,7 @@
             <Text3 Ref="27" type="Text" isKey="true">
               <Border>All;[116:145:170];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,3,0.6</ClientRectangle>
+              <ClientRectangle>17.2,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>4fcb93c7c8974099b5e5415fc4910dc3</Guid>
@@ -434,10 +434,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/23/2026 7:53:46 PM</ReportChanged>
+  <ReportChanged>8/7/2026 1:38:25 PM</ReportChanged>
   <ReportCreated>2/7/2014 11:39:32 AM</ReportCreated>
-  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\Depot\DepTurn_DepList_Izolux.mrt</ReportFile>
-  <ReportGuid>f4be0af611374c63b2da20ad668702ec</ReportGuid>
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsDepot5\DepTurn_DepList_Izolux.mrt</ReportFile>
+  <ReportGuid>40d8beba777440ec8cfb185fc1f36061</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

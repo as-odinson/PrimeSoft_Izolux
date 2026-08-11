@@ -286,6 +286,7 @@ select
 
   Product.ID as idGlass,
   Product.Name as GlassName,
+  Product.dCoefUZM,
 
   FinalSO.ID as idSheduleOperatorBrigadier,
   RB.idOperatorBrigadier,
@@ -322,6 +323,7 @@ group by
 
   Product.ID,
   Product.Name,
+  Product.dCoefUZM,
 
   FinalSO.ID,
   RB.idOperatorBrigadier,

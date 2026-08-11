@@ -136,6 +136,52 @@ void RecalcAllProjectsPrice(_RecordsetPtr rc)
   CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
 }
 
+long GetProjectRebateSkipCount(_RecordsetPtr rcProject)
+{
+  long nSkipCount = 0;
+
+  try
+  {
+    if ( !rcProject )
+      return 0;
+
+    long nCount = rcProject->RecordCount;
+
+    if ( nCount <= 0 )
+      return 0;
+
+    _variant_t vBookmark;
+    bool bRestoreBookmark = false;
+
+    try
+    {
+      vBookmark = rcProject->Bookmark;
+      bRestoreBookmark = true;
+    }
+    catch ( ... )
+    {
+      bRestoreBookmark = false;
+    }
+
+    rcProject->MoveFirst();
+
+    for ( long i = 0; i < nCount; i++ )
+    {
+      if ( ConvertDouble(rcProject, _T("SumWithNDS_Discount"),0) == 1.0 )
+        nSkipCount++;
+
+      if ( i + 1 < nCount )
+        rcProject->MoveNext();
+    }
+
+    if ( bRestoreBookmark )
+      rcProject->Bookmark = vBookmark;
+  }
+  CATCH_HIDE(__TFILE__, __LINE__, __TFUNCTION__)
+
+    return nSkipCount;
+}
+
 void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis, double fPriceM2)
 {
   try
@@ -179,12 +225,17 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
     bool IsPriceByCount = ConvertBool(pThis->m_Recordset, _T("IsPriceByCount"));
     bool bSkipRebate = ConvertDouble(pThis->m_Recordset, _T("SumWithNDS_Discount"), 0) == (double)1;
     double fArea = ConvertDouble(pThis->m_Recordset, _T("Area"));
+    double fFixedArea = ConvertDouble(pThis->m_Recordset, _T("FixedArea"));
     double fRebate = ConvertDouble(pThis->m_Recordset, _T("Rebate")); // —кидка
     double fRebateCoef = ConvertDouble(pThis->m_Recordset, _T("RebateCoef"), 1);
     double fTaskRebate = ConvertDouble(pThis->m_rcTask, _T("Rebate")); // —кидка на заказ
     double fPriceDelivSumWithNDS = ConvertDouble(pThis->m_Recordset, _T("PriceDelivSumWithNDS"));
     double fPriceAll = 0;
     double fRebateCoefReal = 2 - fRebateCoef;
+
+
+    if ( IsPriceByCount && fFixedArea > 0 )
+      fPriceM2R = fPriceM2R * fFixedArea;
 
     if ( pThis->m_sChangedFieldName == _T("PriceNDS") )
     {
@@ -272,9 +323,66 @@ void __fastcall Hook_ProjectViewGrid_SetPriceM2_WithNDS(CProjectViewGrid* pThis,
     if ( bLastProject && !bInRepeatCalc && HasProjectRebateSkipFlags(pThis->m_Recordset) )
     {
       bInRepeatCalc = true;
+      try
+      {
+        long nProjectCount = pThis->m_Recordset->RecordCount;
 
-      RecalcAllProjectsPrice(pThis->m_Recordset);
-      ClearProjectRebateSkipFlags(pThis->m_Recordset);
+        //  аждый нестабильный проход должен исключить
+        // хот€ бы одну новую позицию.
+        long nMaxRepeatCount = nProjectCount > 0
+                             ? nProjectCount + 1
+                             : 100;
+
+        bool bStableResult = false;
+
+        for ( long nPass = 1; nPass <= nMaxRepeatCount; nPass++ )
+        {
+          long nSkipBefore = GetProjectRebateSkipCount(pThis->m_Recordset);
+
+          /*
+            JS на этом проходе делит скидку на текущее
+            количество доступных позиций.
+          */
+          RecalcAllProjectsPrice(pThis->m_Recordset);
+
+          long nSkipAfter =
+            GetProjectRebateSkipCount(pThis->m_Recordset);
+
+          CString sRepeatProtocol;
+
+          sRepeatProtocol.Format(_T("\r\n[PLUGIN] ѕроход распределени€ скидки %ld: " "исключено до = %ld, после = %ld."),
+            nPass,
+            nSkipBefore,
+            nSkipAfter
+          );
+
+          PluginAddProtocol(sRepeatProtocol);
+
+          /*
+            ≈сли новых исключений нет, этот проход уже
+            рассчитан с окончательным делителем.
+          */
+          if ( nSkipAfter == nSkipBefore )
+          {
+            bStableResult = true;
+            break;
+          }
+        }
+
+        if ( bStableResult )
+        {
+          ClearProjectRebateSkipFlags(pThis->m_Recordset);
+        }
+        else
+        {
+          PluginAddProtocol(_T("\r\n[PLUGIN] –аспределение скидки " "не стабилизировалось."));
+        }
+      }
+      catch ( ... )
+      {
+        bInRepeatCalc = false;
+        throw;
+      }
 
       bInRepeatCalc = false;
     }

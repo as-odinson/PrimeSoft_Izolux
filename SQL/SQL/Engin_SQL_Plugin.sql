@@ -1,6 +1,6 @@
 /*
   Update: Engin_SQL_Plugin
-  Generated: 30.07.2026 14:31:04
+  Generated: 07.08.2026 13:25:07
   Generator: Engine_Auto.vbs
 */
 
@@ -2541,6 +2541,7 @@ select
 
   Product.ID as idGlass,
   Product.Name as GlassName,
+  Product.dCoefUZM,
 
   FinalSO.ID as idSheduleOperatorBrigadier,
   RB.idOperatorBrigadier,
@@ -2577,6 +2578,7 @@ group by
 
   Product.ID,
   Product.Name,
+  Product.dCoefUZM,
 
   FinalSO.ID,
   RB.idOperatorBrigadier,
@@ -2615,6 +2617,7 @@ select
 
   Product.ID as idGlass,
   Product.Name as GlassName,
+  Product.dCoefUZM,
 
   BrigadierSO.ID as idSheduleOperatorBrigadier,
   ResolvedBrigadier.idOperatorBrigadier,
@@ -2853,12 +2856,15 @@ where SectorManufact.nType = 1
   and GlassProcessing.TimeMarkManufact is not null
 
 group by
-  Task.ID, Task.AccountNum,
-  SawTaskMain.ID, SawTaskMain.Name,
+  Task.ID,
+  Task.AccountNum,
+  SawTaskMain.ID,
+  SawTaskMain.Name,
   CuttingTable.Name,
-  CalendarResolved.DateComplete, CalendarResolved.nSmena,
+  CalendarResolved.DateComplete,
+  CalendarResolved.nSmena,
   CalendarResolved.idPlanCalendar,
-  Product.ID, Product.Name,
+  Product.ID, Product.Name, Product.dCoefUZM,
   BrigadierSO.ID,
   ResolvedBrigadier.idOperatorBrigadier,
   coalesce(BrigadierSO.idTeam, SheduleOperatorSource.idTeam),
@@ -3223,18 +3229,7 @@ go
 create view dbo.v_SawTaskUE_Period_Operator_Assembly_IZO
 as
 
-with OperatorMap as
-(
-  select
-    idOperator,
-    idSectorManufact,
-    min(idOperatorBrigadier) as idOperatorBrigadier
-  from dbo.v_OperatorBrigadierMap
-  group by idOperator, idSectorManufact
-  having count(distinct idOperatorBrigadier) = 1
-),
-
-PlanCalendarOne as
+with PlanCalendarOne as
 (
   select
     max(ID) as ID,
@@ -3243,67 +3238,6 @@ PlanCalendarOne as
   from PlanCalendar
   where nSmena in (1, 2)
   group by Data, nSmena
-),
-
-SheduleOperatorOne as
-(
-  select
-    max(ID) as ID,
-    idPlanCalendar,
-    idOperator,
-    idSectorManufact,
-    idTeam
-  from SheduleOperator
-  group by
-    idPlanCalendar,
-    idOperator,
-    idSectorManufact,
-    idTeam
-),
-
-BrigadierScheduleCandidate as
-(
-  select
-    SO.ID as idSheduleOperator,
-    SO.idPlanCalendar,
-    SO.idTeam,
-    SO.idOperator as idOperatorBrigadier,
-
-    case
-      when exists
-      (
-        select 1
-        from ShedulePersonnel SP
-        where SP.idSheduleOperator = SO.ID
-      ) then 0
-      else 1
-    end as PersonnelPriority
-
-  from SheduleOperator SO
-  where isnull(SO.idTeam, 0) <> 0
-    and exists
-    (
-      select 1
-      from OperatorGroup OG
-      where OG.idOperatorBrigadier = SO.idOperator
-    )
-),
-
-BrigadierScheduleRanked as
-(
-  select
-    idSheduleOperator,
-    idPlanCalendar,
-    idTeam,
-    idOperatorBrigadier,
-
-    row_number() over
-    (
-      partition by idPlanCalendar, idTeam
-      order by PersonnelPriority, idSheduleOperator desc
-    ) as RowNum
-
-  from BrigadierScheduleCandidate
 ),
 
 GlassBase as
@@ -3323,12 +3257,10 @@ GlassBase as
     GD.Height,
 
     GP.idSectorManufact,
-    GP.idSawLimit,
     GP.idSheduleOperator as idSheduleOperatorSource,
     GP.TimeMarkManufact,
 
     STM.idTeam,
-    STM.idAssemblyLine,
 
     case
       when datepart(hour, GP.TimeMarkManufact) < 8 then
@@ -3369,30 +3301,28 @@ ResolvedBase as
     GB.Height,
 
     GB.idSectorManufact,
-    GB.idSawLimit,
     GB.TimeMarkManufact,
 
     CalendarResolved.idPlanCalendar,
     TeamResolved.idTeam,
-    GB.idAssemblyLine,
+
+    case
+      when TeamResolved.idTeam = 1 then 1
+      when TeamResolved.idTeam in (7, 11) then 2
+      else null
+    end as idAssemblyLine,
+
+    case
+      when TeamResolved.idTeam = 1 then 7
+      when TeamResolved.idTeam in (7, 11) then 8
+      else null
+    end as idSawLimit,
 
     GB.DateComplete,
     GB.nSmena,
 
-    ResolvedOperator.idOperatorBrigadier,
-
-    coalesce
-    (
-      BS.idSheduleOperator,
-      ResolvedSOExact.ID,
-      ResolvedSONull.ID,
-
-      case
-        when SourceValid.bValid = 1
-         and SourceSO.idOperator = ResolvedOperator.idOperatorBrigadier then
-          SourceSO.ID
-      end
-    ) as idSheduleOperator
+    TeamSO.idOperator as idOperatorBrigadier,
+    TeamSO.ID as idSheduleOperator
 
   from GlassBase GB
 
@@ -3419,69 +3349,57 @@ ResolvedBase as
       ) as idTeam
   ) TeamResolved
 
-  cross apply
+  /*
+    Состав бригады ищем по производственной дате и команде.
+
+    Совпадающая смена идёт первой.
+    Если пользователи записали бригаду на другую смену того же дня,
+    используем её как запасной вариант.
+  */
+  outer apply
   (
-    select
+    select top 1
+      SO.ID,
+      SO.idOperator,
+      SO.idTeam,
+      SO.idSectorManufact,
+      SO.idPlanCalendar,
+      PCSO.nSmena as SheduleSmena
+
+    from SheduleOperator SO
+    inner join PlanCalendar PCSO on PCSO.ID = SO.idPlanCalendar
+
+    where PCSO.Data = GB.DateComplete
+      and SO.idTeam = TeamResolved.idTeam
+      and exists
+      (
+        select 1
+        from ShedulePersonnel SP
+        where SP.idSheduleOperator = SO.ID
+      )
+
+    order by
       case
-        when SourceSO.ID is not null
-         and nullif(SourceSO.idTeam, 0) = TeamResolved.idTeam then 1
-        else 0
-      end as bValid
-  ) SourceValid
+        when PCSO.nSmena = GB.nSmena then 0
+        else 1
+      end,
 
-  left join OperatorMap OM
-    on OM.idOperator = SourceSO.idOperator
-   and OM.idSectorManufact = GB.idSectorManufact
-   and SourceValid.bValid = 1
-
-  left join BrigadierScheduleRanked BS
-    on BS.idPlanCalendar = CalendarResolved.idPlanCalendar
-   and BS.idTeam = TeamResolved.idTeam
-   and BS.RowNum = 1
-
-  cross apply
-  (
-    select
       case
-        when SourceValid.bValid = 1
-         and OM.idOperatorBrigadier is not null then
-          OM.idOperatorBrigadier
+        when SO.idSectorManufact = GB.idSectorManufact then 0
+        when SO.idSectorManufact is null then 1
+        else 2
+      end,
 
-        when BS.idOperatorBrigadier is not null then
-          BS.idOperatorBrigadier
-
-        when SourceValid.bValid = 1
-         and exists
-         (
-           select 1
-           from OperatorGroup OG
-           where OG.idOperatorBrigadier = SourceSO.idOperator
-         ) then
-          SourceSO.idOperator
-
-        else null
-      end as idOperatorBrigadier
-  ) ResolvedOperator
-
-  left join SheduleOperatorOne ResolvedSOExact
-    on ResolvedSOExact.idPlanCalendar = CalendarResolved.idPlanCalendar
-   and ResolvedSOExact.idOperator = ResolvedOperator.idOperatorBrigadier
-   and ResolvedSOExact.idSectorManufact = GB.idSectorManufact
-   and ResolvedSOExact.idTeam = TeamResolved.idTeam
-
-  left join SheduleOperatorOne ResolvedSONull
-    on ResolvedSONull.idPlanCalendar = CalendarResolved.idPlanCalendar
-   and ResolvedSONull.idOperator = ResolvedOperator.idOperatorBrigadier
-   and ResolvedSONull.idSectorManufact is null
-   and ResolvedSONull.idTeam = TeamResolved.idTeam
+      SO.ID desc
+  ) TeamSO
 )
 
 select
   Personnel.ID,
   Personnel.Name,
 
-  SawTaskMain.ID as idSawTask,
-  SawTaskMain.Name as SawTaskName,
+
+  SawLimit.ID as idSawLimit,
   SawLimit.Name as SawLimitName,
 
   RB.idTeam,
@@ -3513,8 +3431,7 @@ from ResolvedBase RB
 inner join SectorManufact on SectorManufact.ID = RB.idSectorManufact
 inner join Project on Project.ID = RB.idProject
 inner join SawTaskMain on SawTaskMain.ID = RB.idSawTaskMain
-
-left join SawLimit on SawLimit.ID = RB.idSawLimit
+inner join SawLimit on SawLimit.ID = RB.idSawLimit
 
 inner join SheduleOperator FinalSO
   on FinalSO.ID = RB.idSheduleOperator
@@ -3528,18 +3445,19 @@ inner join
   group by idSheduleOperator
 ) KTU on KTU.idSheduleOperator = FinalSO.ID
 
-left join ShedulePersonnel
+inner join ShedulePersonnel
   on ShedulePersonnel.idSheduleOperator = FinalSO.ID
 
-left join Personnel
+inner join Personnel
   on Personnel.ID = ShedulePersonnel.idPersonnel
+
+where RB.idTeam in (1, 7, 11)
 
 group by
   Personnel.ID,
   Personnel.Name,
 
-  SawTaskMain.ID,
-  SawTaskMain.Name,
+  SawLimit.ID,
   SawLimit.Name,
 
   RB.idTeam,
@@ -4265,6 +4183,526 @@ go
 print convert(varchar, getdate(), 20) + ' : finish View\v_Volume_Money_SubDivision.sql'
 go
 
+print convert(varchar, getdate(), 20) + ' : start View\w_Invoice_4_IZO.sql'
+go
+
+-- ============================================================
+-- File: View\w_Invoice_4_IZO.sql
+-- ============================================================
+if object_id(N'dbo.w_Invoice_4_IZO', N'V') is not null
+  drop view dbo.w_Invoice_4_IZO
+go
+
+create view dbo.w_Invoice_4_IZO  
+-- Вьюха для распечатки счетов-фактур, оптимизированная для больших таблиц и выборок на одну накладную  
+-- вариант от 01.11.06  
+-- вариант от 08.11.06  
+as  
+  
+with TaskDepTrans as (  
+  select  
+    idTask,  
+    Sum(Price_NDSSum) as SumDepTransAggregated  
+  from  
+    DepTrans  
+  where  
+    idDepDocType = 2 AND is2 = 1  
+  group by  
+    idTask  
+)  
+select  
+--Временные  
+--    1 as idTransport,  
+--Task  
+  Task.ID                  as TaskID,  
+  Task.ID                  as idTask,  
+  Task.Num                 as TaskNum,  
+  Task.AccountNum          as TaskAccountNum,  
+  Task.Date                as TaskDate,  
+  Task.NumCalcFact,  
+  dbo.f_LeaveOnlyDigits(Task.NumCalcFact,0) as NumCalcFact_OnlyDigits,  
+  Task.DateComplite,  
+  Task.Commentary          as CommentTask,  
+  LastShip.idShip,
+  LastShip.DateShip,
+--Client  
+  case when IsNull(Client.NameFull, '') != '' then Client.NameFull else IsNull(Client.Name, '') end as ClientName,  
+  Client.NameFull          as ClientNameFull,  
+  Client.DNum              as DNum,  
+  Client.Adress            as ClientAdress,  
+  Client.AdressSubDiv      as ClientAdressSubDiv,  
+  Client.AdressDeliv       as ClientAdressDeliv,  
+  CB_C.RS                  as ClientRS,  
+  BK_C.Name                as ClientBank,  
+  Client.UNN               as ClientUNN,  
+  BK_C.BIC                 as ClientBIC,  
+  CB_C.KS                  as ClientKS,  
+  Client.Tel               as ClientTEL,  
+  Client.KPP               as ClientKPP,  
+  Client.OKOHX             as ClientOKOHX,  
+  Client.OKPO              as ClientOKPO,  
+  CC.ContractNum           as ClinetDogNum,  
+  CC.Date                  as ClinetAgreementDate,  
+  Client.CertificateNDS    as ClinetCertNDS,  
+  
+--Seller  
+  CB_S.KS                  as SellerKS,  
+  Seller.UNN               as SellerUNN,  
+  BK_S.BIC                 as SellerBIC,  
+  Seller.Name              as SellerName,  
+  Seller.NameFull          as SellerNameFull,  
+  Seller.Adress            as SellerAdress,  
+  Seller.City              as SellerCity,  
+  CB_S.RS                  as SellerRS,  
+  BK_S.Name                as SellerBank,  
+  Seller.Tel               as SellerTel,  
+  Seller.KPP               as SellerKPP,  
+  Seller.OKOHX             as SellerOKOHX,  
+  Seller.OKPO              as SellerOKPO,  
+  Seller.AccountantName    as SellerAccountantName,  
+  Seller.ChiefName         as SellerChiefName,  
+  Seller.CertificateNDS    as SellerCertNDS,  
+  
+--Shipper  
+  CB_SH.KS                 as ShipperKS,  
+  Shipper.UNN              as ShipperUNN,  
+  BK_SH.BIC                as ShipperBIC,  
+  Shipper.Name             as ShipperName,  
+  Shipper.NameFull         as ShipperNameFull,  
+  Shipper.Adress           as ShipperAdress,  
+  Shipper.City             as ShipperCity,  
+  CB_SH.RS                 as ShipperRS,  
+  BK_SH.Name               as ShipperBank,  
+  Shipper.Tel              as ShipperTel,  
+  Shipper.KPP              as ShipperKPP,  
+  Shipper.OKOHX            as ShipperOKOHX,  
+  Shipper.OKPO             as ShipperOKPO,  
+  Shipper.AccountantName   as ShipperAccountantName,  
+  Shipper.ChiefName        as ShipperChiefName,  
+  Shipper.CertificateNDS   as ShipperCertNDS,  
+--Consignee  
+  CB_CO.KS                 as ConsigneeKS,  
+  Consignee.UNN            as ConsigneeUNN,  
+  BK_CO.BIC                as ConsigneeBIC,  
+  Consignee.Name           as ConsigneeName,  
+  Consignee.NameFull       as ConsigneeNameFull,  
+  Consignee.Adress         as ConsigneeAdress,  
+  Consignee.City           as ConsigneeCity,  
+  CB_CO.RS                 as ConsigneeRS,  
+  BK_CO.Name               as ConsigneeBank,  
+  Consignee.Tel            as ConsigneeTel,  
+  Consignee.KPP            as ConsigneeKPP,  
+  Consignee.OKOHX          as ConsigneeOKOHX,  
+  Consignee.OKPO           as ConsigneeOKPO,  
+  Consignee.AccountantName as ConsigneeAccountantName,  
+  Consignee.ChiefName      as ConsigneeChiefName,  
+  Consignee.CertificateNDS as ConsigneeCertNDS,  
+  Consignee.AdressSubDiv   as ConsigneeAdressSubDiv,  
+--Project  
+  ProjectGroup.PriceOfUnit,  
+  ProjectGroup.Num,  
+  ProjectGroup.PriceAll,      -- Сумма без НДС  
+  ProjectGroup.NDS,           -- Сумма НДС  
+  ProjectGroup.PriceWithNDS,  -- Всего с НДС  
+  ProjectGroup.PriceByM,  
+  ProjectGroup.PriceNoNDS_M2,  
+  ProjectGroup.PriceWithNDS_M2,  
+  
+  CAST ( ProjectGroup.MassSum AS decimal( 15,3 )) as MassSum,  
+  ProjectGroup.nCountPos,  
+  ProjectGroup.nCount      as nCountSum,  
+  ProjectGroup.Width,  
+  ProjectGroup.Height,  
+  ProjectGroup.AreaSum,  
+  ProjectGroup.Type,  
+  ProjectGroup.idGlass1,  
+  ProjectGroup.idGlassFrame1,  
+  ProjectGroup.idGlass2,  
+  ProjectGroup.idGlassFrame2,  
+  ProjectGroup.idGlass3,  
+  ProjectGroup.bIsArgon1,  
+  ProjectGroup.bIsArgon2,  
+  ProjectGroup.Glass1Name,  
+  ProjectGroup.GlassFrame1Name,  
+  ProjectGroup.Glass2Name,  
+  ProjectGroup.GlassFrame2Name,  
+  ProjectGroup.Glass3Name,  
+  ProjectGroup.GlassFrame3Name,  
+  ProjectGroup.Glass4Name,  
+  ProjectGroup.Commentary     as ProjComment,  
+  ProjectGroup.CommentClient  as Mark,  
+  ProjectGroup.CamCount,  
+  
+  ES.IsEnergySafe,  
+  
+  case   
+    when ProjectGroup.CamCount = 0                         then 'Стекло в нарезку'  
+    when ProjectGroup.CamCount = 1 and ES.IsEnergySafe = 1 then 'Однокамерный энергосберегающий стеклопакет'  
+    when ProjectGroup.CamCount = 2 and ES.IsEnergySafe = 1 then 'Двухкамерный энергосберегающий стеклопакет'  
+    when ProjectGroup.CamCount = 1                         then 'Однокамерный стеклопакет'  
+    when ProjectGroup.CamCount = 2                         then 'Двухкамерный стеклопакет'  
+  end as CamCountDescription,  
+    
+  case   
+    when ProjectGroup.CamCount = 0                         then 80.00  
+    when ProjectGroup.CamCount = 1 and ES.IsEnergySafe = 1 then 75.00  
+    when ProjectGroup.CamCount = 2 and ES.IsEnergySafe = 1 then 65.00  
+    when ProjectGroup.CamCount = 1                         then 80.00  
+    when ProjectGroup.CamCount = 2                         then 72.00  
+  end as LightTransmissionCoefficient,  
+   
+  case   
+    when ProjectGroup.CamCount = 0                         then 0.32  
+    when ProjectGroup.CamCount = 1 and ES.IsEnergySafe = 1 then 0.58  
+    when ProjectGroup.CamCount = 2 and ES.IsEnergySafe = 1 then 0.72  
+    when ProjectGroup.CamCount = 1                         then 0.32  
+    when ProjectGroup.CamCount = 2                         then 0.44  
+  end as HeatResistance,  
+  
+  case   
+    when ProjectGroup.CamCount = 0                         then -45.00  
+    when ProjectGroup.CamCount = 1 and ES.IsEnergySafe = 1 then -45.00  
+    when ProjectGroup.CamCount = 2 and ES.IsEnergySafe = 1 then -45.00  
+    when ProjectGroup.CamCount = 1                         then -45.00  
+    when ProjectGroup.CamCount = 2                         then -45.00  
+  end as DewPoint,  
+  
+  case   
+    when ProjectGroup.CamCount = 0                         then 25.00  
+    when ProjectGroup.CamCount = 1 and ES.IsEnergySafe = 1 then 26.00  
+    when ProjectGroup.CamCount = 2 and ES.IsEnergySafe = 1 then 28.00  
+    when ProjectGroup.CamCount = 1                         then 25.00  
+    when ProjectGroup.CamCount = 2                         then 27.00  
+  end as SoundInsulation,  
+  
+--Прочие  
+  DepotSubDivision.Name  as DepotName,  
+  DepotSubDivision.ManagerName,  
+  DepotSubDivision.Tel   as DepotSubDivisionTel,  
+  DepotSubDivision.KPP   as DepotSubDivisionKPP,  
+  DepotSubDivision.InvoiceChiefName ,  
+  DepotSubDivision.InvoiceAccountantName,  
+  DepotSubDivision.AddTo_NumInvoice,  
+  DepotSubDivision.InvoiceResponsName_1,  
+  DepotSubDivision.InvoiceResponsName_2,  
+  DepotSubDivision.InvoiceOrderNum_1,  
+  DepotSubDivision.InvoiceOrderNum_2,  
+  DepotSubDivision.InvoiceOrderDate_1,  
+  DepotSubDivision.InvoiceOrderDate_2,  
+  case  when IsPriceByCount = 1  
+        then 'шт.'  
+        else 'кв.м.'  
+  end                    as UnitName,  
+  case  when IsPriceByCount = 1  
+        then 'шт.'  
+        else 'кв.м.'  
+  end                    as Unit,  
+  G1.Name                as GlassFrame1,  
+--Расчетные  
+  convert(varchar(2), NDS.NDS) + ' %' as tax_rate,  
+  1                      as Row,  
+  
+  case  when IsPriceByCount = 1  
+        then ProjectGroup.nCount  
+        else ProjectGroup.AreaSum  
+  end   as CountUnit,  
+  
+  case  when IsPriceByCount = 1  
+        then ProjectGroup.nCount  
+        else ProjectGroup.AreaSum  
+  end   as kvo,              -- для совместимости с аксцесом  
+  
+  -- Имя для счёт-фактуры:  
+  cast(ProjectGroup.Num as varchar) + '.' +  
+   case when IsNull(Product.Type, 0) = 4  
+        then ProjectGroup.GPName  
+        when IsNull(Product.Type, 0) > 1  
+        then Product.Name  
+  else  
+  
+  --case when IsNull(G2.Name, '') = '' then 'Стекло ' else 'Стеклопакет ' end +  
+  ProjectGroup.CamCountText  + ' ' +  
+  
+  ProjectGroup.GPName  
+  + ' , '  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) + ', '  
+  + cast(ProjectGroup.nCount as varchar) + 'шт.'  
+  + ProjectGroup.RasInfoText  
+  /*+ IsNull (case ProjectGroup.Val  
+              when 0 then '.'  
+              else ',' + cast(ProjectGroup.Val as varchar) + 'шпр.секц.'  
+            end, '.'  
+           )   */  
+  end as naim,  
+  
+  -- Имя для счёт-фактуры:  
+  case when IsNull(Product.Type, 0) = 4  
+       then ProjectGroup.GPName  
+       when IsNull(Product.Type, 0) > 1  
+       then Product.Name  
+       else ProjectGroup.CamCountText  
+         /*  
+         case when IsNull(G2.Name, '') = ''  
+         then 'Стекло '  
+         else 'Стеклопакет '  
+         end  
+         */  
+  
+  +  ProjectGroup.GPNameNoM1  
+  + ' , '  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) + ', '  
+  + cast(ProjectGroup.nCount as varchar) + 'шт.'  
+  + ProjectGroup.RasInfoText   
+  /*IsNull (case ProjectGroup.Val  
+              when 0 then '.'  
+              else ',' + cast(ProjectGroup.Val as varchar) + 'шпр.секц.'  
+            end, '.'  
+           )*/   
+  end as [Name],  
+      
+  -- 28.03.2014 [YK] Наименование без порядкового номера (попросил МаксГласс).  
+  case when IsNull(Product.Type, 0) = 4 then ProjectGroup.GPName  
+       when IsNull(Product.Type, 0) > 1 then Product.Name  
+       else ProjectGroup.CamCountText  
+         /*   
+         case when IsNull(G2.Name, '') = ''  
+         then 'Стекло '  
+         else 'Стеклопакет '  
+         end   
+         */  
+  + ProjectGroup.GPName  
+  + ' , '  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) + ', '  
+  + cast(ProjectGroup.nCount as varchar) + 'шт.'  
+  + ProjectGroup.RasInfoText   
+  --IsNull(case ProjectGroup.Val when 0 then '.' else ',' + cast(ProjectGroup.Val as varchar) + 'шпр.секц.' end, '.')   
+    
+  end as naim_without_num,  
+    
+-- второй вариант имени  
+  cast(ProjectGroup.Num as varchar) + '.' +  
+  case when IsNull(Product.Type, 0) = 4  
+       then ProjectGroup.GPName  
+       when IsNull(Product.Type, 0) > 1  
+       then Product.Name  
+  else ProjectGroup.CamCountText  
+   /*  
+   case when IsNull(G2.Name, '') = ''  
+   then 'Стекло '  
+   else 'Стеклопакет '  
+   end   
+   */  
+  + ProjectGroup.GPName  
+  + ' , '  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) + ', '  
+  + cast(ProjectGroup.AreaSum / case ProjectGroup.nCount when 0 then 1 else ProjectGroup.nCount end as varchar) + ' кв.м.'  
+  + ProjectGroup.RasInfoText   
+  --IsNull(case ProjectGroup.Val when 0 then '.' else ',' + cast(ProjectGroup.Val as varchar) + 'шпр.секц.' end, '.')   
+    
+  end as naim2,  
+  
+  --[SE] Третий вариант имени  
+ cast(ProjectGroup.Num as varchar) + '.' +  
+  case when IsNull(Product.Type, 0) = 4  
+       then ProjectGroup.GPName  
+       when IsNull(Product.Type, 0) > 1  
+       then Product.Name  
+  else  
+   case when IsNull(G2.Name, '') = ''  
+        then 'Стекло '  
+        when IsNull(G3.Name, '') = ''  
+        then 'СПО '  
+   else 'СПД '  
+   end +  
+  
+  ProjectGroup.GPName  
+  + ' , '  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) + ', '  
+  + cast(ProjectGroup.nCount as varchar) + 'шт.'  
+  + ProjectGroup.RasInfoText  
+  --IsNull (case ProjectGroup.Val when 0 then '.' else ',' + cast(ProjectGroup.Val as varchar) + 'шпр.секц.'  end, '.' )   
+    
+  end as naim3,  
+  
+  ProjectGroup.GPName as Name_M1,  
+  
+  IsNull(DepotSubDivision.Address, IsNull(Seller.AdressSubDiv, Seller.Adress)) as SubDivisionAddress,  
+  
+  IsNull(DepotSubDivision.KPP, Seller.KPP)     as SubDivisionKPP,  
+  Task.Komission,  
+  Task.DatePayDoc,  
+  ProjectGroup.Num         as PrjNum,  
+  Task.Price               as PriceTask,  
+  
+  -- Вид стеклопакета:  
+  
+  ProjectGroup.ProjGPName as ProjGPName,  
+  ProjectGroup.GPName as GPName,  
+  ProjectGroup.GPName  
+  + ','  
+  + cast(ProjectGroup.Width  as varchar) + 'x'  
+  + cast(ProjectGroup.Height as varchar) as GPNameSize,  
+  ProjectGroup.idProd,  
+  CVC.d_iNum                             as bVisibleProjComment,  
+  ProjectGroup.RasInfoText,  
+  ProjectGroup.GPNameStr,  
+  NDS.Name                               as NDSOutName,  
+  Product.Type                           as ProductType,  
+  IsNull(TDT.SumDepTransAggregated, 0) as SumDepTrans  
+from  
+  Task  
+  inner join Client Seller     on Seller.ID    = Task.idSeller  
+  inner join Client            on Client.ID    = Task.idClient  
+  inner join NDS               on NDS.ID       = Task.idNDS  
+  left  join ClientContract CC on CC.ID        = Task.idClientContract  
+  left  join Client Shipper    on Shipper.ID   = Task.idShipper  
+  left  join Client Consignee  on Consignee.ID = Task.idConsignee  
+  left  join ClientBank CB_C   on CB_C.ID      = Task.idClientBank_Client    -- 111222 [SB] Теперь KS   и RS  лежат тут.  
+  left  join Bank BK_C         on BK_C.ID      = CB_C.idBank                 -- 111222 [SB] Теперь Bank и BIC лежат тут.  
+  left  join ClientBank CB_S   on CB_S.ID      = Task.idClientBank_Seller    -- 111222 [SB] Теперь KS   и RS  лежат тут.  
+  left  join Bank BK_S         on BK_S.ID      = CB_S.idBank                 -- 111222 [SB] Теперь Bank и BIC лежат тут.  
+  left  join ClientBank CB_SH  on CB_SH.ID     = Task.idClientBank_Shipper   -- 111222 [SB] Теперь KS   и RS  лежат тут.  
+  left  join Bank BK_SH        on BK_SH.ID     = CB_SH.idBank                -- 111222 [SB] Теперь Bank и BIC лежат тут.  
+  left  join ClientBank CB_CO  on CB_CO.ID     = Task.idClientBank_Consignee -- 111222 [SB] Теперь KS   и RS  лежат тут.  
+  left  join Bank BK_CO        on BK_CO.ID     = CB_CO.idBank                -- 111222 [SB] Теперь Bank и BIC лежат тут.  
+  inner join (  
+                    select  
+                      Project.ID,  
+                      Project.idTask,  
+                      Project.idProd,  
+                      Project.Num,  
+                      Project.Width,  
+                      Project.Height,  
+                      dbo.f_GetGPFormula(Project.ID, 'M1', 0, 0) as GPName,  
+                      dbo.f_GetGPFormula(Project.ID, '',   0, 0) as GPNameNoM1,  
+                      Project.GPName                         as ProjGPName,  
+                      Project.PriceNoNds                     as PriceOfUnit,  
+                      Project.PriceByM                       as PriceByM,  
+                      Project.PriceNoNDS_M2,  
+                      Project.PriceWithNDS_M2,  
+                      sum(Project.SumNoNDS           )       as PriceAll,      -- Сумма без НДС  
+                      sum(Project.SumNDS             )       as NDS,           -- Сумма НДС  
+                      sum(Project.SumWithNDS         )       as PriceWithNDS,  -- Всего с НДС  
+                      sum(Project.Mass * Project.nCount)     as MassSum,  
+                      sum(Project.nCount             )       as nCountPos,  
+                      sum(Project.nCount             )       as nCount,  
+                      sum(Project.Area*Project.nCount)       as AreaSum,  
+                      sum(w_propObjectAll_nCountSection.Val) as Val,  
+                      Project.Type,  
+                      Project.idGlass1,  
+                      Project.idGlassFrame1,  
+                      Project.idGlass2,  
+                      Project.idGlassFrame2,  
+                      Project.idGlass3,  
+                      Project.bIsArgon1,  
+                      Project.bIsArgon2,  
+                      dbo.f_GetGPItemInfo(Project.ID, 1, 5)                as Glass1Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 1, 6)                as GlassFrame1Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 2, 5)                as Glass2Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 2, 6)                as GlassFrame2Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 3, 5)                as Glass3Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 3, 6)                as GlassFrame3Name,  
+                      dbo.f_GetGPItemInfo(Project.ID, 4, 5)                as Glass4Name,  
+                      Project.IsPriceByCount,  
+                      Project.Commentary,  
+                      Project.CommentClient,  
+                      case   
+                        when Project.CamCount = 0 then 'Стекло'  
+                        when Project.CamCount = 1 then 'СПО'  
+                        else 'СПД'  
+                      end as CamCountText,  
+                      Project.CamCount,  
+                      dbo.f_GetGPRasInfo(Project.ID, Project.bShpros) as RasInfoText,  
+                        
+                      case when Project.CamCount = 0 then 'Стекло ' else 'Стеклопакет ' end +  
+                      case when Project.CamCount > 0 then ''        else ''             end +  
+                      Project.GPName + ' ' + ltrim(str(Project.Width)) + ' x ' +  ltrim(str(Project.Height)) +  
+                      case when Project.bShpros <> 0 then ' ' + dbo.f_GetGPRasInfo(Project.ID, Project.bShpros) +   
+                                                          ' ' + ltrim(str((select sum(LengReal) from RasShrink where idProject = Project.ID))) +   
+                                                          'мм'   
+                      else ''   
+                      end as GPNameStr  
+                    from  
+                      Project left outer join w_propObjectAll_nCountSection on Project.ID = w_propObjectAll_nCountSection.idProject  
+                    group by  
+                      Project.idTask,  
+                      Project.idProd,  
+                      Project.IsPriceByCount,  
+                      Project.Height,  
+                      Project.Width,  
+                      Project.GPName,  
+                      Project.ID,  
+                      Project.idGlass1,  
+                      Project.idGlassFrame1,  
+                      Project.idGlass2,  
+                      Project.idGlassFrame2,  
+                      Project.idGlass3,  
+                      Project.Num,  
+                      Project.bIsArgon1,  
+                      Project.bIsArgon2,  
+                      Project.PriceNoNDS,  
+                      Project.PriceByM,  
+                      Project.PriceNoNDS_M2,  
+                      Project.PriceWithNDS_M2,  
+                      Project.Type,  
+                      Project.IsPriceByCount,  
+                      Project.Commentary,  
+                      Project.CommentClient,  
+                      case  
+                        when Project.IsPriceByCount = 1 then convert(decimal(9, 2), Project.Price / (case Project.nCount when 0 then 1   else Project.nCount end))  
+                        when Project.IsPriceByCount = 0 then convert(decimal(9, 2), Project.Price / (case Project.Area   when 0 then 0.1 else Project.Area   end))  
+                      end,  
+                      dbo.f_GetGPFormula(Project.ID, 'M1', 0, 0),  
+                      dbo.f_GetGPFormula(Project.ID, '',   0, 0),  
+                      dbo.f_GetGPRasInfo(Project.ID, Project.bShpros),  
+                      Project.CamCount,  
+                      Project.bShpros,  
+                      Project.nCount  
+                   )  as ProjectGroup                 on ProjectGroup.idTask = Task.ID  
+  outer apply (
+    select top (1)
+        Tr1.idShip,
+        S1.Date as DateShip
+    from Transport Tr1
+    left join Ship S1 on S1.ID = Tr1.idShip
+    where Tr1.idTask = Task.ID
+    order by S1.Date desc, Tr1.idShip desc
+  ) LastShip
+  left outer join (  
+                    select  
+                        P.ID as ProjectID,  
+                        CASE  
+                            WHEN G1_e.IsEnergySafe = 1 OR G2_e.IsEnergySafe = 1 OR G3_e.IsEnergySafe = 1 THEN 1  
+                            ELSE 0  
+                        END AS IsEnergySafe  
+                    from Project P  
+                    left outer join Product G1_e on G1_e.ID = P.idGlass1  
+                    left outer join Product G2_e on G2_e.ID = P.idGlass2  
+                    left outer join Product G3_e on G3_e.ID = P.idGlass3  
+                  ) as ES on ES.ProjectID = ProjectGroup.ID   
+  left  outer join DepotSubDivision                   on DepotSubDivision.ID = Task.idDepotSubDivision  
+  left  outer join Product                            on Product.ID          = ProjectGroup.idProd  
+  left  outer join Product G1                         on G1.ID               = ProjectGroup.idGlass1  
+  left  outer join Product F1                         on F1.ID               = ProjectGroup.idGlassFrame1  
+  left  outer join Product G2                         on G2.ID               = ProjectGroup.idGlass2  
+  left  outer join Product F2                         on F2.ID               = ProjectGroup.idGlassFrame2  
+  left  outer join Product G3                         on G3.ID               = ProjectGroup.idGlass3  
+  left  outer join Unit                               on Unit.ID             = Product.idUnit  
+  left  outer join Config  CVC                        on CVC.Name            = 'bVisibleProjCommentForTN'  
+  left  join TaskDepTrans  TDT                        on TDT.idTask   = Task.ID  
+where  
+  Task.CalcType in(0, 1, 4, 5)  
+  
+
+go
+print convert(varchar, getdate(), 20) + ' : finish View\w_Invoice_4_IZO.sql'
+go
+
 /* ============================================================
    Function
    ============================================================ */
@@ -4541,9 +4979,9 @@ go
 -- ============================================================
 -- File: SP\sp_CreateSheduleOperator_IZO.sql
 -- ============================================================
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_CreateSheduleOperator_IZO]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure [dbo].[sp_CreateSheduleOperator]
-GO
+if object_id('dbo.sp_CreateSheduleOperator_IZO', 'P') is not null
+  drop procedure dbo.sp_CreateSheduleOperator_IZO
+go
 
 -- [ao] создать оператора    
 create procedure sp_CreateSheduleOperator_IZO @idOperator int, @date datetime, @idSheduleOperatorNew int output    
@@ -5082,13 +5520,114 @@ go
 -- ============================================================
 -- File: SP\sp_GetRest_AllDepList.sql
 -- ============================================================
+if object_id('sp_GetRest_AllDepList', 'P') is not null
+  drop procedure sp_GetRest_AllDepList
+go
+-- Для отчета "Остатки на дату".
+create procedure sp_GetRest_AllDepList @idSubDivision       int,
+                                           @DocDateEnd          datetime,
+                                           @bNDS                bit
+as
+begin
+  set nocount on
+ 
+
+  create table #DepList
+  (
+    ID            int,
+    Name          varchar(100),
+    nOrderDepList int
+  )
+
+  create table #MaterialColor
+  (
+    idMaterial  int,
+    FolderPath  varchar(1000)
+  )
+
+  insert into #DepList (ID, Name, nOrderDepList) 
+    select 
+      DL.ID, 
+      DL.Name, 
+      DL.nOrder 
+    from DepList DL
+    inner join DepNameList DNL on DNL.idDepList = DL.ID
+    inner join DepName     DN  on DNL.idDepName = DN.ID
+    where DN.idDepotSubDivision = @idSubDivision or
+          @idSubDivision = 0   -- Если не передали параметр выводим все из всех складов
+  insert into #MaterialColor (idMaterial, FolderPath)
+    select M.ID, dbo.f_GetTreeMaterialFolder(IsNull(M.IdtGroup, 0))
+    from Material M
+    
+
+  declare @sDepList varchar(2000)
+  set @sDepList = ''
+
+  select @sDepList = @sDepList + Name + ', ' from #DepList
+
+  if DATALENGTH (@sDepList) > 0
+    select @sDepList = left(@sDepList, LEN(@sDepList) - 2)  -- заменим datalength() на len(), datalength() для nvarchar вернет длину x2 
+
+  declare @idDepList     int,          -- Для строк с папками.
+          @sDepListName  varchar(100), -- Для строк с папками.
+          @nOrderDepList int           -- Для строк с папками.
+
+  select top 1 @idDepList = ID, @sDepListName = Name, @nOrderDepList = nOrderDepList from #DepList
+
+  select
+    2 as nOrder,
+    DL.nOrderDepList,
+    MC.idMaterial,
+    RC.MaterName as Name,
+    MC.FolderPath,
+    @DocDateEnd as DateEnd,
+    case when @bNDS = 1 then 'с НДС' else 'без НДС' end as sNDS,
+    @sDepList as sDepList,
+    RC.DocDate,
+    RC.MaterArt,
+    RC.UnitName,
+    RC.DepListName,
+    RC.idDepList,
+    round(RC.Rest, 3) as Rest,
+    RC.PriceSum,
+    RC.Mass,
+    RC.dTotalCount,
+    RC.dTotalWeight,
+    round(IsNull(RC.PriceAvg, 0), 2) as PriceAvg,
+    DepReg.PriceUnit
+  from #MaterialColor MC
+    inner join dbo.f_GetRest_Cross(@DocDateEnd, @bNDS) RC on RC.idMaterial = MC.idMaterial    
+    inner join #DepList DL on DL.ID = RC.idDepList--) t
+    inner join DepReg            on DepReg.DocDate            = RC.DocDate    and
+                                    DepReg.idMaterial         = MC.idMaterial and
+                                    DepReg.idDepList          = RC.idDepList
+  --order by
+  --  FolderPath, nOrder, idMaterial, idColorIns, idColorBase, idColorExt
+
+  drop table #DepList
+  drop table #MaterialColor
+
+  set nocount off
+end
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetRest_AllDepList.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start SP\sp_GetRest_DepTurnDepList.sql'
+go
+
+-- ============================================================
+-- File: SP\sp_GetRest_DepTurnDepList.sql
+-- ============================================================
 -- Для отчета "Остатки ТМЦ".  
-if object_id('dbo.sp_GetRest_AllDepList', 'P') is not null
-  drop procedure dbo.sp_GetRest_AllDepList
+if object_id('dbo.sp_GetRest_DepTurnDepList', 'P') is not null
+  drop procedure dbo.sp_GetRest_DepTurnDepList
 go
 
 --drop proc sp_GetRest_AllDepList
-create procedure sp_GetRest_AllDepList @idSubDivision       int,  
+create procedure sp_GetRest_DepTurnDepList @idSubDivision       int,  
                                        @DocDateEnd          datetime,  
                                        @bNDS                bit  
 as  
@@ -5177,7 +5716,325 @@ begin
 end  
 
 go
-print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetRest_AllDepList.sql'
+print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetRest_DepTurnDepList.sql'
+go
+
+print convert(varchar, getdate(), 20) + ' : start SP\sp_GetRest_DepTurnDepList_0_2.sql'
+go
+
+-- ============================================================
+-- File: SP\sp_GetRest_DepTurnDepList_0_2.sql
+-- ============================================================
+if object_id('dbo.sp_GetRest_DepTurnDepList_0_2', 'P') is not null
+    drop procedure dbo.sp_GetRest_DepTurnDepList_0_2
+go
+
+create procedure dbo.sp_GetRest_DepTurnDepList_0_2
+    @idSubDivision int,
+    @DocDateEnd    datetime,
+    @bNDS          bit
+as
+begin
+    set nocount on
+
+    create table #DepList
+    (
+        ID                   int,
+        Name                 varchar(100),
+        nOrderDepList        int,
+        idDepotSubDivision   int,
+        DepType              int
+    )
+
+    create table #MaterialColor
+    (
+        idMaterial int,
+        FolderPath varchar(1000)
+    )
+
+    /*
+        DL.is1 = 1 считаем складом 0 — как в рабочей процедуре.
+
+        Склад 2 пока определяем по окончанию названия:
+        "Склад Ступино 2", "Склад Щёлково 2" и т.д.
+    */
+    insert into #DepList
+    (
+        ID,
+        Name,
+        nOrderDepList,
+        idDepotSubDivision,
+        DepType
+    )
+    select distinct
+        DL.ID,
+        DL.Name,
+        DL.nOrder,
+        DN.idDepotSubDivision,
+
+        case
+            when DL.is1 = 1 then 0
+            when rtrim(DL.Name) like '% 2' then 2
+        end as DepType
+
+    from DepList DL
+
+    inner join DepNameList DNL
+        on DNL.idDepList = DL.ID
+
+    inner join DepName DN
+        on DN.ID = DNL.idDepName
+
+    where
+        (
+            DN.idDepotSubDivision = @idSubDivision
+            or @idSubDivision = 0
+        )
+        and
+        (
+            DL.is1 = 1
+            or rtrim(DL.Name) like '% 2'
+        )
+
+    /*
+        Формируем пару складов 0 и 2
+        для каждого подразделения.
+    */
+    select
+        idDepotSubDivision,
+
+        max(case
+            when DepType = 0 then ID
+        end) as idDepList0,
+
+        max(case
+            when DepType = 0 then Name
+        end) as DepListName0,
+
+        max(case
+            when DepType = 0 then nOrderDepList
+        end) as nOrderDepList0,
+
+        max(case
+            when DepType = 2 then ID
+        end) as idDepList2,
+
+        max(case
+            when DepType = 2 then Name
+        end) as DepListName2,
+
+        max(case
+            when DepType = 2 then nOrderDepList
+        end) as nOrderDepList2
+
+    into #DepPairs
+    from #DepList
+    group by idDepotSubDivision
+
+    insert into #MaterialColor
+    (
+        idMaterial,
+        FolderPath
+    )
+    select
+        M.ID,
+        dbo.f_GetTreeMaterialFolder(IsNull(M.IdtGroup, 0))
+    from Material M
+
+    /*
+        Материализуем результаты функций один раз.
+    */
+    select
+        RC.idMaterial,
+        RC.MaterName,
+        RC.DocDate,
+        RC.MaterArt,
+        RC.UnitName,
+        RC.DepListName,
+        RC.idDepList,
+        RC.Rest,
+        RC.PriceSum,
+        RC.Mass,
+        RC.dTotalCount,
+        RC.dTotalWeight,
+        RC.PriceAvg
+    into #RestCross
+    from dbo.f_GetRest_Cross(@DocDateEnd, @bNDS) RC
+
+    select
+        RT.idMaterial,
+        RT.idDepList,
+        RT.Rest,
+        RT.PriceSum,
+        RT.PriceUnit
+    into #RestTMC
+    from dbo.f_GetrestTMC(@DocDateEnd) RT
+
+    create index IX_RestCross_Material_DepList
+        on #RestCross (idMaterial, idDepList)
+
+    create index IX_RestTMC_Material_DepList
+        on #RestTMC (idMaterial, idDepList)
+
+    declare @sDepList varchar(2000)
+
+    set @sDepList = ''
+
+    select
+        @sDepList = @sDepList + Name + ', '
+    from #DepList
+
+    if LEN(@sDepList) > 0
+        set @sDepList = left(@sDepList, LEN(@sDepList) - 2)
+
+    /*
+        Получаем материалы, которые присутствуют
+        хотя бы на одном из складов пары.
+    */
+    ;with MaterialBySubdivision as
+    (
+        select distinct
+            DP.idDepotSubDivision,
+            RC.idMaterial
+        from #DepPairs DP
+
+        inner join #RestCross RC
+            on RC.idDepList = DP.idDepList0
+            or RC.idDepList = DP.idDepList2
+    )
+
+    select
+        2 as nOrder,
+
+        MBS.idDepotSubDivision,
+
+        MC.idMaterial,
+
+        IsNull(RC0.MaterName, RC2.MaterName) as Name,
+
+        MC.FolderPath,
+
+        @DocDateEnd as DateEnd,
+
+        case
+            when @bNDS = 1 then 'с НДС'
+            else 'без НДС'
+        end as sNDS,
+
+        @sDepList as sDepList,
+
+        IsNull(RC0.MaterArt, RC2.MaterArt) as MaterArt,
+
+        IsNull(RC0.UnitName, RC2.UnitName) as UnitName,
+
+        /* Данные склада 0 */
+
+        DP.nOrderDepList0,
+
+        DP.DepListName0,
+
+        DP.idDepList0,
+
+        RC0.DocDate as DocDate0,
+
+        round(
+            IsNull(RT0.Rest, IsNull(RC0.Rest, 0)),
+            3
+        ) as Rest0,
+
+        IsNull(
+            RT0.PriceSum,
+            IsNull(RC0.PriceSum, 0)
+        ) as PriceSum0,
+
+        RC0.Mass as Mass0,
+
+        RC0.dTotalCount as dTotalCount0,
+
+        RC0.dTotalWeight as dTotalWeight0,
+
+        round(
+            IsNull(RC0.PriceAvg, 0),
+            2
+        ) as PriceAvg0,
+
+        IsNull(
+            RT0.PriceUnit,
+            IsNull(RC0.PriceAvg, 0)
+        ) as Cost0,
+
+        /* Данные склада 2 */
+
+        DP.nOrderDepList2,
+
+        DP.DepListName2,
+
+        DP.idDepList2,
+
+        RC2.DocDate as DocDate2,
+
+        round(
+            IsNull(RT2.Rest, IsNull(RC2.Rest, 0)),
+            3
+        ) as Rest2,
+
+        IsNull(
+            RT2.PriceSum,
+            IsNull(RC2.PriceSum, 0)
+        ) as PriceSum2,
+
+        RC2.Mass as Mass2,
+
+        RC2.dTotalCount as dTotalCount2,
+
+        RC2.dTotalWeight as dTotalWeight2,
+
+        round(
+            IsNull(RC2.PriceAvg, 0),
+            2
+        ) as PriceAvg2,
+
+        IsNull(
+            RT2.PriceUnit,
+            IsNull(RC2.PriceAvg, 0)
+        ) as Cost2
+
+    from MaterialBySubdivision MBS
+
+    inner join #DepPairs DP
+        on DP.idDepotSubDivision = MBS.idDepotSubDivision
+
+    inner join #MaterialColor MC
+        on MC.idMaterial = MBS.idMaterial
+
+    left join #RestCross RC0
+        on RC0.idMaterial = MBS.idMaterial
+        and RC0.idDepList = DP.idDepList0
+
+    left join #RestTMC RT0
+        on RT0.idMaterial = MBS.idMaterial
+        and RT0.idDepList = DP.idDepList0
+
+    left join #RestCross RC2
+        on RC2.idMaterial = MBS.idMaterial
+        and RC2.idDepList = DP.idDepList2
+
+    left join #RestTMC RT2
+        on RT2.idMaterial = MBS.idMaterial
+        and RT2.idDepList = DP.idDepList2
+
+    drop table #RestTMC
+    drop table #RestCross
+    drop table #DepPairs
+    drop table #DepList
+    drop table #MaterialColor
+
+    set nocount off
+end
+go
+
+go
+print convert(varchar, getdate(), 20) + ' : finish SP\sp_GetRest_DepTurnDepList_0_2.sql'
 go
 
 print convert(varchar, getdate(), 20) + ' : start SP\sp_GetTaskTreeLogistic.sql'

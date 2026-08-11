@@ -1,6 +1,6 @@
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_CreateSheduleOperator_IZO]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure [dbo].[sp_CreateSheduleOperator]
-GO
+if object_id('dbo.sp_CreateSheduleOperator_IZO', 'P') is not null
+  drop procedure dbo.sp_CreateSheduleOperator_IZO
+go
 
 -- [ao] создать оператора    
 create procedure sp_CreateSheduleOperator_IZO @idOperator int, @date datetime, @idSheduleOperatorNew int output    

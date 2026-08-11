@@ -1,10 +1,10 @@
 {
   "ReportVersion": "2024.1.2.0",
-  "ReportGuid": "c1adbd9158b64260821d4af6c2af5b42",
+  "ReportGuid": "12cff51c90234e1a8db6cbe39378c177",
   "ReportName": "Report",
   "ReportAlias": "Report",
   "ReportCreated": "/Date(1554650597000+0300)/",
-  "ReportChanged": "/Date(1785844927873+0300)/",
+  "ReportChanged": "/Date(1785845958616+0300)/",
   "EngineVersion": "EngineV2",
   "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\nusing Microsoft.Win32;               // Для работы с реестром\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
   "ReferencedAssemblies": {
@@ -24,14 +24,14 @@
         "Name": "sDateBeg",
         "Alias": "sDateBeg",
         "Type": "System.String",
-        "Key": "52ac25885ee74838b1ea9df19f7747da"
+        "Key": "59bdc924725a48b782420a8880220305"
       },
       "1": {
         "Value": "'01.01.2026'",
         "Name": "sDateEnd",
         "Alias": "sDateEnd",
         "Type": "System.String",
-        "Key": "5de2cccdf35b4f4097a24a2e50968aba"
+        "Key": "60144988303f4804889e50c64455d400"
       },
       "2": {
         "Value": "1.2",
@@ -49,112 +49,172 @@
     "DataSources": {
       "0": {
         "Ident": "StiOleDbSource",
-        "Name": "f_SawTaskUE_Period_Detail",
-        "Alias": "f_SawTaskUE_Period_Detail",
-        "Key": "c8e381b5250d48278431f23ff8a02580",
+        "Name": "f_SawTaskUE_Period_Detail_Assembly",
+        "Alias": "f_SawTaskUE_Period_Detail_Assembly",
+        "Key": "06dba31bb05f4c6d8ae19aebf91b0e59",
         "Columns": {
           "0": {
             "Name": "idTask",
             "Index": -1,
             "NameInSource": "idTask",
             "Alias": "idTask",
-            "Type": "System.Int32"
+            "Type": "System.Int32",
+            "Key": "2b4a17e348a54e298699aabdff14bda7"
           },
           "1": {
             "Name": "AccountNum",
             "Index": -1,
             "NameInSource": "AccountNum",
             "Alias": "AccountNum",
-            "Type": "System.String"
+            "Type": "System.String",
+            "Key": "59d2010549af43878b40f50d1c933c41"
           },
           "2": {
             "Name": "idSawTask",
             "Index": -1,
             "NameInSource": "idSawTask",
             "Alias": "idSawTask",
-            "Type": "System.Int32"
+            "Type": "System.Int32",
+            "Key": "06e7b42f81544910b4825be3a8626d5e"
           },
           "3": {
             "Name": "SawTaskName",
             "Index": -1,
             "NameInSource": "SawTaskName",
             "Alias": "SawTaskName",
-            "Type": "System.String"
+            "Type": "System.String",
+            "Key": "b774a7a7fd36436c9cae82e7e4e726b6"
           },
           "4": {
-            "Name": "CuttingTableName",
-            "Index": -1,
-            "NameInSource": "CuttingTableName",
-            "Alias": "CuttingTableName",
-            "Type": "System.String"
-          },
-          "5": {
             "Name": "DateComplete",
             "Index": -1,
             "NameInSource": "DateComplete",
             "Alias": "DateComplete",
-            "Type": "System.DateTime"
+            "Type": "System.DateTime",
+            "Key": "1159844ca08248a19000de8fe462f717"
           },
-          "6": {
+          "5": {
             "Name": "nSmena",
             "Index": -1,
             "NameInSource": "nSmena",
             "Alias": "nSmena",
-            "Type": "System.Byte"
+            "Type": "System.Byte",
+            "Key": "5eb928f53377489a96015f9afc9b349f"
           },
-          "7": {
+          "6": {
             "Name": "idGlass",
             "Index": -1,
             "NameInSource": "idGlass",
             "Alias": "idGlass",
-            "Type": "System.Int32"
+            "Type": "System.Int32",
+            "Key": "9253593a322641c48004b1ba2d989968"
           },
-          "8": {
+          "7": {
             "Name": "GlassName",
             "Index": -1,
             "NameInSource": "GlassName",
             "Alias": "GlassName",
-            "Type": "System.String"
+            "Type": "System.String",
+            "Key": "399aa595d9f34bbc937d40f3122fb34a"
           },
-          "9": {
+          "8": {
             "Name": "nCountDetails",
             "Index": -1,
             "NameInSource": "nCountDetails",
             "Alias": "nCountDetails",
-            "Type": "System.Int32"
+            "Type": "System.Int32",
+            "Key": "94efa41679b548fe8ef7d447cc9703c1"
           },
-          "10": {
+          "9": {
             "Name": "SumArea",
             "Index": -1,
             "NameInSource": "SumArea",
             "Alias": "SumArea",
-            "Type": "System.Double"
+            "Type": "System.Double",
+            "Key": "e7b221d9901a4e5fb92f937b8921712a"
           },
-          "11": {
+          "10": {
             "Name": "SumAreaUZM",
             "Index": -1,
             "NameInSource": "SumAreaUZM",
             "Alias": "SumAreaUZM",
-            "Type": "System.Double"
+            "Type": "System.Double",
+            "Key": "7a63d8dd875c44bfa85eaa4b28da7db2"
+          },
+          "11": {
+            "Name": "GPName",
+            "Index": -1,
+            "NameInSource": "GPName",
+            "Alias": "GPName",
+            "Type": "System.String",
+            "Key": "7aab3c7d0afc40a0b95f061182c4a67c"
           },
           "12": {
-            "Name": "SumWasteArea",
+            "Name": "idTeam",
             "Index": -1,
-            "NameInSource": "SumWasteArea",
-            "Alias": "SumWasteArea",
-            "Type": "System.Double"
+            "NameInSource": "idTeam",
+            "Alias": "idTeam",
+            "Type": "System.Int32",
+            "Key": "80390e4ac2af401a85081a9036bfacdc"
+          },
+          "13": {
+            "Name": "idAssemblyLine",
+            "Index": -1,
+            "NameInSource": "idAssemblyLine",
+            "Alias": "idAssemblyLine",
+            "Type": "System.Int32",
+            "Key": "e536eb40a5d74229bab19ad3c278b4a9"
+          },
+          "14": {
+            "Name": "idPlanCalendar",
+            "Index": -1,
+            "NameInSource": "idPlanCalendar",
+            "Alias": "idPlanCalendar",
+            "Type": "System.Int32",
+            "Key": "5672cae1e9b441f68e95f8395e886c8f"
+          },
+          "15": {
+            "Name": "idSheduleOperatorBrigadier",
+            "Index": -1,
+            "NameInSource": "idSheduleOperatorBrigadier",
+            "Alias": "idSheduleOperatorBrigadier",
+            "Type": "System.Int32",
+            "Key": "97ef025718794ca3a6de1b811e8ab278"
+          },
+          "16": {
+            "Name": "idOperatorBrigadier",
+            "Index": -1,
+            "NameInSource": "idOperatorBrigadier",
+            "Alias": "idOperatorBrigadier",
+            "Type": "System.Int32",
+            "Key": "91e0006f034d4491810daf3cec2afb50"
+          },
+          "17": {
+            "Name": "BrigadierResolveType",
+            "Index": -1,
+            "NameInSource": "BrigadierResolveType",
+            "Alias": "BrigadierResolveType",
+            "Type": "System.Int32",
+            "Key": "0e871f1557e44d53b40c2f1c94be16a1"
+          },
+          "18": {
+            "Name": "SumUE",
+            "Index": -1,
+            "NameInSource": "SumUE",
+            "Alias": "SumUE",
+            "Type": "System.Decimal",
+            "Key": "7fa0ddc41ebd4a1ab56e289b4f9926c8"
           }
         },
         "NameInSource": "PrimeSoft",
         "ConnectOnStart": false,
-        "CommandTimeout": 180,
-        "SqlCommand": "set dateformat dmy;\r\nselect *\r\n\tfrom dbo.v_SawTaskUE_Period_Detail_Cut_IZO\r\n\twhere DateComplete >= {sDateBeg}\r\n\tand DateComplete  < dateadd(day, 1, {sDateEnd})"
+        "SqlCommand": "set dateformat dmy;\r\nselect *\r\n\tfrom dbo.v_SawTaskUE_Period_Detail_Assembly_IZO\r\n\twhere DateComplete >= {sDateBeg}\r\n\tand DateComplete  < dateadd(day, 1, {sDateEnd})"
       },
       "1": {
         "Ident": "StiOleDbSource",
-        "Name": "f_SawTaskUE_Period_Operator",
-        "Alias": "f_SawTaskUE_Period_Operator",
-        "Key": "24f8b1c4265942228bbfcc719cd2e928",
+        "Name": "f_SawTaskUE_Period_Operator_Assembly",
+        "Alias": "f_SawTaskUE_Period_Operator_Assembly",
+        "Key": "81e0a20528ae433d86aed76d7518945c",
         "Columns": {
           "0": {
             "Name": "ID",
@@ -162,7 +222,7 @@
             "NameInSource": "ID",
             "Alias": "ID",
             "Type": "System.Int32",
-            "Key": "7364f01c2e944c96a6d61d09105cfe55"
+            "Key": "f9fbbe6a19da45e1bcbbe13368ebecb7"
           },
           "1": {
             "Name": "Name",
@@ -170,144 +230,139 @@
             "NameInSource": "Name",
             "Alias": "Name",
             "Type": "System.String",
-            "Key": "645ef0ef0a6443d59f386c9f29f60060"
+            "Key": "7f9a949cd6994603818b718c9be1e33b"
           },
           "2": {
-            "Name": "DateComplete",
-            "Index": -1,
-            "NameInSource": "DateComplete",
-            "Alias": "DateComplete",
-            "Type": "System.DateTime",
-            "Key": "02186b0a46b24f27838d1db089314c70"
-          },
-          "3": {
-            "Name": "nCountDetails",
-            "Index": -1,
-            "NameInSource": "nCountDetails",
-            "Alias": "nCountDetails",
-            "Type": "System.Int32",
-            "Key": "1a8b127c770441079e44d85cec3d73d1"
-          },
-          "4": {
-            "Name": "SumArea",
-            "Index": -1,
-            "NameInSource": "SumArea",
-            "Alias": "SumArea",
-            "Type": "System.Single",
-            "Key": "e0b46030eb0b4245bf623b2dc1410f9c"
-          },
-          "5": {
-            "Name": "SumAreaUZM",
-            "Index": -1,
-            "NameInSource": "SumAreaUZM",
-            "Alias": "SumAreaUZM",
-            "Type": "System.Double",
-            "Key": "5e2078c60f0f4f708226b91b4ece11a3"
-          },
-          "6": {
             "Name": "KTU",
             "Index": -1,
             "NameInSource": "KTU",
             "Alias": "KTU",
             "Type": "System.Single",
-            "Key": "4cd97dc320c942b1b013a6a8afd8aa68"
+            "Key": "2a7bb107d449417b97e4ca873da6ed25"
           },
-          "7": {
+          "3": {
             "Name": "SumKTU",
             "Index": -1,
             "NameInSource": "SumKTU",
             "Alias": "SumKTU",
             "Type": "System.Single",
-            "Key": "c48216897017492996c53dd84f381575"
+            "Key": "6036d3716de24fc59e9ce3e144ffec87"
           },
-          "8": {
-            "Name": "dPriceOfUnitProd",
+          "4": {
+            "Name": "DateComplete",
             "Index": -1,
-            "NameInSource": "dPriceOfUnitProd",
-            "Alias": "dPriceOfUnitProd",
-            "Type": "System.Single"
+            "NameInSource": "DateComplete",
+            "Alias": "DateComplete",
+            "Type": "System.DateTime",
+            "Key": "7d135259a28242c890189a619a1a06f3"
           },
-          "9": {
-            "Name": "SumUE",
-            "Index": -1,
-            "NameInSource": "SumUE",
-            "Alias": "SumUE",
-            "Type": "System.Double"
-          },
-          "10": {
+          "5": {
             "Name": "nSmena",
             "Index": -1,
             "NameInSource": "nSmena",
             "Alias": "nSmena",
-            "Type": "System.Byte"
+            "Type": "System.Byte",
+            "Key": "d9409abf31694478ae67ec6c20efa3ec"
+          },
+          "6": {
+            "Name": "dPriceOfUnitProd",
+            "Index": -1,
+            "NameInSource": "dPriceOfUnitProd",
+            "Alias": "dPriceOfUnitProd",
+            "Type": "System.Single",
+            "Key": "24586856c1504103a11f1a8d616273d4"
+          },
+          "7": {
+            "Name": "nCountDetails",
+            "Index": -1,
+            "NameInSource": "nCountDetails",
+            "Alias": "nCountDetails",
+            "Type": "System.Int32",
+            "Key": "8c1d4324282a4e13801215d90b47d6c3"
+          },
+          "8": {
+            "Name": "SumArea",
+            "Index": -1,
+            "NameInSource": "SumArea",
+            "Alias": "SumArea",
+            "Type": "System.Double",
+            "Key": "9a00280aef10488d85966a9511fe05fc"
+          },
+          "9": {
+            "Name": "SumAreaUZM",
+            "Index": -1,
+            "NameInSource": "SumAreaUZM",
+            "Alias": "SumAreaUZM",
+            "Type": "System.Double",
+            "Key": "9b5012a2a3b44fc29ad8e45f0d7ad9b5"
+          },
+          "10": {
+            "Name": "SumUE",
+            "Index": -1,
+            "NameInSource": "SumUE",
+            "Alias": "SumUE",
+            "Type": "System.Double",
+            "Key": "cb518976e6754d0d993973741975891b"
           },
           "11": {
-            "Name": "CuttingTableName",
+            "Name": "idSawLimit",
             "Index": -1,
-            "NameInSource": "CuttingTableName",
-            "Alias": "CuttingTableName",
-            "Type": "System.String"
+            "NameInSource": "idSawLimit",
+            "Alias": "idSawLimit",
+            "Type": "System.Int32",
+            "Key": "3f6a0852880e489d868c30bdef99b6d2"
           },
           "12": {
-            "Name": "PriceChina",
+            "Name": "SawLimitName",
             "Index": -1,
-            "NameInSource": "PriceChina",
-            "Alias": "PriceChina",
-            "Type": "System.Double"
+            "NameInSource": "SawLimitName",
+            "Alias": "SawLimitName",
+            "Type": "System.String",
+            "Key": "bcee3d46158d48d6bfb62695cae53d41"
           },
           "13": {
-            "Name": "PriceLisec",
+            "Name": "idTeam",
             "Index": -1,
-            "NameInSource": "PriceLisec",
-            "Alias": "PriceLisec",
-            "Type": "System.Double"
+            "NameInSource": "idTeam",
+            "Alias": "idTeam",
+            "Type": "System.Int32",
+            "Key": "19cbe690ec154b51a55948880ff00382"
           },
           "14": {
-            "Name": "SumUEChina",
+            "Name": "idAssemblyLine",
             "Index": -1,
-            "NameInSource": "SumUEChina",
-            "Alias": "SumUEChina",
-            "Type": "System.Double"
+            "NameInSource": "idAssemblyLine",
+            "Alias": "idAssemblyLine",
+            "Type": "System.Int32",
+            "Key": "17a5786a5580473a935da8578d0843e2"
           },
           "15": {
-            "Name": "SumUELisec",
+            "Name": "idSheduleOperator",
             "Index": -1,
-            "NameInSource": "SumUELisec",
-            "Alias": "SumUELisec",
-            "Type": "System.Double"
+            "NameInSource": "idSheduleOperator",
+            "Alias": "idSheduleOperator",
+            "Type": "System.Int32",
+            "Key": "b9c578a06e48487abe720a6d12e30d12"
           },
           "16": {
-            "Name": "SumWasteArea",
+            "Name": "idOperatorBrigadier",
             "Index": -1,
-            "NameInSource": "SumWasteArea",
-            "Alias": "SumWasteArea",
-            "Type": "System.Double"
+            "NameInSource": "idOperatorBrigadier",
+            "Alias": "idOperatorBrigadier",
+            "Type": "System.Int32",
+            "Key": "bd2439ac070941cba4539cafdb25db78"
           },
           "17": {
-            "Name": "bTripNoCoat",
+            "Name": "SawTaskName",
             "Index": -1,
-            "NameInSource": "bTripNoCoat",
-            "Alias": "bTripNoCoat",
-            "Type": "System.Int32"
-          },
-          "18": {
-            "Name": "bTripCoat",
-            "Index": -1,
-            "NameInSource": "bTripCoat",
-            "Alias": "bTripCoat",
-            "Type": "System.Int32"
-          },
-          "19": {
-            "Name": "bTriplex",
-            "Index": -1,
-            "NameInSource": "bTriplex",
-            "Alias": "bTriplex",
-            "Type": "System.Int32"
+            "NameInSource": "SawTaskName",
+            "Alias": "SawTaskName",
+            "Type": "System.String",
+            "Key": "edf97e297f2849e5bcbb79716fb4adf2"
           }
         },
         "NameInSource": "PrimeSoft",
-        "CommandTimeout": 180,
-        "SqlCommand": "set dateformat dmy\r\nselect * from v_SawTaskUE_Period_Operator_Cut_IZO\r\n\twhere DateComplete >= {sDateBeg}\r\n\tand DateComplete  < dateadd(day, 1, {sDateEnd})"
+        "SqlCommand": "set dateformat dmy\r\nselect * from v_SawTaskUE_Period_Operator_Assembly_IZO\r\n\twhere DateComplete >= {sDateBeg}\r\n\tand DateComplete  < dateadd(day, 1, {sDateEnd})"
       }
     },
     "Databases": {
@@ -315,6 +370,7 @@
         "Ident": "StiOleDbDatabase",
         "Name": "PrimeSoft",
         "Alias": "PrimeSoft",
+        "Key": "1ef5f352165943028c70d12bdb68b4aa",
         "ConnectionStringEncrypted": "4FTL7ctde6RgQeHcThSxbtlY2UxPb3PI4hNZ8Gpc4SfDcNkoT0uTTctPxcTqcK2z38SLwk1Nq5lqRO1MZ3ThE43Q4S1VSvP17Aic7HfssZfccN8JRmijCexM/dzkfORj71bRSEZ+E4HLCOiQ5YRiM8JaYctFA/KZc3u5bGTY4//VxM2hSGy6gWxvnPRiXOBn5FTZyEh8u6R/WujY6VzjKpA6uc9iWdmZYgg5pf5J4eff0rPr1VHbkOkInNxiiHcT4xbf68VqMfHiac0c6RxhEt9aU4NhXTGJ42H1KOpMsbvERsspTVvTgWtJdUTp2CV63mzZiWFRo81FWG2E5RglZ8XyzQLdBTFVaWmhXOpsoi/ZVLVLxVA="
       }
     }
@@ -333,6 +389,7 @@
         "0": {
           "Ident": "StiPageHeaderBand",
           "Name": "PageHeaderBand1",
+          "Guid": "20ddb87a72bc493b92b929f0f11dd325",
           "ClientRectangle": "0,0.4,19,2.3",
           "Interaction": {
             "Ident": "StiInteraction"
@@ -343,12 +400,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text1",
+              "Guid": "e4ea0fb52c0449659a0069a185bb0377",
               "ClientRectangle": "0,0,17.7,0.7",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Объём производства с {sDateBeg} по {sDateEnd} Подробный"
+                "Value": "Объём производства с {sDateBeg} по {sDateEnd}"
               },
               "VertAlignment": "Center",
               "Font": ";16;Bold;",
@@ -360,13 +418,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text5",
-              "Guid": "af4c03ff5362466a99bdca5ab43a7934",
+              "Guid": "9632ea8937bd4dd09a67eb99c7b515cf",
               "ClientRectangle": "0,0.7,5.6,1.1",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Участок: раскрой стекла"
+                "Value": "Участок: сборка СП"
               },
               "VertAlignment": "Center",
               "Font": ";10;;",
@@ -385,40 +443,9 @@
         },
         "1": {
           "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand9",
-          "ClientRectangle": "0,3.5,19,0.8",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text16",
-              "ClientRectangle": "0,0,19,0.8",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Стол {f_SawTaskUE_Period_Detail.CuttingTableName}"
-              },
-              "Font": ";16;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Detail.CuttingTableName}"
-          }
-        },
-        "2": {
-          "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand2",
-          "Guid": "0ddb9386edfa448088df5e307803e0ba",
-          "ClientRectangle": "0,5.1,19,0.9",
+          "Guid": "6026c4bb43aa418191426bb2f81285a3",
+          "ClientRectangle": "0,3.5,19,0.9",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -428,13 +455,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text30",
-              "Guid": "273e21043c164281975f3dd516fe86c3",
-              "ClientRectangle": "0,0,16.1,0.9",
+              "Guid": "42e8048f51f04c4d9b7e30d49572ee95",
+              "ClientRectangle": "0,0,18.3,0.9",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Участок раскроя"
+                "Value": "Участок Сборки СП"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -449,10 +476,11 @@
             "Value": "1=1"
           }
         },
-        "3": {
+        "2": {
           "Ident": "StiChildBand",
           "Name": "ChildBand1",
-          "ClientRectangle": "0,6.8,19,1.2",
+          "Guid": "304a9a27bc4f4c1997e25f094aaa50ac",
+          "ClientRectangle": "0,5.2,19,1.2",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -462,7 +490,7 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text10",
-              "Guid": "9348091c59bd4207a307c748f562b3e4",
+              "Guid": "b976b79b8acb46b2997bfa77d976cb04",
               "ClientRectangle": "0,0,2.1,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -486,13 +514,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text14",
-              "Guid": "c7afb6e9a7f04b60923fc1c8e70fdb49",
-              "ClientRectangle": "10.3,0,2,1.2",
+              "Guid": "e9faba49eef3464fa4a3e15d158b0bf7",
+              "ClientRectangle": "14.3,0,2,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Площадь"
+                "Value": "УЕ"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -505,7 +533,7 @@
             "2": {
               "Ident": "StiText",
               "Name": "Text22",
-              "Guid": "c6621705a20f4b3ea9cd2152985c673e",
+              "Guid": "827e88e196314583933bb68811cbb629",
               "ClientRectangle": "4.8,0,2.4,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -524,13 +552,13 @@
             "3": {
               "Ident": "StiText",
               "Name": "Text2",
-              "Guid": "8f9d5c88333d4a41a7c3076ba92f1f9e",
+              "Guid": "0dc254905c03403ab129fd7fa0096ab8",
               "ClientRectangle": "3.4,0,1.4,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "К-во стекла"
+                "Value": "К-во СП"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -546,13 +574,13 @@
             "4": {
               "Ident": "StiText",
               "Name": "Text4",
-              "Guid": "ba02d9f45b3e4a90ac9bd45190d8a213",
-              "ClientRectangle": "7.2,0,3.1,1.2",
+              "Guid": "8f366df8672248ea85d06dba35734b53",
+              "ClientRectangle": "7.2,0,7.1,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Стекло"
+                "Value": "СП"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -565,8 +593,8 @@
             "5": {
               "Ident": "StiText",
               "Name": "Text17",
-              "Guid": "92bdc578a94245d391673136eee3b14d",
-              "ClientRectangle": "14.1,0,2,1.2",
+              "Guid": "d206133eac7f4604b996642e3c540f13",
+              "ClientRectangle": "16.3,0,2,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -584,7 +612,7 @@
             "6": {
               "Ident": "StiText",
               "Name": "Text51",
-              "Guid": "4a854985779d42f0ac311a248cbc6519",
+              "Guid": "fec2d57122bc462baf7924d6136e4dcd",
               "ClientRectangle": "2.1,0,1.3,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -599,49 +627,28 @@
               "Brush": "solid:LightCyan",
               "TextBrush": "solid:Black",
               "Type": "Expression"
-            },
-            "7": {
-              "Ident": "StiText",
-              "Name": "Text28",
-              "Guid": "fe6049731f0d480bb7ab8cca0f5e1abd",
-              "ClientRectangle": "12.3,0,1.8,1.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Площадь кромки"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";10;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightCyan",
-              "TextBrush": "solid:Black",
-              "TextOptions": {
-                "WordWrap": true
-              },
-              "Type": "Expression"
             }
           }
         },
-        "4": {
+        "3": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand5",
-          "ClientRectangle": "0,8.8,19,0",
+          "Guid": "c2b51aa0aaf647549efef8cc84081143",
+          "ClientRectangle": "0,7.2,19,0",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:",
           "Condition": {
-            "Value": "{f_SawTaskUE_Period_Detail.DateComplete}"
+            "Value": "{f_SawTaskUE_Period_Detail_Assembly.DateComplete}"
           }
         },
-        "5": {
+        "4": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand8",
-          "Guid": "3b0da28de01d43d28a787cfb32532465",
-          "ClientRectangle": "0,9.6,19,0.5",
+          "Guid": "898fbe06671b497096e7c70dc8c28cfe",
+          "ClientRectangle": "0,8,19,0.5",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -651,13 +658,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text71",
-              "Guid": "4f35059b128e41b6ae4bba515753f6ec",
+              "Guid": "a34d22e547f34692ac426222e34038ce",
               "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "     {f_SawTaskUE_Period_Detail.DateComplete.ToString(\"dd.MM.yyyy\")}"
+                "Value": "     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
               },
               "VertAlignment": "Center",
               "Font": ";;Bold;",
@@ -675,13 +682,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text72",
-              "Guid": "ceb2bf693bfb44dea9eee828a49cf17a",
+              "Guid": "d20765839e3d4c8bbf990d2fa07691a5",
               "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.nSmena}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.nSmena}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -695,13 +702,13 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "DataColumn"
+              "Type": "Expression"
             },
             "2": {
               "Ident": "StiText",
               "Name": "Text73",
-              "Guid": "fb26fdc61ad14a80ba364686702aec87",
-              "ClientRectangle": "3.4,0,12.7,0.5",
+              "Guid": "684591007fe64bb48db5c142d343bbc6",
+              "ClientRectangle": "3.4,0,14.9,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -720,13 +727,14 @@
             }
           },
           "Condition": {
-            "Value": "{f_SawTaskUE_Period_Detail.nSmena}"
+            "Value": "{f_SawTaskUE_Period_Detail_Assembly.nSmena}"
           }
         },
-        "6": {
+        "5": {
           "Ident": "StiDataBand",
           "Name": "DataBand2",
-          "ClientRectangle": "0,10.9,19,0.5",
+          "Guid": "02c4bc490b3d489998697042914a0e7f",
+          "ClientRectangle": "0,9.3,19,0.5",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -736,12 +744,15 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text9",
+              "Guid": "7d1fcee8192942ec808ae3ae86d84331",
+              "CanGrow": true,
+              "GrowToHeight": true,
               "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "     {f_SawTaskUE_Period_Detail.DateComplete.ToString(\"dd.MM.yyyy\")}"
+                "Value": "     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
               },
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
@@ -758,13 +769,15 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text12",
-              "Guid": "4481b1094449404fbc251e941e8928e1",
+              "Guid": "5d50e634d0844949bc962b05c94291a1",
+              "CanGrow": true,
+              "GrowToHeight": true,
               "ClientRectangle": "3.4,0,1.4,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.nCountDetails}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.nCountDetails}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -782,13 +795,15 @@
             "2": {
               "Ident": "StiText",
               "Name": "Text13",
-              "Guid": "456e16e3150147f5bc666438402f137d",
-              "ClientRectangle": "10.3,0,2,0.5",
+              "Guid": "eb72aecc18294b109d1596a634a708fc",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.SumArea}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.SumUE}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -813,13 +828,15 @@
             "3": {
               "Ident": "StiText",
               "Name": "Text3",
-              "Guid": "a77767782ad54a9a8a059dba747eea74",
+              "Guid": "d4abd727debc44298b3cf79c13f5f5c6",
+              "CanGrow": true,
+              "GrowToHeight": true,
               "ClientRectangle": "4.8,0,2.4,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.SawTaskName}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.SawTaskName}"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -837,37 +854,44 @@
             "4": {
               "Ident": "StiText",
               "Name": "Text6",
-              "Guid": "816425bc211548508c03f4406ad4d70e",
-              "ClientRectangle": "7.2,0,3.1,0.5",
+              "Guid": "f5b691b80f8f40a8b3187e44093f1b91",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "7.2,0,7.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.GlassName}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.GPName}"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
               "Brush": "solid:",
               "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
               "Margins": {
                 "Left": 2.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "DataColumn"
+              "Type": "Expression"
             },
             "5": {
               "Ident": "StiText",
               "Name": "Text25",
-              "Guid": "7b7acb587260425dbbcd97a9e82a69b3",
-              "ClientRectangle": "14.1,0,2,0.5",
+              "Guid": "658456fdc35147eca835146021884072",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "16.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.AccountNum}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.AccountNum}"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -880,18 +904,20 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "DataColumn"
+              "Type": "Expression"
             },
             "6": {
               "Ident": "StiText",
               "Name": "Text7",
-              "Guid": "32f0b30b4d0940eea50010911e66d297",
+              "Guid": "70f354db22974f28877c24ed7bbc16a7",
+              "CanGrow": true,
+              "GrowToHeight": true,
               "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.nSmena}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.nSmena}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -903,58 +929,17 @@
                 "Right": 2.0,
                 "Top": 0.0,
                 "Bottom": 0.0
-              },
-              "Type": "DataColumn"
-            },
-            "7": {
-              "Ident": "StiText",
-              "Name": "Text29",
-              "Guid": "b710cac2c1db4dfbb53c5abf1d02e79c",
-              "ClientRectangle": "12.3,0,1.8,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.SumWasteArea}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
               },
               "Type": "Expression"
             }
           },
-          "DataSourceName": "f_SawTaskUE_Period_Detail",
-          "Sort": {
-            "0": "ASC",
-            "1": "DateComplete",
-            "2": "ASC",
-            "3": "nSmena",
-            "4": "ASC",
-            "5": "GlassName",
-            "6": "ASC",
-            "7": "SawTaskName"
-          }
+          "DataSourceName": "f_SawTaskUE_Period_Detail_Assembly"
         },
-        "7": {
+        "6": {
           "Ident": "StiGroupFooterBand",
           "Name": "GroupFooterBand8",
-          "Guid": "4bd239890b674111a21ded230fb35c27",
-          "ClientRectangle": "0,12.2,19,0.8",
+          "Guid": "f7301d2d22d941a498daf47897d9e9fd",
+          "ClientRectangle": "0,10.6,19,0.8",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -964,13 +949,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text74",
-              "Guid": "b17b58e7098b433d93ef7c0f2c9f0e90",
+              "Guid": "650a1569d33e4cb8bedadb0c0fd38f2c",
               "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "     {f_SawTaskUE_Period_Detail.DateComplete.ToString(\"dd.MM.yyyy\")}"
+                "Value": "     {f_SawTaskUE_Period_Detail_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
               },
               "VertAlignment": "Center",
               "Font": ";;Bold;",
@@ -988,13 +973,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text75",
-              "Guid": "6cd34ea8428b494daeac067b9c4e7551",
+              "Guid": "112ddabc1ea749fe8e0b46ae1d423834",
               "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Detail.nSmena}"
+                "Value": "{f_SawTaskUE_Period_Detail_Assembly.nSmena}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1008,13 +993,13 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "DataColumn"
+              "Type": "Expression"
             },
             "2": {
               "Ident": "StiText",
               "Name": "Text76",
-              "Guid": "e3fc4ca623394110b1ba093831d818b0",
-              "ClientRectangle": "4.8,0,5.5,0.5",
+              "Guid": "5349815830eb4da780662ad7e9b54385",
+              "ClientRectangle": "4.8,0,9.5,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1037,13 +1022,13 @@
             "3": {
               "Ident": "StiText",
               "Name": "Text77",
-              "Guid": "073d448857da42e99f1b0aba26997da6",
-              "ClientRectangle": "10.3,0,2,0.5",
+              "Guid": "3d5846a65a4044058d51333bfd93954b",
+              "ClientRectangle": "14.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.SumArea)}"
+                "Value": "{Sum(f_SawTaskUE_Period_Detail_Assembly.SumUE)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1069,8 +1054,8 @@
             "4": {
               "Ident": "StiText",
               "Name": "Text80",
-              "Guid": "13505bdc2fb047fba6a4a2d62e233565",
-              "ClientRectangle": "14.1,0,2,0.5",
+              "Guid": "fa31eb6b9a2849a3af3ff8670d61d82e",
+              "ClientRectangle": "16.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1098,13 +1083,13 @@
             "5": {
               "Ident": "StiText",
               "Name": "Text82",
-              "Guid": "5486101f58e0471dac4188d37a2766f3",
+              "Guid": "ec27f5aeacd9462594223d031f3cb755",
               "ClientRectangle": "3.4,0,1.4,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.nCountDetails)}"
+                "Value": "{Sum(f_SawTaskUE_Period_Detail_Assembly.nCountDetails)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1117,69 +1102,27 @@
                 "Right": 2.0,
                 "Top": 0.0,
                 "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "6": {
-              "Ident": "StiText",
-              "Name": "Text35",
-              "Guid": "2ad7ebc47b2f4efaaadd0f51a9d5163d",
-              "ClientRectangle": "12.3,0,1.8,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.SumWasteArea)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
               },
               "Type": "Expression"
             }
           }
         },
-        "8": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand9",
-          "Guid": "349005a87bb14c4eada544fd56273849",
-          "ClientRectangle": "0,13.8,19,0",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:"
-        },
-        "9": {
+        "7": {
           "Ident": "StiGroupFooterBand",
           "Name": "GroupFooterBand7",
-          "Guid": "f10670e6e420479695618df7761e31c4",
-          "ClientRectangle": "0,14.6,19,0",
+          "Guid": "2dc1e2d1cdf1461bb47123875524c57c",
+          "ClientRectangle": "0,12.2,19,0",
           "Interaction": {
             "Ident": "StiInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:"
         },
-        "10": {
+        "8": {
           "Ident": "StiGroupFooterBand",
           "Name": "GroupFooterBand2",
-          "ClientRectangle": "0,15.4,19,2.5",
+          "Guid": "b5e70d073aac4f789ae7cd12ef67f64a",
+          "ClientRectangle": "0,13,19,2.5",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -1189,13 +1132,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text18",
-              "Guid": "d7055b3c25a345eda1c28bf5b0edcfdf",
-              "ClientRectangle": "0,0,3.3,0.5",
+              "Guid": "45d02ed65b6f444b9420d20abb232bf5",
+              "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Итого: {f_SawTaskUE_Period_Detail.CuttingTableName}"
+                "Value": "Итого:"
               },
               "VertAlignment": "Center",
               "Font": ";;Bold;",
@@ -1213,13 +1156,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text19",
-              "Guid": "7ff6e1d8f830400cb307c48656001222",
-              "ClientRectangle": "3.2,0,1.6,0.5",
+              "Guid": "773955f9356247f4ac1306aa8bcaf676",
+              "ClientRectangle": "3.4,0,1.4,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.nCountDetails)}"
+                "Value": "{Sum(f_SawTaskUE_Period_Detail_Assembly.nCountDetails)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1237,7 +1180,7 @@
             "2": {
               "Ident": "StiText",
               "Name": "Text20",
-              "Guid": "8f08a520155e4f5da770ce8202443142",
+              "Guid": "ad4a3a00ed674e7191308c102ce959c8",
               "ClientRectangle": "4.8,0,2.4,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -1266,8 +1209,8 @@
             "3": {
               "Ident": "StiText",
               "Name": "Text21",
-              "Guid": "7414ae4f17c44bf199af89acde866cff",
-              "ClientRectangle": "7.2,0,3.1,0.5",
+              "Guid": "24edadfe0eca482e85f1ce2843365374",
+              "ClientRectangle": "7.2,0,7.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1295,13 +1238,13 @@
             "4": {
               "Ident": "StiText",
               "Name": "Text23",
-              "Guid": "2a98033496ed4f72a843f8614c1a69ff",
-              "ClientRectangle": "10.3,0,2,0.5",
+              "Guid": "2ceec953b2a54f51865388b9af3d1821",
+              "ClientRectangle": "14.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.SumArea)}"
+                "Value": "{Sum(f_SawTaskUE_Period_Detail_Assembly.SumUE)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1326,8 +1269,8 @@
             "5": {
               "Ident": "StiText",
               "Name": "Text26",
-              "Guid": "deb5aace6286404b9ace33cf52c2becf",
-              "ClientRectangle": "14.1,0,2,0.5",
+              "Guid": "61019597853a463ca6eee154fbd82627",
+              "ClientRectangle": "16.3,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1354,14 +1297,11 @@
             },
             "6": {
               "Ident": "StiText",
-              "Name": "Text40",
-              "Guid": "1e0dd3a117244b50852cd0a3da0a0b62",
-              "ClientRectangle": "12.3,0,1.8,0.5",
+              "Name": "Text8",
+              "Guid": "177d0d9ff97141969ef639e342082d19",
+              "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Detail.SumWasteArea)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1374,55 +1314,15 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
               "Type": "Expression"
             }
           }
         },
-        "11": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand10",
-          "Guid": "c6ff9a03d2ef420686244a74dc31e17c",
-          "ClientRectangle": "0,18.7,19,0.8",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text24",
-              "Guid": "7c0235132e91404fa8dad6328bfb600c",
-              "ClientRectangle": "0,0,19,0.8",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.CuttingTableName}"
-              },
-              "Font": ";16;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "DataColumn"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.CuttingTableName}"
-          }
-        },
-        "12": {
+        "9": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand1",
-          "Guid": "a334daa80e0940e9ad1929263053349f",
-          "ClientRectangle": "0,20.3,19,0.9",
+          "Guid": "b174f0246d4e49578312c91589bc30a7",
+          "ClientRectangle": "0,16.3,19,0.9",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -1432,13 +1332,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text36",
-              "Guid": "d0112e77a01f4bb09149bd05fdf06771",
-              "ClientRectangle": "0,0,19,0.9",
+              "Guid": "2d8a2af1170f42b08fd6b690dd7abc7c",
+              "ClientRectangle": "0,0,18.1,0.9",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Участок раскроя (цена : {\r\nIIF(f_SawTaskUE_Period_Operator.CuttingTableName == \"Китай\",   f_SawTaskUE_Period_Operator.PriceChina,\r\nIIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), f_SawTaskUE_Period_Operator.PriceLisec, f_SawTaskUE_Period_Operator.dPriceOfUnitProd))})"
+                "Value": "Участок сборки (цена : {f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd})"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -1453,11 +1353,11 @@
             "Value": "1=1"
           }
         },
-        "13": {
+        "10": {
           "Ident": "StiChildBand",
           "Name": "ChildBand2",
-          "Guid": "095c03725a484368974788fa64c6560d",
-          "ClientRectangle": "0,22,19,1.2",
+          "Guid": "9263b830971b42c0b665692fab883846",
+          "ClientRectangle": "0,18,19,1.2",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -1467,7 +1367,7 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text38",
-              "Guid": "c5b973f2b4d6494f87ca366e84d00e9e",
+              "Guid": "fa05ae1be95c4521a41eb227016d71c5",
               "ClientRectangle": "0,0,2.1,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -1490,28 +1390,9 @@
             },
             "1": {
               "Ident": "StiText",
-              "Name": "Text39",
-              "Guid": "6f16c4a6d3924a358ef31b3d05d918d4",
-              "ClientRectangle": "11.4,0,2.7,1.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Площадь КТУ"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";10;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightCyan",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
               "Name": "Text45",
-              "Guid": "2c41326037b64f04a69d522a24cbd8f2",
-              "ClientRectangle": "3.4,0,8,1.2",
+              "Guid": "62014e9fe0cf49a0be075e8e7f058f1c",
+              "ClientRectangle": "7.2,0,5,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1529,38 +1410,16 @@
               },
               "Type": "Expression"
             },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text47",
-              "Guid": "2ed348d0a5e347309e89e5e398fe5963",
-              "ClientRectangle": "15.7,0,1.3,1.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "КТУ"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";10;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightCyan",
-              "TextBrush": "solid:Black",
-              "TextOptions": {
-                "WordWrap": true
-              },
-              "Type": "Expression"
-            },
-            "4": {
+            "2": {
               "Ident": "StiText",
               "Name": "Text46",
-              "Guid": "66a6aafac6b34e9cbacbae2dd292ae05",
-              "ClientRectangle": "17,0,2,1.2",
+              "Guid": "b3cc2466dbfa4d9f8203e22f1463a318",
+              "ClientRectangle": "14.1,0,2,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "руб."
+                "Value": "У.Е."
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -1570,10 +1429,10 @@
               "TextBrush": "solid:Black",
               "Type": "Expression"
             },
-            "5": {
+            "3": {
               "Ident": "StiText",
               "Name": "Text11",
-              "Guid": "cdde2c70edd8494f96cf873ae6948f7f",
+              "Guid": "57f8e8714120405ba95192acc5e59c2d",
               "ClientRectangle": "2.1,0,1.3,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
@@ -1589,16 +1448,35 @@
               "TextBrush": "solid:Black",
               "Type": "Expression"
             },
-            "6": {
+            "4": {
               "Ident": "StiText",
-              "Name": "Text43",
-              "Guid": "7b1d27172b284758a1e37fe6ea8910e0",
-              "ClientRectangle": "14.1,0,1.6,1.2",
+              "Name": "Text16",
+              "Guid": "73f21891eebe4e0aabe0740b84b8c4dd",
+              "ClientRectangle": "16.1,0,2,1.2",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Площ. кромки"
+                "Value": "Сумма"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightCyan",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text33",
+              "Guid": "e15338fa40534c03b09bc636c2b3a4f2",
+              "ClientRectangle": "5,0,2.2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Производ. задание"
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -1610,28 +1488,80 @@
                 "WordWrap": true
               },
               "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text41",
+              "Guid": "7350848ec1d54132b33d6c3fcb8603b1",
+              "ClientRectangle": "12.2,0,1.9,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "КТУ"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightCyan",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text47",
+              "Guid": "964ad7b644744f298ced78bd0e7793b8",
+              "ClientRectangle": "3.4,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Линия"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightCyan",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
             }
           }
         },
-        "14": {
+        "11": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand6",
-          "Guid": "2fcd1e443f274942a1ae9251ce04eb74",
-          "ClientRectangle": "0,24,19,0",
+          "Guid": "c1fb0ba43ab340d189d423dc14d1e3de",
+          "ClientRectangle": "0,20,19,0",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:",
           "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.DateComplete}"
+            "Value": "{f_SawTaskUE_Period_Operator_Assembly.DateComplete}"
           }
         },
-        "15": {
+        "12": {
+          "Ident": "StiGroupHeaderBand",
+          "Name": "GroupHeaderBand9",
+          "Guid": "9421d8f6f6b44c28b33aeffc56264fd6",
+          "ClientRectangle": "0,20.8,19,0",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Condition": {
+            "Value": "{f_SawTaskUE_Period_Operator_Assembly.SawLimitName}"
+          }
+        },
+        "13": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand7",
-          "Guid": "8342544d625d4fdf9ffd4e2d9545d14c",
-          "ClientRectangle": "0,24.8,19,0.5",
+          "Guid": "cbca29379c304b48b7d257f5210e7f85",
+          "ClientRectangle": "0,21.6,19,0.5",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -1641,13 +1571,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text61",
-              "Guid": "aa4f09a769314997bb09c001b6e49ce7",
+              "Guid": "c55f1388044f484d89b174b160ef7f41",
               "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "   {f_SawTaskUE_Period_Operator.DateComplete.ToString(\"dd.MM.yyyy\")}"
+                "Value": "   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
               },
               "VertAlignment": "Center",
               "Font": ";;Bold;",
@@ -1665,13 +1595,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text62",
-              "Guid": "e1ae45778ef14e2b9809b59768ca0219",
+              "Guid": "1a643cb2e8fe40c2bf8d4ce9e32c8142",
               "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.nSmena}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.nSmena}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1685,13 +1615,13 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "DataColumn"
+              "Type": "Expression"
             },
             "2": {
               "Ident": "StiText",
               "Name": "Text70",
-              "Guid": "da81df94df4a4c76b57005190d141951",
-              "ClientRectangle": "3.4,0,15.6,0.5",
+              "Guid": "8205297a44bd40799905b1aa64f41813",
+              "ClientRectangle": "5,0,13.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -1707,53 +1637,41 @@
                 "Bottom": 0.0
               },
               "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text54",
+              "Guid": "61369909426a4bedb103ca426ac55f1f",
+              "ClientRectangle": "3.4,0,1.6,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "DataColumn"
             }
           },
           "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.nSmena}"
+            "Value": "{f_SawTaskUE_Period_Operator_Assembly.nSmena}"
           }
         },
-        "16": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand18",
-          "ClientRectangle": "0,26.1,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.Name}"
-          }
-        },
-        "17": {
+        "14": {
           "Ident": "StiDataBand",
           "Name": "DataBand1",
-          "Guid": "c880f1523cc349979cfe8b07e0077782",
-          "ClientRectangle": "0,26.9,19,0",
+          "Guid": "b4cdb1b8b22c4b84b9fd5aea9757e41d",
+          "ClientRectangle": "0,22.9,19,0.5",
           "Interaction": {
             "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "DataSourceName": "f_SawTaskUE_Period_Operator",
-          "Sort": {
-            "0": "ASC",
-            "1": "DateComplete",
-            "2": "ASC",
-            "3": "nSmena",
-            "4": "DESC",
-            "5": "KTU",
-            "6": "ASC",
-            "7": "Name"
-          }
-        },
-        "18": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand18",
-          "ClientRectangle": "0,27.7,19,0.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:",
@@ -1761,13 +1679,13 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text31",
-              "Guid": "2c12d73d7b9343c39d5e57247521ccb1",
+              "Guid": "c07e267c913d4ddb911255291ee74e4a",
               "ClientRectangle": "0,0,2.1,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "   {f_SawTaskUE_Period_Operator.DateComplete.ToString(\"dd.MM.yyyy\")}"
+                "Value": "   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
               },
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
@@ -1784,13 +1702,13 @@
             "1": {
               "Ident": "StiText",
               "Name": "Text32",
-              "Guid": "30fd2f534c3b43c78f95a11863185efc",
-              "ClientRectangle": "3.4,0,8,0.5",
+              "Guid": "e7a72813db524254b01a5667c7a68fe9",
+              "ClientRectangle": "7.2,0,5,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.Name}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.Name}"
               },
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
@@ -1802,18 +1720,18 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "Type": "Expression"
+              "Type": "DataColumn"
             },
             "2": {
               "Ident": "StiText",
-              "Name": "Text33",
-              "Guid": "07c099891709415495581211b7cf1153",
-              "ClientRectangle": "11.4,0,2.7,0.5",
+              "Name": "Text48",
+              "Guid": "4b9ccd3760ac4778a4b77e335bea4a71",
+              "ClientRectangle": "14.1,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.SumUE}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1837,14 +1755,14 @@
             },
             "3": {
               "Ident": "StiText",
-              "Name": "Text34",
-              "Guid": "1092b0bc23444f3f87dc52dc619082c2",
-              "ClientRectangle": "15.7,0,1.3,0.5",
+              "Name": "Text15",
+              "Guid": "6b10915f82704f73a801f0ce1831a7cd",
+              "ClientRectangle": "2.1,0,1.3,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.KTU}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.nSmena}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1857,26 +1775,18 @@
                 "Top": 0.0,
                 "Bottom": 0.0
               },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " ",
-                "UseLocalSetting": false
-              },
               "Type": "Expression"
             },
             "4": {
               "Ident": "StiText",
-              "Name": "Text48",
-              "Guid": "d78797e1d4f6472c94aa91836ed9b3ed",
-              "ClientRectangle": "17,0,2,0.5",
+              "Name": "Text24",
+              "Guid": "aa13516ba21b49ffb9d6d29fc0d70e08",
+              "ClientRectangle": "16.1,0,2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == \"Китай\",   f_SawTaskUE_Period_Operator.SumUEChina,\r\n\t IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}\r\n"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1900,14 +1810,14 @@
             },
             "5": {
               "Ident": "StiText",
-              "Name": "Text15",
-              "Guid": "154bc5a9439440e3944d6cc6e564fab1",
-              "ClientRectangle": "2.1,0,1.3,0.5",
+              "Name": "Text34",
+              "Guid": "bf81261f3b4c464cb0cfac03785c1feb",
+              "ClientRectangle": "5,0,2.2,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.nSmena}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.SawTaskName}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -1924,19 +1834,388 @@
             },
             "6": {
               "Ident": "StiText",
-              "Name": "Text55",
-              "Guid": "670116a6e11e4bd381864c21df8220f8",
-              "ClientRectangle": "14.1,0,1.6,0.5",
+              "Name": "Text42",
+              "Guid": "ee700dccea114dceb98e918b83e67e21",
+              "ClientRectangle": "12.2,0,1.9,0.5",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.SumWasteArea}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.KTU}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
               "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "DataColumn"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text55",
+              "Guid": "c6992ecc1d7d4c239c1a1bb2cb57eb7b",
+              "ClientRectangle": "3.4,0,1.6,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.SawLimitName}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "DataColumn"
+            }
+          },
+          "DataSourceName": "f_SawTaskUE_Period_Operator_Assembly"
+        },
+        "15": {
+          "Ident": "StiGroupFooterBand",
+          "Name": "GroupFooterBand6",
+          "Guid": "0bdf8899f16149c8a53b0b30dcac657d",
+          "ClientRectangle": "0,24.2,19,0.9",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text63",
+              "Guid": "46d10379560d4438931189c772480a56",
+              "ClientRectangle": "0,0,2.1,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "   {f_SawTaskUE_Period_Operator_Assembly.DateComplete.ToString(\"dd.MM.yyyy\")}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 2.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text64",
+              "Guid": "f9d66f9994004cc08c81b28d1c633ea7",
+              "ClientRectangle": "2.1,0,1.3,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.nSmena}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text65",
+              "Guid": "1ed8d98d966d47aeab123d40199ec466",
+              "ClientRectangle": "7.2,0,5,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Всего"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text68",
+              "Guid": "70c08a3322474ee4b78039aff77bf742",
+              "ClientRectangle": "14.1,0,2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text27",
+              "Guid": "423e90aabc9c45ad9c17ed0c25583b16",
+              "ClientRectangle": "16.1,0,2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text35",
+              "Guid": "e1b98d838fc44682b9b24681d9b1b78f",
+              "ClientRectangle": "5,0,2.2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "DataColumn"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text43",
+              "Guid": "21e082c2a22041d0815aa70e3554da3f",
+              "ClientRectangle": "12.2,0,1.9,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text53",
+              "Guid": "6978c1cec0c1431691a1c7cc06cdaf8a",
+              "ClientRectangle": "3.4,0,1.6,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:Gainsboro",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "DataColumn"
+            }
+          }
+        },
+        "16": {
+          "Ident": "StiGroupFooterBand",
+          "Name": "GroupFooterBand9",
+          "Guid": "88d7fb75b7444f0986977f83763383e8",
+          "ClientRectangle": "0,25.9,19,0",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:"
+        },
+        "17": {
+          "Ident": "StiGroupFooterBand",
+          "Name": "GroupFooterBand5",
+          "Guid": "69fe7cf23c014109ad56ca928b295b78",
+          "ClientRectangle": "0,26.7,19,0",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:"
+        },
+        "18": {
+          "Ident": "StiGroupFooterBand",
+          "Name": "GroupFooterBand1",
+          "Guid": "762fd109a71443bfa1bd5f9b93862f6d",
+          "ClientRectangle": "0,27.5,19,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text37",
+              "Guid": "2272c1eac93b4f839b0c406ecfccbe8a",
+              "ClientRectangle": "0,0,14.2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Итого:"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightGreen",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 2.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text49",
+              "Guid": "3004b93e142848168adac93f2402e875",
+              "ClientRectangle": "14.2,0,2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightGreen",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text28",
+              "Guid": "ae30816632af4c81a2d16997b0fc9360",
+              "ClientRectangle": "16.2,0,2,0.5",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightGreen",
               "TextBrush": "solid:Black",
               "Margins": {
                 "Left": 0.0,
@@ -1956,428 +2235,10 @@
           }
         },
         "19": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand6",
-          "Guid": "a58225277cf5487c933a123ed000ae1b",
-          "ClientRectangle": "0,29,19,0.9",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text63",
-              "Guid": "a416709c6cd34383bb5a24ec69a55528",
-              "ClientRectangle": "0,0,2.1,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "   {f_SawTaskUE_Period_Operator.DateComplete.ToString(\"dd.MM.yyyy\")}"
-              },
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 2.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text64",
-              "Guid": "508b8d47f53649f9afa21aeb0f5dbcb2",
-              "ClientRectangle": "2.1,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.nSmena}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "DataColumn"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text65",
-              "Guid": "0b228f236f2045d5aa0ad80f8b2d870a",
-              "ClientRectangle": "3.4,0,8,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Всего "
-              },
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text66",
-              "Guid": "e2309679fc454cbe996edaf9c18c7cae",
-              "ClientRectangle": "11.4,0,2.7,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "4": {
-              "Ident": "StiText",
-              "Name": "Text68",
-              "Guid": "262968528a664a22bc01f2591bbf68fc",
-              "ClientRectangle": "17,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == \"Китай\",   f_SawTaskUE_Period_Operator.SumUEChina,\r\n\t IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}\r\n"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "5": {
-              "Ident": "StiText",
-              "Name": "Text69",
-              "Guid": "2cfbcd9c9cd8466d8fd590c67632b4cb",
-              "ClientRectangle": "15.7,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "6": {
-              "Ident": "StiText",
-              "Name": "Text57",
-              "Guid": "f9bae319b2454ea5b34f0539ca957e97",
-              "ClientRectangle": "14.1,0,1.6,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:Gainsboro",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            }
-          }
-        },
-        "20": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand5",
-          "Guid": "3ad3a653af964650b5ce8e6c33c16d8c",
-          "ClientRectangle": "0,30.7,19,0",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:"
-        },
-        "21": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand1",
-          "Guid": "4e919f619c3c490189c105c47a16f2a1",
-          "ClientRectangle": "0,31.5,19,1.2",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text37",
-              "Guid": "065e2549a23349b0b045bdb00030beb0",
-              "ClientRectangle": "0,0,11.6,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Итого: {f_SawTaskUE_Period_Operator.CuttingTableName}"
-              },
-              "VertAlignment": "Center",
-              "Font": ";;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 2.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text41",
-              "Guid": "942d4b19106a49e581d382b5b586684a",
-              "ClientRectangle": "11.4,0,2.7,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text42",
-              "Guid": "4ffc65f0c4464c589c0bce85e3dd020a",
-              "ClientRectangle": "15.7,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text49",
-              "Guid": "f917a7cf78144bc6ad6beb4dc8cb8a40",
-              "ClientRectangle": "17,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == \"Китай\",   f_SawTaskUE_Period_Operator.SumUEChina,\r\n\t IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), f_SawTaskUE_Period_Operator.SumUELisec, f_SawTaskUE_Period_Operator.SumUE)))}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "4": {
-              "Ident": "StiText",
-              "Name": "Text58",
-              "Guid": "0bfbda2e772e4c1cb9731977322917f4",
-              "ClientRectangle": "14.1,0,1.6,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            }
-          }
-        },
-        "22": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand10",
-          "Guid": "9dc2e635b4df4c3f800de3d7597f839d",
-          "ClientRectangle": "0,33.5,19,0",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:"
-        },
-        "23": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand11",
-          "Guid": "c0e6ee3e36d5454b919bfb706678e53c",
-          "ClientRectangle": "0,34.3,19,0.8",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text27",
-              "Guid": "eac85b4a72db41b99631f4bebe29bffb",
-              "ClientRectangle": "0,0,19,0.8",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.CuttingTableName}"
-              },
-              "Font": ";16;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "DataColumn"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.CuttingTableName}"
-          }
-        },
-        "24": {
           "Ident": "StiGroupHeaderBand",
           "Name": "GroupHeaderBand4",
-          "Guid": "2105888e856c46fa8a1f1a3339bdb1e1",
-          "ClientRectangle": "0,35.9,19,0.9",
+          "Guid": "7863c79f9fcc405a8e16466495be8526",
+          "ClientRectangle": "0,29.5,19,0.9",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
@@ -2387,8 +2248,8 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text44",
-              "Guid": "51f0cf59daef48fc9df62aa9cb6b1194",
-              "ClientRectangle": "0,0,15.6,0.9",
+              "Guid": "b23cb5885d884fa693d3cf64867d166b",
+              "ClientRectangle": "0,0,10.3,0.9",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -2405,14 +2266,14 @@
             },
             "1": {
               "Ident": "StiText",
-              "Name": "Text92",
-              "Guid": "d8ae8d8f4efc4e45801d4bd871a89635",
+              "Name": "Text39",
+              "Guid": "dafad3b08d0d47eab621ef07e6bd413e",
               "ClientRectangle": "10.3,0,2,0.9",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "Площадь с КТУ"
+                "Value": "У.Е."
               },
               "HorAlignment": "Center",
               "VertAlignment": "Center",
@@ -2420,9 +2281,38 @@
               "Border": "All;;;;;;;solid:Black",
               "Brush": "solid:LightGreen",
               "TextBrush": "solid:Black",
-              "TextOptions": {
-                "WordWrap": true
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
               },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text40",
+              "Guid": "cea819aad17c4c44aaa77aa152cc0be9",
+              "ClientRectangle": "12.3,0,2,0.9",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "У.Е. * Цена"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:LightGreen",
+              "TextBrush": "solid:Black",
               "Margins": {
                 "Left": 0.0,
                 "Right": 2.0,
@@ -2443,41 +2333,68 @@
             "Value": "1=1"
           }
         },
-        "25": {
+        "20": {
           "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand3",
-          "Guid": "1cfc1206644a44a9aa17637051fcf8b8",
-          "ClientRectangle": "0,37.6,19,0",
+          "Name": "GroupHeaderBand10",
+          "Guid": "24a312afb28c4ccab7e7160185e15226",
+          "ClientRectangle": "0,31.2,19,0",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:",
           "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.Name}"
+            "Value": "{f_SawTaskUE_Period_Operator_Assembly.SawLimitName}"
           }
         },
-        "26": {
-          "Ident": "StiDataBand",
-          "Name": "DataBand3",
-          "Guid": "81682a2bec194719a25d14876561dbb0",
-          "ClientRectangle": "0,38.4,19,0",
+        "21": {
+          "Ident": "StiGroupHeaderBand",
+          "Name": "GroupHeaderBand3",
+          "Guid": "d6d92a60e96740a8b6bbfe701dcb20c3",
+          "ClientRectangle": "0,32,19,0",
           "Interaction": {
             "Ident": "StiBandInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:",
-          "DataSourceName": "f_SawTaskUE_Period_Operator",
-          "Sort": {
-            "0": "ASC",
-            "1": "DateComplete"
+          "Condition": {
+            "Value": "{f_SawTaskUE_Period_Operator_Assembly.Name}"
           }
         },
-        "27": {
+        "22": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand3",
+          "Guid": "b2680d79312f43aabe8a2a77806ca222",
+          "ClientRectangle": "0,32.8,19,0",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text57",
+              "ClientRectangle": "0,0,2.4,0",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd}"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "DataColumn"
+            }
+          },
+          "DataSourceName": "f_SawTaskUE_Period_Operator_Assembly"
+        },
+        "23": {
           "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand3",
-          "Guid": "97d7cc5381c8482e876aecdd378faeef",
-          "ClientRectangle": "0,39.2,19,0.5",
+          "Name": "GroupFooterBand10",
+          "Guid": "6e489fb5f4a34af8a594b9ba5c8e1211",
+          "ClientRectangle": "0,33.6,19,0.4",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -2487,8 +2404,8 @@
             "0": {
               "Ident": "StiText",
               "Name": "Text52",
-              "Guid": "18e9d7d5704241aab46e9aa6e42028ae",
-              "ClientRectangle": "0,0,3.4,0.5",
+              "Guid": "1885edc80d6c4adeb96c4dc2829e214d",
+              "ClientRectangle": "0,0,3.4,0.4",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
@@ -2506,74 +2423,15 @@
               "Type": "Expression"
             },
             "1": {
-              "Ident": "StiText",
-              "Name": "Text53",
-              "Guid": "685a6638fbc24cf3848851146cd5e5dc",
-              "ClientRectangle": "10.3,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)\r\n/*IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), \r\n\t Sum(f_SawTaskUE_Period_Operator.SumArea + f_SawTaskUE_Period_Operator.SumWasteArea), \r\n\t Sum(f_SawTaskUE_Period_Operator.SumArea))\r\n*/}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text54",
-              "Guid": "6be7d8d9446c4bbf8824b00a671175af",
-              "ClientRectangle": "12.3,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "3": {
               "Ident": "StiText",
               "Name": "Text56",
-              "Guid": "db47edd8482d4e71b5b892380fb6330b",
-              "ClientRectangle": "3.4,0,6.9,0.5",
+              "Guid": "6102ce260e0346e2b41d8a9dd283a2d5",
+              "ClientRectangle": "3.4,0,6.9,0.4",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.Name}"
+                "Value": "{f_SawTaskUE_Period_Operator_Assembly.Name}"
               },
               "VertAlignment": "Center",
               "Border": "All;;;;;;;solid:Black",
@@ -2587,16 +2445,47 @@
               },
               "Type": "Expression"
             },
-            "4": {
+            "2": {
               "Ident": "StiText",
               "Name": "Text50",
-              "Guid": "6587e742b5474fa1809200af2d248fc0",
-              "ClientRectangle": "13.6,0,2,0.5",
+              "Guid": "2d8a28c47127472d9665f67b652ba0b0",
+              "ClientRectangle": "10.3,0,2,0.4",
               "Interaction": {
                 "Ident": "StiInteraction"
               },
               "Text": {
-                "Value": "{(IIF(f_SawTaskUE_Period_Operator.CuttingTableName == \"Китай\",   \r\n        f_SawTaskUE_Period_Operator.SumUEChina,\r\n\t    IIF(f_SawTaskUE_Period_Operator.CuttingTableName.StartsWith(\"Lisec\"), \r\n              f_SawTaskUE_Period_Operator.SumUELisec, \r\n              f_SawTaskUE_Period_Operator.SumUE)))}"
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE)}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Margins": {
+                "Left": 0.0,
+                "Right": 2.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "DecimalDigits": 2,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text29",
+              "Guid": "81f2c9c99fb841b9a620f66875d74618",
+              "ClientRectangle": "12.3,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Sum(f_SawTaskUE_Period_Operator_Assembly.SumUE * f_SawTaskUE_Period_Operator_Assembly.dPriceOfUnitProd)}"
               },
               "HorAlignment": "Right",
               "VertAlignment": "Center",
@@ -2620,611 +2509,33 @@
             }
           }
         },
-        "28": {
+        "24": {
+          "Ident": "StiGroupFooterBand",
+          "Name": "GroupFooterBand3",
+          "Guid": "01349c7df97f476690c340ea1398ac18",
+          "ClientRectangle": "0,34.8,19,0.7",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:"
+        },
+        "25": {
           "Ident": "StiGroupFooterBand",
           "Name": "GroupFooterBand4",
-          "Guid": "979f02c1f0694efa82fe508e0e624f43",
-          "ClientRectangle": "0,40.5,19,0.8",
+          "Guid": "29d5fd44e31f46fe98e73d2c5cb28fae",
+          "ClientRectangle": "0,36.3,19,0",
           "Interaction": {
             "Ident": "StiInteraction"
           },
           "Border": ";;;;;;;solid:Black",
           "Brush": "solid:"
         },
-        "29": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand11",
-          "Guid": "b9178b1860e34ab2a7b033c416376149",
-          "ClientRectangle": "0,42.1,19,0",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:"
-        },
-        "30": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand13",
-          "ClientRectangle": "0,42.9,19,0.9",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text79",
-              "Guid": "501f309a4ea745f6801f1121b8fdab03",
-              "ClientRectangle": "0,0,15.6,0.9",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Триплекс с покрытием"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";12;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text93",
-              "Guid": "80ac0740484b4875a721a87e0b592a87",
-              "ClientRectangle": "10.3,0,2,0.9",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Площадь с КТУ"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";10;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "TextOptions": {
-                "WordWrap": true
-              },
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.bTripCoat==1}"
-          }
-        },
-        "31": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand12",
-          "ClientRectangle": "0,44.6,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.Name}"
-          }
-        },
-        "32": {
-          "Ident": "StiDataBand",
-          "Name": "DataBand4",
-          "ClientRectangle": "0,45.4,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "DataSourceName": "f_SawTaskUE_Period_Operator",
-          "Filters": {
-            "0": {
-              "Ident": "StiFilter",
-              "DataType": "Numeric",
-              "Column": "bTripCoat",
-              "Value1": "1"
-            }
-          }
-        },
-        "33": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand12",
-          "ClientRectangle": "0,46.2,19,0.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text59",
-              "Guid": "a44c7d74a3584baebd0ba639d6f03adc",
-              "ClientRectangle": "0,0,3.4,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 2.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text60",
-              "Guid": "0e32206113284f47a964f3e400e29a72",
-              "ClientRectangle": "10.3,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text67",
-              "Guid": "331e5501a880464ebeeb4b2ee5315cb1",
-              "ClientRectangle": "12.3,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text78",
-              "Guid": "33f4bdb604fc4f0bab9d08f62a8658f3",
-              "ClientRectangle": "3.4,0,6.9,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.Name}"
-              },
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            }
-          }
-        },
-        "34": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand14",
-          "ClientRectangle": "0,47.5,19,0.9",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text81",
-              "Guid": "1cfb97968bbc4d46a913b3e7eb87f6f3",
-              "ClientRectangle": "0,0,15.6,0.9",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Триплекс без покрытия"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";12;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.bTripNoCoat==1}"
-          }
-        },
-        "35": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand15",
-          "ClientRectangle": "0,49.2,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.Name}"
-          }
-        },
-        "36": {
-          "Ident": "StiDataBand",
-          "Name": "DataBand5",
-          "ClientRectangle": "0,50,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "DataSourceName": "f_SawTaskUE_Period_Operator",
-          "Filters": {
-            "0": {
-              "Ident": "StiFilter",
-              "DataType": "Numeric",
-              "Column": "bTripNoCoat",
-              "Value1": "1"
-            }
-          }
-        },
-        "37": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand13",
-          "ClientRectangle": "0,50.8,19,0.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text83",
-              "Guid": "6911ab5656314ef486988f4587cac2c0",
-              "ClientRectangle": "0,0,3.4,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 2.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text84",
-              "Guid": "48d0e9ee04534fe7beb6d833095ab756",
-              "ClientRectangle": "10.3,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text85",
-              "Guid": "e51112e4c8f4442dba0fbe898a335072",
-              "ClientRectangle": "12.3,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text86",
-              "Guid": "33d3d42cde6440e494ebd5a1f9cb507a",
-              "ClientRectangle": "3.4,0,6.9,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.Name}"
-              },
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            }
-          }
-        },
-        "38": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand16",
-          "ClientRectangle": "0,52.1,19,0.9",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text87",
-              "Guid": "83ce2bbf9264462c9c00467c4566fb16",
-              "ClientRectangle": "0,0,15.6,0.9",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Триплекс всего"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": ";12;Bold;",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:LightGreen",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            }
-          },
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.bTriplex==1}"
-          }
-        },
-        "39": {
-          "Ident": "StiGroupHeaderBand",
-          "Name": "GroupHeaderBand17",
-          "ClientRectangle": "0,53.8,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Condition": {
-            "Value": "{f_SawTaskUE_Period_Operator.Name}"
-          }
-        },
-        "40": {
-          "Ident": "StiDataBand",
-          "Name": "DataBand6",
-          "ClientRectangle": "0,54.6,19,0",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "DataSourceName": "f_SawTaskUE_Period_Operator",
-          "Filters": {
-            "0": {
-              "Ident": "StiFilter",
-              "DataType": "Numeric",
-              "Column": "bTriplex",
-              "Value1": "1"
-            }
-          }
-        },
-        "41": {
-          "Ident": "StiGroupFooterBand",
-          "Name": "GroupFooterBand14",
-          "ClientRectangle": "0,55.4,19,0.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text88",
-              "Guid": "54dc10332321413b97bcb81865ed30cd",
-              "ClientRectangle": "0,0,3.4,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 2.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text89",
-              "Guid": "ff48d14d27ac4ef6b313aa79725746ae",
-              "ClientRectangle": "10.3,0,2,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Sum(f_SawTaskUE_Period_Operator.SumArea*f_SawTaskUE_Period_Operator.KTU/f_SawTaskUE_Period_Operator.SumKTU)}"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text90",
-              "Guid": "d302361122204f289ccb3e6ae87cefbb",
-              "ClientRectangle": "12.3,0,1.3,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Right",
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "TextFormat": {
-                "Ident": "StiNumberFormatService",
-                "NegativePattern": 1,
-                "DecimalSeparator": ",",
-                "DecimalDigits": 2,
-                "GroupSeparator": " "
-              },
-              "Type": "Expression"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text91",
-              "Guid": "1c3857cea3ee4841b4f4c730608368dd",
-              "ClientRectangle": "3.4,0,6.9,0.5",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{f_SawTaskUE_Period_Operator.Name}"
-              },
-              "VertAlignment": "Center",
-              "Border": "All;;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Margins": {
-                "Left": 0.0,
-                "Right": 2.0,
-                "Top": 0.0,
-                "Bottom": 0.0
-              },
-              "Type": "Expression"
-            }
-          }
-        },
-        "42": {
+        "26": {
           "Ident": "StiReportSummaryBand",
           "Name": "ReportSummaryBand1",
-          "Guid": "5c5be11d18a84d109e670dd92a561e14",
-          "ClientRectangle": "0,56.7,19,0.8",
+          "Guid": "a5e03f471b92454d9187e0e808137b47",
+          "ClientRectangle": "0,37.1,19,0.8",
           "Interaction": {
             "Ident": "StiInteraction"
           },
@@ -3329,7 +2640,7 @@
           "Guid": "9a6fa5b4302b4a6698327c6779cd220e",
           "ClientRectangle": "16,40,80,32",
           "ClickEvent": {
-            "Script": "sDateBeg = \"'\" + DateTimePickerControl1.Value.ToString(\"dd.MM.yyyy\") + \"'\";\r\nsDateEnd = \"'\" + DateTimePickerControl2.Value.ToString(\"dd.MM.yyyy\") + \"'\";\r\n\r\n\r\n//f_SawTaskUE_Period_Detail.Connect();\r\n//f_SawTaskUE_Period_Operator.Connect();\r\n\r\n\r\n\r\nf_SawTaskUE_Period_Detail.ConnectOnStart = true;\r\nf_SawTaskUE_Period_Detail.Disconnect();\r\nf_SawTaskUE_Period_Detail.Connect();\r\n\r\nf_SawTaskUE_Period_Operator.ConnectOnStart = true;\r\nf_SawTaskUE_Period_Operator.Disconnect();\r\nf_SawTaskUE_Period_Operator.Connect();\r\n\r\n\r\n\r\ntry\r\n{\r\nDateTime selectedDate1 = DateTimePickerControl1.Value; \r\nstring dateValue1 = selectedDate1.ToString(\"yyyy-MM-dd\"); \r\n\r\nDateTime selectedDate2 = DateTimePickerControl2.Value; \r\nstring dateValue2 = selectedDate2.ToString(\"yyyy-MM-dd\"); \r\n\r\n  using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@\"Software\\PrimeSoft\\IzoGlass\\Reports\"))\r\n  {\r\n    if (key != null)\r\n    {\r\n      key.SetValue(\"DateBegUE\", dateValue1);\r\n      key.SetValue(\"DateEndUE\", dateValue2);\r\n      \r\n      //MessageBox.Show(\"Даты записаны в реестр:\\nНачало: \" + dateValue1 + \"\\nКонец: \" + dateValue2);\r\n    }\r\n  }\r\n}\r\ncatch (Exception ex)\r\n{\r\n  MessageBox.Show(\"Ошибка записи в реестр: \" + ex.Message);\r\n}\r\n"
+            "Script": "sDateBeg = \"'\" + DateTimePickerControl1.Value.ToString(\"dd.MM.yyyy\") + \"'\";\r\nsDateEnd = \"'\" + DateTimePickerControl2.Value.ToString(\"dd.MM.yyyy\") + \"'\";\r\n\r\n\r\n//f_SawTaskUE_Period_Detail.Connect();\r\n//f_SawTaskUE_Period_Operator.Connect();\r\n\r\nf_SawTaskUE_Period_Detail_Assembly.ConnectOnStart = true;\r\nf_SawTaskUE_Period_Detail_Assembly.Disconnect();\r\nf_SawTaskUE_Period_Detail_Assembly.Connect();\r\n\r\nf_SawTaskUE_Period_Operator_Assembly.ConnectOnStart = true;\r\nf_SawTaskUE_Period_Operator_Assembly.Disconnect();\r\nf_SawTaskUE_Period_Operator_Assembly.Connect();\r\n\r\n\r\n\r\ntry\r\n{\r\nDateTime selectedDate1 = DateTimePickerControl1.Value; \r\nstring dateValue1 = selectedDate1.ToString(\"yyyy-MM-dd\"); \r\n\r\nDateTime selectedDate2 = DateTimePickerControl2.Value; \r\nstring dateValue2 = selectedDate2.ToString(\"yyyy-MM-dd\"); \r\n\r\n  using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@\"Software\\PrimeSoft\\IzoGlass\\Reports\"))\r\n  {\r\n    if (key != null)\r\n    {\r\n      key.SetValue(\"DateBegUE\", dateValue1);\r\n      key.SetValue(\"DateEndUE\", dateValue2);\r\n      \r\n      //MessageBox.Show(\"Даты записаны в реестр:\\nНачало: \" + dateValue1 + \"\\nКонец: \" + dateValue2);\r\n    }\r\n  }\r\n}\r\ncatch (Exception ex)\r\n{\r\n  MessageBox.Show(\"Ошибка записи в реестр: \" + ex.Message);\r\n}\r\n"
           },
           "Size": {
             "Width": 80,

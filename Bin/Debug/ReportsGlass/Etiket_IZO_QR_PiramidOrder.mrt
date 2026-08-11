@@ -485,7 +485,7 @@
               <BackColor>Transparent</BackColor>
               <BarCodeType Ref="31" type="Stimulsoft.Report.BarCodes.StiCode128AutoBarCodeType" isKey="true" />
               <ClientRectangle>0,0,17,44</ClientRectangle>
-              <Code>{w_GPEtiketRam.CommentProject}</Code>
+              <Code>{IIF(w_GPEtiketRam.ClientName == "ООО \"Московские Окна\"",w_GPEtiketRam.CommentProject, "")}</Code>
               <Conditions isList="true" count="0" />
               <Font>Arial,8,Bold,Pixel</Font>
               <ForeColor>Black</ForeColor>
@@ -572,10 +572,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/31/2026 12:35:38 PM</ReportChanged>
+  <ReportChanged>8/7/2026 1:23:28 PM</ReportChanged>
   <ReportCreated>9/23/2024 3:12:55 PM</ReportCreated>
   <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\Etiket_IZO_QR_PiramidOrder.mrt</ReportFile>
-  <ReportGuid>a15d16c3c925479fa28978e801cb79cc</ReportGuid>
+  <ReportGuid>c58fa495ae3c4f68be4c5229177e14c9</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

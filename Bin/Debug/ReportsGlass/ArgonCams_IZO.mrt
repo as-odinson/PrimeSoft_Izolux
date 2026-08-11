@@ -26,53 +26,57 @@
         <Name>argon</Name>
         <NameInSource>PrimeSoft</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>set dateformat dmy
-select 
-	PD.idTask,
-	PD.Date,
-	PD.AccountNum,
-	PD.Name,
-	PD.AdjustedCount,
-	AL.Name as AssemblyLineName
-	from
-	SawTaskMain STM
-  inner join GlassDetails GD on GD.idSawTaskMain = STM.ID
-  inner join
-  (
-select 
+        <SqlCommand>set dateformat dmy;
+
+;with PD as
+(
+select
 	T.ID as idTask,
 	T.Date,
+	T.DateComplite,
 	T.AccountNum,
 	C.Name,
 	P.ID as idProject,
-	Sum(P.nCount * 
-	case 
-          when P.bIsArgon1 = 1 AND P.bIsArgon2 = 1 then 2 
-          when P.bIsArgon1 = 1 OR P.bIsArgon2 = 1 then 1  
-          else 0                                         
-        end) as AdjustedCount
-      from Task T
-      left join Project P on T.ID = P.idTask
-      left join Client C on C.ID = T.idClient
-      where (P.bIsArgon1 = 1 or P.bIsArgon2 = 1)
-      group by
-      T.ID,
-      T.Date,
-      T.AccountNum,
-      C.Name,
-      P.ID
-  ) PD on PD.idProject = GD.idProject
-  left join AssemblyLine AL on STM.idAssemblyLine = AL.ID
-  where
-  STM.Data &gt;= {sDateBeg} and STM.Data &lt;= {sDateEnd}
-group by 
+	sum(P.nCount *
+	case
+                when P.bIsArgon1 = 1 and P.bIsArgon2 = 1 then 2
+                when P.bIsArgon1 = 1 or P.bIsArgon2 = 1 then 1
+                else 0
+            end) as AdjustedCount
+    from Task T
+    left join Project P on P.idTask = T.ID
+    left join Client C on C.ID = T.idClient
+    where P.bIsArgon1 = 1 or P.bIsArgon2 = 1
+    group by
+        T.ID, T.Date, T.DateComplite,
+        T.AccountNum, C.Name, P.ID
+),
+ProjectAssembly as
+(
+select distinct
+	GD.idProject,
+	STM.idAssemblyLine
+	from SawTaskMain STM
+    inner join GlassDetails GD on GD.idSawTaskMain = STM.ID
+)
+select
 	PD.idTask,
 	PD.Date,
 	PD.AccountNum,
 	PD.Name,
-	PD.AdjustedCount,
-    PD.idProject,
-    AL.Name</SqlCommand>
+	sum(PD.AdjustedCount) as AdjustedCount,
+	AL.Name as AssemblyLineName
+	from PD
+	inner join ProjectAssembly PA on PA.idProject = PD.idProject
+left join AssemblyLine AL on AL.ID = PA.idAssemblyLine
+where PD.DateComplite &gt;= {sDateBeg}
+  and PD.DateComplite &lt;= {sDateEnd}
+group by
+    PD.idTask,
+    PD.Date,
+    PD.AccountNum,
+    PD.Name,
+    AL.Name;</SqlCommand>
       </argon>
     </DataSources>
     <Relations isList="true" count="0" />
@@ -472,10 +476,10 @@ argon.Connect();</ClickEvent>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/28/2026 1:08:30 PM</ReportChanged>
+  <ReportChanged>8/11/2026 1:01:49 PM</ReportChanged>
   <ReportCreated>9/19/2011 9:44:08 AM</ReportCreated>
   <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\ArgonCams_IZO.mrt</ReportFile>
-  <ReportGuid>86d786b0758b480ca2daa930d4e96e91</ReportGuid>
+  <ReportGuid>6e7e36170029447a88d583da414537bd</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1600</ReportVersion>

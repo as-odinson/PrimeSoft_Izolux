@@ -1,0 +1,1313 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <PrimeSoft Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>PrimeSoft</Alias>
+        <ConnectionStringEncrypted>4BDB60UIo8h6FX0cZBgll8J6u6FhUXMZaRj52HcE4I/jxGksYkxx3UVEpQR6AfIv/Hiz61cYQ1VDdLWAavTrv406i4lPWUsd82rNjfFx4RfZbnXjYlHZxe1kuYD/AWmL41rhaVBM893sSaHJYlQvRsZo9U5IBaNZ7F3NzE7s</ConnectionStringEncrypted>
+        <Name>PrimeSoft</Name>
+      </PrimeSoft>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <w_TaskMaterComing Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>w_TaskMaterComing</Alias>
+        <Columns isList="true" count="50">
+          <value>forCount,System.Int32</value>
+          <value>ID,System.Int32</value>
+          <value>DocDate,System.DateTime</value>
+          <value>idDepDocType,System.Int32</value>
+          <value>NumInvoice,System.String</value>
+          <value>DateInvoice,System.DateTime</value>
+          <value>NumWayBill,System.String</value>
+          <value>DateWayBill,System.DateTime</value>
+          <value>Commentary,System.String</value>
+          <value>is1,System.Boolean</value>
+          <value>is2,System.Boolean</value>
+          <value>is3,System.Boolean</value>
+          <value>bNumInvoiceSet,System.Int32</value>
+          <value>TaskAccountNum,System.String</value>
+          <value>idDepName_Debet,System.Int32</value>
+          <value>idDepName_Credit,System.Int32</value>
+          <value>Name,System.String</value>
+          <value>DepNameDebet,System.String</value>
+          <value>DepNameCredit,System.String</value>
+          <value>DepNameCommon_Debet,System.String</value>
+          <value>DepNameCommon_Credit,System.String</value>
+          <value>DepName,System.String</value>
+          <value>idClient,System.Int32</value>
+          <value>ClientName,System.String</value>
+          <value>SellerName,System.String</value>
+          <value>SellerNameLong,System.String</value>
+          <value>FolderName,System.String</value>
+          <value>MaterName,System.String</value>
+          <value>MaterArt,System.String</value>
+          <value>Art,System.String</value>
+          <value>UnitName,System.String</value>
+          <value>idDepTransMater,System.Int32</value>
+          <value>idMaterial,System.Int32</value>
+          <value>dCount,System.Decimal</value>
+          <value>PriceUnit,System.Decimal</value>
+          <value>PriceSum,System.Decimal</value>
+          <value>NDSUnit,System.Decimal</value>
+          <value>NDSSum,System.Decimal</value>
+          <value>PriceNDSUnit,System.Decimal</value>
+          <value>PriceNDSSum,System.Decimal</value>
+          <value>Price_Sum,System.Decimal</value>
+          <value>Price_NDSSum,System.Decimal</value>
+          <value>Price_NDS,System.Decimal</value>
+          <value>GPCount,System.Int32</value>
+          <value>GPArea,System.Decimal</value>
+          <value>SDName,System.String</value>
+          <value>ManagerName,System.String</value>
+          <value>TaskClientName,System.String</value>
+          <value>NumCalcFact,System.String</value>
+          <value>ClientNameResult,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>w_TaskMaterComing</Name>
+        <NameInSource>PrimeSoft</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy
+select * from w_TaskMaterComing where DocDate &gt;= {sDateBeg} and DocDate &lt;= {sDateEnd} and idDepDocType = 2 and
+	({idClient} = 0  or ({idClient} &lt;&gt; 0 and idClient = {idClient}))
+order by MaterName</SqlCommand>
+      </w_TaskMaterComing>
+      <Client Ref="4" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>Client</Alias>
+        <Columns isList="true" count="155">
+          <value>Name,System.String</value>
+          <value>Adress,System.String</value>
+          <value>Tel,System.String</value>
+          <value>UNN,System.String</value>
+          <value>OKPO,System.String</value>
+          <value>OKOHX,System.String</value>
+          <value>Type,System.Int32</value>
+          <value>idCalcPriceMethod,System.Int32</value>
+          <value>ID,System.Int32</value>
+          <value>City,System.String</value>
+          <value>CorS,System.String</value>
+          <value>NameLiOpt,System.String</value>
+          <value>KPP,System.String</value>
+          <value>DNum,System.String</value>
+          <value>GUID,System.Guid</value>
+          <value>AccountantName,System.String</value>
+          <value>ChiefName,System.String</value>
+          <value>onReplication,System.Int16</value>
+          <value>nTypeCalcPrice,System.Int16</value>
+          <value>MethodCoef,System.Single</value>
+          <value>MethodCoefRas,System.Single</value>
+          <value>Commentary,System.String</value>
+          <value>NameFull,System.String</value>
+          <value>AdressDeliv,System.String</value>
+          <value>AdressSubDiv,System.String</value>
+          <value>Credit,System.Decimal</value>
+          <value>idTripDirect,System.Int32</value>
+          <value>SumPayable,System.Decimal</value>
+          <value>SumPayment,System.Decimal</value>
+          <value>Priority,System.Int16</value>
+          <value>nGroup,System.Int16</value>
+          <value>NameShort,System.String</value>
+          <value>PyramidLoadType,System.Byte</value>
+          <value>idConsumer,System.Int32</value>
+          <value>bSelfDelivery,System.Boolean</value>
+          <value>bShowTrader,System.Boolean</value>
+          <value>bShowClient,System.Boolean</value>
+          <value>RebatePersent,System.Double</value>
+          <value>AlternativeName,System.String</value>
+          <value>CertificateNDS,System.String</value>
+          <value>bDef,System.Boolean</value>
+          <value>eMail,System.String</value>
+          <value>ID_1C,System.String</value>
+          <value>NameInterface,System.String</value>
+          <value>idPackingSettings,System.Int32</value>
+          <value>Fax,System.String</value>
+          <value>RebateStandardGP,System.Byte</value>
+          <value>RebateGlassFrame,System.Byte</value>
+          <value>RebateNarezka,System.Byte</value>
+          <value>RebateRas,System.Byte</value>
+          <value>RebateOper,System.Byte</value>
+          <value>OGRN,System.String</value>
+          <value>idAreaCategory,System.Int32</value>
+          <value>isDealer,System.Boolean</value>
+          <value>idUser_ActiveManager,System.Int32</value>
+          <value>idUser_PassiveManager,System.Int32</value>
+          <value>idPersonnel,System.Int32</value>
+          <value>ShiperName,System.String</value>
+          <value>idUsers_PrimaryManager,System.Int32</value>
+          <value>QueryCode,System.String</value>
+          <value>LogisticCode,System.String</value>
+          <value>LogisticPriorityIndex,System.String</value>
+          <value>Status,System.Byte</value>
+          <value>nType_BSV_Comment,System.Byte</value>
+          <value>idNDS,System.Int32</value>
+          <value>iAccountNum,System.Int32</value>
+          <value>iCalcFactNum,System.Int32</value>
+          <value>nPayPeriodTask,System.Int32</value>
+          <value>Site,System.String</value>
+          <value>idPicture,System.Int32</value>
+          <value>DeliveryTerm,System.String</value>
+          <value>idDistrict,System.Int32</value>
+          <value>idAdvertising,System.Int32</value>
+          <value>TypeClient,System.Int32</value>
+          <value>PasportGiveDate,System.DateTime</value>
+          <value>isPhis,System.Boolean</value>
+          <value>NumTemplate,System.String</value>
+          <value>BankAdress,System.String</value>
+          <value>Color,System.Int32</value>
+          <value>ColorReady,System.Int32</value>
+          <value>nTypeExport,System.Int32</value>
+          <value>sFileTemplate,System.String</value>
+          <value>idRoute,System.Int32</value>
+          <value>isWhite,System.Boolean</value>
+          <value>OKATO,System.String</value>
+          <value>idActiveManager,System.Int32</value>
+          <value>idPassiveManager,System.Int32</value>
+          <value>nClientCategory,System.Int32</value>
+          <value>Code_1C,System.Int32</value>
+          <value>AccountantNameRod,System.String</value>
+          <value>ChiefNameRod,System.String</value>
+          <value>sCode_1C,System.String</value>
+          <value>idMounterTeam,System.Int32</value>
+          <value>AdditionContract,System.String</value>
+          <value>ChiefPost,System.String</value>
+          <value>Code,System.String</value>
+          <value>idUsers,System.Int32</value>
+          <value>bAccountNumByClient,System.Boolean</value>
+          <value>LastAccountNum,System.Int32</value>
+          <value>AccountNumPrefix,System.String</value>
+          <value>TelService,System.String</value>
+          <value>CertificateOfConformity,System.String</value>
+          <value>Name_report,System.String</value>
+          <value>Address_report,System.String</value>
+          <value>UNN_report,System.String</value>
+          <value>Bank_report,System.String</value>
+          <value>BIK_report,System.String</value>
+          <value>KS_report,System.String</value>
+          <value>iTaskNum,System.Int32</value>
+          <value>idClient_Parent,System.Int32</value>
+          <value>TypeOrder,System.Int32</value>
+          <value>idUsers_RegionManager,System.Int32</value>
+          <value>idPersonnel_ShippingApprove,System.Int32</value>
+          <value>idPersonnel_Shipper,System.Int32</value>
+          <value>bFixNDS,System.Boolean</value>
+          <value>CalcType,System.Int32</value>
+          <value>idClient_DefaultConsignee,System.Int32</value>
+          <value>nClientSubType,System.Byte</value>
+          <value>nClientSubType_Delivery,System.Byte</value>
+          <value>guidCode1C,System.String</value>
+          <value>bDealer,System.Boolean</value>
+          <value>DealerDiscount,System.Int16</value>
+          <value>CutSort,System.String</value>
+          <value>nLabelType,System.Byte</value>
+          <value>CutSortKey,System.String</value>
+          <value>SendEmailName,System.String</value>
+          <value>nTypeExportCSV,System.Int32</value>
+          <value>nTypeShipCSV,System.Int32</value>
+          <value>nTypeFramePrint,System.Int32</value>
+          <value>bGPNameClientToCSV,System.Boolean</value>
+          <value>bAutoSaw,System.Boolean</value>
+          <value>idTaskType,System.Int32</value>
+          <value>idDepotSubDivision,System.Int32</value>
+          <value>eMail_Account,System.String</value>
+          <value>idAreaCategory_OneGlass,System.Int32</value>
+          <value>nLimitPyramidOut,System.Int32</value>
+          <value>CommentaryManuf,System.String</value>
+          <value>nTypeShipExpenceCSV_Format,System.Int32</value>
+          <value>bAllowOverdraft,System.Boolean</value>
+          <value>CreditMax,System.Decimal</value>
+          <value>Debt0,System.Decimal</value>
+          <value>Debt1,System.Decimal</value>
+          <value>Debt2,System.Decimal</value>
+          <value>bGroupPackList,System.Boolean</value>
+          <value>CargoReciever,System.String</value>
+          <value>idClient_DefaultSeller,System.Int32</value>
+          <value>bPriceUnitInCalcFact,System.Boolean</value>
+          <value>idClientBank_DefaultSeller,System.Int32</value>
+          <value>nTypeCalcPrice_ArgonFrame,System.Int16</value>
+          <value>Country,System.String</value>
+          <value>nType_BitMask,System.Int32</value>
+          <value>nLastNumCreditCashOrder,System.Int32</value>
+          <value>idDefaultAdress,System.Int32</value>
+          <value>bDefaultCurve,System.Boolean</value>
+          <value>nOrder,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Client</Name>
+        <NameInSource>PrimeSoft</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select 0 as ID, '--ВСЕ--' as Name, 0 as nOrder 
+union all
+select ID, Name, 1 as nOrder from Client inner join (select distinct idClient from DepTrans where idDepDocType = 2) DC on Client.ID = DC.idClient 
+where Type = 4 
+order by nOrder, Name</SqlCommand>
+      </Client>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="7">
+      <value>basic</value>
+      <value>basic,idorder,idorder,System.Int32,_x0031_082,False,False</value>
+      <value>basic,idstoredoc,idstoredoc,System.Int32,_x0035_313,False,False</value>
+      <value>,StrSumPriceWithNDS,StrSumPriceWithNDS,System.String,,False,False</value>
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2026_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_31.12.2030_x0027_,False,False</value>
+      <value>,idClient,idClient,System.Int32,_x0030_,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="2">
+    <Page1 Ref="5" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="7">
+        <ReportTitle1 Ref="6" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,20,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitle1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </ReportTitle1>
+        <GroupHeaderBand2 Ref="7" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1.2,20,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{w_TaskMaterComing.DocDate}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand2</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand2>
+        <GroupHeaderBand1 Ref="8" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2,20,4.4</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text1 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,14.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Расходная накладная № {w_TaskMaterComing.NumInvoice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text1>
+            <Text17 Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.6,0,5.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>b415ab07281f4af6ab83a642add88db6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>от {Format("{0:dd.MM.yyyy}", w_TaskMaterComing.DocDate)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text17>
+            <Text2 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,3,14.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Основание: производство изделий {w_TaskMaterComing.GPCount} шт.    {Round(w_TaskMaterComing.GPArea, 2)} м.2</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text23 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,14.6,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Организация: {w_TaskMaterComing.SellerNameLong}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text23>
+            <Text24 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.2,14.6,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>9b40348cf5b6442bb9bf08581ac44f9c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Структурное подразделение: {IIF(w_TaskMaterComing.DepNameDebet.Contains("Щёлково"), "Щёлково", IIF(w_TaskMaterComing.DepNameDebet.Contains("Ступино"), "Ступино", ""))}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text24>
+            <Text26 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.4,14.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>0c454bcd290b40d88b3d5718ac5d3b99</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Заказчик: {w_TaskMaterComing.ClientNameResult}  {w_TaskMaterComing.TaskAccountNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text26>
+            <Text25 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.6,14.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>355bd7899ab74b43949263b5fec9de30</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Отправитель: {IIF(w_TaskMaterComing.DepNameDebet.Contains("Щёлково"), "Склад ОП Щелково", "Склад ОП Ступино")}
+Получатель: {IIF(w_TaskMaterComing.DepNameDebet.Contains("Щёлково"), "цех ОП Щелково", "цех ОП Ступино")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text25>
+            <Text27 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,3.8,14.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>cd78c0b840df4dcf817204009c80078e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="5" />
+              <Parent isRef="8" />
+              <Text>Примечание: {w_TaskMaterComing.Commentary}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text27>
+          </Components>
+          <Condition>{w_TaskMaterComing.ID}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupHeaderBand1>
+        <ChildBand1 Ref="17" type="ChildBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7.2,20,0.6</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text6 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>7.4,0,5.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>2250989cd3fe4c23b66c4b88e0e5dd36</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Артикул</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>12.6,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>472a83539bc84617969a8a8a7fc4d878</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Кол-во</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="20" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>14.6,0,1.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>bbd982fb654043c3b1042a00fe6431c3</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Ед.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text3 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>f96995f5ab674ab28fc680a2840a8b34</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>№п/п</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text5 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>16.3,0,1.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>57173489b74f4b0db848e5870e7f32f6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Цена</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text15 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>18,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>accd0e54fc4649f4a6dd48206bbcaa03</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Сумма</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text10 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>1.6,0,5.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>d7146cf012724aaf902e4323c6917f50</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="5" />
+              <Parent isRef="17" />
+              <Text>Наименование</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ChildBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </ChildBand1>
+        <Data1 Ref="25" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,8.6,20,0.6</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text12 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.4,0,5.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>af627841dc2c4936840b2179f825e443</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.MaterArt}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>56e3efa4832f4ba8b87a9fd674165a84</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.dCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="28" type="NumberFormat" isKey="true">
+                <DecimalDigits>3</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>14.6,0,1.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>25a67c5b39ba469bbb475bc0d76b7501</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.UnitName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text4 Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>20b1d99c18aa4476a8706a6672b6a95d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>SystemVariables</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text9 Ref="31" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>16.3,0,1.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.PriceUnit}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="32" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text16 Ref="33" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>18,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.PriceSum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="34" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text11 Ref="35" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.6,0,5.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>9ec0d245bd83409da9be737d01bd0340</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="5" />
+              <Parent isRef="25" />
+              <Text>{w_TaskMaterComing.MaterName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>w_TaskMaterComing</DataSourceName>
+          <Filters isList="true" count="2">
+            <value>is1,EqualTo,_x0031_,,Numeric</value>
+            <value>bNumInvoiceSet,EqualTo,_x0031_,,Numeric</value>
+          </Filters>
+          <Name>Data1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </Data1>
+        <GroupFooterBand1 Ref="36" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10,20,3.3</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text18 Ref="37" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.3,0,3.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>c2829f64d6e44638bfb2436fc5bcb532</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="5" />
+              <Parent isRef="36" />
+              <Text>{Round(w_TaskMaterComing.Price_Sum, 2)}
+</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="38" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="39" type="Text" isKey="true">
+              <Border>Top, Right, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.6,0,1.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>c0326cc7081e4091be316e23fcc8cd82</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="5" />
+              <Parent isRef="36" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="40" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text22 Ref="41" type="Text" isKey="true">
+              <Border>Top, Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.6,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="5" />
+              <Parent isRef="36" />
+              <Text>Итого:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text22>
+            <Text20 Ref="42" type="Text" isKey="true">
+              <BeforePrintEvent>double NUM = Math.Round((double)w_TaskMaterComing.Price_Sum, 2);
+string  STR,
+	COP,
+	RUB,
+	STRRUB  = "",
+		UNITRUB = "";
+
+if ( NUM.ToString().Length &gt; 0 )
+{ 
+	//--------------------------КОПЕЙКИ-----------------------------------------------------
+	if ( NUM.ToString().IndexOf(".") &gt;= 0 )
+	{
+		COP = NUM.ToString().Substring(NUM.ToString().IndexOf(",") + 1);
+		if ( COP.Substring(0, 1) != "1" &amp;&amp; COP.Length != 1 )
+		{
+			switch ( COP.Substring(1,1) )
+			{
+				case "1":
+					COP = COP.Substring(0,2) + " копейка";
+					break;
+				case "2":case "3":case "4":
+					COP = COP.Substring(0,2) + " копейки";
+					break;
+				default:
+					COP = COP.Substring(0,2) + " копеек";
+					break;
+			}
+		}
+		else
+			if (COP.Length == 1)
+			COP = COP.Substring(0,1) + "0 копеек";
+		else
+			COP = COP.Substring(0,2) + " копеек";
+			
+		RUB = NUM.ToString().Substring(0, NUM.ToString().IndexOf(","));
+	}
+	else
+	{
+		COP = "00 копеек";
+		RUB = NUM.ToString();
+	}
+	//--------------------------РУБЛИ-----------------------------------------------------	
+	if ( RUB != "0" )
+	{
+
+		string	UNITNAME	 = "",
+		UNITNAME_1   = "",
+		UNITNAME_234 = "";
+		int nSIGN;
+		int x = (RUB.Length - 1)/3; 
+		
+		switch ( RUB.Substring(RUB.Length - 1, 1) )
+		{
+			case "0":case "5":case "6":case "7":case "8":case "9":
+				UNITRUB = "рублей ";
+				break;
+			case "1":
+				UNITRUB = "рубль ";
+				break;
+			case "2":case "3":case "4":
+				UNITRUB = "рубля ";
+				break;
+		}	
+		
+		for ( int i = 0; i &lt;= x; i++ )
+		{
+			switch ( i )
+			{
+				case 0:
+					UNITNAME 	 = "";
+					UNITNAME_1   = "";
+					UNITNAME_234 = "";
+					break;
+				case 1:
+					UNITNAME     = "тысяч ";
+					UNITNAME_1   = "тысяча ";
+					UNITNAME_234 = "тысячи ";
+					break;
+				case 2:
+					UNITNAME     = "миллионов ";
+					UNITNAME_1   = "миллион ";
+					UNITNAME_234 = "миллиона ";
+					break;
+				case 3:
+					UNITNAME 	 = "миллиардов ";
+					UNITNAME_1   = "миллиард ";
+					UNITNAME_234 = "миллиарда ";
+					break;
+				case 4:
+					UNITNAME 	 = "триллионов ";
+					UNITNAME_1   = "триллион ";
+					UNITNAME_234 = "триллиона ";
+					break;
+			}
+
+			string 	UNIT    	 = "",
+			TEN	    	 = "",
+			HUNDRED      = "";
+			
+			for ( nSIGN = 1; nSIGN &lt;= (RUB.Length - i*3); nSIGN++ )
+			{
+				switch ( nSIGN )
+				{
+					case 1:
+						if ( (RUB.Length - x*3) &gt; 1 &amp;&amp; RUB.Substring(RUB.Length - nSIGN - 1 - i*3,1) == "1")
+							break;
+						switch ( RUB.Substring(RUB.Length - nSIGN - i*3, 1) )
+						{
+							case "0":
+								UNIT = ((i == x ? UNITNAME : "") );
+								break;
+							case "1":
+								if(i == 1)
+									UNIT = "одна "  + UNITNAME_1;
+								else
+									UNIT = "один "  + UNITNAME_1;
+								break;
+							case "2":
+								if(i == 1)
+									UNIT = "две "   + UNITNAME_234;
+								else
+									UNIT = "два " 	+ UNITNAME_234;
+								break;
+							case "3":
+								UNIT = "три "    	+ UNITNAME_234;
+								break;
+							case "4":
+								UNIT = "четыре " 	+ UNITNAME_234;
+								break;
+							case "5":
+								UNIT = "пять "   	+ UNITNAME;
+								break;
+							case "6":
+								UNIT = "шесть "  	+ UNITNAME;
+								break;
+							case "7":
+								UNIT = "семь "   	+ UNITNAME;
+								break;
+							case "8":
+								UNIT = "восемь " 	+ UNITNAME;
+								break;
+							case "9":
+								UNIT = "девять " 	+ UNITNAME;
+								break;
+							default:
+								UNIT = "";
+								break;
+						}
+						break;
+					case 2:
+						switch ( RUB.Substring(RUB.Length - nSIGN - i*3, 2) )
+						{
+							case "10":
+								TEN = "десять "       + UNITNAME;UNIT = "";
+								break;
+							case "11":
+								TEN = "одинадцать "   + UNITNAME;UNIT = "";
+								break;
+							case "12":
+								TEN = "двенадцать "   + UNITNAME;UNIT = "";
+								break;
+							case "13":
+								TEN = "тринадцать "   + UNITNAME;UNIT = "";
+								break;
+							case "14":
+								TEN = "четырнадцать " + UNITNAME;UNIT = "";
+								break;
+							case "15":
+								TEN = "пятнадцать "   + UNITNAME;UNIT = "";
+								break;
+							case "16":
+								TEN = "шестнадцать "  + UNITNAME;UNIT = "";
+								break;
+							case "17":
+								TEN = "семнадцать "   + UNITNAME;UNIT = "";
+								break;
+							case "18":
+								TEN = "восемнадцать " + UNITNAME;UNIT = "";
+								break;
+							case "19":
+								TEN = "девятнадцать " + UNITNAME;UNIT = "";
+								break;
+							default:
+								TEN = "";
+								break;
+						}
+						switch ( RUB.Substring(RUB.Length - nSIGN - i*3, 1) )
+						{
+							case "0":
+								TEN = ((i == x ? UNITNAME : "") );
+								break;
+							case "1":
+								break;	
+							case "2":
+								TEN = "двадцать ";
+								break;
+							case "3":
+								TEN = "тридцать ";
+								break;
+							case "4":
+								TEN = "сорок ";
+								break;
+							case "5":
+								TEN = "пятьдесят ";
+								break;
+							case "6":
+								TEN = "шестьдесят ";
+								break;
+							case "7":
+								TEN = "семьдесят ";
+								break;
+							case "8":
+								TEN = "восемдесят ";
+								break;
+							case "9":
+								TEN = "девяносто ";
+								break;
+						}
+						break;
+					case 3:
+						switch ( RUB.Substring(RUB.Length - nSIGN - i*3, 1) )
+						{
+							case "1":
+								HUNDRED = "сто ";
+								break;
+							case "2":
+								HUNDRED = "двести ";
+								break;
+							case "3":
+								HUNDRED = "триста ";
+								break;
+							case "4":
+								HUNDRED = "четыреста ";
+								break;
+							case "5":
+								HUNDRED = "пятьсот ";
+								break;
+							case "6":
+								HUNDRED = "шестьсот ";
+								break;
+							case "7":
+								HUNDRED = "семьсот ";
+								break;
+							case "8":
+								HUNDRED = "восемсот ";
+								break;
+							case "9":
+								HUNDRED = "девятьсот ";
+								break;
+							default:
+								HUNDRED = "";
+								break;
+						}
+						break;
+				}
+			}
+			STRRUB = HUNDRED + TEN + UNIT + STRRUB;
+		}
+	}
+	else
+		STRRUB = "Ноль рублей ";
+	
+	STR = STRRUB + UNITRUB + COP;
+	StrSumPriceWithNDS = STR.Substring(0, 1).ToUpper() + STR.Remove(0, 1); //Передаем строку в переменную для вывода в отчете
+}</BeforePrintEvent>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,0.7,18.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,11</Font>
+              <Guid>712b1478b7bf418281e56b930b108097</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="5" />
+              <Parent isRef="36" />
+              <Text>{StrSumPriceWithNDS}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="43" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text21 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.2,12,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>d8ccabfb9c00497e97a6b49a79ebc31f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="5" />
+              <Parent isRef="36" />
+              <Text>Отпуск произвел: {IIF(w_TaskMaterComing.DepNameDebet.Contains("Щёлково"), "Казакова Е. И.", " ")}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="45" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <NewPageAfter>True</NewPageAfter>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand1>
+        <GroupFooterBand2 Ref="46" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,14.1,20,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand2</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </GroupFooterBand2>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>36620eb084f246dba9af685bbf7dbaa9</Guid>
+      <Margins>0.5,0.5,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="47" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Выберите_x0020_клиента_x0020_и_x0020_период Ref="48" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="8">
+        <LabelControl1 Ref="49" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,8,16,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>b92a31b696784240a4ecb11280550679</Guid>
+          <Location>8, 8</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>16, 20</Size>
+          <Text>С</Text>
+          <TextAlign>MiddleRight</TextAlign>
+        </LabelControl1>
+        <LabelControl2 Ref="50" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>144,8,24,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>2eea1d6ccdb541a0a7ef7b4118155018</Guid>
+          <Location>144, 8</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>24, 20</Size>
+          <Text>по</Text>
+          <TextAlign>MiddleCenter</TextAlign>
+        </LabelControl2>
+        <DateTimePickerControl1 Ref="51" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>32,8,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>30d4f6f58f864a77a0ad466080be98a7</Guid>
+          <Location>32, 8</Location>
+          <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2001 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>104, 20</Size>
+          <Today>False</Today>
+          <Value>1/1/2026 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="52" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>176,8,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>411ed7e56ffa4b7fb1c1bbd71a77ed38</Guid>
+          <Location>176, 8</Location>
+          <MaxDate>1/1/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2010 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>104, 20</Size>
+          <Value>12/31/2021 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <ButtonControl1 Ref="53" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+//if (cbDepot.SelectedIndex &gt; 0)
+	idClient = (int)cbClient.SelectedKey;
+
+w_TaskMaterComing.ConnectOnStart = true;
+w_TaskMaterComing.Disconnect();
+w_TaskMaterComing.Connect();
+</ClickEvent>
+          <ClientRectangle>32,64,80,32</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Default>True</Default>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>9a6fa5b4302b4a6698327c6779cd220e</Guid>
+          <Location>32, 64</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>80, 32</Size>
+          <Text>Готово</Text>
+        </ButtonControl1>
+        <ButtonControl2 Ref="54" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <Cancel>True</Cancel>
+          <ClientRectangle>200,64,80,32</ClientRectangle>
+          <Components isList="true" count="0" />
+          <DialogResult>Cancel</DialogResult>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>7705b94568644baf9b95405ada4e0729</Guid>
+          <Location>200, 64</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <Size>80, 32</Size>
+          <Text>Отмена</Text>
+        </ButtonControl2>
+        <cbClient Ref="55" type="Stimulsoft.Report.Dialogs.StiLookUpBoxControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>72,40,216,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <DropDownStyle>DropDownList</DropDownStyle>
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>c88029f1578b48acbbea5741efebca40</Guid>
+          <Items isList="true" count="0" />
+          <ItemsBinding>Client.Name</ItemsBinding>
+          <Keys isList="true" count="0" />
+          <KeysBinding>Client.ID</KeysBinding>
+          <Location>72, 40</Location>
+          <MaxDropDownItems>18</MaxDropDownItems>
+          <Name>cbClient</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <SelectedItemBinding>Client.Name</SelectedItemBinding>
+          <SelectedKeyBinding>Client.ID</SelectedKeyBinding>
+          <Size>216, 20</Size>
+          <Text />
+        </cbClient>
+        <LabelControl5 Ref="56" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,40,56,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>c9303e38a0184d02b46f94b6ea5918fd</Guid>
+          <Location>8, 40</Location>
+          <Name>LabelControl5</Name>
+          <Page isRef="48" />
+          <Parent isRef="48" />
+          <RightToLeft>Inherit</RightToLeft>
+          <Size>56, 16</Size>
+          <Text>Клиент:</Text>
+          <TextAlign>MiddleLeft</TextAlign>
+        </LabelControl5>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>29ae027b64f0473d8942537ce2e9ac03</Guid>
+      <Location>0, 0</Location>
+      <Name>Выберите клиента и период</Name>
+      <Report isRef="0" />
+      <Size>304, 128</Size>
+      <Text>Form1</Text>
+    </Выберите_x0020_клиента_x0020_и_x0020_период>
+  </Pages>
+  <PrinterSettings Ref="57" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>6/11/2026 2:26:11 PM</ReportChanged>
+  <ReportCreated>5/16/2013 11:49:17 PM</ReportCreated>
+  <ReportFile>F:\DEVELOP\Dev5\Bin\Debug\ReportsDepot5\DepInvExp_IZO_Period.mrt</ReportFile>
+  <ReportGuid>804a20e1238f453790165855181eb9c4</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

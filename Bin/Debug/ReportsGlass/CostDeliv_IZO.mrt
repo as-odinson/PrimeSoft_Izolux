@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <baba Ref="2" type="Stimulsoft.Report.Dictionary.StiOleDbDatabase" isKey="true">
+        <Alias>baba</Alias>
+        <ConnectionStringEncrypted>4DBTCd15G6RySei9aiDrm8JU4evGBUPI7FzNlHIlYn/FVtmPzVTDhWxG8WxN1OQXxGr3K1ZrWt1FEyVsTXTgl9E8U+tPWXuZ+mT1XOpcoBf0xM8tS06T8G8V6I1LeCXX2VjRL0Zck6RsbNUAYpzhP9Bgsw==</ConnectionStringEncrypted>
+        <Name>baba</Name>
+      </baba>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <DeliveryCost Ref="3" type="Stimulsoft.Report.Dictionary.StiOleDbSource" isKey="true">
+        <Alias>DeliveryCost</Alias>
+        <Columns isList="true" count="7">
+          <value>ID,System.Int32</value>
+          <value>AccountNum,System.String</value>
+          <value>DateDelivery,System.DateTime</value>
+          <value>ClientName,System.String</value>
+          <value>AddressDelivery,System.String</value>
+          <value>CommentaryDeliv,System.String</value>
+          <value>PriceDelivery,System.Decimal</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <ConnectOnStart>False</ConnectOnStart>
+        <Dictionary isRef="1" />
+        <Name>DeliveryCost</Name>
+        <NameInSource>baba</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>set dateformat dmy;
+	select
+	T.ID,
+	T.AccountNum,
+	T.DateDelivery,
+	C.Name as ClientName,
+	T.AddressDelivery,
+	T.CommentaryDeliv,
+	T.PriceDelivery
+	from Task T
+left join Client C on C.ID = T.idClient
+where T.DateDelivery &gt;= {sDateBeg}
+  and T.DateDelivery &lt;= {sDateEnd}
+  and isnull(T.PriceDelivery, 0) &lt;&gt; 0
+order by T.DateDelivery, T.AccountNum</SqlCommand>
+      </DeliveryCost>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="4">
+      <value>,sDateBeg,sDateBeg,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDateEnd,sDateEnd,System.String,_x0027_01.01.2010_x0027_,False,False</value>
+      <value>,sDepotSubDivision,sDepotSubDivision,System.String,,False,False</value>
+      <value>,whereDepotSubDivision,whereDepotSubDivision,System.String,,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="1">
+    <value>InternalVersion,_x0032_017.1.11.0</value>
+  </MetaTags>
+  <Pages isList="true" count="2">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <ReportTitleBand1 Ref="5" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,20,1119,55.12</ClientRectangle>
+          <Components isList="true" count="2">
+            <TitleText Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1090.55,29.53</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Guid>7944308895604732b4d8ec71d5ee8975</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>TitleText</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Отчёт по стоимости доставки</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </TitleText>
+            <Text1 Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,30,1090.55,19.53</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16,Bold</Font>
+              <Guid>f8d5e08338b743e0a6bc4786ca06221c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Период: {sDateBeg}  -  {sDateEnd}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>e4ef4fd2f87c4fe9bb458804d9fcc511</Guid>
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportTitleBand1>
+        <PageFooterBand1 Ref="8" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,757.31,1119,19.69</ClientRectangle>
+          <Components isList="true" count="1">
+            <PageNumberText Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1090.55,19.69</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>31c99f3acdc746b188805fb96ad62c32</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>PageNumberText</Name>
+              <Page isRef="4" />
+              <Parent isRef="8" />
+              <Text>{"Страница " + PageNumber + " из " + TotalPageCount}</Text>
+              <TextBrush>Gray</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </PageNumberText>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>39a82536aa4d4fd08a4a3a6a53007dac</Guid>
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <HeaderBand1 Ref="10" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,115.12,1119,31.5</ClientRectangle>
+          <Components isList="true" count="6">
+            <HeaderDate Ref="11" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>0,0,110.24,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>d41dcd7e45ac45648820fbaa5c2d8133</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderDate</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Дата доставки</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderDate>
+            <HeaderAccount Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>110.24,0,129.92,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>1d8577586f754a3e9968fefd11858e61</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderAccount</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Номер заказа</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderAccount>
+            <HeaderClient Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>240.16,0,259.84,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>5840828a72554cb8a4ee35e436511e3d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderClient</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Клиент</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderClient>
+            <HeaderAddress Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>500,0,244.09,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>190d6a9c62514f01a94a235ea51034d2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderAddress</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Адрес доставки</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderAddress>
+            <HeaderComment Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>744.09,0,188.98,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>8e609a9360a5413d8a06aa61decfe14a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderComment</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Комментарий</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderComment>
+            <HeaderPrice Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[230:230:230]</Brush>
+              <ClientRectangle>933.07,0,157.48,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>8e8c974f1a204384a53831cd05c60f14</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="10" />
+              <Text>Стоимость доставки</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPrice>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>2ab62acaaa314445a129d20541209453</Guid>
+          <Name>HeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </HeaderBand1>
+        <DataBand1 Ref="17" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,186.62,1119,25</ClientRectangle>
+          <Components isList="true" count="6">
+            <DataDate Ref="18" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,110.24,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>015a6425c5ba435e819e45f032e53954</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataDate</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.DateDelivery.ToString("dd.MM.yyyy")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataDate>
+            <DataAccount Ref="19" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>110.24,0,129.92,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>26e99f92fa4042a4b94f22c35a6a9333</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataAccount</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.AccountNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataAccount>
+            <DataClient Ref="20" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>240.16,0,259.84,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>57e5d9f69eee4b3f817b62257040a87b</Guid>
+              <Margins>0.08,0.05,0.08,0.05</Margins>
+              <Name>DataClient</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.ClientName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataClient>
+            <DataAddress Ref="21" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>500,0,244.09,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>b2df4bce5a70433cb7de9d9cea82a94e</Guid>
+              <Margins>0.08,0.05,0.08,0.05</Margins>
+              <Name>DataAddress</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.AddressDelivery}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataAddress>
+            <DataComment Ref="22" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>744.09,0,188.98,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6736800a1a4248838ac592de6ab58c4a</Guid>
+              <Margins>0.08,0.05,0.08,0.05</Margins>
+              <Name>DataComment</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.CommentaryDeliv}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataComment>
+            <DataPrice Ref="23" type="Text" isKey="true">
+              <Border>All;Silver;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>933.07,0,157.48,27.56</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>47b70692244a472f87289ce4e7bd8880</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0.12,0</Margins>
+              <Name>DataPrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{DeliveryCost.PriceDelivery.ToString("N2")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataPrice>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>DeliveryCost</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <FooterBand1 Ref="24" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,251.62,1119,31.5</ClientRectangle>
+          <Components isList="true" count="2">
+            <FooterLabel Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[245:245:245]</Brush>
+              <ClientRectangle>0,0,933.07,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>4fec9c9954e144dfbf153986c4051d02</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0.15,0</Margins>
+              <Name>FooterLabel</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{"Количество заказов: " + Count(DataBand1) + "    Итого:"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </FooterLabel>
+            <FooterSum Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[245:245:245]</Brush>
+              <ClientRectangle>933.07,0,157.48,31.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>58b2de6185a140ec96ea9435d418df8d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0.12,0</Margins>
+              <Name>FooterSum</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{Sum(DataBand1, DeliveryCost.PriceDelivery).ToString("N2")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </FooterSum>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>15e7ea997b5c4d8db3909ba3a119b20f</Guid>
+          <Name>FooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </FooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>a12743ab80b947ff828d12a8aff4419c</Guid>
+      <Margins>25,25,25,25</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>827</PageHeight>
+      <PageWidth>1169</PageWidth>
+      <Report isRef="0" />
+      <TitleBeforeHeader>True</TitleBeforeHeader>
+      <Watermark Ref="27" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <Form1 Ref="28" type="Stimulsoft.Report.Dialogs.StiForm" isKey="true">
+      <BackColor>Control</BackColor>
+      <Components isList="true" count="6">
+        <DateTimePickerControl1 Ref="29" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>24,16,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Location>24, 16</Location>
+          <MaxDate>12/31/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2000 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl1</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>104, 20</Size>
+          <Value>2/10/2021 12:00:00 AM</Value>
+        </DateTimePickerControl1>
+        <DateTimePickerControl2 Ref="30" type="Stimulsoft.Report.Dialogs.StiDateTimePickerControl" isKey="true">
+          <BackColor>Window</BackColor>
+          <ClientRectangle>160,16,104,20</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Format>Short</Format>
+          <Guid>043048a751214c7a8c73216c8d13ee65</Guid>
+          <Location>160, 16</Location>
+          <MaxDate>12/31/2100 12:00:00 AM</MaxDate>
+          <MinDate>1/1/2000 12:00:00 AM</MinDate>
+          <Name>DateTimePickerControl2</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>104, 20</Size>
+          <Value>2/10/2021 12:00:00 AM</Value>
+        </DateTimePickerControl2>
+        <LabelControl2 Ref="31" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>8,16,16,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>8, 16</Location>
+          <Name>LabelControl2</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>16, 16</Size>
+          <Text>С</Text>
+        </LabelControl2>
+        <LabelControl1 Ref="32" type="Stimulsoft.Report.Dialogs.StiLabelControl" isKey="true">
+          <BackColor>Control</BackColor>
+          <ClientRectangle>136,16,24,16</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Font>Microsoft Sans Serif,8</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>28ce3e93a0894d17a7d3ea0339035d43</Guid>
+          <Location>136, 16</Location>
+          <Name>LabelControl1</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>24, 16</Size>
+          <Text>По</Text>
+        </LabelControl1>
+        <ButtonControl1 Ref="33" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <ClickEvent>sDateBeg = "'" + DateTimePickerControl1.Value.ToString("dd.MM.yyyy") + "'";
+sDateEnd = "'" + DateTimePickerControl2.Value.ToString("dd.MM.yyyy") + "'";
+
+
+
+DeliveryCost.ConnectOnStart = true;
+DeliveryCost.Disconnect();
+DeliveryCost.Connect();</ClickEvent>
+          <ClientRectangle>8,64,120,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <ComponentStyle>Style1</ComponentStyle>
+          <DialogResult>OK</DialogResult>
+          <Font>Microsoft Sans Serif,8,Bold</Font>
+          <ForeColor>Black</ForeColor>
+          <Location>8, 64</Location>
+          <Name>ButtonControl1</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>120, 24</Size>
+          <Text>ОК</Text>
+        </ButtonControl1>
+        <ButtonControl2 Ref="34" type="Stimulsoft.Report.Dialogs.StiButtonControl" isKey="true">
+          <Cancel>True</Cancel>
+          <ClientRectangle>136,64,128,24</ClientRectangle>
+          <Components isList="true" count="0" />
+          <ComponentStyle>Style3</ComponentStyle>
+          <Font>Microsoft Sans Serif,8,Bold</Font>
+          <ForeColor>Black</ForeColor>
+          <Guid>dd009faf8ea64c269ba877e55d9a9b64</Guid>
+          <Location>136, 64</Location>
+          <Name>ButtonControl2</Name>
+          <Page isRef="28" />
+          <Parent isRef="28" />
+          <Size>128, 24</Size>
+          <Text>Отмена</Text>
+        </ButtonControl2>
+      </Components>
+      <Font>Microsoft Sans Serif,8</Font>
+      <Guid>90057f411f624538ab63e34a95d34231</Guid>
+      <Location>0, 0</Location>
+      <Name>Form1</Name>
+      <Report isRef="0" />
+      <Size>280, 120</Size>
+      <Text>Выберите временной интервал</Text>
+    </Form1>
+  </Pages>
+  <PrinterSettings Ref="35" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportAuthor isNull="true" />
+  <ReportChanged>8/3/2026 11:23:57 AM</ReportChanged>
+  <ReportCreated>9/5/2024 2:01:34 PM</ReportCreated>
+  <ReportDescription isNull="true" />
+  <ReportFile>D:\App\Dev5_1\Plugin\Glass_Plugin\Reports\ReportsGlass\CostDeliv_IZO.mrt</ReportFile>
+  <ReportGuid>bcc5ff2f7e274555a571b18bc41388a6</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>HundredthsOfInch</ReportUnit>
+  <ReportVersion>2013.1.1600</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+		private string ToText(string x) { return x; }
+		private string ToText(double x) { return x.ToString(); }
+		private string ToText(double x, int y) { return x.ToString("F" + y.ToString()); }
+		private string ToText(DateTime x, string y) { return x.ToString(y); }
+		private string Trim(string st) { return st.Trim(); }
+		private string TrimRight(string st) { return st.TrimEnd(); }
+		private string TrimLeft(string st) { return st.TrimStart(); }
+		private string UpperCase(string st) { return st.ToUpper(); }
+		private string LowerCase(string st) { return st.ToLower(); }
+		private bool IsNull1(object obj) { return obj == null || obj == DBNull.Value; }
+		private DateTime DateValue(object obj) { return (DateTime)Stimulsoft.Base.StiConvert.ChangeType(obj, typeof(DateTime), true); }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

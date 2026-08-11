@@ -860,6 +860,25 @@ function Prog::GlassPackCalcPrice()
                 sProtocolProcess  = sProtocolProcess + "\r\n Сверления на стекле № " + nGlassItem + ". Стоимость = " + fCost.toFixed(2);
                 continue;
               }
+
+              // Если вырез также пропускаем, просто выведем стоимость в протокол
+              if (nTypeOper == 11)
+              {
+                // на всякий случай проверим что цена есть
+                if ( fPriceProcessingCurrent > 0)
+                {
+                  // Проставим также в Item, для соотвествия с сверлениями
+                  rcProjectItem("Cost").Value  = fPriceProcessingCurrent;
+                  rcProjectItem("Price").Value  = fPriceProcessingCurrent;
+
+                  // Добавим к цене операций цену за вырез
+                  Prog.rcProject("PriceOperation").Value =
+                      (Prog.rcProject("PriceOperation").Value || 0) + fPriceProcessingCurrent;
+                }
+                
+                sProtocolProcess  = sProtocolProcess + "\r\n Вырез на стекле № " + nGlassItem + ". Стоимость = " + fPriceProcessingCurrent.toFixed(2);
+                continue;
+              }
               
               // Если цены нет пробуем достать
               if ( !fPriceProcessingCurrent )
@@ -891,6 +910,7 @@ function Prog::GlassPackCalcPrice()
           fPriceRebate       = 0,
           fRebateVal         = 0, // Скидка в рублях на заказ
           fOrderRebate       = 0, // Новая часть Rebate от скидки заказа
+          PriceAddDelivery   = 0,
           fOldOrderRebate    = GP.GetFloat("SumNoNDS_Discount"),
           PriceAddVal        = 0,
           PriceAdd           = 0,
@@ -908,6 +928,7 @@ function Prog::GlassPackCalcPrice()
 
         fRebateVal   = Prog.rcTask("RebateVal").Value;    // Скидка на заказ
         fPriceAddVal = Prog.rcTask("PriceAddVal").Value;  // Наценка на заказ
+        PriceAddDelivery = Prog.rcTask("PriceDelivery").Value || 0; // Доставка применять будем как наценку
 
         // Запишем на позиции, скидку и наценку
         if (fRebateVal)
@@ -938,8 +959,18 @@ function Prog::GlassPackCalcPrice()
        
         if (fPriceAddVal)
         {
-          fPriceAddVal = Math.round((fPriceAddVal / nCountProject) * 100) / 100;
-          sProtPriceAdd += " Наценка на заказ = " + fPriceAddVal + ";";
+          sProtPriceAdd += " \r\nНаценка на заказ = " + fPriceAddVal + ";";
+          fPriceAddVal = Math.round((fPriceAddVal / nCountProject) * 1000000) / 1000000;
+          sProtPriceAdd += " Наценка на заказ = " + fPriceAddVal.toFixed(2) + ";";
+        }
+
+        if ( PriceAddDelivery)
+        {
+          sProtPriceAdd += "\r\nДоставка = " + PriceAddDelivery + " ; "
+          PriceAddDelivery = Math.round((PriceAddDelivery / nCountProject) * 1000000) / 1000000;
+          sProtPriceAdd += "Применено на позицию = " + PriceAddDelivery.toFixed(2) + " ; "
+
+          Prog.rcProject("PriceDelivSumWithNDS").Value = PriceAddDelivery;
         }
 
         // Добавим наценку на заказ если она есть
@@ -1223,7 +1254,8 @@ function Prog::GlassPriceOperation()
         {
             fAddArgon   = Math.round(objPrice.GlassPackPriceSpecialMargin(Prog.idClient, 8, Prog.idPricePeriod, Prog.idPricePeriodDiscount));
             fPriceOper = fAddArgon;
-          }
+        }
+        
         GP.GlassPriceOper = fPriceOper; 
       }
     }
